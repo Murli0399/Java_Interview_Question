@@ -106,40 +106,46 @@ In Java, there are several ways to create instances of wrapper classes, which al
 
 ### Using Constructors
 Each wrapper class provides constructors that accept the corresponding primitive type or a string representation of the value.
-Integer myInteger = new Integer(10);       // Using int value
-Double myDouble = new Double(3.14);        // Using double value
-Character myChar = new Character('A');     // Using char value
-Boolean myBoolean = new Boolean(true);     // Using boolean value
+	
+	Integer myInteger = new Integer(10);       // Using int value
+	Double myDouble = new Double(3.14);        // Using double value
+	Character myChar = new Character('A');     // Using char value
+	Boolean myBoolean = new Boolean(true);     // Using boolean value
 
 Some wrapper classes also provide constructors that take a string as an argument to parse and initialize the value:
-Integer myInteger = new Integer("100");     // Using string value
-Double myDouble = new Double("3.14");       // Using string value
+
+	Integer myInteger = new Integer("100");     // Using string value
+	Double myDouble = new Double("3.14");       // Using string value
 
 ### Using Static valueOf() Methods
 Each wrapper class provides a static valueOf() method that creates an instance of the wrapper class from the specified value. These methods often offer better performance compared to using constructors. 
-Integer myInteger = Integer.valueOf(10);         // Using int value
-Double myDouble = Double.valueOf(3.14);          // Using double value
-Character myChar = Character.valueOf('A');       // Using char value
-Boolean myBoolean = Boolean.valueOf(true);       // Using boolean value
+	
+	Integer myInteger = Integer.valueOf(10);         // Using int value
+	Double myDouble = Double.valueOf(3.14);          // Using double value
+	Character myChar = Character.valueOf('A');       // Using char value
+	Boolean myBoolean = Boolean.valueOf(true);       // Using boolean value
 
 The valueOf() methods also accept a string representation of the value:
-Integer myInteger = Integer.valueOf("100");      // Using string value
-Double myDouble = Double.valueOf("3.14");        // Using string value
+
+	Integer myInteger = Integer.valueOf("100");      // Using string value
+	Double myDouble = Double.valueOf("3.14");        // Using string value
 
 ### Using Autoboxing
 Java provides autoboxing, which automatically converts primitive values to their corresponding wrapper class instances and vice versa. This simplifies the process of creating wrapper class instances.
-Integer myInteger = 10;        // Autoboxing int to Integer
-Double myDouble = 3.14;        // Autoboxing double to Double
-Character myChar = 'A';        // Autoboxing char to Character
-Boolean myBoolean = true;      // Autoboxing boolean to Boolean
+
+	Integer myInteger = 10;        // Autoboxing int to Integer
+	Double myDouble = 3.14;        // Autoboxing double to Double
+	Character myChar = 'A';        // Autoboxing char to Character
+	Boolean myBoolean = true;      // Autoboxing boolean to Boolean
 
 Autoboxing allows you to assign primitive values directly to wrapper class variables, and the conversion is handled implicitly by the compiler.
 
 ### Using Static Constants
 Some wrapper classes provide static constants for commonly used values, such as Integer.MAX_VALUE, Double.NaN, or Character.MAX_VALUE. These constants can be directly used to create wrapper class instances.
-Integer myInteger = Integer.MAX_VALUE;
-Double myDouble = Double.NaN;
-Character myChar = Character.MAX_VALUE;
+
+	Integer myInteger = Integer.MAX_VALUE;
+	Double myDouble = Double.NaN;
+	Character myChar = Character.MAX_VALUE;
 
 This method is primarily useful when you need to use specific predefined values.
 
