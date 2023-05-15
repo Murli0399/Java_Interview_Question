@@ -1018,8 +1018,8 @@ No, you cannot call a constructor from a method. The only place from which you c
 </details>
   
 <details><summary>
-	
-## Is a super class constructor called even when there is no explicit call from a sub class constructor ?
+
+## Is a super class constructor called even when there is no explicit call from a sub class constructor?
 </summary>
 If a super class constructor is not explicitly called from a sub class constructor, super class (no argument)
 constructor is automatically invoked (as first line) from a sub class constructor.
