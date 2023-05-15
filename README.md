@@ -1,5 +1,9 @@
 <details><summary>
 	
+### Part-1
+</summary>
+<details><summary>
+	
 ## Why is Java so Popular?
 </summary>
 Java is one of the most popular languages because Java has several contributions to its widespread adoption and continued relevance in the software development industry. So Java has some key factors which make it  a popular programming language.
@@ -62,6 +66,7 @@ Users who only need to run Java applications, rather than developing them, can i
 ## What is the role of class loader in java ?
 </summary>
 Java ClassLoader is an abstract class. It belongs to a java.lang package. It loads classes from different resources. Java ClassLoader is used to load the classes at run time. In other words, JVM performs the linking process at runtime. Classes are loaded into the JVM according to need. If a loaded class depends on another class, that class is loaded as well. When we request to load a class, it delegates the class to its parent. In this way, uniqueness is maintained in the runtime environment. It is essential to execute a Java program.
+</details>
 </details>
   
 <details><summary>
