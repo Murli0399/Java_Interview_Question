@@ -1,6 +1,6 @@
 <details><summary>
 	
-# Why is Java so Popular?
+## Why is Java so Popular?
 </summary>
 Java is one of the most popular languages because Java has several contributions to its widespread adoption and continued relevance in the software development industry. So Java has some key factors which make it  a popular programming language.
 
@@ -9,21 +9,32 @@ Java is one of the most popular languages because Java has several contributions
 - **Platform Independent:-** Java source code is compiled and converted into bytecode. this bytecode can run on multiple platforms i.e. Write Once and Run Anywhere(WORA), we can compile the java code in one Operating System and execute it on another Operating System. The WORA makes java an Architecture Neutral language. Java also standardized all data types that also contributed to making java a platform-independent language.
 </details>
   
+<details><summary>
+	
 ## What is Platform Independence?
+</summary>
 Platform independence, also known as "write once, run anywhere," refers to the ability of a programming language or framework to run on different platforms without requiring extensive modifications. In the context of Java, platform independence is one of the its key features.
 
 Java is one of the most popular platform independent languages. Once we compile a java program and build a jar, we can run the jar (compiledjava program) in any Operating System - where a JVM is installed.Java achieves Platform Independence in a beautiful way. On compiling a java file the output is a class file- which contains an internal java representation called bytecode. 
 
 JVM converts bytecode to executable instructions. The executable instructions are different in different operating systems. So, there aredifferent JVM's for different operating systems. A JVM for windows is different from a JVM for mac.However, both the JVM's understand the bytecode and convert it to the executable code for therespective operating system.
-
+</details>
+  
+<details><summary>
+	
 ## What is ByteCode?
+</summary>
 Bytecode is a low-level representation of code that is executed by a virtual machine (VM) rather than directly by the hardware. It serves as an intermediate step between source code and machine code, enabling platform independence and facilitating efficient execution.
 
 If i talk about Java, when you write a Java program, it is first compiled into bytecode. And the Java compiler (javac) translates the human-readable Java source code into a compact and platform-neutral binary format which is called by bytecode. This bytecode is stored in .class files.
 
 Bytecode is designed to be easily interpreted and executed by the Java Virtual Machine (JVM), which is specific to each platform or operating system. Instead of directly executing machine-specific instructions, the JVM reads the bytecode instructions one by one and dynamically translates them into machine code that can be executed by the underlying hardware.
-
+</details>
+  
+<details><summary>
+	
 ## Compare JDK vs JVM VS JRE.
+</summary>
 JDK (Java Development Kit), JVM (Java Virtual Machine), and JRE (Java Runtime Environment) are key components of the Java platform. Each serves a specific purpose in the Java development and execution process. Here's a comparison of these three components:
 
 ### JDK (Java Development Kit):
@@ -44,11 +55,19 @@ The JRE is a subset of the JDK. It includes the necessary components to run Java
 The JRE consists of the JVM, Java class libraries, and other runtime dependencies required for executing Java applications.
 It provides the runtime environment for running Java applications on end-user machines or servers.
 Users who only need to run Java applications, rather than developing them, can install the JRE. It allows them to execute Java programs without the need for the full JDK.
-
+</details>
+  
+<details><summary>
+	
 ## What is the role of class loader in java ?
+</summary>
 Java ClassLoader is an abstract class. It belongs to a java.lang package. It loads classes from different resources. Java ClassLoader is used to load the classes at run time. In other words, JVM performs the linking process at runtime. Classes are loaded into the JVM according to need. If a loaded class depends on another class, that class is loaded as well. When we request to load a class, it delegates the class to its parent. In this way, uniqueness is maintained in the runtime environment. It is essential to execute a Java program.
-
+</details>
+  
+<details><summary>
+	
 ## What are wrapper classes?
+</summary>
 Wrapper classes in Java are a set of classes that encapsulate primitive data types (such as int, float, char, etc.) and provide object-oriented representations for them. They allow primitive types to be used as objects in Java programs by wrapping them within instances of the corresponding wrapper classes.
 Here are the wrapper classes for each primitive type:
 
@@ -60,12 +79,20 @@ Long: Represents the long type.
 Float: Represents the float type.
 Double: Represents the double type.
 Character: Represents the char type.
-
+</details>
+  
+<details><summary>
+	
 ## Why do we need Wrapper Classes in Java?
+</summary>
 The Java programming language treats primitive types and objects differently. Primitive types are not considered objects and do not have the capabilities of objects, such as methods and additional functionalities. However, there are situations where we may need to treat primitive types as objects, such as when working with collections, generics, or when using methods that require objects as arguments.
 Wrapper classes bridge this gap by providing a way to wrap primitive types and use them as objects. 
-
+</details>
+  
+<details><summary>
+	
 ## What are the different ways of creating Wrapper Class Instances?
+</summary>
 In Java, there are several ways to create instances of wrapper classes, which allow you to wrap primitive values within objects. Here are the different ways of creating wrapper class instances:
 
 ### Using Constructors
@@ -110,8 +137,12 @@ This method is primarily useful when you need to use specific predefined values.
 It's important to note that wrapper classes are immutable, meaning their values cannot be changed once created. If you need to perform arithmetic or other operations on the wrapped values, you'll need to create new wrapper instances with the updated values.
 
 In general, using constructors or the valueOf() method are the most common ways to create wrapper class instances, while autoboxing provides a convenient shorthand syntax. The choice depends on your specific requirements and coding style.
-
+</details>
+  
+<details><summary>
+	
 ## What is Auto Boxing?
+</summary>
 ### Autoboxing
 The automatic conversion of primitive types to the object of their corresponding wrapper classes is known as autoboxing. For example – conversion of int to Integer, long to Long, double to Double, etc. 
 int num = 10;
@@ -121,8 +152,12 @@ Integer myInteger = num;  // Autoboxing int to Integer
 It is just the reverse process of autoboxing. Automatically converting an object of a wrapper class to its corresponding primitive type is known as unboxing. For example – conversion of Integer to int, Long to long, Double to double, etc. 
 Integer myInteger = 20;
 int num = myInteger;  // Unboxing Integer to int
-
+</details>
+  
+<details><summary>
+	
 ## What are the advantages of Auto Boxing?
+</summary>
 Auto Boxing helps in saving memory by reusing already created Wrapper objects. 
 Auto Boxing uses the static valueOf methods. However wrapper classes created 
 using new are not reused.
@@ -135,13 +170,17 @@ Two wrapper objects created using new are not same object.
 	System.out.println(nineA.equals(nineB));//true
 
 Two wrapper objects created using boxing are same object.
-	
+		
 	Integer nineC = 9;
 	Integer nineD = 9;
 	System.out.println(nineC == nineD);//true
 	System.out.println(nineC.equals(nineD));//true
-
+</details>
+  
+<details><summary>
+	
 ## What is Casting?
+</summary>
 Casting is a method or process that converts a data type into another data type in both ways manually and automatically. The automatic conversion is done by the compiler and manual conversion performed by the programmer.
 Convert a value from one data type to another data type is known as type casting.
 
@@ -150,8 +189,12 @@ There are two types of type casting:
 
 Widening Type Casting (Implicit Casting)
 Narrowing Type Casting (Explicit Casting)
-
+</details>
+  
+<details><summary>
+	
 ## What is Implicit Casting?
+</summary>
 Converting a lower data type into a higher one is called widening type casting. It is also known as implicit conversion or down casting. It is done by compiler or automatically. It is safe because there is no chance to lose data.
 Both data types must be compatible with each other.
 The target type must be larger than the source type.
@@ -161,8 +204,12 @@ byte -> short -> char -> int -> long -> float -> double
 	int value = 100;
 	long number = value; //Implicit Casting
 	float f = 100; //Implicit Casting
-
+</details>
+  
+<details><summary>
+	
 ## What is Explicit Casting?
+</summary>
 Converting a higher data type into a lower one is called narrowing type casting. It is also known as explicit conversion or up casting. It is done manually by the programmer. If we do not perform casting then the compiler reports a compile-time error.
 
 double -> float -> long -> int -> char -> short -> byte  
@@ -179,8 +226,12 @@ than the size of the variable.
 	int bigValue = 280;
 	byte small = (byte) bigValue;
 	System.out.println(small);//output 24. Only 8 bits remain.
-
+</details>
+  
+<details><summary>
+	
 ## Are all String’s immutable?
+</summary>
 A String is an unavoidable type of variable while writing any application program. String references are used to store various attributes like username, password, etc. In Java, String objects are immutable. Immutable simply means unmodifiable or unchangeable.
 
 Once String object is created its data or state can't be changed but a new String object is created.
@@ -201,8 +252,12 @@ However, if new operator is used to create string object, the new object is crea
 
 	//String Object - created on the heap
 	String str2 = new String("value");
-
+</details>
+  
+<details><summary>
+	
 ## Why should you be careful about String Concatenation(+) operator in Loops?
+</summary>
 Using the string concatenation operator (+) inside loops can be inefficient and lead to performance issues. It is important to be careful when concatenating strings within loops because of the following reasons:
 
 ### String immutability
@@ -222,8 +277,12 @@ The time complexity of string concatenation using the + operator inside a loop i
 	}
 How many objects are created in memory? More than 100000 Strings are created. 
 This will have a huge performance impact.
-
+</details>
+  
+<details><summary>
+	
 ## How do you solve above problem?
+</summary>
 To solve the performance problem associated with string concatenation using the + operator inside loops, we can use the StringBuilder class. StringBuilder provides a mutable buffer for efficiently constructing strings by appending individual values. 
 	
 	StringBuffer s3 = new StringBuffer("Value1");
@@ -232,21 +291,33 @@ To solve the performance problem associated with string concatenation using the 
 	for (int i = 0; i < 100000; ++i) {
 		s3.append(s2);
 	}
-
+</details>
+  
+<details><summary>
+	
 ## What are differences between String and StringBuffer?
+</summary>
 String objects are immutable, while StringBuffer objects are mutable.
 String concatenation involves creating new String objects, while StringBuffer allows in-place modifications.
 String is not thread-safe, while StringBuffer is synchronized and thread-safe.
 StringBuffer is more memory-efficient for frequent modifications, while String objects may result in additional memory usage.
 Use String when immutability is desired, and StringBuffer when frequent modifications are needed.
-
+</details>
+  
+<details><summary>
+	
 ## What are differences between StringBuilder and StringBuffer?
+</summary>
 StringBuilder is not thread-safe, while StringBuffer is thread-safe.
 StringBuilder provides better performance due to the absence of synchronization.
 Use StringBuilder in single-threaded scenarios or when manual synchronization is applied.
 Use StringBuffer in multi-threaded scenarios where thread safety is required.
-
+</details>
+  
+<details><summary>
+	
 ## Can you give examples of different utility methods in String class?
+</summary>
 Certainly! The String class in Java provides a wide range of utility methods to perform various operations on strings. Here are some examples of commonly used utility methods in the String class:
 
 	1. Length:
@@ -271,22 +342,42 @@ Certainly! The String class in Java provides a wide range of utility methods to 
 	6. Comparison:
 	boolean equals(Object obj): //Checks if the current string is equal to the specified object.
 	boolean equalsIgnoreCase(String anotherString): //Checks if the current string is equal to the specified string, ignoring case.
+</details>
+  
+<details><summary>
 
 ## What is a Class?
+</summary>
 In object-oriented programming, a class is a blueprint or template that defines the structure and behavior of objects. It serves as a blueprint for creating instances, also known as objects, which are individual occurrences based on the class.
 
 A class encapsulates data, known as attributes or fields, and defines the operations, known as methods or functions, that can be performed on that data. It provides a way to organize related data and behavior into a cohesive unit.
+</details>
+  
+<details><summary>
 
 ## What is an Object?
+</summary>
 In object-oriented programming, an object is an instance of a class. It represents a specific occurrence or entity based on the structure and behavior defined by its class. An object combines data, known as attributes or properties, with the methods or functions that operate on that data.
+</details>
+  
+<details><summary>
 
 ## What is state of an Object?
+</summary>
 The state of an object refers to the set of values stored in its attributes or instance variables at a given point in time. It represents the current snapshot of the object's data. The state of an object can change over time as its attributes are modified.
+</details>
+  
+<details><summary>
 
 ## What is behavior of an Object?
+</summary>
 The behavior of an object refers to the actions or operations that an object can perform. It represents the functionality or capabilities associated with an object based on its class definition. The behavior is defined by the methods or functions defined within the class.
+</details>
+  
+<details><summary>
 
 ## What is the super class of every class in Java?
+</summary>
 In Java, the superclass of every class is the Object class. The Object class is at the top of the class hierarchy and serves as the root class for all other classes in Java.
 
 The Object class is defined in the java.lang package and provides a set of common methods and behaviors that are inherited by all classes. These methods include toString(), equals(), hashCode(), getClass(), and more.
@@ -308,34 +399,38 @@ It's important to note that even if a class doesn't explicitly extend any other 
 
 In the above example, toString, hashCode and clone methods for String class are 
 inherited from Object class and overridden.
+</details>
+  
+<details><summary>
 
 ## Explain about toString method ?
+</summary>
 The toString() method is a method defined in the Object class in Java. It is inherited by all classes in Java, as every class is a subclass of Object. The toString() method is used to obtain a string representation of an object.
 
 By default, the toString() method in the Object class returns a string that consists of the class name, followed by an "at" symbol (@), and the hash code of the object in hexadecimal format. For example, ClassName@6e1408c6.
 
 However, it is common practice to override the toString() method in custom classes to provide a more meaningful and human-readable representation of the object's state. By overriding the toString() method, you can define the format and content of the string representation according to your requirements.
-
+	
 	class Animal {
 		public Animal(String name, String type) {
-				this.name = name;
-				this.type = type;
+			this.name = name;
+			this.type = type;
 		}
-
 		String name;
 		String type;
-
 		public String toString() {
-				return "Animal [name=" + name + ", type=" + type + "]";
+			return "Animal [name=" + name + ", type=" + type + "]";
 		}
 	}
-
 	Run this piece of code:
-
 	Animal animal = new Animal("Tommy","Dog");
 	System.out.println(animal);//Animal [name=Tommy, type=Dog]
+</details>
+  
+<details><summary>
 
 ## What is the super class of every class in Java?
+</summary>
 In Java, the superclass of every class is the Object class. The Object class is at the top of the class hierarchy and serves as the root class for all other classes in Java.
 
 The Object class is defined in the java.lang package and provides a set of common methods 
