@@ -68,6 +68,10 @@ Users who only need to run Java applications, rather than developing them, can i
 Java ClassLoader is an abstract class. It belongs to a java.lang package. It loads classes from different resources. Java ClassLoader is used to load the classes at run time. In other words, JVM performs the linking process at runtime. Classes are loaded into the JVM according to need. If a loaded class depends on another class, that class is loaded as well. When we request to load a class, it delegates the class to its parent. In this way, uniqueness is maintained in the runtime environment. It is essential to execute a Java program.
 </details>
 </details>
+<details><summary>
+	
+# Part-2
+</summary>
   
 <details><summary>
 	
@@ -231,6 +235,7 @@ than the size of the variable.
 	int bigValue = 280;
 	byte small = (byte) bigValue;
 	System.out.println(small);//output 24. Only 8 bits remain.
+</details>
 </details>
   
 <details><summary>
