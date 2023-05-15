@@ -1,7 +1,7 @@
 <details>
-  ## Why is Java so Popular?
-	<summary>Why is Java so Popular?</summary>
+	<summary style="font-size:20px">Why is Java so Popular?</summary>
   
+## Why is Java so Popular?
 Java is one of the most popular languages because Java has several contributions to its widespread adoption and continued relevance in the software development industry. So Java has some key factors which make it  a popular programming language.
 
 - **Simple:-** Java is easy to learn and its syntax is quite simple, clean, and easy to understand. Apart from this automatic memory management also play a role in the same
