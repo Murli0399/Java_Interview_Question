@@ -237,6 +237,10 @@ than the size of the variable.
 	System.out.println(small);//output 24. Only 8 bits remain.
 </details>
 </details>
+<details><summary>
+	
+# Part-3
+</summary>
   
 <details><summary>
 	
@@ -246,8 +250,12 @@ A String is an unavoidable type of variable while writing any application progra
 
 Once String object is created its data or state can't be changed but a new String object is created.
 As Java uses the concept of String literal. Suppose there are 5 reference variables, all refer to one object "Sachin". If one reference variable changes the value of the object, it will be affected by all the reference variables. That is why String objects are immutable in Java.
-
+</details>
+	
+<details><summary>
+	
 ## Where are string values stored in memory?
+</summary>
 String is a class and strings in java treated as an object, hence the object of String class will be stored in Heap area. But depends on how we are create them. So we have two method for creating String value.
 
 Approach 1
@@ -353,7 +361,8 @@ Certainly! The String class in Java provides a wide range of utility methods to 
 	boolean equals(Object obj): //Checks if the current string is equal to the specified object.
 	boolean equalsIgnoreCase(String anotherString): //Checks if the current string is equal to the specified string, ignoring case.
 </details>
-  
+ </details>
+	
 <details><summary>
 
 ## What is a Class?
