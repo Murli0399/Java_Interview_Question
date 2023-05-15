@@ -1,6 +1,6 @@
 <details><summary>
 	
-# Part-1
+# Java Platform 
 </summary>
 <details><summary>
 	
@@ -70,7 +70,7 @@ Java ClassLoader is an abstract class. It belongs to a java.lang package. It loa
 </details>
 <details><summary>
 	
-# Part-2
+# Wrapper Classes 
 </summary>
   
 <details><summary>
@@ -247,7 +247,7 @@ than the size of the variable.
 </details>
 <details><summary>
 	
-# Part-3
+# Strings
 </summary>
   
 <details><summary>
@@ -372,7 +372,7 @@ Certainly! The String class in Java provides a wide range of utility methods to 
  </details>
 <details><summary>
 	
-# Part-4
+# OOP's
 </summary>
 	
 <details><summary>
