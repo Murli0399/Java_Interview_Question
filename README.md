@@ -362,6 +362,10 @@ Certainly! The String class in Java provides a wide range of utility methods to 
 	boolean equalsIgnoreCase(String anotherString): //Checks if the current string is equal to the specified string, ignoring case.
 </details>
  </details>
+<details><summary>
+	
+# Part-1
+</summary>
 	
 <details><summary>
 
@@ -1073,3 +1077,4 @@ Consider the example below:
 	Labrador Constructor
 
 </details>
+	</details>
