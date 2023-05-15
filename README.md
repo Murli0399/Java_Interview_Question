@@ -434,8 +434,12 @@ However, it is common practice to override the toString() method in custom class
 In Java, the superclass of every class is the Object class. The Object class is at the top of the class hierarchy and serves as the root class for all other classes in Java.
 
 The Object class is defined in the java.lang package and provides a set of common methods 
+</details>
+  
+<details><summary>
 
 ## What is the use of equals method in Java ?
+</summary>
 The equals() method in Java is used to compare the equality of two objects. It is defined in the Object class and can be overridden by subclasses to provide custom comparison logic.
 
 The primary purpose of the equals() method is to determine if two objects have the same logical equivalence, rather than just checking if they are the same object in terms of memory reference (which is done by using the == operator). By default, the equals() method in the Object class performs the same reference comparison as the == operator, but it can be overridden to provide a more meaningful comparison based on the content or attributes of the objects.
@@ -467,8 +471,12 @@ Consider running the code below:
 	System.out.println(client1.equals(client3));//true
 
 Above code compares the values (id's) of the objects.
+</details>
+  
+<details><summary>
 
 ## What are the important things to consider when implementing equals method?
+</summary>
 When implementing the equals() method in Java, there are several important considerations to keep in mind to ensure correctness and consistency. Here are the key points to consider:
 
 1. Reflexivity: Object should be equal to itself.
@@ -480,8 +488,12 @@ When implementing the equals() method in Java, there are several important consi
 7. Override hashCode(): If equals() is overridden, hashCode() should be overridden to maintain consistency.
 8. Comparable attributes: If implementing Comparable, attributes used in equals() should match those used in compareTo().
 Considering these points ensures correct and reliable behavior when comparing objects for equality.
+</details>
+  
+<details><summary>
 
 ## What is the hashCode method used for in Java?
+</summary>
 The hashCode() method in Java is used to generate a unique integer value, known as the hash code, for an object. It is defined in the Object class and can be overridden by subclasses to provide a custom hash code implementation.
 
 The primary purpose of the hashCode() method is to support efficient storage and retrieval of objects in hash-based data structures such as HashMap, HashSet, and Hashtable. These data structures use hash codes to determine the storage location (bucket) for objects, which allows for fast retrieval and efficient search operations.
@@ -493,8 +505,12 @@ The primary purpose of the hashCode() method is to support efficient storage and
 		result = prime * result + id;
 		return result;
 	}
+</details>
+  
+<details><summary>
 
 ## Explain inheritance with Examples?
+</summary>
 Inheritance in Java is a mechanism in which one object acquires all the properties and behaviors of a parent object. It is an important part of OOPs (Object Oriented programming system).
 
 The idea behind inheritance in Java is that you can create new classes that are built upon existing classes. When you inherit from an existing class, you can reuse methods and fields of the parent class. Moreover, you can add new methods and fields in your current class also.
@@ -540,8 +556,12 @@ We can now reuse Actor methods from an instance of Comedian class as well.
 	//act method inherited from Actor
 	comedian.act();//Act
 	comedian.performComedy();//Comedy
+</details>
+  
+<details><summary>
 
 ## What is Method Overloading?
+</summary>
 If a class has multiple methods having same name but different in parameters, it is known as Method Overloading.
 
 If we have to perform only one operation, having same name of the methods increases the readability of the program.
@@ -570,8 +590,12 @@ Overloading can also be done from a sub class.
 
 		}
 	}
+</details>
+  
+<details><summary>
 
 ## What is Method Overriding?
+</summary>
 If subclass (child class) has the same method as declared in the parent class, it is known as method overriding in Java.
 
 In other words, If a subclass provides the specific implementation of the method that has been declared by one of its parent class, it is known as method overriding.
@@ -602,8 +626,12 @@ in Animal.
 	}
 
 bark method in Cat class is overriding the bark method in Animal class.
+</details>
+  
+<details><summary>
 
 ## Can super class reference variable can hold an object of sub class?
+</summary>
 Yes, the super class reference variable can hold the sub class object actually, it is widening in case of objects (Conversion of lower datatype to a higher datatype).
 
 But, using this reference you can access the members of super class only, if you try to access the sub class members a compile time error will be generated.
@@ -635,8 +663,12 @@ But, using this reference you can access the members of super class only, if you
         // vehicle2.accelerate();  // Error: The reference type is Vehicle which doesn't have the accelerate() method.
         ((Car) vehicle2).accelerate();  // Casting vehicle2 to Car type to access the accelerate() method.
         car.accelerate();               // Output: Accelerating the car.
+</details>
+  
+<details><summary>
 
 ## Is Multiple Inheritance allowed in Java?
+</summary>
 No, multiple inheritance is not allowed for classes in Java. Java supports single inheritance, where a class can inherit from only one superclass. However, multiple inheritance is supported through interfaces, allowing a class to implement multiple interfaces and inherit their abstract method contracts.
 
 	class Dog extends Animal, Pet { //COMPILER ERROR
@@ -649,8 +681,12 @@ No, multiple inheritance is not allowed for classes in Java. Java supports singl
 	class Dog extends Pet {
 	}
 
+</details>
+  
+<details><summary>
 
 ## What is an Interface?
+</summary>
 An interface in Java is a blueprint of a class. It has static constants and abstract methods.
 
 The interface in Java is a mechanism to achieve abstraction. There can be only abstract methods in the Java interface, not method body. It is used to achieve abstraction and multiple inheritance in Java.
@@ -658,8 +694,12 @@ The interface in Java is a mechanism to achieve abstraction. There can be only a
 In other words, you can say that interfaces can have abstract methods and variables. It cannot have a method body.
 
 Java Interface also represents the IS-A relationship.
+</details>
+  
+<details><summary>
 
 ## How do you define an Interface?
+</summary>
 An interface is declared by using the interface keyword. It provides total abstraction; means all the methods in an interface are declared with the empty body, and all the fields are public, static and final by default. A class that implements an interface must implement all the methods declared in the interface.
 
 	interface InterfaceName {
@@ -668,8 +708,12 @@ An interface is declared by using the interface keyword. It provides total abstr
 	    // Default methods (optional)
 	    // Static methods (optional)
 	}
+</details>
+  
+<details><summary>
 
 ## How do you implement an interface?
+</summary>
 To implement an interface in Java:
 
 1. Create a class that will implement the interface.
@@ -692,8 +736,12 @@ To implement an interface in Java:
 
         Printer printer = new Printer();
         printer.print();  // Output: Printing document...
-
+</details>
+  
+<details><summary>
+	
 ## Can you explain a few tricky things about interfaces?
+</summary>
 Variables in an interface are always public, static, final. Variables in an 
 interface cannot be declared private.
 
@@ -723,12 +771,20 @@ example below:
 				System.out .println("Method5");
 		}
 	}
-
+</details>
+  
+<details><summary>
+	
 ## Can you extend an interface?
+</summary>
 No, we cannot directly extend an interface with another interface in Java using the extends keyword. Interfaces do not support inheritance through the extends keyword. Instead, interfaces can only be implemented by classes or extended indirectly through other interfaces. This means that a class can implement multiple interfaces, effectively inheriting and providing behavior from each interface.
 
-
+</details>
+  
+<details><summary>
+	
 ## Can a class extend multiple interfaces?
+</summary>
 Yes, in Java, a class can implement multiple interfaces. This allows the class to inherit and provide behavior from multiple sources. To implement multiple interfaces, the class declaration uses the implements keyword followed by the names of the interfaces, separated by commas.
 
 	interface ExampleInterface2 {
@@ -748,8 +804,12 @@ Yes, in Java, a class can implement multiple interfaces. This allows the class t
 		}
 	}
 
-
+</details>
+  
+<details><summary>
+	
 ## What is an Abstract Class?
+</summary>
 An abstract class in Java is a class that cannot be directly instantiated and serves as a blueprint for other classes. It is declared using the abstract keyword and may contain both abstract and non-abstract methods. Abstract methods are declared without an implementation and must be overridden by subclasses. Abstract classes are meant to be extended by other classes using the extends keyword. They can have constructors and provide common behavior for subclasses. The purpose of an abstract class is to define common characteristics and behaviors that subclasses can inherit and implement.
 
 	abstract class Bike{  
@@ -765,8 +825,12 @@ An abstract class in Java is a class that cannot be directly instantiated and se
 			 obj.run();  
 		}  
 	}  
-
+</details>
+  
+<details><summary>
+	
 ## When do you use an Abstract Class?
+</summary>
 An abstract class in Java is used when you want to define a common template or blueprint for a group of related classes. It is typically used in the following situations:
 
 To provide a common set of methods or behavior that multiple subclasses can inherit.
@@ -776,8 +840,12 @@ When you want to provide default implementations for some methods while allowing
 When you want to create a base class that cannot be instantiated on its own but can be extended by subclasses.
 The main purpose of an abstract class is to provide a structure and guidelines for subclasses, ensuring consistency and allowing for polymorphic behavior. It promotes code reuse, maintainability, and extensibility in object-oriented programming.
 
-
+</details>
+  
+<details><summary>
+	
 ## How do you define an abstract method?
+</summary>
 A method declared using the abstract keyword within an abstract class and does not have a definition (implementation) is called an abstract method.
 
 When we need just the method declaration in a super class, it can be achieved by declaring the methods as abstracts.
@@ -794,8 +862,12 @@ Abstract method is also called subclass responsibility as it doesn't have the im
 		System.out.println("Bark!"); // Implementation of the abstract method
 	    }
 	}
-
+</details>
+  
+<details><summary>
+	
 ## Compare Abstract Class vs Interface?
+</summary>
 
 Abstract class	Interface
 1) Abstract class can have abstract and non-abstract methods.	Interface can have only abstract methods. Since Java 8, it can have default and static methods also.
@@ -817,8 +889,12 @@ Abstract class	Interface
 		public interface Drawable{
 			void draw();
 		}
-
+</details>
+  
+<details><summary>
+	
 ## What is a Constructor?
+</summary>
 In Java, a constructor is a block of codes similar to the method. It is called when an instance of the class is created. At the time of calling constructor, memory for the object is allocated in the memory.
 
 It is a special type of method which is used to initialize the object.
@@ -845,8 +921,12 @@ Note: It is called constructor because it constructs the values at the time of o
 			Animal animal = new Animal("Tommy");
 		}
 	}
+</details>
+  
+<details><summary>
 	
 ## What is a Default Constructor?
+</summary>	
 Default Constructor is the constructor that is provided by the compiler. It has no arguments. In the
 example below, there are no Constructors defined in the Animal class. Compiler provides us with a
 default constructor, which helps us create an instance of animal class.
@@ -859,8 +939,12 @@ default constructor, which helps us create an instance of animal class.
 		Animal animal = new Animal();
 		}
 	}
+</details>
+  
+<details><summary>
 	
 ## Will this code compile?
+</summary>	
 	class Animal {
 		String name;
 		public Animal() {
@@ -875,8 +959,12 @@ default constructor, which helps us create an instance of animal class.
 		}
 	}
 Answer is no. Since we provided a constructor, compiler does not provide a default constructor
-
+</details>
+  
+<details><summary>
+	
 ## How do you call a Super Class Constructor from a Constructor?
+</summary>	
 A constructor can call the constructor of a super class using the super() method call. Only constraint is
 that it should be the first statement i
 Both example constructors below can replaces the no argument "public Animal() " constructor in Example
@@ -886,8 +974,12 @@ Both example constructors below can replaces the no argument "public Animal() " 
 		super();
 		this.name = "Default Name";
 	}
-
+</details>
+  
+<details><summary>
+	
 ## Will this code Compile?
+</summary>
 	public Animal() {
 		this.name = "Default Name";
 		super();
@@ -906,8 +998,12 @@ method call.
 	public Animal(String name) {
 		this.name = name;
 	}
-
+</details>
+  
+<details><summary>
+	
 ## Can a constructor be called directly from a method?
+</summary>
 No, you cannot call a constructor from a method. The only place from which you can invoke constructors using “this()” or, “super()” is the first line of another constructor. If you try to invoke constructors explicitly elsewhere, a compile time error will be generated.
 
 	class Animal {
@@ -919,8 +1015,12 @@ No, you cannot call a constructor from a method. The only place from which you c
 		}
 	}
 
-
+</details>
+  
+<details><summary>
+	
 ## Is a super class constructor called even when there is no explicit call from a sub class constructor ?
+</summary>
 If a super class constructor is not explicitly called from a sub class constructor, super class (no argument)
 constructor is automatically invoked (as first line) from a sub class constructor.
 Consider the example below:
@@ -953,4 +1053,4 @@ Consider the example below:
 	Dog Constructor
 	Labrador Constructor
 
-
+</details>
