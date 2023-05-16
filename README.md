@@ -1107,7 +1107,7 @@ There are two types of polymorphism in Java:
 Method overloading allows multiple methods in the same class with the same name but different parameter lists.
 The appropriate method is chosen at compile time based on the arguments passed to the method.
 	
-###Runtime Polymorphism (Method Overriding):
+### Runtime Polymorphism (Method Overriding):
 
 Method overriding occurs when a subclass provides its own implementation of a method that is already defined in its superclass.
 The method to be executed is determined at runtime based on the actual object being referred to by the reference variable.
