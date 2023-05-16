@@ -1092,8 +1092,12 @@ Consider the example below:
 <details><summary>
 	
 # Advance OOP's
-</summary>	
+</summary>
+  
+<details><summary>
+	
 ## What is Polymorphism?
+</summary>
 Polymorphism in Java is the ability of an object to take on many forms. It allows a reference variable of a superclass to represent objects of its subclasses. In other words, it enables objects of different classes to be treated as objects of a common superclass during runtime.
 
 There are two types of polymorphism in Java:
@@ -1137,8 +1141,11 @@ Polymorphism is achieved through inheritance, where subclasses inherit the prope
             animal2.makeSound(); // Output: Cat meows
         }
     }
-
+</details>
+<details><summary>
+	
 ## What is the use of instanceof Operator in Java?
+</summary>
 The instanceof operator in Java is used to test if an object is an instance of a particular class or implements a specific interface. It allows you to check the type of an object at runtime.
 
 The instanceof operator has the following syntax:
@@ -1173,7 +1180,11 @@ Here's an example that demonstrates the use of the instanceof operator:
         }
     }
 
+</details>
+<details><summary>
+	
 ## What is Coupling?
+</summary>
 Coupling in Java refers to the degree of dependency or interconnectedness between classes or components within a software system. It measures how closely one class or component relies on or interacts with another.
 
 In general, low coupling is desirable as it promotes better software design, modularity, and maintainability. High coupling, on the other hand, can lead to code that is difficult to understand, modify, and reuse.
@@ -1264,8 +1275,11 @@ In general, low coupling is desirable as it promotes better software design, mod
 Reducing coupling is typically achieved through good software design practices, such as following the principles of encapsulation, abstraction, and dependency inversion. Using design patterns, interfaces, and dependency injection can also help to decouple components and promote modular and reusable code.
 
 By minimizing coupling, you can improve code maintainability, reusability, testability, and overall software quality. It allows for easier understanding and modification of individual components without affecting the entire system.
-
+</details>
+<details><summary>
+	
 ## What is Cohesion?
+</summary>
 Cohesion in Java is the principle of Object-Oriented programming. Cohesion is closely related to ensuring that the purpose for which a class is getting created in Java is well-focused and single. In other words, the more closely related stuff is grouped in a class, the higher will be the cohesiveness.
 
 **Example Problem** - Example class below is downloading from internet, parsing data and storing data 
@@ -1314,8 +1328,11 @@ own responsibilities.
                     new DatabaseStorer().storeIntoDatabase();
             }
     }
-
+</details>
+<details><summary>
+	
 ## What is Encapsulation?
+</summary>
 Encapsulation in Java is a process of wrapping code and data together into a single unit, for example, a capsule which is mixed of several medicines.
 
 We can create a fully encapsulated class in Java by making all the data members of the class private. Now we can use setter and getter methods to set and get the data in it.
@@ -1394,8 +1411,11 @@ The Java Bean class is the example of a fully encapsulated class.
 the user of scorer class does not even know that there is a variable called 
 score. Implementation of Scorer can change without changing other classes using 
 Scorer.
-
+</details>
+<details><summary>
+	
 ## What is an Inner Class?
+</summary>
 Java inner class or nested class is a class that is declared inside the class or interface.
 
 We use inner classes to logically group classes and interfaces in one place to be more readable and maintainable.
@@ -1412,8 +1432,11 @@ Additionally, it can access all the members of the outer class, including privat
             public class InnerClass {
             }
         }
-
+</details>
+<details><summary>
+	
 ## What is a Static Inner Class?
+</summary>
 A static class is a class that is created inside a class, is called a static nested class in Java. It cannot access non-static data members and methods. It can be accessed by outer class name.
 
 It can access static data members of the outer class, including private.
@@ -1426,7 +1449,11 @@ Inner Classes are classes which are declared inside other classes. Consider the 
          }
     }
 
+</details>
+<details><summary>
+	
 ## Can you create an inner class inside a method?
+</summary>
 we can write a class within a method and this will be a local type. Like local variables, the scope of the inner class is restricted within the method.
 
 A method-local inner class can be instantiated only within the method where the inner class is defined. 
@@ -1439,7 +1466,11 @@ A method-local inner class can be instantiated only within the method where the 
 		}
     }
 
+</details>
+<details><summary>
+	
 ## What is an Anonymous Class?
+</summary>
 Java anonymous inner class is an inner class without a name and for which only a single object is created. An anonymous inner class can be useful when making an instance of an object with certain "extras" such as overloading methods of a class or interface, without having to actually subclass a class.
 
 In simple words, a class that has no name is known as an anonymous inner class in Java. It should be used if you have to override a method of class or interface. Java Anonymous inner class can be created in two ways:
