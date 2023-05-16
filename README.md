@@ -1783,7 +1783,7 @@ Look at the code below to understand what can be accessed and what cannot be.
 </details>
 <details><summary>
 	
-## What access types of variables can be accessed from a Sub Class in Different Package?	
+## What access types of variables can be accessed from a Sub Class in Different Package?
 </summary>
 In Java, when a subclass is in a different package than its superclass, it has access to the following types of variables in the superclass:
 
@@ -1952,7 +1952,7 @@ with every instance createdin the constructor.
 	
 # Collections
 </summary>	
-</details>
+
 <details><summary>
 	
 ## Q.
