@@ -1520,7 +1520,7 @@ Below examples shows various ways to create Anonymous classes.
 	
 # Modifires
 </summary>
-</details>
+
 <details><summary>
 	
 ## What is default class modifier?
