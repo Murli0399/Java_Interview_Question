@@ -1513,15 +1513,18 @@ Below examples shows various ways to create Anonymous classes.
 		}
 	}
 
-
-
+</details>
 </details>	
 	
 <details><summary>
 	
 # Modifires
-</summary>	
+</summary>
+</details>
+<details><summary>
+	
 ## What is default class modifier?
+</summary>
 In Java, the default class modifier, also known as package-private or default access, is a level of access control that is applied when no explicit access modifier is specified for a class, method, or field. It is denoted by the absence of the public, private, or protected keywords.
 
 When a class member (class, method, or field) is declared with the default modifier, it is accessible only within the same package (i.e., the classes that belong to the same package). It is not accessible outside of the package, including subclasses in other packages.
@@ -1557,7 +1560,11 @@ Example
 			//DefaultAccessClass defaultAccess; //COMPILE ERROR!!
 	}
 
+</details>
+<details><summary>
+	
 ## What is private access modifier?
+</summary>
 In Java, the private access modifier is one of the four access modifiers used to control the visibility and accessibility of class members, including variables, methods, and nested classes, within a class.
 
 When a class member is declared as private, it is accessible only within the same class where it is defined. It is not visible or accessible from any other class, including subclasses and other classes in the same package.
@@ -1575,7 +1582,11 @@ When a class member is declared as private, it is accessible only within the sam
 	    }
 	}
 
+</details>
+<details><summary>
+	
 ## What is default or package access modifier?
+</summary>
 In Java, the default or package access modifier is a level of access control that is applied when no explicit access modifier is specified for a class, method, or field. It is denoted by the absence of the public, private, or protected keywords.
 
 When a class member (class, method, or field) is declared with the default modifier, it is accessible within the same package (i.e., the classes that belong to the same package). It is not accessible outside of the package, including subclasses in other packages.
@@ -1595,7 +1606,11 @@ When a class member (class, method, or field) is declared with the default modif
 	    }
 	}
 
+</details>
+<details><summary>
+	
 ## What is protected access modifier?
+</summary>
 In Java, the protected access modifier is one of the four access modifiers used to control the visibility and accessibility of class members, including variables, methods, and nested classes.
 
 When a class member is declared as protected, it is accessible within the same package and can also be accessed by subclasses (whether they are in the same package or not) and non-subclasses outside the package.
@@ -1623,8 +1638,12 @@ When a class member is declared as protected, it is accessible within the same p
 		subclassObject.accessProtectedMember();  // Accessible in subclass
 	    }
 	}
+
+</details>
+<details><summary>
 	
 ## What is public access modifier?
+</summary>
 In Java, the public access modifier is one of the four access modifiers used to control the visibility and accessibility of class members, including variables, methods, and nested classes.
 
 When a class member is declared as public, it is accessible from any other class, regardless of the package or subclass relationship. It provides the highest level of visibility and allows unrestricted access to the member.
@@ -1649,7 +1668,11 @@ The public access modifier is used when you want a class member to be accessible
 	    }
 	}
 
+</details>
+<details><summary>
+	
 ## What access types of variables can be accessed from a Class in Same Package?
+</summary>
 In Java, when a class is in the same package as another class, it has access to the following types of variables in the other class:
 
 1. Public variables: Public variables can be accessed directly from any class, regardless of the package. Thus, a class in the same package can access public variables in another class.
@@ -1681,8 +1704,12 @@ Look at the code below to understand what can be accessed and what cannot be.
 				example.defaultMethod();
 		}
 	}
+
+</details>
+<details><summary>
 	
-## What access types of variables can be accessed from a Class in Different Package?	
+## What access types of variables can be accessed from a Class in Different Package?
+</summary>	
 In Java, when a class is in a different package than another class, it has access to the following types of variables in the other class:
 
 1. Public variables: Public variables can be accessed directly from any class, regardless of the package. Therefore, a class in a different package can access public variables in another class.	
@@ -1717,7 +1744,11 @@ Look at the code below to understand what can be accessed and what cannot be.
 			}
 	}	
 	
-## What access types of variables can be accessed from a Sub Class in Same Package?	
+</details>
+<details><summary>
+	
+## What access types of variables can be accessed from a Sub Class in Same Package?
+</summary>	
 In Java, when a subclass is in the same package as its superclass, it has access to the following types of variables in the superclass:
 
 1. Public variables: Public variables can be accessed directly from any class, including subclasses. Therefore, a subclass in the same package can access public variables in its superclass.
@@ -1748,8 +1779,12 @@ Look at the code below to understand what can be accessed and what cannot be.
 				defaultMethod();
 		}
 	}	
+
+</details>
+<details><summary>
 	
 ## What access types of variables can be accessed from a Sub Class in Different Package?	
+</summary>
 In Java, when a subclass is in a different package than its superclass, it has access to the following types of variables in the superclass:
 
 1. Public variables: Public variables can be accessed directly from any class, including subclasses. Therefore, a subclass in a different package can access public variables in its superclass.
@@ -1782,8 +1817,12 @@ Look at the code below to understand what can be accessed and what cannot be.
 			//defaultMethod();
 		}
 	}	
+
+</details>
+<details><summary>
 	
 ## What is the use of a final modifier on a class ?
+</summary>
 In Java, the final modifier can be used to restrict the behavior of a class. When a class is declared as final, it means that it cannot be subclassed or extended by other classes. Here are the main uses of the final modifier on a class:
 
 1. Preventing inheritance: When a class is declared as final, it cannot be subclassed or extended by other classes. This ensures that the class's implementation and behavior cannot be modified or overridden, providing a level of control and stability.
@@ -1802,8 +1841,12 @@ In Java, the final modifier can be used to restrict the behavior of a class. Whe
 
 		}
 		*/	
+
+</details>
+<details><summary>
 	
 ## What is the use of a final modifier on a method ?
+</summary>
 In Java, the final modifier can be applied to a method to indicate that the method cannot be overridden by subclasses. Here are the main uses of the final modifier on a method:
 
 1. Preventing method overriding: When a method is declared as final, it cannot be overridden by subclasses. This ensures that the behavior of the method remains unchanged and consistent throughout the class hierarchy.
@@ -1826,8 +1869,12 @@ In Java, the final modifier can be applied to a method to indicate that the meth
 			}
 			*/
 		}	
+
+</details>
+<details><summary>
 	
 ## What is a Final Variable ?
+</summary>
 In Java, a final variable is a variable that cannot be reassigned once it has been assigned a value. Once a final variable is assigned a value, its value remains constant throughout the program's execution.  It provides immutability, represents constants, and can contribute to thread safety in concurrent programs.
 
 	public class MyClass {
@@ -1839,7 +1886,11 @@ In Java, a final variable is a variable that cannot be reassigned once it has be
 	    }
 	}
 
+</details>
+<details><summary>
+	
 ## What is a Final Argument ?
+</summary>
 In Java, a final argument refers to a method parameter that is declared with the final modifier. When a method parameter is marked as final, it means that its value cannot be changed within the method body. Ensure its immutability and read-only access within the method. It communicates the intent that the parameter should not be modified and provides an extra level of safety in method implementation.
 
 	public void myMethod(final int value) {
@@ -1851,7 +1902,11 @@ In Java, a final argument refers to a method parameter that is declared with the
 	    System.out.println(result);
 	}
 
+</details>
+<details><summary>
+	
 ## What is a Static Variable ?
+</summary>
 In Java, a static variable, also known as a class variable, is a variable that belongs to the class itself rather than to any particular instance of the class. This means that all instances of the class share the same copy of the static variable. Here are some key points about static variables:
 
 1. Shared by all instances: Static variables are shared by all instances of a class. Any modification to the static variable is reflected across all instances of the class.
@@ -1890,13 +1945,18 @@ getCount() is also a static method.
 
 4 instances of the Cricketer class are created. Variable count is incremented 
 with every instance createdin the constructor.
-</details>	
+</details>
+</details>
 	
 <details><summary>
 	
 # Collections
 </summary>	
+</details>
+<details><summary>
 	
+## Q.
+</summary>
 </details>	
 	
 <details><summary>
