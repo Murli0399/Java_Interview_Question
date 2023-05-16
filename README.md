@@ -41,7 +41,7 @@ Bytecode is designed to be easily interpreted and executed by the Java Virtual M
 </summary>
 JDK (Java Development Kit), JVM (Java Virtual Machine), and JRE (Java Runtime Environment) are key components of the Java platform. Each serves a specific purpose in the Java development and execution process. Here's a comparison of these three components:
 
-	![Diagram]()
+	![Diagram](img/java_enviroment.png)
 	
 ### JDK (Java Development Kit):
 The JDK is a software development kit that includes the necessary tools and libraries for Java development.
