@@ -175,11 +175,9 @@ Here's an example that demonstrates iterating over an ArrayList using an Iterato
 
       import java.util.ArrayList;
       import java.util.Iterator;
-
       public class ArrayListIteratorExample {
         public static void main(String[] args) {
           ArrayList<String> fruits = new ArrayList<>();
-
           // Add elements to the ArrayList
           fruits.add("apple");
           fruits.add("banana");
