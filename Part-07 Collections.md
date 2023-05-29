@@ -232,3 +232,60 @@ Here's an example that demonstrates sorting an ArrayList of integers:
         }
 
 </details>
+<details><summary>
+	
+## How do you sort elements in an ArrayList using Comparable interface?
+</summary>
+To sort elements in an ArrayList using the Comparable interface, you need to implement the Comparable interface in the class of the elements you want to sort. The Comparable interface provides a method called compareTo() that defines the natural ordering of objects.
+
+Here's an example that demonstrates sorting an ArrayList of custom objects using the Comparable interface:
+
+        import java.util.ArrayList;
+        import java.util.Collections;
+
+        public class Student implements Comparable<Student> {
+            private int id;
+            private String name;
+
+            public Student(int id, String name) {
+                this.id = id;
+                this.name = name;
+            }
+
+            public int getId() {
+                return id;
+            }
+
+            public String getName() {
+                return name;
+            }
+
+            @Override
+            public int compareTo(Student other) {
+                // Compare students based on their IDs
+                return Integer.compare(this.id, other.id);
+            }
+
+            @Override
+            public String toString() {
+                return "Student{" +
+                        "id=" + id +
+                        ", name='" + name + '\'' +
+                        '}';
+            }
+
+            public static void main(String[] args) {
+                ArrayList<Student> students = new ArrayList<>();
+                students.add(new Student(2, "Alice"));
+                students.add(new Student(1, "Bob"));
+                students.add(new Student(3, "Charlie"));
+
+                // Sort the ArrayList
+                Collections.sort(students);
+
+                // Print the sorted ArrayList
+                System.out.println(students);
+            }
+        }
+
+</details>
