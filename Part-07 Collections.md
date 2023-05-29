@@ -160,3 +160,40 @@ Here's an example to demonstrate adding duplicate elements to an ArrayList:
 In this example, we create an ArrayList named fruits to store strings. We add multiple elements to the list, including duplicates such as "apple" and "banana". When we print the ArrayList, it will display all the elements, including the duplicate ones:
 
 </details>
+<details><summary>
+	
+## How do you iterate around an ArrayList using Iterator?
+</summary>
+To iterate over an ArrayList using an Iterator, you can follow these steps:
+
+1. Create an instance of the ArrayList and add elements to it.
+2. Obtain an Iterator object by calling the iterator() method on the ArrayList.
+3. Use the hasNext() method of the Iterator to check if there are more elements in the ArrayList.
+4. Inside a loop, use the next() method of the Iterator to retrieve the next element.
+5. Perform the desired operations with each element within the loop.
+Here's an example that demonstrates iterating over an ArrayList using an Iterator:
+
+    import java.util.ArrayList;
+    import java.util.Iterator;
+
+    public class ArrayListIteratorExample {
+        public static void main(String[] args) {
+            ArrayList<String> fruits = new ArrayList<>();
+
+            // Add elements to the ArrayList
+            fruits.add("apple");
+            fruits.add("banana");
+            fruits.add("orange");
+
+            // Obtain an Iterator object
+            Iterator<String> iterator = fruits.iterator();
+
+            // Iterate over the ArrayList using the Iterator
+            while (iterator.hasNext()) {
+                String fruit = iterator.next();
+                System.out.println(fruit);
+            }
+        }
+    }
+
+</details>
