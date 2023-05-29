@@ -139,6 +139,7 @@ The ArrayList class in Java is an implementation of the List interface that uses
 Yes, an ArrayList can have duplicate elements. The ArrayList class allows duplicate elements, meaning you can add multiple occurrences of the same value to the list.
 
 Here's an example to demonstrate adding duplicate elements to an ArrayList:
+      
       import java.util.ArrayList;
 
       public class ArrayListExample {
@@ -155,5 +156,7 @@ Here's an example to demonstrate adding duplicate elements to an ArrayList:
               System.out.println(fruits);
           }
       }
+
+In this example, we create an ArrayList named fruits to store strings. We add multiple elements to the list, including duplicates such as "apple" and "banana". When we print the ArrayList, it will display all the elements, including the duplicate ones:
 
 </details>
