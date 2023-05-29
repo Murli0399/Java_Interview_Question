@@ -289,3 +289,63 @@ Here's an example that demonstrates sorting an ArrayList of custom objects using
         }
 
 </details>
+<details><summary>
+	
+## How do you sort elements in an ArrayList using Comparator interface?
+</summary>
+To sort elements in an ArrayList using the Comparator interface, you need to create a separate class that implements the Comparator interface or use an anonymous class or lambda expression. The Comparator interface allows you to define custom comparison logic for sorting objects.
+
+Here's an example that demonstrates sorting an ArrayList of custom objects using the Comparator interface:
+
+        import java.util.ArrayList;
+        import java.util.Collections;
+        import java.util.Comparator;
+
+        public class Student {
+            private int id;
+            private String name;
+
+            public Student(int id, String name) {
+                this.id = id;
+                this.name = name;
+            }
+
+            public int getId() {
+                return id;
+            }
+
+            public String getName() {
+                return name;
+            }
+
+            @Override
+            public String toString() {
+                return "Student{" +
+                        "id=" + id +
+                        ", name='" + name + '\'' +
+                        '}';
+            }
+
+            public static void main(String[] args) {
+                ArrayList<Student> students = new ArrayList<>();
+                students.add(new Student(2, "Alice"));
+                students.add(new Student(1, "Bob"));
+                students.add(new Student(3, "Charlie"));
+
+                // Create a Comparator to sort students based on their IDs
+                Comparator<Student> idComparator = new Comparator<Student>() {
+                    @Override
+                    public int compare(Student s1, Student s2) {
+                        return Integer.compare(s1.getId(), s2.getId());
+                    }
+                };
+
+                // Sort the ArrayList using the Comparator
+                Collections.sort(students, idComparator);
+
+                // Print the sorted ArrayList
+                System.out.println(students);
+            }
+        }
+
+</details>
