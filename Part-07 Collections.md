@@ -173,25 +173,25 @@ To iterate over an ArrayList using an Iterator, you can follow these steps:
 5. Perform the desired operations with each element within the loop.
 Here's an example that demonstrates iterating over an ArrayList using an Iterator:
 
-      import java.util.ArrayList;
-      import java.util.Iterator;
-      public class ArrayListIteratorExample {
-        public static void main(String[] args) {
-          ArrayList<String> fruits = new ArrayList<>();
-          // Add elements to the ArrayList
-          fruits.add("apple");
-          fruits.add("banana");
-          fruits.add("orange");
+          import java.util.ArrayList;
+          import java.util.Iterator;
+          public class ArrayListIteratorExample {
+            public static void main(String[] args) {
+              ArrayList<String> fruits = new ArrayList<>();
+              // Add elements to the ArrayList
+              fruits.add("apple");
+              fruits.add("banana");
+              fruits.add("orange");
 
-          // Obtain an Iterator object
-          Iterator<String> iterator = fruits.iterator();
+              // Obtain an Iterator object
+              Iterator<String> iterator = fruits.iterator();
 
-          // Iterate over the ArrayList using the Iterator
-          while (iterator.hasNext()) {
-              String fruit = iterator.next();
-              System.out.println(fruit);
+              // Iterate over the ArrayList using the Iterator
+              while (iterator.hasNext()) {
+                  String fruit = iterator.next();
+                  System.out.println(fruit);
+              }
+            }
           }
-        }
-      }
 
 </details>
