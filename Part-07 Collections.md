@@ -195,3 +195,40 @@ Here's an example that demonstrates iterating over an ArrayList using an Iterato
           }
 
 </details>
+<details><summary>
+	
+## How do you sort an ArrayList?
+</summary>
+To sort an ArrayList in Java, you can use the Collections.sort() method. The Collections class provides a static sort() method that allows you to sort a List in ascending order based on the natural ordering of its elements or a specified comparator.
+
+Here's an example that demonstrates sorting an ArrayList of integers:
+
+        import java.util.ArrayList;
+        import java.util.Collections;
+        import java.util.Comparator;
+
+        public class ArrayListSortExample {
+            public static void main(String[] args) {
+                ArrayList<String> fruits = new ArrayList<>();
+
+                // Add elements to the ArrayList
+                fruits.add("apple");
+                fruits.add("banana");
+                fruits.add("orange");
+                fruits.add("pear");
+
+                // Sort the ArrayList in acending order
+                Collections.sort(fruits);
+
+                // Print the sorted ArrayList
+                System.out.println(fruits);
+
+                // Sort the ArrayList in descending order
+                Collections.sort(fruits, Comparator.reverseOrder());
+
+                // Print the sorted ArrayList
+                System.out.println(fruits);
+            }
+        }
+
+</details>
