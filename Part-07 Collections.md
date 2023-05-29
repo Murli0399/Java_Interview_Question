@@ -177,23 +177,23 @@ Here's an example that demonstrates iterating over an ArrayList using an Iterato
       import java.util.Iterator;
 
       public class ArrayListIteratorExample {
-          public static void main(String[] args) {
-              ArrayList<String> fruits = new ArrayList<>();
+        public static void main(String[] args) {
+          ArrayList<String> fruits = new ArrayList<>();
 
-              // Add elements to the ArrayList
-              fruits.add("apple");
-              fruits.add("banana");
-              fruits.add("orange");
+          // Add elements to the ArrayList
+          fruits.add("apple");
+          fruits.add("banana");
+          fruits.add("orange");
 
-              // Obtain an Iterator object
-              Iterator<String> iterator = fruits.iterator();
+          // Obtain an Iterator object
+          Iterator<String> iterator = fruits.iterator();
 
-              // Iterate over the ArrayList using the Iterator
-              while (iterator.hasNext()) {
-                  String fruit = iterator.next();
-                  System.out.println(fruit);
-              }
+          // Iterate over the ArrayList using the Iterator
+          while (iterator.hasNext()) {
+              String fruit = iterator.next();
+              System.out.println(fruit);
           }
+        }
       }
 
 </details>
