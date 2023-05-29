@@ -98,37 +98,37 @@ By utilizing the List interface, you can easily work with ordered collections of
 </summary>
 The ArrayList class in Java is an implementation of the List interface that uses a dynamically resizable array to store elements. It provides a flexible and efficient way to work with ordered collections of objects. Let's walk through an example to understand how ArrayList works:
 
-import java.util.ArrayList;
+      import java.util.ArrayList;
 
-public class ArrayListExample {
-    public static void main(String[] args) {
-        // Create an ArrayList to store integers
-        ArrayList<Integer> numbers = new ArrayList<>();
+      public class ArrayListExample {
+          public static void main(String[] args) {
+              // Create an ArrayList to store integers
+              ArrayList<Integer> numbers = new ArrayList<>();
 
-        // Add elements to the ArrayList
-        numbers.add(10);
-        numbers.add(20);
-        numbers.add(30);
-        numbers.add(40);
+              // Add elements to the ArrayList
+              numbers.add(10);
+              numbers.add(20);
+              numbers.add(30);
+              numbers.add(40);
 
-        // Access elements by index
-        System.out.println("Element at index 2: " + numbers.get(2));  // Output: 30
+              // Access elements by index
+              System.out.println("Element at index 2: " + numbers.get(2));  // Output: 30
 
-        // Update an element at a specific index
-        numbers.set(1, 25);
-        System.out.println("Updated element at index 1: " + numbers.get(1));  // Output: 25
+              // Update an element at a specific index
+              numbers.set(1, 25);
+              System.out.println("Updated element at index 1: " + numbers.get(1));  // Output: 25
 
-        // Remove an element by value
-        numbers.remove(Integer.valueOf(30));
+              // Remove an element by value
+              numbers.remove(Integer.valueOf(30));
 
-        // Remove an element by index
-        numbers.remove(0);
+              // Remove an element by index
+              numbers.remove(0);
 
-        // Iterate over the elements using a for-each loop
-        for (Integer number : numbers) {
-            System.out.println(number);
-        }
-    }
-}
+              // Iterate over the elements using a for-each loop
+              for (Integer number : numbers) {
+                  System.out.println(number);
+              }
+          }
+      }
 
 </details>
