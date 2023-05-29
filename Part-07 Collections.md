@@ -349,3 +349,47 @@ Here's an example that demonstrates sorting an ArrayList of custom objects using
         }
 
 </details>
+<details><summary>
+	
+## What is Vector class? How is it different from an ArrayList?
+</summary>
+In computer programming, a Vector class typically refers to a data structure that represents a dynamic array. It is a commonly used container in many programming languages, including Java.
+
+A Vector is similar to an ArrayList in that both can store and manipulate collections of elements. However, there are a few key differences between the two:
+
+- **Synchronization** Vectors are synchronized, meaning they are thread-safe. This ensures that multiple threads can safely access and modify a Vector object concurrently without causing data corruption or inconsistent state. ArrayLists, on the other hand, are not synchronized by default.
+
+- **Performance** Due to their synchronized nature, Vectors tend to have slightly lower performance compared to ArrayLists, especially in multi-threaded scenarios. The synchronization overhead can introduce additional processing time. ArrayLists, being unsynchronized, generally offer better performance.
+
+- **Growth** Vectors and ArrayLists handle growth differently. When a Vector needs to accommodate more elements than its current capacity allows, it automatically increases its size by a certain amount (a capacity increment). In contrast, ArrayLists grow by 50% of their current size when they need more capacity.
+
+- **Legacy** Vectors were introduced in the early versions of Java and have been available since Java 1.0. ArrayLists were added in Java 1.2 as part of the Java Collections Framework. ArrayLists are considered a more modern alternative to Vectors and provide greater flexibility in most use cases.
+
+In general, unless you specifically require thread-safe behavior, it is recommended to use ArrayLists instead of Vectors for better performance.
+</details>
+<details><summary>
+	
+## What is LinkedList? What interfaces does it implement? How is it different from an ArrayList?
+</summary>
+In computer programming, a LinkedList is a data structure that represents a sequence of elements where each element points to the next element in the list. It consists of nodes, where each node contains the element and a reference (or link) to the next node.
+
+In Java, the LinkedList class is provided as part of the Java Collections Framework and implements the List interface. Additionally, it implements the Deque interface, which extends the Queue interface, making LinkedList a double-ended queue.
+
+Here are the key differences between a LinkedList and an ArrayList:
+
+- **Internal Structure** LinkedList internally maintains a doubly linked list of nodes, where each node has a reference to both the previous and next nodes. On the other hand, ArrayList internally uses a dynamically resizing array to store its elements.
+
+- **Insertion and Deletion** LinkedList performs better than ArrayList when it comes to frequent insertions and deletions, especially at the beginning or middle of the list. Since LinkedList only needs to adjust the links between nodes, it has a constant time complexity of O(1) for such operations. In contrast, ArrayList needs to shift elements in the array, resulting in a time complexity of O(n), where n is the number of elements in the list.
+
+- **Random Access** ArrayList provides faster random access to elements. Given an index, ArrayList can directly access the corresponding element in constant time O(1). LinkedList requires traversing the list from the beginning or end to reach the desired index, resulting in a time complexity of O(n/2), where n is the number of elements in the list.
+
+- **Memory Overhead** LinkedList has a higher memory overhead compared to ArrayList. In addition to storing the elements, LinkedList also needs to store references to the next and previous nodes, leading to more memory usage per element. ArrayList, being backed by an array, has less memory overhead.
+
+In summary, LinkedList is suitable when you frequently perform insertions and deletions in the middle of the list, while ArrayList is more efficient for random access and provides better performance when you mostly access elements by their indices.
+</details>
+<details><summary>
+	
+## Can you briefly explain about the Set Interface?
+</summary>
+In Java, the Set interface is part of the Java Collections Framework and represents a collection of unique elements. It is an interface that extends the Collection interface and defines the behavior of a set, which is a mathematical concept where each element occurs only once.
+</details>
