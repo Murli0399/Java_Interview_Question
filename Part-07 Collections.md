@@ -369,7 +369,7 @@ In general, unless you specifically require thread-safe behavior, it is recommen
 </details>
 <details><summary>
 	
-## What is LinkedList? What interfaces does it implement? How is it different from an ArrayList?
+## What is LinkedList? How is it different from an ArrayList?
 </summary>
 In computer programming, a LinkedList is a data structure that represents a sequence of elements where each element points to the next element in the list. It consists of nodes, where each node contains the element and a reference (or link) to the next node.
 
@@ -518,4 +518,140 @@ Certainly! Here are some examples of implementations of the NavigableSet interfa
 - **TreeSet with custom Comparator** You can also create a TreeSet instance with a custom Comparator to define a specific sorting order for the elements. By providing a Comparator during the TreeSet creation, you can have control over the ordering of the elements.
 
 These are a few examples of implementations of the NavigableSet interface. NavigableSet provides additional navigation methods that allow you to retrieve elements based on their relationship to other elements in the set. The choice of implementation depends on factors such as sorting requirements, concurrency needs, and specific ordering criteria.
+</details>
+<details><summary>
+	
+## Explain briefly about Queue Interface?
+</summary>
+The Queue interface in Java represents a collection that orders elements in a specific way to facilitate specific operations like insertion, deletion, and retrieval of elements. It follows the FIFO (First-In-First-Out) principle, where elements are processed in the same order they were added to the queue.
+
+Here are some key features of the Queue interface:
+
+- **Ordering** The Queue interface maintains the order of elements according to the FIFO principle. The element that has been in the queue for the longest time is the first one to be processed (removed) when elements are retrieved.
+
+- **Operations** The Queue interface provides various methods to perform operations on the queue, such as adding elements to the end of the queue (enqueue/offer), removing elements from the front of the queue (dequeue/poll), accessing the element at the front of the queue (peek), and checking if the queue is empty.
+
+- **Implementations** Java provides several implementations of the Queue interface, including LinkedList, ArrayDeque, and PriorityQueue. The choice of implementation depends on factors such as the specific requirements of your application, the expected size of the queue, and the desired performance characteristics.
+
+- **Interface Hierarchy** The Queue interface extends the Collection interface and adds specific queue-related operations. It also extends the Iterable interface, which allows iterating over the elements of the queue using the foreach loop or an iterator.
+
+Queues are commonly used in scenarios where elements need to be processed in the order they were added, such as handling tasks in a multi-threaded environment, implementing job scheduling systems, or modeling real-life scenarios like waiting lines or event handling. The Queue interface provides a standardized way to work with such collections and offers flexibility in choosing the appropriate implementation based on your specific needs.
+</details>
+<details><summary>
+	
+## Can you briefly explain about the Map Interface?
+</summary>
+Certainly! The Map interface in Java represents a collection of key-value pairs, where each key is unique and maps to a corresponding value. It provides methods to store, retrieve, and manipulate data based on the keys.
+
+Here are some key features of the Map interface:
+
+- **Key-Value Pairs** The Map interface stores elements as key-value pairs. Each key in the map is unique and is associated with a specific value. This allows for efficient retrieval of values based on their corresponding keys.
+
+- **Uniqueness of Keys** In a Map, each key must be unique. If you attempt to add a key-value pair with a key that already exists in the map, the existing value is overwritten with the new value.
+
+- **Operations** The Map interface provides methods to add key-value pairs, remove pairs, retrieve values based on keys, check for the presence of a specific key or value, iterate over the map's entries, and more.
+
+- **Implementations** Java provides several implementations of the Map interface, including HashMap, LinkedHashMap, TreeMap, and ConcurrentHashMap. The choice of implementation depends on factors such as the expected size of the map, the desired performance characteristics, the need for ordered iteration, and thread safety requirements.
+
+- **Interface Hierarchy** The Map interface extends the Collection interface and provides additional methods specific to key-value mappings. It also provides keyset, values, and entrySet views, allowing access to the keys, values, and entries of the map.
+
+Maps are commonly used in various applications for efficient storage and retrieval of data based on keys. They are useful when you need to associate values with unique identifiers or perform lookups based on specific keys. The Map interface provides a standardized way to work with such collections and offers flexibility in choosing the appropriate implementation based on your specific requirements.
+</details>
+<details><summary>
+	
+## What is difference between Map and SortedMap?
+</summary>
+The main difference between the Map and SortedMap interfaces in Java lies in the ordering of their keys. Here's a breakdown of their differences:
+
+- **Ordering** The Map interface does not enforce any particular order on its keys. The keys can be stored and retrieved in an arbitrary order, which is implementation-dependent. On the other hand, the SortedMap interface guarantees that the keys are sorted in ascending order based on their natural ordering or a specified Comparator.
+
+- **Additional Operations** The SortedMap interface extends the Map interface and provides additional methods related to key ordering. It offers operations like firstKey(), lastKey(), headMap(), tailMap(), and subMap(), which allow you to retrieve views of the map based on ranges or specific keys.
+
+- **Implementations** In terms of implementations, the Map interface has several implementations such as HashMap, LinkedHashMap, and ConcurrentHashMap, which do not guarantee any specific key order. The SortedMap interface has its own implementation called TreeMap, which maintains the keys in a sorted order using a binary search tree.
+
+- **Use Cases** The Map interface is suitable when you need to associate values with unique keys without any specific order requirement. It provides efficient key-value pair storage and retrieval. The SortedMap interface, on the other hand, is used when you require the keys to be stored and accessed in a specific order. It is useful for scenarios where you need to iterate over the keys in a sorted manner or perform operations based on key ranges.
+
+In summary, the main distinction between the Map and SortedMap interfaces is the ordering of keys. Map does not guarantee any order, while SortedMap ensures that the keys are sorted. The choice between the two interfaces depends on whether you require a specific key ordering and the additional operations provided by the SortedMap interface.
+</details>
+<details><summary>
+	
+## What is a HashMap?
+</summary>
+In Java, HashMap is a class that implements the Map interface and provides a collection of key-value pairs. It uses a hash table data structure to store and retrieve elements efficiently. HashMap allows null keys and null values, and it does not maintain any specific order of elements.
+
+Here are the key characteristics of HashMap:
+
+- **Key-Value Pairs** HashMap stores elements as key-value pairs. Each key in the map is unique, and it is associated with a specific value. This allows for efficient retrieval of values based on their corresponding keys.
+
+- **Hash Table Implementation** HashMap internally uses a hash table to store and organize its elements. It uses a hash function to compute the hash code of keys, which determines the position of the key-value pair in the hash table. This provides fast access and retrieval of elements.
+
+- **Performance** HashMap offers constant-time performance (O(1)) for basic operations like adding, removing, and retrieving elements. The performance remains consistent regardless of the size of the HashMap, as long as the hash function distributes the elements evenly across the hash table.
+
+- **No Order** HashMap does not maintain any specific order of elements. When iterating over a HashMap, the order of element retrieval may vary between iterations or when elements are added or removed. If you need a specific order, you can use the LinkedHashMap class, which extends HashMap and maintains the insertion order of elements.
+
+- **Null Keys and Values** HashMap allows storing a single null key and multiple null values. If you attempt to add multiple entries with the same key, the previous value associated with that key will be overwritten.
+
+HashMap is commonly used in various applications for efficient key-value storage and retrieval. It provides a flexible and efficient way to map keys to values, allowing for fast access to elements based on their keys.
+</details>
+<details><summary>
+	
+## What are the different methods in a Hash Map?
+</summary>
+HashMap in Java provides various methods to manipulate and access its elements. Here are some important methods of the HashMap class:
+
+- **put(key, value)** Inserts the specified key-value pair into the HashMap. If the key already exists, the value is replaced with the new value. Returns the previous value associated with the key, or null if the key is new.
+
+- **get(key)** Returns the value associated with the specified key in the HashMap. If the key is not found, it returns null.
+
+- **remove(key)** Removes the key-value pair associated with the specified key from the HashMap. Returns the value that was removed, or null if the key is not found.
+
+- **containsKey(key)** Checks if the HashMap contains the specified key. Returns true if the key is found, false otherwise.
+
+- **containsValue(value)** Checks if the HashMap contains the specified value. Returns true if the value is found, false otherwise.
+
+- **size()** Returns the number of key-value pairs (entries) in the HashMap.
+
+- **isEmpty()** Checks if the HashMap is empty. Returns true if it contains no entries, false otherwise.
+
+- **keySet()** Returns a Set of all the keys in the HashMap.
+
+- **values()** Returns a Collection of all the values in the HashMap.
+
+- **entrySet()** Returns a Set of all the key-value pairs (entries) in the HashMap as Map.Entry objects.
+
+- **clear()** Removes all the key-value pairs from the HashMap, making it empty.
+
+These are some of the commonly used methods provided by the HashMap class. These methods allow you to add, retrieve, remove, and perform other operations on the key-value pairs stored in the HashMap.
+</details>
+<details><summary>
+	
+## What is a TreeMap? How is different from a HashMap?
+</summary>
+In Java, TreeMap is a class that implements the SortedMap interface and provides a collection of key-value pairs. It uses a red-black tree data structure to store and retrieve elements efficiently. TreeMap maintains the elements in a sorted order based on the natural order of the keys or a specified Comparator.
+
+Here are the key differences between TreeMap and HashMap:
+
+- **Ordering** TreeMap maintains the keys in a sorted order, either according to their natural order or a specified Comparator. The elements are arranged based on the key values. On the other hand, HashMap does not maintain any specific order for its keys.
+
+- **Data Structure** TreeMap uses a balanced binary search tree (specifically, a red-black tree) as its underlying data structure to store and organize elements. This data structure ensures that the keys are always sorted and allows for efficient searching, insertion, and deletion operations. HashMap, on the other hand, uses a hash table data structure.
+
+- **Performance** TreeMap provides a logarithmic time complexity (O(log n)) for basic operations like adding, removing, and searching elements. The balanced binary search tree structure allows efficient access to elements in sorted order. In contrast, HashMap offers constant time complexity (O(1)) for these operations, but it does not provide any sorting guarantees.
+
+- **Null Keys** TreeMap does not allow null keys because it relies on the natural order or the provided Comparator to determine the order of the keys. On the other hand, HashMap allows a single null key to be stored.
+
+- **Use Case** TreeMap is particularly useful when you need the keys to be stored and accessed in a specific order or when you require operations like retrieving the first or last key, finding keys greater than or less than a given value, or obtaining a range of keys. HashMap, on the other hand, is suitable when you don't need any particular order or when you prioritize constant-time performance.
+
+In summary, TreeMap maintains elements in a sorted order using a balanced binary search tree, providing efficient sorted operations. HashMap does not guarantee any specific order but offers constant-time performance for basic operations. The choice between TreeMap and HashMap depends on whether you require sorted order and additional sorted map operations or prefer constant-time performance and do not require any specific ordering.
+</details>
+<details><summary>
+	
+## Difference between Comparable and Comparator
+</summary>
+
+Comparable	Comparator
+1) Comparable provides a single sorting sequence. In other words, we can sort the collection on the basis of a single element such as id, name, and price.	The Comparator provides multiple sorting sequences. In other words, we can sort the collection on the basis of multiple elements such as id, name, and price etc.
+2) Comparable affects the original class, i.e., the actual class is modified.	Comparator doesn't affect the original class, i.e., the actual class is not modified.
+3) Comparable provides compareTo() method to sort elements.	Comparator provides compare() method to sort elements.
+4) Comparable is present in java.lang package.	A Comparator is present in the java.util package.
+5) We can sort the list elements of Comparable type by Collections.sort(List) method.	We can sort the list elements of Comparator type by Collections.sort(List, Comparator) method.
 </details>
