@@ -167,3 +167,38 @@ The Exception class itself has many subclasses that provide more specific types 
 
 It's important to understand this hierarchy when handling exceptions in Java. Catching and handling exceptions at appropriate levels in the hierarchy allows for more precise exception handling and error recovery in your code.
 </details>
+<details><summary>
+
+## What is the difference between Error and Exception?
+</summary>
+- Error represents severe and typically unrecoverable conditions beyond the control of the application. They are usually unchecked exceptions and often lead to abnormal termination of the program.
+
+- Exception represents exceptional conditions that can be caught and handled by the application code. They can be checked or unchecked exceptions. Checked exceptions must be declared or caught, while unchecked exceptions (subclasses of RuntimeException) do not require explicit handling.
+
+Overall, Error indicates critical problems, while Exception is used for anticipated exceptional conditions that can be handled by the application code.
+</details>
+<details><summary>
+
+## What is the difference between Checked Exceptions and Unchecked Exceptions?
+</summary>
+The main difference between checked exceptions and unchecked exceptions in Java lies in how they are handled and enforced by the compiler. Here are the key distinctions between these two types of exceptions:
+
+### Checked Exceptions:
+
+- Checked exceptions are exceptions that must be declared in the method signature or handled explicitly using try-catch blocks.
+- They are typically used for exceptional conditions that can be reasonably anticipated and recovered from.
+- Examples of checked exceptions in Java include IOException, SQLException, and ClassNotFoundException.
+- Checked exceptions are enforced by the compiler, meaning that if a method throws a checked exception, the calling code must handle or declare that exception.
+- This encourages developers to explicitly deal with potential exceptional situations, ensuring that they are aware of and address potential errors or exceptional conditions.
+
+### Unchecked Exceptions:
+
+- Unchecked exceptions are exceptions that do not need to be declared in the method signature or caught explicitly.
+- They are typically caused by programming errors, such as null pointer access, arithmetic exceptions, or index out of bounds.
+- Examples of unchecked exceptions in Java include NullPointerException, ArithmeticException, and ArrayIndexOutOfBoundsException.
+- Unchecked exceptions are subclasses of RuntimeException or its subclasses.
+- Unchecked exceptions are not enforced by the compiler, meaning that the calling code is not required to handle or declare these exceptions.
+- This provides flexibility to developers, but it also places the responsibility on them to ensure proper error handling and validation within their code.
+
+In summary, checked exceptions are checked by the compiler and must be declared or caught, while unchecked exceptions do not require explicit handling or declaration. Checked exceptions are typically used for anticipated exceptional conditions that can be recovered from, while unchecked exceptions are usually caused by programming errors and may require fixing the code itself.
+</details>
