@@ -352,10 +352,39 @@ In this approach, each catch block handles a specific exception type. When an ex
             } catch (ExceptionType1 | ExceptionType2 | ExceptionType3 e) {
                 // Common handling logic for ExceptionType1, ExceptionType2, and ExceptionType3
             }
-            
+
 In this approach, a single catch block handles multiple exception types by using the pipe symbol (|) to specify multiple exception types separated by it. The catch block will execute if any of the specified exception types are thrown.
 
 It's important to note that when catching multiple exception types, the exception variable (e in the above examples) is implicitly final, meaning you cannot modify its value within the catch block.
 
 By handling multiple exception types in the same exception handling block, you can provide a unified error-handling mechanism for different types of exceptions, reducing code duplication and improving code readability.
+</details>
+<details><summary>
+
+## Can you explain about try with resources?
+</summary>
+Certainly! "Try with resources" is a feature introduced in Java 7 that simplifies resource management and ensures proper handling of resources that need to be closed, such as file streams, database connections, or network sockets. It eliminates the need for explicit finally blocks to close resources.
+
+Here's how the "try with resources" statement works:
+
+1. The try block is used to enclose the code that uses the resources. It is followed by a set of parentheses () where you declare and initialize the resources.
+
+2. The resources declared in the parentheses must implement the AutoCloseable interface or its subinterface Closeable. These interfaces provide the close() method that is used to release the allocated resources.
+
+3. After the try block, you don't need to explicitly close the resources. The Java runtime automatically takes care of closing the resources for you, even if an exception occurs.
+
+Here's an example that demonstrates the usage of "try with resources" with a file stream:
+
+            try (FileInputStream fileInputStream = new FileInputStream("file.txt")) {
+                // Code that uses the fileInputStream
+                // ...
+            } catch (IOException e) {
+                // Exception handling code
+            }
+
+In this example, the FileInputStream is declared and initialized within the parentheses after the try keyword. The resource, in this case, the file stream, will be automatically closed at the end of the try block, whether an exception occurs or not.
+
+If an exception occurs within the try block, the catch block will handle the exception as usual. After the catch block is executed, the file stream will be closed automatically.
+
+The "try with resources" statement ensures that resources are properly closed, even in scenarios where exceptions are thrown. It simplifies resource management, reduces the boilerplate code required for closing resources, and improves the overall reliability of your code.
 </details>
