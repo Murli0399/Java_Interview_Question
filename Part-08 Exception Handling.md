@@ -209,13 +209,13 @@ In summary, checked exceptions are checked by the compiler and must be declared 
 </summary>
 In Java, you can throw an exception from a method using the throw keyword followed by an instance of an exception class. Here's how you can throw an exception from a method:
 
-Declare the exception in the method signature: If the exception you want to throw is a checked exception, you need to declare it in the method signature using the throws keyword. This notifies the calling code that the method can throw this exception, and the caller must handle or declare it.
+- **Declare the exception in the method signature** If the exception you want to throw is a checked exception, you need to declare it in the method signature using the throws keyword. This notifies the calling code that the method can throw this exception, and the caller must handle or declare it.
 
         public void someMethod() throws SomeException {
             // code that may throw SomeException
         }
-        
-Create an instance of the exception class: Within the method, when you encounter a condition that warrants an exception, create an instance of the appropriate exception class using the new keyword.
+
+- **Create an instance of the exception class** Within the method, when you encounter a condition that warrants an exception, create an instance of the appropriate exception class using the new keyword.
 
         public void someMethod() throws SomeException {
             if (someCondition) {
@@ -232,8 +232,96 @@ You can also directly throw an instance of the exception class without assigning
             }
         }
 
-Propagate the exception: Once the throw statement is executed, the exception is thrown out of the method, propagating it to the calling code. The calling code can then catch the exception and handle it or propagate it further.
+- **Propagate the exception** Once the throw statement is executed, the exception is thrown out of the method, propagating it to the calling code. The calling code can then catch the exception and handle it or propagate it further.
 When throwing an exception, it's important to choose the appropriate exception class that accurately represents the exceptional condition you want to convey. It's also good practice to provide a descriptive message with the exception to aid in troubleshooting and error handling.
 
 Remember, if the exception you are throwing is a checked exception, you need to either handle it within the method using a try-catch block or declare it in the method signature using the throws keyword.
+</details>
+<details><summary>
+
+## What happens when you throw a Checked Exception from a method ?
+</summary>
+When you throw a checked exception from a method, you are indicating that the method may encounter an exceptional condition that the caller of the method needs to handle. The checked exception must be declared in the method's signature using the throws keyword.
+
+If a method throws a checked exception, the caller of that method is required to either catch the exception using a try-catch block or declare that it can also throw the exception using the throws keyword. This ensures that the caller acknowledges and handles the possibility of an exceptional situation.
+
+            class AmountAdder {
+                    static Amount addAmounts(Amount amount1, Amount amount2) {
+                            if (!amount1.currency.equals(amount2.currency)) {
+                                    throw new Exception("Currencies don't match");// COMPILER ERROR!
+                                    // Unhandled exception type Exception
+                            }
+                            return new Amount(amount1.currency, amount1.amount + amount2.amount);
+                    }
+            }
+
+If the caller chooses to catch the checked exception, it can provide appropriate error-handling logic to deal with the exceptional condition. If the caller declares that it can also throw the exception, the responsibility of handling the exception is then passed to the caller's caller.
+
+In summary, throwing a checked exception from a method alerts the caller about a potential exceptional situation and enforces the handling or propagation of the exception through the calling chain.
+</details>
+<details><summary>
+
+## What are the options you have to eliminate compilation errors when handling checked exceptions?
+</summary>
+When handling checked exceptions in Java, you have several options to eliminate compilation errors:
+
+1. **Catch and Handle the Exception** You can surround the code that may throw the checked exception with a try-catch block. Inside the catch block, you provide the necessary error-handling logic to handle the exception gracefully.
+
+2. **Declare the Exception** If you don't want to handle the checked exception at the current level, you can declare the exception using the throws keyword in the method signature. This passes the responsibility of handling the exception to the method's caller.
+
+3. **Wrap the Exception** If the checked exception is not compatible with the current method's signature, you can wrap it inside a different exception that is compatible. This involves catching the checked exception, creating a new exception object, and throwing the wrapped exception instead.
+
+4. **Handle with Finally** If you are unable to handle the checked exception within the current method, you can use a try-finally block. The finally block will execute regardless of whether an exception is thrown or not, allowing you to perform necessary cleanup or resource release operations.
+
+5. **Rethrow the Exception** If you catch a checked exception but cannot handle it properly, you can rethrow the exception using the throw keyword. This propagates the exception to the caller without handling it within the current method.
+
+6. **Handle with Optional** If you are using Java 8 or later, you can use the Optional class to handle checked exceptions in a more functional style. You can wrap the potentially exception-throwing code in a lambda expression and use Optional to handle the exception elegantly.
+
+It's important to note that the appropriate choice depends on the specific scenario and requirements of your application. Consider the nature of the exception, the level at which it can be effectively handled, and the design principles of your code when selecting the appropriate approach.
+</details>
+<details><summary>
+
+## How do you create a Custom Exception?
+</summary>
+To create a custom exception in Java, you need to create a new class that extends either the Exception class or one of its subclasses, such as RuntimeException. Here are the steps to create a custom exception:
+
+1. Create a new class that extends Exception or one of its subclasses. For example:
+
+            public class CustomException extends Exception {
+                // Custom exception code...
+            }
+
+2. Optionally, you can add constructors to your custom exception class to provide additional functionality or customization. For example:
+
+            public class CustomException extends Exception {
+                public CustomException() {
+                    super();
+                }
+                
+                public CustomException(String message) {
+                    super(message);
+                }
+                
+                public CustomException(String message, Throwable cause) {
+                    super(message, cause);
+                }
+                
+                // Additional constructors or custom code...
+            }
+
+3. In your code, when an exceptional situation occurs that warrants throwing your custom exception, you can create an instance of your custom exception class and throw it using the throw keyword. For example:
+
+            public class Example {
+                public static void main(String[] args) {
+                    try {
+                        throw new CustomException("Something went wrong.");
+                    } catch (CustomException e) {
+                        System.out.println("Custom Exception caught: " + e.getMessage());
+                    }
+                }
+            }
+            
+In this example, we create an instance of the CustomException class with a specific message, and then we throw it using the throw keyword. The catch block catches the custom exception and handles it accordingly.
+
+By creating a custom exception, you can define and throw exceptions that are specific to your application's domain or requirements, allowing you to provide more meaningful error information and separate different types of exceptional situations.
 </details>
