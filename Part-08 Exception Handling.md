@@ -203,3 +203,37 @@ The main difference between checked exceptions and unchecked exceptions in Java 
 
 In summary, checked exceptions are checked by the compiler and must be declared or caught, while unchecked exceptions do not require explicit handling or declaration. Checked exceptions are typically used for anticipated exceptional conditions that can be recovered from, while unchecked exceptions are usually caused by programming errors and may require fixing the code itself.
 </details>
+<details><summary>
+
+## How do you throw an exception from a method?
+</summary>
+In Java, you can throw an exception from a method using the throw keyword followed by an instance of an exception class. Here's how you can throw an exception from a method:
+
+Declare the exception in the method signature: If the exception you want to throw is a checked exception, you need to declare it in the method signature using the throws keyword. This notifies the calling code that the method can throw this exception, and the caller must handle or declare it.
+
+        public void someMethod() throws SomeException {
+            // code that may throw SomeException
+        }
+        
+Create an instance of the exception class: Within the method, when you encounter a condition that warrants an exception, create an instance of the appropriate exception class using the new keyword.
+
+        public void someMethod() throws SomeException {
+            if (someCondition) {
+                SomeException exception = new SomeException("Exception message");
+                throw exception;
+            }
+        }
+
+You can also directly throw an instance of the exception class without assigning it to a variable:
+
+        public void someMethod() throws SomeException {
+            if (someCondition) {
+                throw new SomeException("Exception message");
+            }
+        }
+
+Propagate the exception: Once the throw statement is executed, the exception is thrown out of the method, propagating it to the calling code. The calling code can then catch the exception and handle it or propagate it further.
+When throwing an exception, it's important to choose the appropriate exception class that accurately represents the exceptional condition you want to convey. It's also good practice to provide a descriptive message with the exception to aid in troubleshooting and error handling.
+
+Remember, if the exception you are throwing is a checked exception, you need to either handle it within the method using a try-catch block or declare it in the method signature using the throws keyword.
+</details>
