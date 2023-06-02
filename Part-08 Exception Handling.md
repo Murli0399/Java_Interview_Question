@@ -45,5 +45,20 @@ In this pattern, the try block contains the code that might throw an exception. 
 By using the Try-Catch pattern, you can control the flow of execution when exceptions occur, handle errors gracefully, and ensure that your program remains stable and robust.
 
 It's important to note that while the Try-Catch pattern is widely used for exception handling, there are other patterns and techniques available, depending on the language and programming paradigm. However, the basic principles of encapsulating error-prone code in a try block and handling exceptions in catch blocks remain consistent across different languages.
+</details>
+<details><summary>
 
+## What is the need for finally block?
+</summary>
+The "finally" block is an optional component of the Try-Catch-Finally pattern used in exception handling. It provides a mechanism to execute certain code regardless of whether an exception occurred or not. Here are the main reasons for using a "finally" block:
+
+- **Cleanup operations** The "finally" block is often used to perform cleanup operations, such as closing resources (files, database connections, network connections) or releasing acquired locks. These operations are essential to ensure proper resource management and avoid resource leaks. By placing cleanup code in the "finally" block, you guarantee that it will be executed even if an exception is thrown or caught.
+
+- **Guarantee execution** The "finally" block ensures that specific code is always executed, regardless of whether an exception occurred or not. This is useful in situations where certain actions must be performed, regardless of the success or failure of preceding code. For example, if you have allocated some resources in a try block, the "finally" block can be used to release those resources, ensuring they are not left in an inconsistent state.
+
+- **Exception propagation** The "finally" block allows exceptions to be propagated after executing cleanup operations. If an exception is caught in a catch block and not re-thrown, the "finally" block can ensure that the exception is propagated further up the call stack. This is important when you need to handle exceptions at different levels of your code hierarchy while still ensuring that cleanup operations are performed.
+
+- **Consistency and code readability** By placing code that must be executed in all circumstances in a "finally" block, you make your code more readable and maintainable. It clearly indicates the intention that certain operations are meant to be executed regardless of exceptions. This helps in writing robust and error-tolerant code.
+
+To summarize, the "finally" block is used to execute code that should always run, regardless of exceptions. It is primarily used for cleanup operations, guaranteeing execution, propagating exceptions, and enhancing code readability. It plays a crucial role in ensuring the proper handling of resources and maintaining code consistency.
 </details>
