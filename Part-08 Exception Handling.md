@@ -426,25 +426,25 @@ By using the "try with resources" statement, you don't need to explicitly close 
 </summary>
 Here are a few exception handling best practices in Java:
 
-**1. Use specific exception types** Catch and handle exceptions at an appropriate level of granularity. Use specific exception types to catch and handle specific exceptional situations. This helps in providing meaningful error messages and allows for more targeted exception handling.
+**1. Use specific exception types -** Catch and handle exceptions at an appropriate level of granularity. Use specific exception types to catch and handle specific exceptional situations. This helps in providing meaningful error messages and allows for more targeted exception handling.
 
-**2. Catch the most specific exception first** When using multiple catch blocks, order them from the most specific exception type to the more general ones. This ensures that exceptions are caught and handled at the appropriate level, preventing more generic catch blocks from intercepting specific exceptions.
+**2. Catch the most specific exception first -** When using multiple catch blocks, order them from the most specific exception type to the more general ones. This ensures that exceptions are caught and handled at the appropriate level, preventing more generic catch blocks from intercepting specific exceptions.
 
-**3. Handle exceptions at the appropriate level** Catch and handle exceptions at the appropriate level in your application. Consider whether it makes sense to handle the exception locally or propagate it to a higher level where it can be handled more effectively.
+**3. Handle exceptions at the appropriate level -** Catch and handle exceptions at the appropriate level in your application. Consider whether it makes sense to handle the exception locally or propagate it to a higher level where it can be handled more effectively.
 
-**4. Provide meaningful error messages** When catching and handling exceptions, provide meaningful error messages or log the relevant details. This helps in diagnosing and troubleshooting issues during development and production.
+**4. Provide meaningful error messages -** When catching and handling exceptions, provide meaningful error messages or log the relevant details. This helps in diagnosing and troubleshooting issues during development and production.
 
-**5. Avoid empty catch blocks** Avoid using empty catch blocks as they silently ignore exceptions and make it difficult to diagnose and debug issues. If you decide not to handle an exception, provide a comment explaining the rationale.
+**5. Avoid empty catch blocks -** Avoid using empty catch blocks as they silently ignore exceptions and make it difficult to diagnose and debug issues. If you decide not to handle an exception, provide a comment explaining the rationale.
 
-**6. Use finally blocks for cleanup** Use finally blocks to ensure that necessary cleanup operations are performed, such as closing resources (e.g., file streams, database connections) or releasing acquired locks. finally blocks are executed regardless of whether an exception occurs or not.
+**6. Use finally blocks for cleanup -** Use finally blocks to ensure that necessary cleanup operations are performed, such as closing resources (e.g., file streams, database connections) or releasing acquired locks. finally blocks are executed regardless of whether an exception occurs or not.
 
-**7. Avoid catching RuntimeExceptions** RuntimeExceptions and their subclasses (unchecked exceptions) usually indicate programming errors or unexpected conditions. It's generally better to let these exceptions propagate and be caught at higher levels or allow them to be handled by default exception handling mechanisms.
+**7. Avoid catching RuntimeExceptions -** RuntimeExceptions and their subclasses (unchecked exceptions) usually indicate programming errors or unexpected conditions. It's generally better to let these exceptions propagate and be caught at higher levels or allow them to be handled by default exception handling mechanisms.
 
-**8. Don't catch and ignore exceptions unnecessarily** Avoid catching and ignoring exceptions unless you have a valid reason to do so. Ignoring exceptions can lead to silent failures and make it harder to identify and fix issues.
+**8. Don't catch and ignore exceptions unnecessarily -** Avoid catching and ignoring exceptions unless you have a valid reason to do so. Ignoring exceptions can lead to silent failures and make it harder to identify and fix issues.
 
-**9. Avoid excessive nesting of try-catch blocks** Excessive nesting of try-catch blocks can make the code more complex and harder to read. Refactor the code to simplify the nesting and improve its readability.
+**9. Avoid excessive nesting of try-catch blocks -** Excessive nesting of try-catch blocks can make the code more complex and harder to read. Refactor the code to simplify the nesting and improve its readability.
 
-**10. Use try-with-resources** Utilize the "try with resources" statement when working with resources that need to be closed, such as file streams or database connections. This ensures proper resource management and eliminates the need for explicit finally blocks.
+**10. Use try-with-resources -** Utilize the "try with resources" statement when working with resources that need to be closed, such as file streams or database connections. This ensures proper resource management and eliminates the need for explicit finally blocks.
 
 By following these exception handling best practices, you can improve the robustness, maintainability, and reliability of your Java code.
 </details>
