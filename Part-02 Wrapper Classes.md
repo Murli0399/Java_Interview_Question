@@ -5,14 +5,14 @@
 Wrapper classes in Java are a set of classes that encapsulate primitive data types (such as int, float, char, etc.) and provide object-oriented representations for them. They allow primitive types to be used as objects in Java programs by wrapping them within instances of the corresponding wrapper classes.
 Here are the wrapper classes for each primitive type:
 
-Boolean: Represents the boolean type.
-Byte: Represents the byte type.
-Short: Represents the short type.
-Integer: Represents the int type.
-Long: Represents the long type.
-Float: Represents the float type.
-Double: Represents the double type.
-Character: Represents the char type.
+- Boolean: Represents the boolean type.
+- Byte: Represents the byte type.
+- Short: Represents the short type.
+- Integer: Represents the int type.
+- Long: Represents the long type.
+- Float: Represents the float type.
+- Double: Represents the double type.
+- Character: Represents the char type.
 </details>
   
 <details><summary>
