@@ -320,8 +320,42 @@ To create a custom exception in Java, you need to create a new class that extend
                     }
                 }
             }
-            
+
 In this example, we create an instance of the CustomException class with a specific message, and then we throw it using the throw keyword. The catch block catches the custom exception and handles it accordingly.
 
 By creating a custom exception, you can define and throw exceptions that are specific to your application's domain or requirements, allowing you to provide more meaningful error information and separate different types of exceptional situations.
+</details>
+<details><summary>
+
+## How do you handle multiple exception types with same exception handling block?
+</summary>
+In Java, you can handle multiple exception types using a single exception handling block by either specifying multiple catch blocks or by catching a common superclass of the exception types. Here's how you can handle multiple exception types in the same exception handling block:
+
+**Option 1:** Multiple Catch Blocks
+
+            try {
+                // Code that may throw exceptions
+            } catch (ExceptionType1 e) {
+                // Handling logic for ExceptionType1
+            } catch (ExceptionType2 e) {
+                // Handling logic for ExceptionType2
+            } catch (ExceptionType3 e) {
+                // Handling logic for ExceptionType3
+            }
+
+In this approach, each catch block handles a specific exception type. When an exception occurs, the catch blocks are evaluated in order, and the first catch block that matches the exception type is executed.
+
+**Option 2:** Catching a Common Superclass
+
+            try {
+                // Code that may throw exceptions
+            } catch (ExceptionType1 | ExceptionType2 | ExceptionType3 e) {
+                // Common handling logic for ExceptionType1, ExceptionType2, and ExceptionType3
+            }
+            
+In this approach, a single catch block handles multiple exception types by using the pipe symbol (|) to specify multiple exception types separated by it. The catch block will execute if any of the specified exception types are thrown.
+
+It's important to note that when catching multiple exception types, the exception variable (e in the above examples) is implicitly final, meaning you cannot modify its value within the catch block.
+
+By handling multiple exception types in the same exception handling block, you can provide a unified error-handling mechanism for different types of exceptions, reducing code duplication and improving code readability.
 </details>
