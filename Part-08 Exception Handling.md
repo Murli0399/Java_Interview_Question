@@ -62,3 +62,108 @@ The "finally" block is an optional component of the Try-Catch-Finally pattern us
 
 To summarize, the "finally" block is used to execute code that should always run, regardless of exceptions. It is primarily used for cleanup operations, guaranteeing execution, propagating exceptions, and enhancing code readability. It plays a crucial role in ensuring the proper handling of resources and maintaining code consistency.
 </details>
+<details><summary>
+
+## In what scenarios is code in finally not executed?
+</summary>
+The finally block is always get executed unless there is an abnormal program termination either resulting from a JVM crash or from a call to System.exit().
+
+- A finally block is always get executed whether the exception has occurred or not.
+- If an exception occurs like closing a file or DB connection, then the finally block is used to clean up the code.
+- We cannot say the finally block is always executes because sometimes if any statement like System.exit() or some similar code is written into try block then program will automatically terminate and the finally block will not be executed in this case.
+- A finally block will not execute due to other conditions like when JVM runs out of memory when our java process is killed forcefully from task manager or console when our machine shuts down due to power failure and deadlock condition in our try block.
+</details>
+<details><summary>
+
+## Will finally be executed in the program below?
+</summary>
+
+        private static void method2() {
+              Connection connection = new Connection();
+              connection.open();
+              try {
+                  // LOGIC
+                  String str = null;
+                  str.toString();
+                  return;
+              } catch (Exception e) {
+                  // NOT PRINTING EXCEPTION TRACE - BAD PRACTICE
+                  System.out.println("Exception Handled - Method 2");
+                  return;
+              } finally {
+                  connection.close();
+              }
+        }
+
+In the provided code snippet, the finally block will be executed even when there is a return statement in the try or catch block.
+
+When a return statement is encountered within the try or catch block, the execution flow immediately jumps to the finally block before actually returning from the method. This ensures that the code inside the finally block is executed before the method exits, regardless of whether an exception occurred or not.
+
+In the given code, if an exception occurs within the try block, the catch block will be executed, printing the message "Exception Handled - Method 2". After that, the control flow will reach the finally block, where the connection.close() method will be invoked to perform necessary cleanup operations. Finally, the method will return.
+
+If no exception occurs within the try block, the code inside the finally block will still be executed before the method returns. This allows for proper cleanup of resources (in this case, closing the connection) regardless of the success or failure of the logic inside the try block.
+
+So, in conclusion, the finally block in the provided code snippet will be executed, even if there is a return statement in the try or catch block.
+</details>
+<details><summary>
+
+## Is try without a catch is allowed?
+</summary>
+Yes, it is allowed to have a try block without a corresponding catch block. In such cases, it is required to have a finally block to handle the exception or perform necessary cleanup operations.
+
+In some cases, you may have code that needs to be executed within a try block, but you don't need to catch or handle any specific exceptions. In such situations, you can use a finally block without any catch blocks. The code within the finally block will execute regardless of whether an exception occurred or not.
+
+      try {
+          // Code that doesn't throw a specific exception
+      } finally {
+          // Code that is always executed, regardless of whether an exception occurred or not
+      }
+
+Using a try block without a corresponding catch block can be useful in situations where you only need to ensure that certain code is executed, such as releasing resources or cleaning up operations. The finally block allows you to accomplish this even if an exception occurs within the try block.
+</details>
+<details><summary>
+
+## Is try without catch and finally allowed?
+</summary>
+No. Below method would give a Compilation Error!! (End of try block)
+
+        private static void method2() {
+            Connection connection = new Connection();
+            connection.open();
+            try {
+                // LOGIC
+                String str = null;
+                str.toString();
+            }//COMPILER ERROR!!
+        }
+
+</details>
+<details><summary>
+
+## Can you explain the hierarchy of Exception Handling classes?
+</summary>
+Yes, I can explain the hierarchy of exception handling classes in Java.
+
+In Java, the exception handling classes are organized in a hierarchy, with the root class being Throwable. The Throwable class serves as the base class for all exceptions and errors in Java. It has two main subclasses: Exception and Error.
+
+Exception class: It represents exceptional conditions that can be caught and handled by the program. The Exception class is further subclassed into many specific exception types, such as RuntimeException, IOException, SQLException, etc. Exceptions in this hierarchy are meant to be caught and handled by the application code. They are typically caused by conditions that can be anticipated and recovered from.
+
+Error class: It represents severe errors that are typically beyond the control of the application. Error objects are not usually caught or handled by application code. Examples of Error subclasses include OutOfMemoryError, StackOverflowError, VirtualMachineError, etc. These errors generally indicate critical problems that may not be recoverable, and they are usually not caught or handled explicitly in the application code.
+
+Here's a simplified visual representation of the exception hierarchy:
+
+
+                ┌───────────────┐
+                │   Throwable   │
+                └───────┬───────┘
+                        │
+             ┌──────────┴────────────┐
+             │                       │
+         ┌───┴───┐               ┌───┴─────┐
+         │ Error │               │Exception│
+         └───────┘               └─────────┘
+
+The Exception class itself has many subclasses that provide more specific types of exceptions. For example, RuntimeException and its subclasses represent exceptions that are unchecked (do not need to be declared in the method signature or caught explicitly). IOException and its subclasses represent exceptions related to input/output operations. Similarly, other subclasses of Exception cover different categories of exceptional conditions.
+
+It's important to understand this hierarchy when handling exceptions in Java. Catching and handling exceptions at appropriate levels in the hierarchy allows for more precise exception handling and error recovery in your code.
+</details>
