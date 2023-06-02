@@ -171,6 +171,7 @@ It's important to understand this hierarchy when handling exceptions in Java. Ca
 
 ## What is the difference between Error and Exception?
 </summary>
+
 - Error represents severe and typically unrecoverable conditions beyond the control of the application. They are usually unchecked exceptions and often lead to abnormal termination of the program.
 
 - Exception represents exceptional conditions that can be caught and handled by the application code. They can be checked or unchecked exceptions. Checked exceptions must be declared or caught, while unchecked exceptions (subclasses of RuntimeException) do not require explicit handling.
