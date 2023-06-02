@@ -388,3 +388,63 @@ If an exception occurs within the try block, the catch block will handle the exc
 
 The "try with resources" statement ensures that resources are properly closed, even in scenarios where exceptions are thrown. It simplifies resource management, reduces the boilerplate code required for closing resources, and improves the overall reliability of your code.
 </details>
+<details><summary>
+
+## How does try with resources work?
+</summary>
+When you use the "try with resources" statement in Java, it ensures that resources are automatically closed at the end of the block, regardless of whether an exception occurs or not. Here's how it works:
+
+1. When the "try with resources" statement is encountered, the resources are declared and initialized within the parentheses after the try keyword. Each resource must implement the AutoCloseable interface or its subinterface Closeable.
+
+2. The resources declared in the parentheses are implicitly final, meaning you cannot reassign them within the block.
+
+3. After the resources are initialized, the try block is executed, which contains the code that uses the resources.
+
+4. At the end of the try block, the resources are automatically closed in reverse order of their declaration. The close() method of each resource is called. This happens regardless of whether an exception occurs within the try block or not.
+
+5. If an exception occurs within the try block, the exception is caught and handled by the appropriate catch block, if present. After the catch block is executed, the resources are still automatically closed in the reverse order of their declaration.
+
+6. If no exception occurs, the catch block is skipped, and the resources are still closed automatically.
+
+Here's an example to illustrate how "try with resources" works:
+
+            try (FileInputStream fileInputStream = new FileInputStream("file.txt");
+                InputStreamReader inputStreamReader = new InputStreamReader(fileInputStream)) {
+                // Code that uses fileInputStream and inputStreamReader
+                // ...
+            } catch (IOException e) {
+                // Exception handling code
+            }
+
+In this example, we have two resources declared and initialized within the parentheses after the try keyword: fileInputStream and inputStreamReader. These resources will be automatically closed in the reverse order of their declaration, meaning inputStreamReader will be closed first, followed by fileInputStream.
+
+By using the "try with resources" statement, you don't need to explicitly close the resources using a finally block. The Java runtime ensures that the resources are properly closed, even in the presence of exceptions, making your code cleaner and more reliable.
+</details>
+<details><summary>
+
+## Can you explain a few Exception Handling Best Practices?
+</summary>
+Here are a few exception handling best practices in Java:
+
+**1. Use specific exception types** Catch and handle exceptions at an appropriate level of granularity. Use specific exception types to catch and handle specific exceptional situations. This helps in providing meaningful error messages and allows for more targeted exception handling.
+
+**2. Catch the most specific exception first** When using multiple catch blocks, order them from the most specific exception type to the more general ones. This ensures that exceptions are caught and handled at the appropriate level, preventing more generic catch blocks from intercepting specific exceptions.
+
+**3. Handle exceptions at the appropriate level** Catch and handle exceptions at the appropriate level in your application. Consider whether it makes sense to handle the exception locally or propagate it to a higher level where it can be handled more effectively.
+
+**4. Provide meaningful error messages** When catching and handling exceptions, provide meaningful error messages or log the relevant details. This helps in diagnosing and troubleshooting issues during development and production.
+
+**5. Avoid empty catch blocks** Avoid using empty catch blocks as they silently ignore exceptions and make it difficult to diagnose and debug issues. If you decide not to handle an exception, provide a comment explaining the rationale.
+
+**6. Use finally blocks for cleanup** Use finally blocks to ensure that necessary cleanup operations are performed, such as closing resources (e.g., file streams, database connections) or releasing acquired locks. finally blocks are executed regardless of whether an exception occurs or not.
+
+**7. Avoid catching RuntimeExceptions** RuntimeExceptions and their subclasses (unchecked exceptions) usually indicate programming errors or unexpected conditions. It's generally better to let these exceptions propagate and be caught at higher levels or allow them to be handled by default exception handling mechanisms.
+
+**8. Don't catch and ignore exceptions unnecessarily** Avoid catching and ignoring exceptions unless you have a valid reason to do so. Ignoring exceptions can lead to silent failures and make it harder to identify and fix issues.
+
+**9. Avoid excessive nesting of try-catch blocks** Excessive nesting of try-catch blocks can make the code more complex and harder to read. Refactor the code to simplify the nesting and improve its readability.
+
+**10. Use try-with-resources** Utilize the "try with resources" statement when working with resources that need to be closed, such as file streams or database connections. This ensures proper resource management and eliminates the need for explicit finally blocks.
+
+By following these exception handling best practices, you can improve the robustness, maintainability, and reliability of your Java code.
+</details>
