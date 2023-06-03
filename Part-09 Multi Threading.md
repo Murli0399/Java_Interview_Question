@@ -146,3 +146,40 @@ When the threads are started using the start() method, the thread scheduler will
 
 It's generally recommended to use thread priorities judiciously and rely on other synchronization mechanisms, such as locks or semaphores, to ensure correct and reliable thread coordination. Thread priorities are typically used as hints to the scheduler, but the final decision is ultimately determined by the underlying platform and JVM implementation.
 </details>
+<details><summary>
+
+## What is ExecutorService?
+</summary>
+ExecutorService is an interface in Java that provides a way to manage and control the execution of tasks in a multithreaded environment. It is part of the Java Concurrency framework and is used to create and manage a pool of threads, allowing you to submit tasks for execution and retrieve the results when they are completed.
+
+The ExecutorService interface extends the Executor interface and adds additional methods to manage the execution of tasks. It provides a high-level API for working with threads, abstracting away the complexities of thread creation, management, and synchronization.
+
+Here's an example that demonstrates the usage of ExecutorService:
+
+            import java.util.concurrent.ExecutorService;
+            import java.util.concurrent.Executors;
+
+            public class ExecutorServiceExample {
+                public static void main(String[] args) {
+                    // Create an ExecutorService with a fixed thread pool of size 5
+                    ExecutorService executorService = Executors.newFixedThreadPool(5);
+
+                    // Submit tasks for execution
+                    for (int i = 0; i < 10; i++) {
+                        int taskId = i;
+                        executorService.submit(() -> {
+                            System.out.println("Task " + taskId + " is being executed by thread: " + Thread.currentThread().getName());
+                        });
+                    }
+
+                    // Shutdown the ExecutorService to reject any new tasks and wait for the previously submitted tasks to complete
+                    executorService.shutdown();
+                }
+            }
+            
+In this example, we create an ExecutorService using the Executors.newFixedThreadPool() method, which creates a thread pool with a fixed number of threads (in this case, 5). We then submit 10 tasks for execution using the submit() method of the ExecutorService. Each task is a lambda expression that prints a message indicating the task ID and the name of the thread executing it.
+
+Finally, we call the shutdown() method on the ExecutorService to initiate a graceful shutdown. This will cause the ExecutorService to reject any new tasks and wait for the previously submitted tasks to complete before terminating the threads in the pool.
+
+By using ExecutorService, you can efficiently manage the execution of tasks in a concurrent environment, allowing for better utilization of system resources and improved performance.
+</details>
