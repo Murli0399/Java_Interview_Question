@@ -176,10 +176,148 @@ Here's an example that demonstrates the usage of ExecutorService:
                     executorService.shutdown();
                 }
             }
-            
+
 In this example, we create an ExecutorService using the Executors.newFixedThreadPool() method, which creates a thread pool with a fixed number of threads (in this case, 5). We then submit 10 tasks for execution using the submit() method of the ExecutorService. Each task is a lambda expression that prints a message indicating the task ID and the name of the thread executing it.
 
 Finally, we call the shutdown() method on the ExecutorService to initiate a graceful shutdown. This will cause the ExecutorService to reject any new tasks and wait for the previously submitted tasks to complete before terminating the threads in the pool.
 
 By using ExecutorService, you can efficiently manage the execution of tasks in a concurrent environment, allowing for better utilization of system resources and improved performance.
+</details>
+<details><summary>
+
+## Explain different ways of creating Executor Services?
+</summary>
+There are several ways to create an ExecutorService in Java, depending on your specific requirements. Here are some commonly used methods:
+
+- **Executors.newFixedThreadPool(int nThreads):** This method creates an ExecutorService with a fixed-size thread pool, where nThreads specifies the number of threads in the pool. All submitted tasks will be executed concurrently by the available threads.
+
+            ExecutorService executorService = Executors.newFixedThreadPool(5);
+
+- **Executors.newCachedThreadPool():** This method creates an ExecutorService with a dynamically adjusting thread pool. Threads will be created as needed and reused if available. If a thread is idle for a certain period, it will be terminated and removed from the pool.
+
+            ExecutorService executorService = Executors.newCachedThreadPool();
+
+- **Executors.newSingleThreadExecutor():** This method creates an ExecutorService with a single thread. It ensures that all submitted tasks are executed sequentially, one after the other, in the order they were submitted.
+
+            ExecutorService executorService = Executors.newSingleThreadExecutor();
+
+- **Executors.newScheduledThreadPool(int corePoolSize):** This method creates an ExecutorService that can schedule tasks to run after a specified delay or at fixed intervals. The corePoolSize parameter determines the number of threads in the pool.
+
+            ExecutorService executorService = Executors.newScheduledThreadPool(3);
+
+- **ThreadPoolExecutor class:** Apart from the factory methods provided by the Executors class, you can also create an ExecutorService using the ThreadPoolExecutor class, which offers more customization options. You can specify the core pool size, maximum pool size, keep-alive time, work queue type, and other parameters.
+
+            ExecutorService executorService = new ThreadPoolExecutor(
+                3, // core pool size
+                5, // maximum pool size
+                60, TimeUnit.SECONDS, // keep-alive time for idle threads
+                new ArrayBlockingQueue<>(10) // work queue type and size
+            );
+
+Using the ThreadPoolExecutor class gives you fine-grained control over the thread pool configuration, allowing you to tailor it to your specific needs.
+
+These are the commonly used ways to create an ExecutorService in Java. The choice of which method to use depends on factors such as the desired thread pool behavior, concurrency requirements, and scheduling needs of your application.
+</details>
+<details><summary>
+
+## How do you check whether an ExecutionService task executed successfully?
+</summary>
+To check whether an ExecutorService task executed successfully, you can use the Future interface that is returned when submitting a task for execution. The Future interface provides methods to check the status and retrieve the result of a task.
+
+Here's an example that demonstrates how to use Future to check the execution status of a task:
+
+            import java.util.concurrent.ExecutorService;
+            import java.util.concurrent.Executors;
+            import java.util.concurrent.Future;
+
+            public class ExecutorServiceExample {
+                public static void main(String[] args) {
+                    ExecutorService executorService = Executors.newFixedThreadPool(5);
+
+                    // Submit a task for execution
+                    Future<String> future = executorService.submit(() -> {
+                        // Simulating a task that takes some time to complete
+                        Thread.sleep(2000);
+                        return "Task completed successfully";
+                    });
+
+                    // Check if the task has completed
+                    if (future.isDone()) {
+                        try {
+                            // Retrieve the result of the task
+                            String result = future.get();
+                            System.out.println("Task result: " + result);
+                        } catch (Exception e) {
+                            System.err.println("An error occurred while retrieving the task result: " + e.getMessage());
+                        }
+                    } else {
+                        System.out.println("Task is still running");
+                    }
+
+                    // Shutdown the ExecutorService
+                    executorService.shutdown();
+                }
+            }
+
+In this example, we submit a task to the ExecutorService using the submit() method, which returns a Future object representing the task's execution. We can then use the isDone() method of the Future to check if the task has completed.
+
+If isDone() returns true, we can retrieve the result of the task using the get() method. It blocks until the task completes and returns the result. If an exception occurred during the task execution, it will be thrown when calling get(), so it's important to handle potential exceptions.
+
+If isDone() returns false, it means the task is still running, and we can take appropriate action based on this information.
+
+Note that calling get() without checking isDone() will block the execution until the task completes, which may not be desirable in all situations. By checking the execution status with isDone(), you can decide whether to wait for the result or continue with other operations.
+
+Remember to properly handle exceptions and make sure to shut down the ExecutorService when you're done using it to release system resources.
+</details>
+<details><summary>
+
+## What is Callable? How do you execute a Callable from ExecutionService?
+</summary>
+Callable is a functional interface in Java that represents a task that can be executed by a thread and returns a result. It is similar to the Runnable interface, but Callable tasks can return a result and throw checked exceptions.
+
+The Callable interface has a single method call() that you need to implement. This method contains the task's logic and returns a result of a specified type.
+
+To execute a Callable from an ExecutorService, you can use the submit() method, which accepts a Callable instance and returns a Future object representing the task's execution.
+
+Here's an example that demonstrates how to create a Callable and execute it using an ExecutorService:
+
+            import java.util.concurrent.Callable;
+            import java.util.concurrent.ExecutorService;
+            import java.util.concurrent.Executors;
+            import java.util.concurrent.Future;
+
+            public class CallableExample {
+                public static void main(String[] args) {
+                    ExecutorService executorService = Executors.newFixedThreadPool(5);
+
+                    // Create a Callable task
+                    Callable<Integer> task = () -> {
+                        // Simulating some computation
+                        Thread.sleep(2000);
+                        return 42;
+                    };
+
+                    // Submit the task for execution
+                    Future<Integer> future = executorService.submit(task);
+
+                    // Do other tasks or operations while the Callable is executing
+
+                    try {
+                        // Retrieve the result of the Callable task
+                        Integer result = future.get();
+                        System.out.println("Task result: " + result);
+                    } catch (Exception e) {
+                        System.err.println("An error occurred while retrieving the task result: " + e.getMessage());
+                    }
+
+                    // Shutdown the ExecutorService
+                    executorService.shutdown();
+                }
+            }
+            
+In this example, we create a Callable task using a lambda expression. The Callable returns an Integer result after a simulated computation. We then submit the Callable task to the ExecutorService using the submit() method, which returns a Future object.
+
+While the Callable task is executing, you can perform other tasks or operations. Later, when you need the result of the Callable task, you can call the get() method on the Future object. The get() method blocks until the task completes and returns the result. If an exception occurred during the task execution, it will be thrown when calling get(), so it's important to handle potential exceptions.
+
+By using Callable and Future together with an ExecutorService, you can execute tasks that return results and retrieve those results at a later point in time, providing more flexibility and control over concurrent operations.
 </details>
