@@ -314,10 +314,250 @@ Here's an example that demonstrates how to create a Callable and execute it usin
                     executorService.shutdown();
                 }
             }
-            
+
 In this example, we create a Callable task using a lambda expression. The Callable returns an Integer result after a simulated computation. We then submit the Callable task to the ExecutorService using the submit() method, which returns a Future object.
 
 While the Callable task is executing, you can perform other tasks or operations. Later, when you need the result of the Callable task, you can call the get() method on the Future object. The get() method blocks until the task completes and returns the result. If an exception occurred during the task execution, it will be thrown when calling get(), so it's important to handle potential exceptions.
 
 By using Callable and Future together with an ExecutorService, you can execute tasks that return results and retrieve those results at a later point in time, providing more flexibility and control over concurrent operations.
+</details>
+<details><summary>
+
+## What is Synchronization of threads ?
+</summary>
+Synchronization of threads refers to the coordination and control of multiple threads to ensure that they access shared resources in a mutually exclusive manner. It is used to prevent race conditions and maintain data consistency when multiple threads are concurrently accessing and modifying shared data.
+
+In Java, synchronization can be achieved using the synchronized keyword and intrinsic locks. When a block of code or a method is marked as synchronized, only one thread can execute that block or method at a time, while other threads must wait until the lock is released.
+
+Here's a simple example that demonstrates synchronization:
+
+            public class Counter {
+                private int count;
+
+                public synchronized void increment() {
+                    count++;
+                }
+
+                public synchronized int getCount() {
+                    return count;
+                }
+            }
+
+In this example, the Counter class has two methods: increment() and getCount(). Both methods are marked as synchronized, which means only one thread can execute these methods at a time.
+
+Suppose multiple threads are concurrently calling the increment() method to increment the count variable. With synchronization, each thread will acquire the intrinsic lock associated with the Counter object before executing the increment() method. This ensures that only one thread can modify the count variable at any given time, preventing data corruption or inconsistencies.
+
+Similarly, if a thread calls the getCount() method, it will also acquire the intrinsic lock before retrieving the value of count. This guarantees that the thread will see the most up-to-date value of count and avoids reading stale or inconsistent data.
+
+By synchronizing critical sections of code or methods, you can enforce mutual exclusion and ensure thread-safe access to shared resources, maintaining data integrity and preventing race conditions in multi-threaded environments.
+</details>
+<details><summary>
+
+## Can you give an example of a Synchronization block ?
+</summary>
+
+            public class Counter {
+                private int count;
+                private Object lock = new Object();
+
+                public void increment() {
+                    synchronized (lock) {
+                        count++;
+                    }
+                }
+
+                public int getCount() {
+                    synchronized (lock) {
+                        return count;
+                    }
+                }
+            }
+
+In this example, the Counter class has two methods: increment() and getCount(). Instead of marking the entire methods as synchronized, we use synchronization blocks to achieve thread-safety.
+
+A synchronization block is denoted by the synchronized keyword followed by an object that serves as the lock. In this case, we create an instance variable lock of type Object to use as the lock.
+
+Within the increment() method, the critical section of code that modifies the count variable is enclosed within a synchronization block using the lock object. This ensures that only one thread can enter the block and execute the code at a time.
+
+Similarly, within the getCount() method, the critical section that retrieves the value of count is synchronized using the same lock object. This guarantees that only one thread can access the count variable and retrieve its value at any given time.
+
+By using synchronization blocks, you can achieve fine-grained control over synchronization and ensure that only the necessary sections of code are synchronized, rather than the entire methods. This can improve performance by allowing concurrent access to non-shared parts of the code while still ensuring thread-safety for shared resources.
+</details>
+<details><summary>
+
+## Can a static method be synchronized ?
+</summary>
+Yes, a static method can be synchronized in Java. When a static method is marked as synchronized, it means that only one thread can execute that method at a time for the entire class, regardless of the number of instances of the class.
+
+Here's an example that demonstrates synchronization on a static method:
+
+            public class Counter {
+                private static int count;
+
+                public static synchronized void increment() {
+                    count++;
+                }
+
+                public static synchronized int getCount() {
+                    return count;
+                }
+            }
+
+In this example, the increment() and getCount() methods are static and marked as synchronized using the synchronized keyword. This ensures that only one thread can execute these methods at any given time for the entire Counter class.
+
+When a thread wants to execute a synchronized static method, it acquires the class-level lock associated with the Counter class, preventing other threads from executing any synchronized static method of that class until the lock is released.
+
+Synchronizing static methods can be useful when you want to ensure thread-safety for shared static variables or when you want to synchronize access to class-level resources. It provides a way to coordinate the execution of multiple threads across all instances of the class.
+</details>
+<details><summary>
+
+## What is the use of join methods in threads ?
+</summary>
+The join() method in Java is used to pause the execution of a thread until the thread it is called on completes its execution. It allows one thread to wait for the completion of another thread before proceeding further.
+
+Here's a simple example that demonstrates the use of the join() method:
+
+            public class JoinExample {
+                public static void main(String[] args) throws InterruptedException {
+                    Thread thread1 = new Thread(() -> {
+                        System.out.println("Thread 1 started");
+                        try {
+                            Thread.sleep(2000);
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
+                        System.out.println("Thread 1 completed");
+                    });
+
+                    Thread thread2 = new Thread(() -> {
+                        System.out.println("Thread 2 started");
+                        try {
+                            Thread.sleep(3000);
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
+                        System.out.println("Thread 2 completed");
+                    });
+
+                    thread1.start();
+                    thread2.start();
+
+                    // Wait for thread1 to complete before proceeding
+                    thread1.join();
+
+                    // Wait for thread2 to complete before proceeding
+                    thread2.join();
+
+                    System.out.println("All threads completed");
+                }
+            }
+
+In this example, we have two threads: thread1 and thread2. Each thread performs some tasks and then completes after a certain delay using Thread.sleep().
+
+After starting both threads, we call the join() method on thread1, which causes the main thread to wait until thread1 completes its execution. Similarly, we call join() on thread2 to wait for it to complete as well.
+
+By using join(), we ensure that the main thread waits for the completion of both thread1 and thread2 before continuing further. This allows for synchronization and coordination among threads, ensuring that certain tasks are completed before proceeding with subsequent operations.
+</details>
+<details><summary>
+
+## What is the use of yield method?
+</summary>
+The yield() method in Java is used to voluntarily give up the current thread's turn of execution to allow other threads of the same priority to run. It is a hint to the scheduler that the current thread is willing to yield its use of the CPU.
+
+When a thread calls yield(), it may be moved to the runnable state, allowing other threads to be scheduled for execution. However, there is no guarantee that the yield request will be honored by the scheduler.
+
+The main use of the yield() method is to improve the fairness and responsiveness of thread scheduling in situations where multiple threads with the same priority are contending for CPU resources.
+
+Here's a simple example that demonstrates the use of the yield() method:
+
+            public class YieldExample {
+                public static void main(String[] args) {
+                    Thread thread1 = new Thread(() -> {
+                        for (int i = 1; i <= 5; i++) {
+                            System.out.println("Thread 1 - " + i);
+                            Thread.yield(); // Yield the execution to other threads
+                        }
+                    });
+
+                    Thread thread2 = new Thread(() -> {
+                        for (int i = 1; i <= 5; i++) {
+                            System.out.println("Thread 2 - " + i);
+                            Thread.yield(); // Yield the execution to other threads
+                        }
+                    });
+
+                    thread1.start();
+                    thread2.start();
+                }
+            }
+
+In this example, we have two threads: thread1 and thread2. Each thread prints a message with a sequence number and then calls yield() to give other threads a chance to run.
+
+When you run this example, you will notice that both threads take turns executing, but the exact interleaving of their output may vary between different runs. The yield() method allows the scheduler to switch between threads more frequently, enhancing the fairness of execution.
+</details>
+<details><summary>
+
+## What is Deadlock ?
+</summary>
+Deadlock is a situation in concurrent programming where two or more threads are blocked indefinitely, waiting for each other to release resources that they hold. In other words, it's a state in which the execution of threads becomes permanently halted because each thread is waiting for a resource that can only be released by another thread, resulting in a deadlock.
+
+A deadlock occurs when the following four conditions are met:
+
+- **Mutual Exclusion:** At least one resource must be held in a non-sharable mode, meaning only one thread can access the resource at a time.
+- **Hold and Wait:** A thread must be holding at least one resource and waiting to acquire additional resources that are currently held by other threads.
+- **No Preemption:** Resources cannot be forcibly taken away from a thread; they can only be released voluntarily by the thread holding them.
+- **Circular Wait:** There must be a circular chain of two or more threads, where each thread is waiting for a resource held by another thread in the chain.
+When a deadlock occurs, the threads involved are unable to make progress, leading to a system freeze or unresponsiveness.
+
+Here's a simplified example that illustrates a deadlock scenario:
+
+            public class DeadlockExample {
+                private static final Object resource1 = new Object();
+                private static final Object resource2 = new Object();
+
+                public static void main(String[] args) {
+                    Thread thread1 = new Thread(() -> {
+                        synchronized (resource1) {
+                            System.out.println("Thread 1 acquired resource 1");
+                            try {
+                                Thread.sleep(1000);
+                            } catch (InterruptedException e) {
+                                e.printStackTrace();
+                            }
+
+                            synchronized (resource2) {
+                                System.out.println("Thread 1 acquired resource 2");
+                                // Perform operations using both resources
+                            }
+                        }
+                    });
+
+                    Thread thread2 = new Thread(() -> {
+                        synchronized (resource2) {
+                            System.out.println("Thread 2 acquired resource 2");
+                            try {
+                                Thread.sleep(1000);
+                            } catch (InterruptedException e) {
+                                e.printStackTrace();
+                            }
+
+                            synchronized (resource1) {
+                                System.out.println("Thread 2 acquired resource 1");
+                                // Perform operations using both resources
+                            }
+                        }
+                    });
+
+                    thread1.start();
+                    thread2.start();
+                }
+            }
+
+In this example, two threads, thread1 and thread2, attempt to acquire two resources, resource1 and resource2. However, they acquire the resources in different orders, leading to a potential deadlock situation.
+
+If thread1 acquires resource1 and thread2 acquires resource2 simultaneously, both threads will be blocked indefinitely waiting for the other resource to be released. This forms a circular wait condition, resulting in a deadlock.
+
+Preventing deadlocks involves careful design and the use of strategies like resource ordering, avoiding circular wait, and implementing timeouts or deadlock detection mechanisms.
+
+Handling deadlocks requires identifying and resolving the circular wait condition by breaking the circular chain, forcibly releasing resources, or using techniques like resource allocation graphs or deadlock detection algorithms to detect and recover from deadlocks.
 </details>
