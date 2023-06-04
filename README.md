@@ -1,9 +1,6 @@
 # Java_Interview_Question
 We have lots of java questions and detailed answer. And this repo specially created for Interview purpose. If you need to crack any Java based interview so you can read this question &amp; answer
 
-[![Image](https://www.springboottutorial.com/images/Course-Java-Interview-Guide-200-Interview-Questions-and-Answers.png "Java Interview Guide : 200+ Interview Questions and Answers")](https://www.udemy.com/course/java-interview-questions-and-answers/)
-
-
 ## Interview Questions
 
 ### Java Platform
@@ -261,19 +258,3 @@ We have lots of java questions and detailed answer. And this repo specially crea
 - 223 . What are the new features in Java 7?
 - 224 . What are the new features in Java 8?
 
-### What you can do next?
-- [Design Patterns] (https://www.youtube.com/watch?v=f5Rzr5mVNbY)
-- [Maven] (https://courses.in28minutes.com/p/maven-tutorial-for-beginners-in-5-steps)
-- [JSP Servlets] (https://www.youtube.com/watch?v=Vvnliarkw48)
-- [Spring MVC] (https://www.youtube.com/watch?v=BjNhGaZDr0Y)
-
-### Troubleshooting
-- Refer our TroubleShooting Guide - https://github.com/in28minutes/in28minutes-initiatives/tree/master/The-in28Minutes-TroubleshootingGuide-And-FAQ
-
-## Youtube Playlists - 500+ Videos
-
-[Click here - 30+ Playlists with 500+ Videos on Spring, Spring Boot, REST, Microservices and the Cloud](https://www.youtube.com/user/rithustutorials/playlists?view=1&sort=lad&flow=list)
-
-## Keep Learning in28Minutes
-
-in28Minutes is creating amazing solutions for you to learn Spring Boot, Full Stack and the Cloud - Docker, Kubernetes, AWS, React, Angular etc. - [Check out all our courses here](https://github.com/in28minutes/learn)
