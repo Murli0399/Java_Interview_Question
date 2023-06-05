@@ -96,3 +96,74 @@ Both instance and static initialization blocks are executed in the order they ap
 
 Initialization blocks provide a way to perform additional initialization logic beyond what can be achieved with constructors and instance/static variables alone. They are particularly useful when you need to initialize variables based on complex calculations, retrieve values from external sources, or perform other initialization tasks that cannot be expressed in a single line of code.
 </details>
+<details><summary>
+	
+## What is Serialization?
+</summary>
+Serialization is the process of converting an object into a format that can be stored or transmitted and later reconstructed to its original form. In the context of Java programming, serialization refers to the mechanism provided by the Java platform to convert objects into a byte stream and vice versa.
+</details>
+<details><summary>
+	
+## How do you serialize an object using Serializable interface?
+</summary>
+To serialize an object in Java using the Serializable interface, you need to follow these steps:
+
+- **Implement the Serializable interface:** Ensure that the class of the object you want to serialize implements the Serializable interface. This is a marker interface with no methods, but its presence indicates that the class can be serialized.
+
+- **Create an output stream:** Create an output stream to which the serialized object will be written. This can be a file output stream, network stream, or any other type of output stream that suits your needs.
+
+- **Create an ObjectOutputStream:** Wrap the output stream with an ObjectOutputStream instance. This class provides the functionality to write objects to the output stream.
+
+- **Call writeObject():** Use the writeObject() method of the ObjectOutputStream to serialize the object. Pass the object you want to serialize as the argument to this method.
+
+- **Close the streams:** Close the ObjectOutputStream and the underlying output stream to ensure proper resource cleanup.
+
+Here's an example that demonstrates the serialization process:
+
+        import java.io.FileOutputStream;
+        import java.io.IOException;
+        import java.io.ObjectOutputStream;
+        import java.io.Serializable;
+
+        public class SerializationExample {
+            public static void main(String[] args) {
+                // Create an object to serialize
+                Student student = new Student("John", 20);
+
+                try {
+                    // Create an output stream
+                    FileOutputStream fileOut = new FileOutputStream("student.ser");
+
+                    // Create an ObjectOutputStream
+                    ObjectOutputStream out = new ObjectOutputStream(fileOut);
+
+                    // Serialize the object
+                    out.writeObject(student);
+
+                    // Close the streams
+                    out.close();
+                    fileOut.close();
+
+                    System.out.println("Object serialized successfully.");
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+
+        class Student implements Serializable {
+            private String name;
+            private int age;
+
+            public Student(String name, int age) {
+                this.name = name;
+                this.age = age;
+            }
+
+            // Getters and setters...
+        }
+
+In this example, the Student class implements the Serializable interface. An instance of the Student class is created and then serialized using the ObjectOutputStream by calling the writeObject() method. The serialized object is written to a file named "student.ser" using a FileOutputStream.
+
+It's important to note that not all objects can be serialized. Certain types of objects, such as those with non-serializable fields or objects of classes that explicitly prevent serialization, will throw a NotSerializableException at runtime if an attempt is made to serialize them.
+</details>
