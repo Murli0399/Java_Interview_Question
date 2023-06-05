@@ -167,3 +167,150 @@ In this example, the Student class implements the Serializable interface. An ins
 
 It's important to note that not all objects can be serialized. Certain types of objects, such as those with non-serializable fields or objects of classes that explicitly prevent serialization, will throw a NotSerializableException at runtime if an attempt is made to serialize them.
 </details>
+<details><summary>
+	
+## How do you de-serialize in Java?
+</summary>
+In Java, deserialization is the process of converting an object from its serialized form (such as a byte stream or a file) back into an object that can be used within the Java program. To deserialize an object, you can follow these steps:
+
+Ensure that the class of the object being deserialized is available in the classpath. The class should have the same structure and field names as when it was serialized.
+
+Create an instance of the ObjectInputStream class, passing an appropriate InputStream as a parameter. This input stream can be a FileInputStream, a ByteArrayInputStream, or any other stream that provides the serialized data.
+
+            FileInputStream fileIn = new FileInputStream("serializedObject.ser");
+            ObjectInputStream in = new ObjectInputStream(fileIn);
+
+Use the readObject() method of the ObjectInputStream class to read the serialized object. This method returns an Object reference, so you'll need to cast it to the appropriate class.
+
+            MyClass deserializedObject = (MyClass) in.readObject();
+
+Close the ObjectInputStream to release any system resources associated with it.
+
+            in.close();
+
+After these steps, you will have the deserialized object, and you can use it in your Java program as needed.
+
+It's worth noting that deserialization can potentially be unsafe if you are deserializing data from an untrusted source. Malicious objects or code could be injected through a manipulated serialized form. Therefore, it's important to exercise caution when deserializing objects, especially when the serialized data comes from an untrusted or unknown source.
+</details>
+<details><summary>
+	
+## What do you do if only parts of the object have to be serialized?
+</summary>
+If you only want to serialize specific parts of an object in Java, you can make use of the transient keyword. The transient keyword allows you to exclude certain fields from the serialization process.
+
+Here's a short example:
+
+            import java.io.*;
+
+            class MyClass implements Serializable {
+                private int serializedField;
+                private transient String nonSerializedField;
+                
+                public MyClass(int serializedField, String nonSerializedField) {
+                    this.serializedField = serializedField;
+                    this.nonSerializedField = nonSerializedField;
+                }
+                
+                public int getSerializedField() {
+                    return serializedField;
+                }
+                
+                public String getNonSerializedField() {
+                    return nonSerializedField;
+                }
+            }
+
+            public class SerializationExample {
+                public static void main(String[] args) {
+                    MyClass obj = new MyClass(42, "Not serialized");
+                    
+                    try {
+                        FileOutputStream fileOut = new FileOutputStream("serializedObject.ser");
+                        ObjectOutputStream out = new ObjectOutputStream(fileOut);
+                        out.writeObject(obj);
+                        out.close();
+                        fileOut.close();
+                        System.out.println("Object serialized successfully.");
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+
+In this example, the MyClass has two fields: serializedField and nonSerializedField. The serializedField will be serialized because it is not marked as transient, while the nonSerializedField will be excluded from serialization.
+
+When you run the SerializationExample program, it will create a file named "serializedObject.ser" that contains the serialized form of the MyClass object. The file will only include the serialized value of the serializedField, and the nonSerializedField will not be present.
+
+When you deserialize the object, the value of the nonSerializedField will be null because it was not included in the serialization process.
+</details>
+<details><summary>
+	
+## How do you serialize a hierarchy of objects?
+</summary>
+Objects of one class might contain objects of other classes. When serializing and de-serializing, we might
+need to serialize and de-serialize entire object chain. All classes that need to be serialized have to
+implement the Serializable interface. Otherwise, an exception is thrown. Look at the class below. An
+object of class House contains an object of class Wall.
+
+            class House implements Serializable {
+                    public House(int number) {
+                            super();
+                            this.number = number;
+                    }
+                    Wall wall;
+                    int number;
+            }
+
+            class Wall{
+                    int length;
+                    int breadth;
+                    int color;
+            }
+
+House implements Serializable. However, Wall doesn't implement Serializable. When we try to serialize
+an instance of House class, we get the following exception.
+
+Output:
+Exception in thread "main" java.io.NotSerializableException:
+com.rithus.serialization.Wall
+at java.io.ObjectOutputStream.writeObject0(Unknown Source)
+at java.io.ObjectOutputStream.defaultWriteFields(Unknown Source)
+
+This is because Wall is not serializable. Two solutions are possible.
+1. Make Wall transient. Wall object will not be serialized. This causes the wall object state to be lost.
+2. Make Wall implement Serializable. Wall object will also be serialized and the state of wall object
+along with the house will be stored.
+
+            class House implements Serializable {
+                    public House(int number) {
+                            super();
+                            this.number = number;
+                    }
+
+                    transient Wall wall;
+                    int number;
+            }
+
+            class Wall implements Serializable {
+                    int length;
+                    int breadth;
+                    int color;
+            }
+
+With both these programs, earlier main method would run without throwing an exception.
+
+If you try de-serializing, In Example2, state of wall object is retained whereas in Example1, state of wall
+object is lost.
+</details>
+<details><summary>
+	
+## Are the values of static variables stored when an object is serialized?
+</summary>
+No, the values of static variables are not stored when an object is serialized in Java.
+
+Static variables belong to the class itself rather than individual instances of the class. They are not considered part of the state of an object and are not serialized along with the object.
+
+During the serialization process, only the instance variables (non-static fields) are serialized to preserve the state of the object. When the object is deserialized, the static variables will be initialized according to their default values or any explicit initialization in the class definition.
+
+It's important to note that static variables are associated with the class and are shared among all instances of the class, so it wouldn't make sense to store their values on a per-object basis during serialization.
+</details>
