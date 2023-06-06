@@ -1,8 +1,6 @@
 # Java_Interview_Question
 We have lots of java questions and detailed answer. And this repo specially created for Interview purpose. If you need to crack any Java based interview so you can read this question &amp; answer
 
-## Interview Questions
-
 ### Java Platform
 - 1 . Why is Java so popular?
 - 2 . What is platform independence?
