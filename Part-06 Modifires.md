@@ -382,6 +382,22 @@ In Java, a final argument refers to a method parameter that is declared with the
 </details>
 <details><summary>
 	
+## What happens when a variable is marked as volatile?
+</summary>
+In Java, when a variable is marked as volatile, it means that the variable's value may be modified by multiple threads, and any changes to the variable should be immediately visible to other threads. The volatile keyword ensures that the variable is always read from and written to the main memory, rather than using a thread's cache.
+
+When a variable is declared as volatile, the following behaviors are guaranteed:
+
+**1. Visibility:** Changes made to a volatile variable by one thread are immediately visible to all other threads. This ensures that the most up-to-date value of the variable is always seen by all threads.
+
+**3. Ordering:** The volatile keyword also provides a guarantee about the ordering of actions performed on the variable. It ensures that the read and write operations on the volatile variable are not reordered with other memory operations.
+
+It's important to note that the volatile keyword only provides guarantees for individual variable accesses. It does not guarantee the atomicity of compound actions, such as incrementing a volatile variable. For atomic operations, you would need to use other mechanisms, such as locks or atomic classes like AtomicInteger, AtomicLong, etc.
+
+The main use case for the volatile keyword is in scenarios where variables are shared among multiple threads, and you want to ensure that the changes made by one thread are immediately visible to others without the need for explicit synchronization mechanisms like locks.
+</details>
+<details><summary>
+	
 ## What is a Static Variable ?
 </summary>
 In Java, a static variable, also known as a class variable, is a variable that belongs to the class itself rather than to any particular instance of the class. This means that all instances of the class share the same copy of the static variable. Here are some key points about static variables:
