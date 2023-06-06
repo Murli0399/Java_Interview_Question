@@ -161,18 +161,18 @@ We have lots of java questions and detailed answer. And this repo specially crea
 - 152 . What is a TreeSet? How is different from a HashSet?
 - 153 . Can you give examples of implementations of navigableSet?
 - 154 . Explain briefly about Queue interface?
-- 155 . What are the important interfaces related to the Queue interface?
-- 156 . Explain about the Deque interface?
-- 157 . Explain the BlockingQueue interface?
-- 158 . What is a priorityQueue?
-- 159 . Can you give example implementations of the BlockingQueue interface?
+- 155 . What are the important interfaces related to the Queue interface? @
+- 156 . Explain about the Deque interface? @
+- 157 . Explain the BlockingQueue interface? @
+- 158 . What is a priorityQueue? @
+- 159 . Can you give example implementations of the BlockingQueue interface? @
 - 160 . Can you briefly explain about the Map interface?
 - 161 . What is difference between Map and sortedMap?
 - 162 . What is a HashMap?
 - 163 . What are the different methods in a Hash Map?
 - 164 . What is a TreeMap? How is different from a HashMap?
-- 165 . Can you give an example of implementation of navigableMap interface?
-- 166 . What are the static methods present in the collections class?
+- 165 . Can you give an example of implementation of navigableMap interface? @
+- 166 . What are the static methods present in the collections class? @
 
 ### Advanced collections
 - 167 . What is the difference between synchronized and concurrent collections in Java?
