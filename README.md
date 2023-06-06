@@ -8,8 +8,7 @@ We have lots of java questions and detailed answer. And this repo specially crea
 - 2 . What is platform independence?
 - 3 . What is bytecode?
 - 4 . Compare JDK vs JVM vs JRE 
-- 5 . What are the important differences between C++ and Java?
-- 6 . What is the role for a classloader in Java?
+- 5 . What is the role for a classloader in Java?
 
 ### Wrapper Classes
 - 7 . What are Wrapper classes?

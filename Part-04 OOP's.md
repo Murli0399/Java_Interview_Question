@@ -79,17 +79,7 @@ However, it is common practice to override the toString() method in custom class
 	Run this piece of code:
 	Animal animal = new Animal("Tommy","Dog");
 	System.out.println(animal);//Animal [name=Tommy, type=Dog]
-</details>
-  
-<details><summary>
-
-## What is the super class of every class in Java?
-</summary>
-In Java, the superclass of every class is the Object class. The Object class is at the top of the class hierarchy and serves as the root class for all other classes in Java.
-
-The Object class is defined in the java.lang package and provides a set of common methods 
-</details>
-  
+</details>  
 <details><summary>
 
 ## What is the use of equals method in Java ?
