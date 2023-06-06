@@ -92,39 +92,25 @@ We have lots of java questions and detailed answer. And this repo specially crea
 - 77 . What happens when a variable is marked as volatile?
 - 78 . What is a static variable?
 
-### conditions & loops
-- 79 . Why should you always use blocks around if statement?
-- 80 . Guess the output
-- 81 . Guess the output
-- 82 . Guess the output of this switch block . 
-- 83 . Guess the output of this switch block?
-- 84 . Should default be the last case in a switch statement?
-- 85 . Can a switch statement be used around a String
-- 86 . Guess the output of this for loop
-- 87 . What is an enhanced for loop?
-- 88 . What is the output of the for loop below?
-- 89 . What is the output of the program below?
-- 90 . What is the output of the program below?
-
 ### Exception handling
-- 91 . Why is exception handling important?
-- 92 . What design pattern is used to implement exception handling features in most languages?
-- 93 . What is the need for finally block?
-- 94 . In what scenarios is code in finally not executed?
-- 95 . Will finally be executed in the program below?
-- 96 . Is try without a catch is allowed?
-- 97 . Is try without catch and finally allowed?
-- 98 . Can you explain the hierarchy of exception handling classes?
-- 99 . What is the difference between error and exception?
-- 100 . What is the difference between checked exceptions and unchecked exceptions?
-- 101 . How do you throw an exception from a method?
-- 102 . What happens when you throw a checked exception from a method?
-- 103 . What are the options you have to eliminate compilation errors when handling checked exceptions?
-- 104 . How do you create a custom exception?
-- 105 . How do you handle multiple exception types with same exception handling block?
-- 106 . Can you explain about try with resources?
-- 107 . How does try with resources work?
-- 108 . Can you explain a few exception handling best practices?
+- 79 . Why is exception handling important?
+- 80 . What design pattern is used to implement exception handling features in most languages?
+- 81 . What is the need for finally block?
+- 82 . In what scenarios is code in finally not executed?
+- 83 . Will finally be executed in the program below?
+- 84 . Is try without a catch is allowed?
+- 85 . Is try without catch and finally allowed?
+- 86 . Can you explain the hierarchy of exception handling classes?
+- 87 . What is the difference between error and exception?
+- 88 . What is the difference between checked exceptions and unchecked exceptions?
+- 89 . How do you throw an exception from a method?
+- 90 . What happens when you throw a checked exception from a method?
+- 91 . What are the options you have to eliminate compilation errors when handling checked exceptions?
+- 92 . How do you create a custom exception?
+- 93 . How do you handle multiple exception types with same exception handling block?
+- 94 . Can you explain about try with resources?
+- 95 . How does try with resources work?
+- 96 . Can you explain a few exception handling best practices?
 
 ### Miscellaneous topics
 - 109 . What are the default values in an array?
