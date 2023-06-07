@@ -295,7 +295,7 @@ Instead of creating a Lambda Expression with all the details, with the help of m
 
 There are four types of method references in Java:
 
-Reference to a static method: It references a static method using the 
+### Reference to a static method: It references a static method using the 
 ```
 syntax Class::staticMethod.
 
@@ -303,7 +303,7 @@ syntax Class::staticMethod.
 Function<String, Integer> parser = Integer::parseInt;
 Integer number = parser.apply("123"); // invokes Integer.parseInt("123")
 ```
-Reference to an instance method of a particular object: It references an instance method of a specific object using the 
+### Reference to an instance method of a particular object: It references an instance method of a specific object using the 
 ```
 syntax object::instanceMethod.
 
@@ -312,7 +312,7 @@ String str = "Hello, world!";
 Function<String, Integer> lengthGetter = String::length;
 Integer length = lengthGetter.apply(str); // invokes str.length()
 ```
-Reference to an instance method of an arbitrary object of a particular type: It references an instance method of any object of a specific type using the 
+### Reference to an instance method of an arbitrary object of a particular type: It references an instance method of any object of a specific type using the 
 ```
 syntax Class::instanceMethod.
 
@@ -320,7 +320,7 @@ syntax Class::instanceMethod.
 Function<String, String> upperCaseConverter = String::toUpperCase;
 String result = upperCaseConverter.apply("hello"); // invokes "hello".toUpperCase()
 ```
-Reference to a constructor: It references a constructor of a class using the 
+### Reference to a constructor: It references a constructor of a class using the 
 ```
 syntax ClassName::new.
 
@@ -331,6 +331,60 @@ List<String> list = listSupplier.get(); // invokes new ArrayList<>()
 Method references are particularly useful when working with functional interfaces, such as in the context of streams or functional programming in general. They allow you to pass method references as arguments to higher-order functions or assign them to functional interface variables.
 
 Overall, method references provide a concise and readable way to refer to existing methods or constructors without the need to explicitly define lambda expressions.
+</details>
+<details><summary>
+
+## What are lambda expressions?
+</summary>
+Lambda expression is, essentially, an anonymous or unnamed method. The lambda expression does not execute on its own. Instead, it is used to implement a method defined by a functional interface.
+
+Using Lambda Expression we can represent an object of a functional interface in much more concise way.
+
+Lambda Expression saves a lot of code. In case of lambda expression, we don't need to define the method again for providing the implementation. Here, we just write the implementation code.
+Java lambda expression is treated as a function, so compiler does not create .class file.
+
+Java lambda expression is consisted of three components.
+**1) Argument-list:** It can be empty or non-empty as well.
+**2) Lambda operator:** **→** It is used to link arguments-list and body of expression.
+**3) Body:** It contains expressions and statements for lambda expression.
+
+Lambda expressions can be used in various contexts, such as:
+
+**1. Functional interfaces:** Lambda expressions can be used to provide an implementation for functional interfaces, which are interfaces that have exactly one abstract method. This allows you to write more concise code when working with functional interfaces, such as in streams, threads, or event handling.
+
+**2. Higher-order functions:** Lambda expressions can be passed as arguments to methods or assigned to variables, enabling you to create higher-order functions that take behavior as input.
+
+**3. Stream operations:** Lambda expressions are commonly used with stream operations to specify transformations, filters, or aggregations on streams of data.
+</details>
+<details><summary>
+
+## Can you give an example of lambda expression?
+</summary>
+
+```
+interface Calculator {
+    int calculate(int a, int b);
+}
+public class LambdaExample {
+    public static void main(String[] args) {
+        // Lambda expression as an implementation of the Calculator interface
+        Calculator addition = (a, b) -> a + b;
+        
+        // Using the lambda expression to perform addition
+        int result = addition.calculate(5, 3);
+        System.out.println(result); // Output: 8
+    }
+}
+```
+In this example, we define a functional interface Calculator with a single abstract method calculate that takes two integer parameters and returns an integer. Then, we use a lambda expression (a, b) -> a + b to implement the calculate method.
+
+The lambda expression (a, b) -> a + b represents an anonymous function that takes two integers a and b as parameters and returns their sum. The arrow -> separates the parameter list from the body of the lambda expression, and the body a + b specifies the addition operation.
+
+We create an instance of the Calculator interface using the lambda expression Calculator addition = (a, b) -> a + b;. This allows us to use the lambda expression to perform addition by invoking the calculate method on the addition object.
+
+In the main method, we use the addition object to calculate the sum of 5 and 3 by calling addition.calculate(5, 3). The result is stored in the result variable and printed, yielding 8 as the output.
+
+Lambda expressions provide a concise and expressive way to represent behavior as anonymous functions, making code more readable and enabling functional programming paradigms in Java.
 </details>
 <details><summary>
 
