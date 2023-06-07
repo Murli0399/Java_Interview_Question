@@ -222,6 +222,9 @@ We have lots of java questions and detailed answer. And this repo specially crea
 ### Functional Programming - Lamdba expressions and Streams
 - 208 . What is functional programming?
 - 209 . Can you give an example of functional programming?
+- 210 . What is a Functional Interface?
+- 220 . Can you give examples of functional interfaces with multiple arguments?
+- 218 . What is the functional interface - function?
 - 210 . What is a stream?
 - 211 . Explain about streams with an example?
 - what are intermediate operations in streams?
@@ -231,9 +234,7 @@ We have lots of java questions and detailed answer. And this repo specially crea
 - 215 . Can you give an example of lambda expression?
 - 216 . Can you explain the relationship between lambda expression and functional interfaces?
 - 217 . What is a predicate?
-- 218 . What is the functional interface - function?
 - 219 . What is a consumer?
-- 220 . Can you give examples of functional interfaces with multiple arguments?
 
 ###  New Features
 - 221 . What are the new features in Java 5?
