@@ -21,7 +21,6 @@ Here are some key concepts and features of functional programming in Java:
 **5. Streams:** The Stream API introduced in Java 8 enables functional-style operations on collections of data. Streams provide a way to process data in a declarative manner, allowing operations like filtering, mapping, and reducing.
 
 By incorporating functional programming principles into your Java code, you can write more concise, modular, and maintainable programs. However, it's important to note that Java is a multi-paradigm language, and functional programming is just one aspect of its capabilities.
-
 </details>
 <details><summary>
 
@@ -61,4 +60,35 @@ In this example, we have a list of numbers [1, 2, 3, 4, 5]. We apply functional 
 - Summing Squares: We perform the same filtering and mapping operations as before. Then, we use the reduce() method to sum the squared numbers. The reduce() operation takes an initial value (0 in this case) and a binary operator (Integer::sum) to perform the summation.
 
 Both examples demonstrate how functional programming allows us to express the desired operations in a declarative and concise manner, without explicitly iterating over the elements or managing mutable state.
+</details>
+<details><summary>
+
+## What is a Functional Interface?
+</summary>
+A functional interface is an interface that has only one abstract method. It is a key concept in functional programming and is used extensively in Java to support lambda expressions and method references.
+
+In Java, functional interfaces are also known as SAM (Single Abstract Method) interfaces or functional types. They provide a way to define and work with functions as objects. By having only one abstract method, functional interfaces can be implemented using lambda expressions or method references, which provide a more concise syntax compared to traditional anonymous inner classes.
+
+Functional interfaces are annotated with the @FunctionalInterface annotation, although it is optional. The purpose of this annotation is to indicate that the interface is intended to be used as a functional interface, and the compiler will enforce that there is only one abstract method within it.
+
+Some of the predefined interfaces in java which can be consider as functional interface :
+### java.lang.Comparable: public int compareTo(Object obj);
+### java.util.Comparator: public int compare(Object obj1, Object obj2);
+### java.lang.Runnable: public void run();
+```
+@FunctionalInterface
+interface Intr{
+abstract void sayHello(String name);
+}
+class X implements Intr{
+public void sayHello(String name){
+System.out.println("Welcome "+name);
+}
+public static void main(String[] args) {
+Intr i1 = new X();
+i1.sayHello("Admin");
+}
+}
+```
+
 </details>
