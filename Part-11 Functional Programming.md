@@ -105,7 +105,7 @@ This API has one main interface:
 java.util.stream.Stream
 ```
 
-Note:- Object of this Stream interface represents sequence of object from a source like collections.
+**Note**:- Object of this Stream interface represents sequence of object from a source like collections.
 
 The feature of java stream:
 
@@ -189,6 +189,55 @@ double averageAge = people.stream()
 Here, we first use the mapToInt operation to convert each Person object into its age as an integer. Then, we apply the average operation to compute the average of all the ages. The orElse(0.0) is used to handle the case where the stream is empty, returning 0.0 as the default value.
 
 These are just a few examples of how streams can be used in Java to filter, transform, and aggregate data. Streams provide a powerful and expressive way to work with collections, allowing you to write more concise and readable code. They also support parallel processing, making it easier to leverage the capabilities of multi-core processors for improved performance.
+</details>
+<details><summary>
+
+## what are intermediate operations in streams?
+</summary>
+Intermediate operations in streams are operations that transform or filter the elements of a stream. These operations are applied to the elements of the stream in a lazy manner, meaning they are not executed until a terminal operation is encountered.
+
+Intermediate operations are typically chained together to form a pipeline of operations that are applied sequentially to the elements of the stream.
+
+these methods returns a new stream object, these intermediate methods never
+gives the final result.
+
+Here are some commonly used intermediate operations in Java streams:
+
+- **filter:** It takes a predicate as an argument and returns a stream consisting of the elements that match the predicate.
+```
+List<Integer> evenNumbers = numbers.stream()
+                                  .filter(n -> n % 2 == 0)
+                                  .collect(Collectors.toList());
+```
+- **map:** It takes a function as an argument and applies the function to each element of the stream, returning a stream of the transformed elements.
+```
+List<String> names = people.stream()
+                           .map(Person::getName)
+                           .collect(Collectors.toList());
+```
+- **distinct:** It returns a stream consisting of the distinct elements of the original stream, removing duplicates.
+```
+List<Integer> distinctNumbers = numbers.stream()
+                                       .distinct()
+                                       .collect(Collectors.toList());
+```
+- **sorted:** It returns a stream with the elements sorted according to the natural order or a provided comparator.
+```
+List<Integer> sortedNumbers = numbers.stream()
+                                     .sorted()
+                                     .collect(Collectors.toList());
+```
+- **limit and skip:** limit returns a stream consisting of the first n elements, while skip discards the first n elements and returns the rest.
+```
+List<Integer> firstThree = numbers.stream()
+                                 .limit(3)
+                                 .collect(Collectors.toList());
+
+List<Integer> skipFirstTwo = numbers.stream()
+                                    .skip(2)
+                                    .collect(Collectors.toList());
+```
+These are just a few examples of intermediate operations. There are more operations available in the Stream API that can be used to transform, filter, and manipulate the elements of a stream.
 </details>
 <details><summary>
 
