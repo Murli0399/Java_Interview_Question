@@ -388,6 +388,45 @@ Lambda expressions provide a concise and expressive way to represent behavior as
 </details>
 <details><summary>
 
+## Can you explain the relationship between lambda expression and functional interfaces?
+</summary>
+Lambda expressions and functional interfaces are closely related in Java. Lambda expressions are used to provide an implementation for functional interfaces.
+
+A functional interface is an interface that has exactly one abstract method. It serves as a blueprint for a lambda expression or a method reference. Functional interfaces provide a way to define contracts for functional programming in Java.
+
+Lambda expressions are used to implement the abstract method of a functional interface. They provide a concise and expressive syntax to define behavior inline, without the need for writing a separate class or implementing an interface explicitly.
+
+When a lambda expression is assigned to a functional interface, it becomes an instance of that interface. This allows you to treat the lambda expression as an object and pass it around, assign it to variables, or use it as an argument in methods.
+
+Here's an example to illustrate the relationship between lambda expressions and functional interfaces:
+```
+interface MyFunction {
+    int calculate(int a, int b);
+}
+
+public class LambdaAndFunctionalInterface {
+    public static void main(String[] args) {
+        // Lambda expression as an implementation of the MyFunction functional interface
+        MyFunction addition = (a, b) -> a + b;
+
+        // Using the lambda expression to perform addition
+        int result = addition.calculate(5, 3);
+        System.out.println(result); // Output: 8
+    }
+}
+```
+In this example, we define a functional interface MyFunction with a single abstract method calculate. The calculate method takes two integer parameters and returns an integer.
+
+We use a lambda expression (a, b) -> a + b to implement the calculate method of the MyFunction interface. The lambda expression specifies the addition operation by taking two integers a and b and returning their sum.
+
+We create an instance of the MyFunction interface using the lambda expression MyFunction addition = (a, b) -> a + b;. This allows us to use the lambda expression as an object and invoke the calculate method on the addition object.
+
+In the main method, we use the addition object to calculate the sum of 5 and 3 by calling addition.calculate(5, 3). The result is stored in the result variable and printed, yielding 8 as the output.
+
+Lambda expressions enable us to provide a concise implementation of the abstract method of a functional interface, making code more readable and enabling functional programming patterns in Java. They are closely tied to functional interfaces and provide a powerful mechanism for writing code in a more functional and expressive style.
+</details>
+<details><summary>
+
 ## Can you give examples of functional interfaces with multiple arguments?
 </summary>
 While functional interfaces are defined as having a single abstract method, it is still possible to work with multiple arguments by leveraging Java's support for functional interfaces with default methods or by using predefined functional interfaces from the Java API. Here are a few examples:
