@@ -239,5 +239,3 @@ We have lots of java questions and detailed answer. And this repo specially crea
 - 221 . What are the new features in Java 5?
 - 222 . What are the new features in Java 6?
 - 223 . What are the new features in Java 7?
-- 224 . What are the new features in Java 8?
-
