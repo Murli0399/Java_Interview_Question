@@ -192,7 +192,7 @@ These are just a few examples of how streams can be used in Java to filter, tran
 </details>
 <details><summary>
 
-## what are intermediate operations in streams?
+## What are intermediate operations in streams?
 </summary>
 Intermediate operations in streams are operations that transform or filter the elements of a stream. These operations are applied to the elements of the stream in a lazy manner, meaning they are not executed until a terminal operation is encountered.
 
@@ -238,6 +238,50 @@ List<Integer> skipFirstTwo = numbers.stream()
                                     .collect(Collectors.toList());
 ```
 These are just a few examples of intermediate operations. There are more operations available in the Stream API that can be used to transform, filter, and manipulate the elements of a stream.
+</details>
+<details><summary>
+
+## What are terminal operations in streams?
+</summary>
+Terminal operations in streams are operations that produce a final result or a side-effect. When a terminal operation is invoked on a stream, it triggers the processing of the stream and consumes the elements of the stream.
+
+Unlike intermediate operations, which are lazy and do not perform any computation until a terminal operation is encountered, terminal operations are eagerly executed.
+
+Here are some commonly used terminal operations in Java streams:
+
+- **forEach:** It performs an action for each element of the stream.
+```
+numbers.stream()
+       .forEach(System.out::println);
+```
+- **collect:** It accumulates the elements of the stream into a collection or a single value.
+```
+List<Integer> evenNumbers = numbers.stream()
+                                  .filter(n -> n % 2 == 0)
+                                  .collect(Collectors.toList());
+```
+- **count:** It returns the number of elements in the stream.
+```
+long count = numbers.stream()
+                    .count();
+```
+- **anyMatch, allMatch, and noneMatch:** These operations check if any, all, or none of the elements of the stream match a given predicate, respectively.
+```
+boolean anyMatch = numbers.stream()
+                          .anyMatch(n -> n > 5);
+
+boolean allMatch = numbers.stream()
+                          .allMatch(n -> n > 0);
+
+boolean noneMatch = numbers.stream()
+                           .noneMatch(n -> n < 0);
+```
+- **reduce:** It performs a reduction on the elements of the stream using a binary operator and returns an Optional that may contain the reduced value.
+```
+Optional<Integer> sum = numbers.stream()
+                               .reduce((a, b) -> a + b);
+```
+These are just a few examples of terminal operations. Terminal operations are the final step in a stream pipeline and produce a result or a side-effect. They allow you to consume or transform the elements of a stream into a final output.
 </details>
 <details><summary>
 
