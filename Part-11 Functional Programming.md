@@ -90,5 +90,132 @@ i1.sayHello("Admin");
 }
 }
 ```
+</details>
+<details><summary>
+
+## What is a stream?
+</summary>
+This API is also introduced in java 8. This API belongs to java.util.stream package.
+The Stream API is used to process collections of objects. A stream is a sequence of objects that supports various methods which can be pipelined to produce the desired result.
+java.util.stream package contains some library classes and interfaces by using which we can perform functional style of programming on the group of objects(collection of data).
+This API has one main interface:
+```
+java.util.stream.Stream
+```
+Note:- Object of this Stream interface represents sequence of object from a source like collections.
+The feature of java stream:
+- The stream does not stores the elements, it only represents elements in a sequence.
+Example: wire does not store the electricity.
+- It holds only objects, primitives are not allowed.
+- Operation(filtering) performed on the stream does not modify its source.
+Example: filtering a stream obtained from a source(collection) produces a new stream with the filtered element rather than removing the elements from the source collection.
+- With the help of stream obj we can perform various operations on the collection of objects in functional style, like filtering some elements, transform some elements, manipulate, sort, etc.
+- Stream is lazy and evaluates code only when required.
+- The elements of a stream are only visited once during the life of a stream. a new stream must be generated to revisit the same elements of the source.
+</details>
+<details><summary>
+
+## Explain about streams with an example?
+</summary>
+Suppose we have a list of Person objects representing individuals with their names and ages:
+
+            import java.util.ArrayList;
+            import java.util.List;
+
+            class Person {
+                private String name;
+                private int age;
+
+                public Person(String name, int age) {
+                    this.name = name;
+                    this.age = age;
+                }
+
+                public String getName() {
+                    return name;
+                }
+
+                public int getAge() {
+                    return age;
+                }
+            }
+
+            public class StreamExample {
+                public static void main(String[] args) {
+                    List<Person> people = new ArrayList<>();
+                    people.add(new Person("John", 25));
+                    people.add(new Person("Alice", 32));
+                    people.add(new Person("Bob", 18));
+                    people.add(new Person("Emily", 27));
+                    people.add(new Person("David", 40));
+                }
+            }
+
+Now, let's use streams to perform some operations on this list.
+
+**1. Filtering:** Suppose we want to find all the people who are older than 30. We can use the filter operation to achieve this:
+```
+List<Person> olderThan30 = people.stream()
+        .filter(person -> person.getAge() > 30)
+        .collect(Collectors.toList());
+```
+In this code, we create a stream from the people list, apply a filter operation to keep only the persons whose age is greater than 30, and finally collect the filtered persons into a new list olderThan30.
+
+**2. Mapping:** Suppose we want to extract only the names of the people in the list. We can use the map operation to transform each Person object into its corresponding name:
+```
+List<String> names = people.stream()
+        .map(Person::getName)
+        .collect(Collectors.toList());
+```
+In this example, we use the map operation to convert each Person object into its name using a method reference Person::getName. Finally, we collect the names into a new list.
+
+**3. Aggregation:** Suppose we want to find the average age of all the people in the list. We can use the mapToInt and average operations for this:
+```
+double averageAge = people.stream()
+        .mapToInt(Person::getAge)
+        .average()
+        .orElse(0.0);
+```
+Here, we first use the mapToInt operation to convert each Person object into its age as an integer. Then, we apply the average operation to compute the average of all the ages. The orElse(0.0) is used to handle the case where the stream is empty, returning 0.0 as the default value.
+
+These are just a few examples of how streams can be used in Java to filter, transform, and aggregate data. Streams provide a powerful and expressive way to work with collections, allowing you to write more concise and readable code. They also support parallel processing, making it easier to leverage the capabilities of multi-core processors for improved performance.
+</details>
+<details><summary>
+
+## Can you give examples of functional interfaces with multiple arguments?
+</summary>
+While functional interfaces are defined as having a single abstract method, it is still possible to work with multiple arguments by leveraging Java's support for functional interfaces with default methods or by using predefined functional interfaces from the Java API. Here are a few examples:
+
+### Consumer<T, U>:
+```
+import java.util.function.BiConsumer;
+
+public class ConsumerExample {
+    public static void main(String[] args) {
+        BiConsumer<String, Integer> printLength = (str, length) -> System.out.println(str + " has length: " + length);
+        printLength.accept("Hello", 5);
+    }
+}
+```
+In this example, we use the BiConsumer functional interface, which takes two arguments (String and Integer) and performs an action without returning a value. The accept() method is used to consume the arguments and print the length of the string.
+
+### BiFunction<T, U, R>:
+```
+import java.util.function.BiFunction;
+
+public class BiFunctionExample {
+    public static void main(String[] args) {
+        BiFunction<Integer, Integer, Integer> multiply = (a, b) -> a * b;
+        int result = multiply.apply(4, 5);
+        System.out.println("Result: " + result);
+    }
+}
+```
+Here, the BiFunction functional interface takes two arguments (Integer and Integer) and returns a result (Integer). The apply() method is used to apply the multiplication operation on the arguments and obtain the result.
+</details>
+<details><summary>
+
+## What is a Functional Interface?
+</summary>
 
 </details>
