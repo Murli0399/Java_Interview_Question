@@ -97,20 +97,30 @@ i1.sayHello("Admin");
 </summary>
 This API is also introduced in java 8. This API belongs to java.util.stream package.
 The Stream API is used to process collections of objects. A stream is a sequence of objects that supports various methods which can be pipelined to produce the desired result.
+
 java.util.stream package contains some library classes and interfaces by using which we can perform functional style of programming on the group of objects(collection of data).
 This API has one main interface:
+
 ```
 java.util.stream.Stream
 ```
+
 Note:- Object of this Stream interface represents sequence of object from a source like collections.
+
 The feature of java stream:
+
 - The stream does not stores the elements, it only represents elements in a sequence.
 Example: wire does not store the electricity.
+
 - It holds only objects, primitives are not allowed.
+
 - Operation(filtering) performed on the stream does not modify its source.
 Example: filtering a stream obtained from a source(collection) produces a new stream with the filtered element rather than removing the elements from the source collection.
+
 - With the help of stream obj we can perform various operations on the collection of objects in functional style, like filtering some elements, transform some elements, manipulate, sort, etc.
+
 - Stream is lazy and evaluates code only when required.
+
 - The elements of a stream are only visited once during the life of a stream. a new stream must be generated to revisit the same elements of the source.
 </details>
 <details><summary>
