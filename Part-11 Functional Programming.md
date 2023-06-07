@@ -285,6 +285,55 @@ These are just a few examples of terminal operations. Terminal operations are th
 </details>
 <details><summary>
 
+## What are method references?
+</summary>
+Method references in Java provide a way to refer to methods or constructors without invoking them. They are a concise and expressive syntax for passing behavior or referencing methods as functional interfaces.
+
+Java provides a new feature called method reference in Java 8. Method reference is used to refer method of functional interface. It is compact and easy form of lambda expression.
+
+Instead of creating a Lambda Expression with all the details, with the help of method reference we can refer an existing class method to the functional interface implementation, which matches the condition of Lambda Expression.
+
+There are four types of method references in Java:
+
+Reference to a static method: It references a static method using the 
+```
+syntax Class::staticMethod.
+
+// Example: Reference to the static method Integer.parseInt(String)
+Function<String, Integer> parser = Integer::parseInt;
+Integer number = parser.apply("123"); // invokes Integer.parseInt("123")
+```
+Reference to an instance method of a particular object: It references an instance method of a specific object using the 
+```
+syntax object::instanceMethod.
+
+// Example: Reference to the instance method String.length()
+String str = "Hello, world!";
+Function<String, Integer> lengthGetter = String::length;
+Integer length = lengthGetter.apply(str); // invokes str.length()
+```
+Reference to an instance method of an arbitrary object of a particular type: It references an instance method of any object of a specific type using the 
+```
+syntax Class::instanceMethod.
+
+// Example: Reference to the instance method String.toUpperCase()
+Function<String, String> upperCaseConverter = String::toUpperCase;
+String result = upperCaseConverter.apply("hello"); // invokes "hello".toUpperCase()
+```
+Reference to a constructor: It references a constructor of a class using the 
+```
+syntax ClassName::new.
+
+// Example: Reference to the constructor of ArrayList
+Supplier<List<String>> listSupplier = ArrayList::new;
+List<String> list = listSupplier.get(); // invokes new ArrayList<>()
+```
+Method references are particularly useful when working with functional interfaces, such as in the context of streams or functional programming in general. They allow you to pass method references as arguments to higher-order functions or assign them to functional interface variables.
+
+Overall, method references provide a concise and readable way to refer to existing methods or constructors without the need to explicitly define lambda expressions.
+</details>
+<details><summary>
+
 ## Can you give examples of functional interfaces with multiple arguments?
 </summary>
 While functional interfaces are defined as having a single abstract method, it is still possible to work with multiple arguments by leveraging Java's support for functional interfaces with default methods or by using predefined functional interfaces from the Java API. Here are a few examples:
