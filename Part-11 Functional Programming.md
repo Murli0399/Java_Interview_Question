@@ -460,7 +460,73 @@ Here, the BiFunction functional interface takes two arguments (Integer and Integ
 </details>
 <details><summary>
 
-## What is a Functional Interface?
+## What is a Function Functional Interface?
 </summary>
+This interface defines an abstract method which will takes T type of object as parameter and returns R type of object.
+```
+public R apply(T t);
+```
 
+### Example:
+```
+import java.util.function.Function;
+public class Main {
+    public static void main(String[] args) {
+        Function<Integer,String> f = i -> "This is a numner "+i;
+        System.out.println(f.apply(10));
+        Function<String,Integer> f2 = s -> Integer.parseInt(s);
+        System.out.println(f2.apply("200")+500);
+        Function<String,Integer> f3 = Integer::parseInt;
+        System.out.println(f3.apply("400")+200);
+    }
+}
+```
+</details>
+<details><summary>
+
+## What is a Predicate Functional Interface?
+</summary>
+This interface contains only one abstract method called:
+```
+public boolean test(T t);
+```
+This method test() checks whether supplied obj satisfying a condition or not.
+
+### Example:
+```
+import java.util.function.Predicate;
+public class Main {
+    public static void main(String[] args) {
+        Predicate<Integer> p = i -> i > 0;
+        System.out.println(p.test(10));//true
+        System.out.println(p.test(-10));//false
+    }
+}
+```
+
+In java 8 Collection interface defines a method called:
+```
+public boolean removeIf(Predicate filter)
+```
+Based on the condition of Predicate, this method will remove/filter the elements
+from the Collection classes
+Example: Removing the Students from the List whose marks is less than 700
+```
+import java.util.List;
+import java.util.ArrayList;
+public class Main{
+    public static void main(String[] args) {
+        List<Student> students=new ArrayList<>();
+        students.add(new Student(10, "name1", 650));
+        students.add(new Student(12, "name2", 750));
+        students.add(new Student(13, "name3", 550));
+        students.add(new Student(14, "name4", 820));
+        students.add(new Student(15, "name5", 720));
+        students.add(new Student(16, "name6", 620));
+        System.out.println(students);
+        students.removeIf( student -> student.getMarks() < 700 );
+        System.out.println(students);
+    }
+}
+```
 </details>
