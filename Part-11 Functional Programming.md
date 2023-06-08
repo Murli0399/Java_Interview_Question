@@ -532,3 +532,49 @@ public class Main{
 }
 ```
 </details>
+<details><summary>
+
+## What is a Consumer Functional Interface?
+</summary>
+It represents a function which takes in one argument and produces a result. However these kind of functions don’t return any value.
+
+```
+public void accept(T t);
+```
+### Example:
+```
+import java.util.function.Consumer;
+public class Main {
+    public static void main(String[] args) {
+        Consumer<Student> c = s -> {
+            System.out.println("Roll is "+s.getRoll());
+            System.out.println("Name is "+s.getName());
+            System.out.println("Marks is "+s.getMarks());
+        };
+        c.accept(new Student(10,"Amit",850));
+    }
+}
+```
+</details>
+<details><summary>
+
+## What is a Supplier Functional Interface?
+</summary>
+It represents a function which does not take in any argument but produces a value of type T.
+
+```
+public T get();
+```
+### Example:
+```
+import java.util.function.Supplier;
+public class Main {
+    public static void main(String[] args) {
+        Supplier<String> s = () -> "This is from Lambda Expression";
+        System.out.println(s.get());
+        Supplier<Student> s2 = () -> new Student(10,"Ram",850);
+        System.out.println(s2.get().getName());
+    }
+}
+```
+</details>
