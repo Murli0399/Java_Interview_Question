@@ -463,6 +463,7 @@ Here, the BiFunction functional interface takes two arguments (Integer and Integ
 ## What is a Function Functional Interface?
 </summary>
 This interface defines an abstract method which will takes T type of object as parameter and returns R type of object.
+
 ```
 public R apply(T t);
 ```
@@ -487,6 +488,7 @@ public class Main {
 ## What is a Predicate Functional Interface?
 </summary>
 This interface contains only one abstract method called:
+
 ```
 public boolean test(T t);
 ```
