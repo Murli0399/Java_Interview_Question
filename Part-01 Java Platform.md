@@ -13,11 +13,11 @@ Java is one of the most popular languages because Java has several contributions
 	
 ## What is Platform Independence?
 </summary>
-Platform independence, also known as "write once, run anywhere," refers to the ability of a programming language or framework to run on different platforms without requiring extensive modifications. In the context of Java, platform independence is one of the its key features.
+Platform independence, also known as "write once, run anywhere," refers to the ability of a programming language or framework to run on different platforms without requiring extensive modifications. In the context of Java, platform independence is one of its key features.
 
-Java is one of the most popular platform independent languages. Once we compile a java program and build a jar, we can run the jar (compiledjava program) in any Operating System - where a JVM is installed.Java achieves Platform Independence in a beautiful way. On compiling a java file the output is a class file- which contains an internal java representation called bytecode. 
+Java is one of the most popular platform-independent languages. Once we compile a Java program and build a jar, we can run the jar (compiled Java program) in any Operating System - where a JVM is installed. Java achieves Platform Independence in a beautiful way. On compiling a Java file the output is a class file- which contains an internal Java representation called bytecode. 
 
-JVM converts bytecode to executable instructions. The executable instructions are different in different operating systems. So, there aredifferent JVM's for different operating systems. A JVM for windows is different from a JVM for mac.However, both the JVM's understand the bytecode and convert it to the executable code for therespective operating system.
+JVM converts bytecode to executable instructions. The executable instructions are different in different operating systems. So, there are different JVM for different operating systems. A JVM for Windows is different from a JVM for Mac. However, both the JVM's understand the bytecode and convert it to the executable code for the respective operating system.
 </details>
   
 <details><summary>
