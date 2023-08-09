@@ -1,12 +1,12 @@
-# Java_Interview_Question
-We have lots of java questions and detailed answer. And this repo specially created for Interview purpose. If you need to crack any Java based interview so you can read this question &amp; answer
+# Java Interview Question
+We have lots of Java questions and detailed answer. And this repo was specially created for Interview purposes. If you need to crack any Java-based interview so you can read this question &amp; answer
 
 ### Java Platform
-- 1 . Why is Java so popular?
-- 2 . What is platform independence?
-- 3 . What is bytecode?
-- 4 . Compare JDK vs JVM vs JRE 
-- 5 . What is the role for a classloader in Java?
+- 1. Why is Java so popular?
+- 2. What is platform independence?
+- 3. What is bytecode?
+- 4. Compare JDK vs JVM vs JRE 
+- 5. What is the role of a classloader in Java?
 
 ### Wrapper Classes
 - 7 . What are Wrapper classes?
