@@ -20,25 +20,25 @@ We have lots of Java questions and detailed answers. And this repo was specially
 - 15 . What is explicit casting?
 
 ### Strings
-- 16 . Are all String’s immutable?
+- 16 . Are all String immutable?
 - 17 . Where are String values stored in memory?
-- 18 . Why should you be careful about String concatenation(+) operator in loops?
-- 19 . How do you solve above problem?
-- 20 . What are differences between String and StringBuffer?
-- 21 . What are differences between StringBuilder and StringBuffer?
-- 22 . Can you give examples of different utility methods in String class?
+- 18 . Why should you be careful about the String concatenation(+) operator in loops?
+- 19 . How do you solve the above problem?
+- 20 . What are the differences between String and StringBuffer?
+- 21 . What are the differences between StringBuilder and StringBuffer?
+- 22 . Can you give examples of different utility methods in the String class?
 
-### Object oriented programming basics
+### Object-oriented programming basics
 - 23 . What is a class?
 - 24 . What is an object?
-- 25 . What is state of an object?
-- 26 . What is behavior of an object?
-- 27 . What is the super class of every class in Java?
-- 28 . Explain about toString method ?
-- 29 . What is the use of equals method in Java?
-- 30 . What are the important things to consider when implementing equals method?
+- 25 . What is the state of an object?
+- 26 . What is the behavior of an object?
+- 27 . What is the superclass of every class in Java?
+- 28 . Explain about toString method.
+- 29 . What is the use of the equals method in Java?
+- 30 . What are the important things to consider when implementing the equals method?
 - 31 . What is the Hashcode method used for in Java?
-- 32 . Explain inheritance with examples . 
+- 32 . Explain inheritance with examples. 
 - 33 . What is method overloading?
 - 34 . What is method overriding?
 - 35 . Can super class reference variable can hold an object of sub class?
