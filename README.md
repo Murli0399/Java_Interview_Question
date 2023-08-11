@@ -41,7 +41,7 @@ We have lots of Java questions and detailed answers. And this repo was specially
 - 32 . Explain inheritance with examples. 
 - 33 . What is method overloading?
 - 34 . What is method overriding?
-- 35 . Can super class reference variable can hold an object of sub class?
+- 35 . Can a super class reference variable hold an object of a subclass?
 - 36 . Is multiple inheritance allowed in Java?
 - 37 . What is an interface?
 - 38 . How do you define an interface?
@@ -52,7 +52,7 @@ We have lots of Java questions and detailed answers. And this repo was specially
 - 43 . What is an abstract class?
 - 44 . When do you use an abstract class?
 - 45 . How do you define an abstract method?
-- 46 . Compare abstract class vs interface?
+- 46 . Compare abstract class vs interface.
 - 47 . What is a constructor?
 - 48 . What is a default constructor?
 - 49 . Will this code compile?
