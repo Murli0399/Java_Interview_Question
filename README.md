@@ -92,14 +92,14 @@ We have lots of Java questions and detailed answers. And this repo was specially
 
 ### Exception handling
 - 79 . Why is exception handling important?
-- 80 . What design pattern is used to implement exception handling features in most languages?
+- 80 . What design pattern is used to implement exception-handling features in most languages?
 - 81 . What is the need for finally block?
-- 82 . In what scenarios is code in finally not executed?
+- 82 . In what scenarios is code finally not executed?
 - 83 . Will finally be executed in the program below?
-- 84 . Is try without a catch is allowed?
+- 84 . Is try without a catch allowed?
 - 85 . Is try without catch and finally allowed?
-- 86 . Can you explain the hierarchy of exception handling classes?
-- 87 . What is the difference between error and exception?
+- 86 . Can you explain the hierarchy of exception-handling classes?
+- 87 . What is the difference between an error and an exception?
 - 88 . What is the difference between checked exceptions and unchecked exceptions?
 - 89 . How do you throw an exception from a method?
 - 90 . What happens when you throw a checked exception from a method?
