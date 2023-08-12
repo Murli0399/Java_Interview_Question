@@ -60,11 +60,11 @@ We have lots of Java questions and detailed answers. And this repo was specially
 - 51 . Will this code compile?
 - 52 . What is the use of this()?
 - 53 . Can a constructor be called directly from a method?
-- 54 . Is a super class constructor called even when there is no explicit call from a sub class constructor?
+- 54 . Is a superclass constructor called even when there is no explicit call from a subclass constructor?
 
-### Advanced object oriented concepts
+### Advanced object-oriented concepts
 - 55 . What is polymorphism?
-- 56 . What is the use of instanceof operator in Java?
+- 56 . What is the use of instance of operator in Java?
 - 57 . What is coupling?
 - 58 . What is cohesion?
 - 59 . What is encapsulation?
