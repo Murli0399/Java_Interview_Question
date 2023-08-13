@@ -97,7 +97,7 @@ We have lots of Java questions and detailed answers. And this repo was specially
 - 82 . In what scenarios is code finally not executed?
 - 83 . Will finally be executed in the program below?
 - 84 . Is try without a catch allowed?
-- 85 . Is try without catch and finally allowed?
+- 85 . Is try without a catch and finally allowed?
 - 86 . Can you explain the hierarchy of exception-handling classes?
 - 87 . What is the difference between an error and an exception?
 - 88 . What is the difference between checked exceptions and unchecked exceptions?
@@ -105,10 +105,10 @@ We have lots of Java questions and detailed answers. And this repo was specially
 - 90 . What happens when you throw a checked exception from a method?
 - 91 . What are the options you have to eliminate compilation errors when handling checked exceptions?
 - 92 . How do you create a custom exception?
-- 93 . How do you handle multiple exception types with same exception handling block?
+- 93 . How do you handle multiple exception types with the same exception-handling block?
 - 94 . Can you explain about try with resources?
 - 95 . How does try with resources work?
-- 96 . Can you explain a few exception handling best practices?
+- 96 . Can you explain a few exception-handling best practices?
 
 ### Miscellaneous topics
 - 109 . What are the default values in an array?
@@ -122,15 +122,15 @@ We have lots of Java questions and detailed answers. And this repo was specially
 - 117 . When should asserts be used?
 - 118 . What is garbage collection?
 - 119 . Can you explain garbage collection with an example?
-- 120 . When is garbage collection run?
-- 121 . What are best practices on garbage collection?
+- 120 . When is the garbage collection run?
+- 121 . What are the best practices on garbage collection?
 - 122 . What are initialization blocks?
 - 123 . What is a static initializer?
 - 124 . What is an instance initializer block?
 - 125 . What is tokenizing?
 - 126 . Can you give an example of tokenizing?
 - 127 . What is serialization?
-- 128 . How do you serialize an object using serializable interface?
+- 128 . How do you serialize an object using a serializable interface?
 - 129 . How do you de-serialize in Java?
 - 130 . What do you do if only parts of the object have to be serialized?
 - 131 . How do you serialize a hierarchy of objects?
