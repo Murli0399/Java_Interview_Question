@@ -74,18 +74,18 @@ We have lots of Java questions and detailed answers. And this repo was specially
 - 63 . What is an anonymous class?
 
 ### Modifiers
-- 64 . What is default class modifier?
-- 65 . What is private access modifier?
-- 66 . What is default or package access modifier?
-- 67 . What is protected access modifier?
+- 64 . What is the default class modifier?
+- 65 . What is a private access modifier?
+- 66 . What is the default or package access modifier?
+- 67 . What is a protected access modifier?
 - 68 . What is public access modifier?
-- 69 . What access types of variables can be accessed from a class in same package?
-- 70 . What access types of variables can be accessed from a class in different package?
-- 71 . What access types of variables can be accessed from a sub class in same package?
-- 72 . What access types of variables can be accessed from a sub class in different package?
+- 69 . What access types of variables can be accessed from a class in the same package?
+- 70 . What access types of variables can be accessed from a class in a different package?
+- 71 . What access types of variables can be accessed from a subclass in the same package?
+- 72 . What access types of variables can be accessed from a subclass in different packages?
 - 73 . What is the use of a final modifier on a class?
 - 74 . What is the use of a final modifier on a method?
-- 75 . What is a final variable?
+- 75 . What is the final variable?
 - 76 . What is a final argument?
 - 77 . What happens when a variable is marked as volatile?
 - 78 . What is a static variable?
