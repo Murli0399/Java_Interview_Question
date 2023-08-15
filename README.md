@@ -123,7 +123,7 @@ We have lots of Java questions and detailed answers. And this repo was specially
 - 118 . What is garbage collection?
 - 119 . Can you explain garbage collection with an example?
 - 120 . When is the garbage collection run?
-- 121 . What are the best practices on garbage collection?
+- 121 . What are the best practices for garbage collection?
 - 122 . What are initialization blocks?
 - 123 . What is a static initializer?
 - 124 . What is an instance initializer block?
@@ -142,7 +142,7 @@ We have lots of Java questions and detailed answers. And this repo was specially
 - 135 . What are the important interfaces in the collection hierarchy?
 - 136 . What are the important methods that are declared in the collection interface?
 - 137 . Can you explain briefly about the List interface?
-- 138 . Explain about ArrayList with an example?
+- 138 . Explain about ArrayList with an example.
 - 139 . Can an ArrayList have duplicate elements?
 - 140 . How do you iterate around an ArrayList using iterator?
 - 141 . How do you sort an ArrayList?
