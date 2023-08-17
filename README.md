@@ -191,22 +191,22 @@ We have lots of Java questions and detailed answers. And this repo was specially
 - 180 . How do you declare a generic class?
 - 181 . What are the restrictions in using generic type that is declared in a class declaration?
 - 182 . How can we restrict Generics to a subclass of particular class?
-- 183 . How can we restrict Generics to a super class of particular class?
+- 183 . How can we restrict Generics to a superclass of a particular class?
 - 184 . Can you give an example of a generic method?
 
 ### Multi threading
 - 185 . What is the need for threads in Java?
 - 186 . How do you create a thread?
-- 187 . How do you create a thread by extending thread class?
-- 188 . How do you create a thread by implementing runnable interface?
+- 187 . How do you create a thread by extending the thread class?
+- 188 . How do you create a thread by implementing a runnable interface?
 - 189 . How do you run a thread in Java?
 - 190 . What are the different states of a thread?
-- 191 . What is priority of a thread? How do you change the priority of a thread?
+- 191 . What is the priority of a thread? How do you change the priority of a thread?
 - 192 . What is executor service?
 - 193 . Can you give an example of an executor service?
 - 194 . Explain different ways of creating executor services. 
 - 195 . How do you check whether an execution service task is executed successfully?
-- 196 . What is callable? How do you execute a callable from execution service?
+- 196 . What is callable? How do you execute a callable from the execution service?
 - 197 . What is the synchronization of threads?
 - 198 . Can you give an example of a synchronized block?
 - 199 . Can a static method be synchronized?
