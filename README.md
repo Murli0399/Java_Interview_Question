@@ -142,12 +142,12 @@ We have lots of Java questions and detailed answers. And this repo was specially
 - 135 . What are the important interfaces in the collection hierarchy?
 - 136 . What are the important methods that are declared in the collection interface?
 - 137 . Can you explain briefly about the List interface?
-- 138 . Explain about ArrayList with an example.
+- 138 . Explain ArrayList with an example.
 - 139 . Can an ArrayList have duplicate elements?
-- 140 . How do you iterate around an ArrayList using iterator?
+- 140 . How do you iterate around an ArrayList using an iterator?
 - 141 . How do you sort an ArrayList?
-- 142 . How do you sort elements in an ArrayList using comparable interface?
-- 143 . How do you sort elements in an ArrayList using comparator interface?
+- 142 . How do you sort elements in an ArrayList using a comparable interface?
+- 143 . How do you sort elements in an ArrayList using a comparator interface?
 - 144 . What is vector class? How is it different from an ArrayList?
 - 145 . What is linkedList? What interfaces does it implement? How is it different from an ArrayList?
 - 146 . Can you briefly explain about the Set interface?
