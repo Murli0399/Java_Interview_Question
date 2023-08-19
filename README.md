@@ -174,14 +174,14 @@ We have lots of Java questions and detailed answers. And this repo was specially
 
 ### Advanced collections
 - 167 . What is the difference between synchronized and concurrent collections in Java?
-- 168 . Explain about the new concurrent collections in Java?
-- 169 . Explain about copyonwrite concurrent collections approach?
-- 170 . What is compareandswap approach?
-- 171 . What is a lock? How is it different from using synchronized approach?
-- 172 . What is initial capacity of a Java collection?
-- 173 . What is load factor?
+- 168 . Explain the new concurrent collections in Java.
+- 169 . Explain about copy on write concurrent collections approach.
+- 170 . What is compare and swap approach?
+- 171 . What is a lock? How is it different from using a synchronized approach?
+- 172 . What is the initial capacity of a Java collection?
+- 173 . What is the load factor?
 - 174 . When does a Java collection throw UnsupportedOperationException?
-- 175 . What is difference between fail-safe and fail-fast iterators?
+- 175 . What is the difference between fail-safe and fail-fast iterators?
 - 176 . What are atomic operations in Java?
 - 177 . What is BlockingQueue in Java?
 
@@ -189,8 +189,8 @@ We have lots of Java questions and detailed answers. And this repo was specially
 - 178 . What are Generics?
 - 179 . Why do we need Generics? Can you give an example of how Generics make a program more flexible?
 - 180 . How do you declare a generic class?
-- 181 . What are the restrictions in using generic type that is declared in a class declaration?
-- 182 . How can we restrict Generics to a subclass of particular class?
+- 181 . What are the restrictions in using a generic type that is declared in a class declaration?
+- 182 . How can we restrict Generics to a subclass of a particular class?
 - 183 . How can we restrict Generics to a superclass of a particular class?
 - 184 . Can you give an example of a generic method?
 
