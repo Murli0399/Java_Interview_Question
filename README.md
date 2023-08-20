@@ -224,12 +224,12 @@ We have lots of Java questions and detailed answers. And this repo was specially
 - 209 . Can you give an example of functional programming?
 - 210 . What is a Functional Interface?
 - 210 . What is a stream?
-- 211 . Explain about streams with an example?
+- 211 . Explain about streams with an example.
 - what are intermediate operations in streams?
 - 212 . What are terminal operations in streams?
 - 213 . What are method references?
 - 214 . What are lambda expressions?
-- 215 . Can you give an example of lambda expression?
+- 215 . Can you give an example of a lambda expression?
 - 216 . Can you explain the relationship between lambda expression and functional interfaces?
 - 220 . Can you give examples of functional interfaces with multiple arguments?
 - 218 . What is a Function?
