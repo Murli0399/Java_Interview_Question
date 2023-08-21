@@ -158,18 +158,18 @@ We have lots of Java questions and detailed answers. And this repo was specially
 - 151 . What is a linkedHashSet? How is different from a HashSet?
 - 152 . What is a TreeSet? How is different from a HashSet?
 - 153 . Can you give examples of implementations of navigableSet?
-- 154 . Explain briefly about Queue interface?
+- 154 . Explain briefly about the Queue interface.
 - 155 . What are the important interfaces related to the Queue interface? @
-- 156 . Explain about the Deque interface? @
-- 157 . Explain the BlockingQueue interface? @
-- 158 . What is a priorityQueue? @
+- 156 . Explain the Deque interface. @
+- 157 . Explain the BlockingQueue interface. @
+- 158 . What is a priority queue? @
 - 159 . Can you give example implementations of the BlockingQueue interface? @
-- 160 . Can you briefly explain about the Map interface?
-- 161 . What is difference between Map and sortedMap?
+- 160 . Can you briefly explain the Map interface?
+- 161 . What is the difference between Map and a sorted map?
 - 162 . What is a HashMap?
 - 163 . What are the different methods in a Hash Map?
 - 164 . What is a TreeMap? How is different from a HashMap?
-- 165 . Can you give an example of implementation of navigableMap interface? @
+- 165 . Can you give an example of the implementation of navigable map interface? @
 - 166 . What are the static methods present in the collections class? @
 
 ### Advanced collections
@@ -194,7 +194,7 @@ We have lots of Java questions and detailed answers. And this repo was specially
 - 183 . How can we restrict Generics to a superclass of a particular class?
 - 184 . Can you give an example of a generic method?
 
-### Multi threading
+### Multithreading
 - 185 . What is the need for threads in Java?
 - 186 . How do you create a thread?
 - 187 . How do you create a thread by extending the thread class?
@@ -224,7 +224,7 @@ We have lots of Java questions and detailed answers. And this repo was specially
 - 209 . Can you give an example of functional programming?
 - 210 . What is a Functional Interface?
 - 210 . What is a stream?
-- 211 . Explain about streams with an example.
+- 211 . Explain streams with an example.
 - what are intermediate operations in streams?
 - 212 . What are terminal operations in streams?
 - 213 . What are method references?
