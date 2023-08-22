@@ -169,7 +169,7 @@ We have lots of Java questions and detailed answers. And this repo was specially
 - 162 . What is a HashMap?
 - 163 . What are the different methods in a Hash Map?
 - 164 . What is a TreeMap? How is different from a HashMap?
-- 165 . Can you give an example of the implementation of navigable map interface? @
+- 165 . Can you give an example of the implementation of a navigable map interface? @
 - 166 . What are the static methods present in the collections class? @
 
 ### Advanced collections
