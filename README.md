@@ -78,7 +78,7 @@ We have lots of Java questions and detailed answers. And this repo was specially
 - 65 . What is a private access modifier?
 - 66 . What is the default or package access modifier?
 - 67 . What is a protected access modifier?
-- 68 . What is public access modifier?
+- 68 . What is a public access modifier?
 - 69 . What access types of variables can be accessed from a class in the same package?
 - 70 . What access types of variables can be accessed from a class in a different package?
 - 71 . What access types of variables can be accessed from a subclass in the same package?
@@ -98,7 +98,7 @@ We have lots of Java questions and detailed answers. And this repo was specially
 - 83 . Will finally be executed in the program below?
 - 84 . Is try without a catch allowed?
 - 85 . Is try without a catch and finally allowed?
-- 86 . Can you explain the hierarchy of exception-handling classes?
+- 86 . Can you explain the hierarchy of exception handling classes?
 - 87 . What is the difference between an error and an exception?
 - 88 . What is the difference between checked exceptions and unchecked exceptions?
 - 89 . How do you throw an exception from a method?
