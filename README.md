@@ -150,7 +150,7 @@ We have lots of Java questions and detailed answers. And this repo was specially
 - 143 . How do you sort elements in an ArrayList using a comparator interface?
 - 144 . What is vector class? How is it different from an ArrayList?
 - 145 . What is linkedList? What interfaces does it implement? How is it different from an ArrayList?
-- 146 . Can you briefly explain about the Set interface?
+- 146 . Can you briefly explain the Set interface?
 - 147 . What are the important interfaces related to the Set interface?
 - 148 . What is the difference between Set and sortedSet interfaces?
 - 149 . Can you give examples of classes that implement the Set interface?
@@ -165,7 +165,7 @@ We have lots of Java questions and detailed answers. And this repo was specially
 - 158 . What is a priority queue? @
 - 159 . Can you give example implementations of the BlockingQueue interface? @
 - 160 . Can you briefly explain the Map interface?
-- 161 . What is the difference between Map and a sorted map?
+- 161 . What is the difference between a Map and a sorted map?
 - 162 . What is a HashMap?
 - 163 . What are the different methods in a Hash Map?
 - 164 . What is a TreeMap? How is different from a HashMap?
