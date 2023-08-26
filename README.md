@@ -1,5 +1,5 @@
 # Java Interview Question
-We have lots of Java questions and detailed answers. And this repo was specially created for Interview purposes. If you need to crack any Java-based interview so you can read this question &amp; answer
+We have lots of Java questions and detailed answers. And this repo was specially created for Interview purposes. If you need to crack any Java-based interview So you can read this question &amp; answer
 
 ### Java Platform
 - 1 . Why is Java so popular?
