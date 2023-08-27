@@ -225,7 +225,7 @@ We have lots of Java questions and detailed answers. And this repo was specially
 - 210 . What is a Functional Interface?
 - 210 . What is a stream?
 - 211 . Explain streams with an example.
-- what are intermediate operations in streams?
+- What are intermediate operations in streams?
 - 212 . What are terminal operations in streams?
 - 213 . What are method references?
 - 214 . What are lambda expressions?
