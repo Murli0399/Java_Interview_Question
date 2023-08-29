@@ -176,7 +176,7 @@ We have lots of Java questions and detailed answers. And this repo was specially
 - 167 . What is the difference between synchronized and concurrent collections in Java?
 - 168 . Explain the new concurrent collections in Java.
 - 169 . Explain about copy on write concurrent collections approach.
-- 170 . What is compare and swap approach?
+- 170 . What is the compare and swap approach?
 - 171 . What is a lock? How is it different from using a synchronized approach?
 - 172 . What is the initial capacity of a Java collection?
 - 173 . What is the load factor?
