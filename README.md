@@ -5,7 +5,7 @@ We have lots of Java questions and detailed answers. And this repo was specially
 - 1 . Why is Java so popular?
 - 2 . What is platform independence?
 - 3 . What is bytecode?
-- 4 . Compare JDK vs JVM vs JRE 
+- 4 . Compare JDK vs JVM vs JRE.
 - 5 . What is the role of a classloader in Java?
 
 ### Wrapper Classes
