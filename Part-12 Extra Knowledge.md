@@ -15,6 +15,34 @@ APIs work by sending requests for information from a web application or web serv
 </details>
 <details><summary>
 
+## Difference between Http and Https?
+</summary>
+
+HTTP (Hypertext Transfer Protocol) is the primary protocol for transmitting information across the internet. HTTPS (Hypertext Transfer Protocol Secure) is a more secure version of HTTP. The main difference between the two is that HTTPS uses encryption to protect information as it is sent between clients and servers. HTTPS encrypts data entered into a user's device and data going from the website to the browser. This makes it difficult for anyone to intercept information like passwords or credit card numbers.
+
+Here are some other differences between HTTP and HTTPS:
+- HTTP sends data over port 80, while HTTPS uses port 443.
+- HTTP operates at the application layer, while HTTPS operates at the transport layer.
+- HTTP transfers data in plain text, while HTTPS transfers data in cipher text.
+- HTTP is faster than HTTPS because HTTPS consumes computation power to encrypt the communication channel.
+HTTPS requires an SSL certificate and a CA signature, while HTTP does not require SSL certificates.
+</details>
+<details><summary>
+
+## 
+</summary>
+
+
+</details>
+<details><summary>
+
+## 
+</summary>
+
+
+</details>
+<details><summary>
+
 ## 
 </summary>
 
