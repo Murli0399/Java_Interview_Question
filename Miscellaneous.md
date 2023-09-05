@@ -12,10 +12,39 @@ The default values for arrays in Java depend on the data type of the elements. F
 </details>
 <details><summary>
 
-## 
+##  How do you print the content of an array?
 </summary>
+There are two ways to print the contents of an array in Java:
 
+- Using a for loop
+- Using the Arrays.toString() method
 
+### Using a for loop
+Declare and initialize an array.
+Create a for loop that iterates through the array.
+Inside the for loop, print the current element of the array.
+Example:
+```
+int[] array = {1, 2, 3, 4, 5};
+
+for (int i = 0; i < array.length; i++) {
+  System.out.println(array[i]);
+}
+```
+### Using the Arrays.toString() method
+Import the java.util.Arrays class.
+Call the Arrays.toString() method on the array.
+Print the result of the Arrays.toString() method.
+Example:
+```
+import java.util.Arrays;
+
+int[] array = {1, 2, 3, 4, 5};
+
+System.out.println(Arrays.toString(array));
+```
+
+The output of both methods will be the same.
 </details>
 <details><summary>
 
