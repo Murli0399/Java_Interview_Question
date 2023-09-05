@@ -1,12 +1,12 @@
 <details><summary>
 	
-## What is Garbage Collection?
+## What is a Garbage Collection?
 </summary>
 Garbage collection in Java is the process by which Java programs perform automatic memory management. Java programs compile to bytecode that can be run on a Java Virtual Machine. When Java programs run on the JVM, objects are created on the heap, which is a portion of memory dedicated to the program. Eventually, some objects will no longer be needed. The garbage collector finds these unused objects and deletes them to free up memory.
 </details>
 <details><summary>
 	
-## Can you explain Garbage Collection with an example?
+## Can you explain the Garbage Collection with an example?
 </summary>
 Let’s say the below method is called from a function.
 
@@ -21,11 +21,11 @@ reference variable calendar.
 After the function ends execution, the reference variable calendar is no longer valid. Hence, there are no
 references to the object created in the method.
 
-JVM recognizes this and removes the object from the heap. This is called Garbage Collection.
+JVM recognizes this and removes the object from the heap. This is called the Garbage Collection.
 </details>
 <details><summary>
 	
-## When is Garbage Collection run?
+## When is the Garbage Collection run?
 </summary>
 Garbage collection in Java is run automatically by the Java Virtual Machine (JVM) as needed. The JVM determines when to initiate garbage collection based on certain conditions. These conditions can vary depending on the JVM implementation, but some common triggers include:
 
@@ -39,7 +39,7 @@ It's important to note that the JVM manages the garbage collection process inter
 </details>
 <details><summary>
 	
-## What are best practices on Garbage Collection?
+## What are the best practices for Garbage Collection?
 </summary>
 Programmatically, we can request (remember it’s just a request - Not an order) JVM to run Garbage
 Collection by calling System.gc() method.
