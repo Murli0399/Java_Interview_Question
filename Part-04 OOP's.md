@@ -629,8 +629,12 @@ Both example constructors below can replaces the no argument "public Animal() " 
 		super();
 	}
 Answer is NO. super should be always called on the first line of the constructor.
-
+</details>
+  
+<details><summary>
+	
 ## What is the use of this()?
+</summary>
 There can be a lot of usage of Java this keyword. In Java, this is a reference variable that refers to the current object.
 
 Another constructor in the same class can be invoked from a constructor, using this({parameters})
