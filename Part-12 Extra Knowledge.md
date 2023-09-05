@@ -7,10 +7,11 @@ REST APIs are also known as RESTful APIs. When a client requests a resource usin
 </details>
 <details><summary>
 
-## 
+## What is domain vs. endpoint in API?
 </summary>
-
-
+A domain is a library of common components, such as parameters, responses, and data models, that are used across multiple API definitions. An endpoint is a component of an API. It's a specific location within an API that accepts requests and sends back responses.
+Endpoints are the locations of the resources, and the API uses endpoint URLs to retrieve the requested resources. For example, assuming the base URL of https://api.example.com/v1, the /users endpoint refers to https://api.example.com/v1/users.
+APIs work by sending requests for information from a web application or web server and receiving a response.
 </details>
 <details><summary>
 
