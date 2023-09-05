@@ -52,10 +52,50 @@ The output of both methods will be the same.
 </details>
 <details><summary>
 
-## 
+## How do you compare two arrays?
 </summary>
+There are several ways to compare two arrays in Java. One way is to use the Arrays.equals() method. This method takes two arrays as parameters and returns true if the arrays are equal, or false if they are not equal. The arrays must be of the same type and size in order to use the equals() method.
 
+Another way to compare two arrays is to use the Arrays.compare() method. This method takes two arrays as parameters and returns an integer value indicating the relationship between the arrays. The return value is 0 if the arrays are equal, -1 if the first array is less than the second array, or 1 if the first array is greater than the second array.
 
+Finally, you can also compare two arrays by using a loop and comparing the elements of the arrays one by one. This method is less efficient than the equals() or compare() methods, but it can be used if you need to compare arrays of different types or sizes.
+
+Here is an example of how to use the Arrays.equals() method to compare two arrays:
+```
+int[] array1 = {1, 2, 3};
+int[] array2 = {1, 2, 3};
+
+boolean equal = Arrays.equals(array1, array2);
+```
+
+In this example, the equal variable will be true because the two arrays are equal.
+
+Here is an example of how to use the Arrays.compare() method to compare two arrays:
+```
+int[] array1 = {1, 2, 3};
+int[] array2 = {1, 2, 4};
+
+int result = Arrays.compare(array1, array2);
+```
+
+In this example, the result variable will be -1 because the first array is less than the second array.
+
+Here is an example of how to compare two arrays by using a loop:
+```
+int[] array1 = {1, 2, 3};
+int[] array2 = {1, 2, 4};
+
+boolean equal = true;
+
+for (int i = 0; i < array1.length; i++) {
+  if (array1[i] != array2[i]) {
+    equal = false;
+    break;
+  }
+}
+```
+
+In this example, the equal variable will be false because the two arrays are not equal.
 </details>
 <details><summary>
 
