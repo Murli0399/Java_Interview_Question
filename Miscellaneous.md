@@ -100,10 +100,28 @@ In this example, the equal variable will be false because the two arrays are not
 </details>
 <details><summary>
 
-## 
+## What is an enum?
 </summary>
 
+In Java, an enum is a special data type that enables for a variable to be a set of predefined constants. The variable must be equal to one of the values that have been predefined for it.
 
+For example, an enum type for compass directions could have the constants NORTH, SOUTH, EAST, and WEST.
+
+Enums are useful for representing a fixed set of constants, such as the days of the week or the colors of the rainbow. They can also be used to represent more complex concepts, such as the different types of exceptions that can occur in a program.
+
+Here is an example of an enum in Java:
+```
+enum DaysOfWeek {
+    Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday
+}
+```
+
+This enum type defines the seven days of the week. You can create a variable of type DaysOfWeek and assign it one of the constants, such as:
+```
+DaysOfWeek today = DaysOfWeek.Monday;
+```
+
+Enums are a powerful tool that can help you to write more readable and maintainable code.
 </details>
 <details><summary>
 
