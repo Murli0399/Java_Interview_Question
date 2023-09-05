@@ -125,10 +125,18 @@ Enums are a powerful tool that can help you to write more readable and maintaina
 </details>
 <details><summary>
 
-## 
+## Can you use a switch statement around an enum?
 </summary>
 
+Yes, you can use a switch statement with an enum in Java. You can use enums in switch statements in Java like you would use int primitives. In a switch-case statement, a variable is tested against a set of constant values. If the variable matches a constant value, the corresponding code is executed.
 
+You can also use enums with if statements and iterations.
+
+Here are some things to keep in mind when using enums in switch statements:
+- Enum constants are public, static, and final by default.
+- You access enum constants using dot syntax.
+- An enum class can have attributes and methods, in addition to constants.
+- You cannot create objects of an enum class, and it cannot extend other classes.
 </details>
 <details><summary>
 
