@@ -140,21 +140,28 @@ Here are some things to keep in mind when using enums in switch statements:
 </details>
 <details><summary>
 
-## 
+## What are asserts used for?
 </summary>
 
 
 </details>
 <details><summary>
 
-## 
+## When should asserts be used?
 </summary>
 
 
 </details>
 <details><summary>
 
-## 
+## What is tokenizing?
+</summary>
+
+
+</details>
+<details><summary>
+
+## Can you give an example of tokenizing?
 </summary>
 
 
