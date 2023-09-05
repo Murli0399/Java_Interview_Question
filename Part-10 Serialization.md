@@ -303,6 +303,12 @@ If you try de-serializing, In Example2, state of wall object is retained whereas
 object is lost.
 </details>
 <details><summary>
+
+## Are the constructors in an object invoked when it is de-serialized?
+</summary>
+
+</details>
+<details><summary>
 	
 ## Are the values of static variables stored when an object is serialized?
 </summary>
