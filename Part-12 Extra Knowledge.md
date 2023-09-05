@@ -30,10 +30,23 @@ HTTPS requires an SSL certificate and a CA signature, while HTTP does not requir
 </details>
 <details><summary>
 
-## 
+## What is reflection API in java?
 </summary>
+The Java Reflection API is a set of classes and interfaces that allows Java code to examine or modify the runtime behavior of a class at run time. The java.lang.Class class provides many methods that can be used to get metadata, examine and change the run time behavior of a class. The java.lang and java.lang.reflect packages provide classes for java reflection.
 
+The Reflection API is mainly used in:
+- IDE (Integrated Development Environment) e.g., Eclipse, MyEclipse, NetBeans etc.
+- Debugger
+- Test Tools etc.
 
+Here are some examples of how the Reflection API can be used:
+- To get information about the fields, methods and constructors of a class.
+- To create instances of classes at runtime.
+- To invoke methods at runtime.
+- To get and set the values of fields at runtime.
+- To override the access control restrictions on classes and members.
+
+The Reflection API is a powerful tool that can be used to do things that would not be possible without it. However, it is important to use it carefully, as it can also be used to do things that could have unintended consequences.
 </details>
 <details><summary>
 
