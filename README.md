@@ -111,12 +111,11 @@ We have lots of Java questions and detailed answers. And this repo was specially
 - 206 . What is the use of the notifyall method?
 - 207 . Can you write a synchronized program with wait and notify methods?
 
-### Functional Programming - Lamdba expressions and Streams
-- 208 . What is functional programming?
-- 209 . Can you give an example of functional programming?
-- 210 . What is a Functional Interface?
-- 210 . What is a stream?
-- 211 . Explain streams with an example.
+
+
+
+
+
 - What are intermediate operations in streams?
 - 212 . What are terminal operations in streams?
 - 213 . What are method references?
