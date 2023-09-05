@@ -12,22 +12,14 @@ We have lots of Java questions and detailed answers. And this repo was specially
 - 115 . What are variable arguments or varargs?
 - 116 . What are asserts used for?
 - 117 . When should asserts be used?
-- 118 . What is garbage collection?
-- 119 . Can you explain garbage collection with an example?
-- 120 . When is the garbage collection run?
-- 121 . What are the best practices for garbage collection?
-- 122 . What are initialization blocks?
-- 123 . What is a static initializer?
-- 124 . What is an instance initializer block?
+
+
+
+
 - 125 . What is tokenizing?
 - 126 . Can you give an example of tokenizing?
-- 127 . What is serialization?
-- 128 . How do you serialize an object using a serializable interface?
-- 129 . How do you de-serialize in Java?
-- 130 . What do you do if only parts of the object have to be serialized?
-- 131 . How do you serialize a hierarchy of objects?
-- 132 . Are the constructors in an object invoked when it is de-serialized?
-- 133 . Are the values of static variables stored when an object is serialized?
+
+
 
 ### Collections
 - 134 . Why do we need collections in Java?
