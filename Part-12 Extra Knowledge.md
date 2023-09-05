@@ -32,7 +32,7 @@ HTTPS requires an SSL certificate and a CA signature, while HTTP does not requir
 
 ## What is reflection API in Java?
 </summary>
-The Java Reflection API is a set of classes and interfaces that allows Java code to examine or modify the runtime behavior of a class at run time. The java.lang.Class class provides many methods that can be used to get metadata, and examine and change the run time behavior of a class. The java.lang and java.lang.reflect packages provide classes for java reflection.
+The Java Reflection API is a set of classes and interfaces that allows Java code to examine or modify the runtime behavior of a class at run time. The java.lang.Class class provides many methods that can be used to get metadata, and examine and change the run time behavior of a class. The java.lang and java.lang.reflect packages provide classes for Java reflection.
 
 The Reflection API is mainly used in:
 - IDE (Integrated Development Environment) e.g., Eclipse, MyEclipse, NetBeans, etc.
@@ -50,10 +50,24 @@ The Reflection API is a powerful tool that can be used to do things that would n
 </details>
 <details><summary>
 
-## 
+## Where is the Java Reflection API used in the Spring Framework?
 </summary>
+The Java Reflection API is used in the Spring Framework in a number of places, including:
+- To create Spring beans at runtime.
+- To inject dependencies into Spring Beans.
+- To resolve the type of a Spring bean at runtime.
+- To invoke methods on Spring beans.
+- To get and set the values of fields on Spring beans.
+- To override the access control restrictions on Spring beans.
 
 
+The use of the Java Reflection API in the Spring Framework allows for a greater degree of flexibility and extensibility than would be possible without it. For example, it allows Spring beans to be created at runtime, even if the classes for those beans are not known at compile time. This can be useful in situations where the Spring beans are dynamically generated or loaded from a database.
+
+
+The use of the Java Reflection API in the Spring Framework also makes it possible to inject dependencies into Spring beans that are not known at compile time. This can be useful in situations where the dependencies are provided by a third-party library or are dynamically generated.
+
+
+Overall, the use of the Java Reflection API in the Spring Framework makes it a more powerful and flexible framework than would be possible without it.
 </details>
 <details><summary>
 
