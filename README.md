@@ -1,42 +1,6 @@
 # Java Interview Question
 We have lots of Java questions and detailed answers. And this repo was specially created for Interview purposes. If you need to crack any Java-based interview so you can read this question &amp; answer
 
-### Modifiers
-- 64 . What is the default class modifier?
-- 65 . What is a private access modifier?
-- 66 . What is the default or package access modifier?
-- 67 . What is a protected access modifier?
-- 68 . What is a public access modifier?
-- 69 . What access types of variables can be accessed from a class in the same package?
-- 70 . What access types of variables can be accessed from a class in a different package?
-- 71 . What access types of variables can be accessed from a subclass in the same package?
-- 72 . What access types of variables can be accessed from a subclass in different packages?
-- 73 . What is the use of a final modifier on a class?
-- 74 . What is the use of a final modifier on a method?
-- 75 . What is the final variable?
-- 76 . What is a final argument?
-- 77 . What happens when a variable is marked as volatile?
-- 78 . What is a static variable?
-
-### Exception handling
-- 79 . Why is exception handling important?
-- 80 . What design pattern is used to implement exception-handling features in most languages?
-- 81 . What is the need for finally block?
-- 82 . In what scenarios is code finally not executed?
-- 83 . Will finally be executed in the program below?
-- 84 . Is try without a catch allowed?
-- 85 . Is try without a catch and finally allowed?
-- 86 . Can you explain the hierarchy of exception handling classes?
-- 87 . What is the difference between an error and an exception?
-- 88 . What is the difference between checked exceptions and unchecked exceptions?
-- 89 . How do you throw an exception from a method?
-- 90 . What happens when you throw a checked exception from a method?
-- 91 . What are the options you have to eliminate compilation errors when handling checked exceptions?
-- 92 . How do you create a custom exception?
-- 93 . How do you handle multiple exception types with the same exception-handling block?
-- 94 . Can you explain about try with resources?
-- 95 . How does try with resources work?
-- 96 . Can you explain a few exception-handling best practices?
 
 ### Miscellaneous topics
 - 109 . What are the default values in an array?
