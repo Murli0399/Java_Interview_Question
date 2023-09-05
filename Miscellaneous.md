@@ -56,6 +56,7 @@ The output of both methods will be the same.
 </summary>
 There are several ways to compare two arrays in Java. One way is to use the Arrays.equals() method. This method takes two arrays as parameters and returns true if the arrays are equal, or false if they are not equal. The arrays must be of the same type and size in order to use the equals() method.
 
+
 Another way to compare two arrays is to use the Arrays.compare() method. This method takes two arrays as parameters and returns an integer value indicating the relationship between the arrays. The return value is 0 if the arrays are equal, -1 if the first array is less than the second array, or 1 if the first array is greater than the second array.
 
 Finally, you can also compare two arrays by using a loop and comparing the elements of the arrays one by one. This method is less efficient than the equals() or compare() methods, but it can be used if you need to compare arrays of different types or sizes.
