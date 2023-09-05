@@ -25,6 +25,7 @@ Here are some other differences between HTTP and HTTPS:
 - HTTP operates at the application layer, while HTTPS operates at the transport layer.
 - HTTP transfers data in plain text, while HTTPS transfers data in cipher text.
 - HTTP is faster than HTTPS because HTTPS consumes computation power to encrypt the communication channel.
+
 HTTPS requires an SSL certificate and a CA signature, while HTTP does not require SSL certificates.
 </details>
 <details><summary>
