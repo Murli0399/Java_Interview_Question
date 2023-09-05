@@ -2,20 +2,6 @@
 We have lots of Java questions and detailed answers. And this repo was specially created for Interview purposes. If you need to crack any Java-based interview so you can read this question &amp; answer
 
 
-### Miscellaneous topics
-
-
-- 116 . What are asserts used for?
-- 117 . When should asserts be used?
-
-
-
-
-- 125 . What is tokenizing?
-- 126 . Can you give an example of tokenizing?
-
-
-
 ### Collections
 - 134 . Why do we need collections in Java?
 - 135 . What are the important interfaces in the collection hierarchy?
