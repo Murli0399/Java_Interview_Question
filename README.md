@@ -3,13 +3,8 @@ We have lots of Java questions and detailed answers. And this repo was specially
 
 
 ### Miscellaneous topics
-- 109 . What are the default values in an array?
-- 110 . How do you loop around an array using enhanced for loop?
-- 111 . How do you print the content of an array?
-- 112 . How do you compare two arrays?
-- 113 . What is an enum?
-- 114 . Can you use a switch statement around an enum?
-- 115 . What are variable arguments or varargs?
+
+
 - 116 . What are asserts used for?
 - 117 . When should asserts be used?
 
