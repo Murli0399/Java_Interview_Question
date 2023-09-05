@@ -87,24 +87,8 @@ We have lots of Java questions and detailed answers. And this repo was specially
 - 184 . Can you give an example of a generic method?
 
 ### Multithreading
-- 185 . What is the need for threads in Java?
-- 186 . How do you create a thread?
-- 187 . How do you create a thread by extending the thread class?
-- 188 . How do you create a thread by implementing a runnable interface?
-- 189 . How do you run a thread in Java?
-- 190 . What are the different states of a thread?
-- 191 . What is the priority of a thread? How do you change the priority of a thread?
-- 192 . What is executor service?
-- 193 . Can you give an example of an executor service?
-- 194 . Explain different ways of creating executor services. 
-- 195 . How do you check whether an execution service task is executed successfully?
-- 196 . What is callable? How do you execute a callable from the execution service?
-- 197 . What is the synchronization of threads?
-- 198 . Can you give an example of a synchronized block?
-- 199 . Can a static method be synchronized?
-- 200 . What is the use of the join method in threads?
+
 - 201 . Describe a few other important methods in threads.
-- 202 . What is a deadlock?
 - 203 . What are the important methods in Java for inter-thread communication?
 - 204 . What is the use of the wait method?
 - 205 . What is the use of notify method?
@@ -112,21 +96,6 @@ We have lots of Java questions and detailed answers. And this repo was specially
 - 207 . Can you write a synchronized program with wait and notify methods?
 
 
-
-
-
-
-- What are intermediate operations in streams?
-- 212 . What are terminal operations in streams?
-- 213 . What are method references?
-- 214 . What are lambda expressions?
-- 215 . Can you give an example of a lambda expression?
-- 216 . Can you explain the relationship between lambda expression and functional interfaces?
-- 220 . Can you give examples of functional interfaces with multiple arguments?
-- 218 . What is a Function?
-- 217 . What is a predicate?
-- 219 . What is a consumer?
-- 220 . What is a Supplier?
 
 ###  New Features
 - 221 . What are the new features in Java 5?
