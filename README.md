@@ -57,7 +57,7 @@ We have lots of Java questions and detailed answers. And this repo was specially
 - 181 . What are the restrictions in using a generic type that is declared in a class declaration?
 - 182 . How can we restrict Generics to a subclass of a particular class?
 - 183 . How can we restrict Generics to a superclass of a particular class?
-- 184 . Can you give an example of a generic method?
+- 184 . Can you give an example of a generic method
 
 ### Multithreading
 
