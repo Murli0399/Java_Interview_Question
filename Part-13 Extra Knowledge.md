@@ -85,6 +85,21 @@ Authentication and authorization are often used interchangeably, but they are tw
 </details>
 <details><summary>
 
+## Difference between Abstract class vs. interface?
+</summary>
+
+Abstract classes and interfaces are both used for abstraction in object-oriented programming. The main difference between the two is that abstract classes can have state, while interfaces cannot. Abstract classes are used to define default behavior for subclasses. Interfaces are used to define behavior that can be implemented by multiple unrelated classes.
+
+Here are some other differences between abstract classes and interfaces:
+
+- Abstract classes can have abstract and non-abstract methods, while interfaces can only have abstract, static, and default methods.
+- Abstract classes can extend one abstract class and implement multiple interfaces, while interfaces can only extend other interfaces.
+- Abstract classes have no restrictions on field and method modifiers, while in an interface, all are public by default.
+- Abstract classes can have instance and static initialization blocks, while interfaces cannot.
+- Abstract classes can be used to provide a base for a hierarchy of classes or provide a common implementation. Interfaces can be used to define a contract behavior.
+</details>
+<details><summary>
+
 ## 
 </summary>
 
