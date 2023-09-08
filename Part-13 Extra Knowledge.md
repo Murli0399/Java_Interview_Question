@@ -72,6 +72,19 @@ Overall, the use of the Java Reflection API in the Spring Framework makes it a m
 </details>
 <details><summary>
 
+## What is the difference between authentication and authorization in api?
+</summary>
+
+Authentication and authorization are two different security functions. Authentication verifies a user's identity, while authorization determines what resources a user can access.
+
+Authentication is the process of verifying a user's identity before granting access to an API. Authorization is the process of determining what resources a user can access.
+
+For example, when you go through security at an airport, you show your ID to authenticate your identity. Authorization is like an airline determining which people can come on board.
+
+Authentication and authorization are often used interchangeably, but they are two separate functions.
+</details>
+<details><summary>
+
 ## 
 </summary>
 
