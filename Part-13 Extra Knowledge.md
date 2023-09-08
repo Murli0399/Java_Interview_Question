@@ -100,6 +100,21 @@ Here are some other differences between abstract classes and interfaces:
 </details>
 <details><summary>
 
+## Difference between heap and stack memory?
+</summary>
+
+In Java, heap and stack are two different types of memory that are used to store data. The heap is used to store objects, while the stack is used to store local variables and method call information.
+
+The heap is a large, unstructured area of memory that can be used to store any type of object. Objects are created on the heap by the new keyword. The garbage collector is responsible for managing the heap and removing objects that are no longer needed.
+
+The stack is a small, fixed-size area of memory that is used to store local variables and method call information. Local variables are variables that are declared within a method. Method call information is used to keep track of the current method call and the methods that have been called before it.
+
+The stack is used in a last-in, first-out (LIFO) manner. This means that the last variable that was declared is the first variable that is removed. The stack is also used to store the return address of a method call. The return address is the location of the code that will be executed after the method call returns.
+
+The heap and stack are two important parts of the Java memory model. They work together to provide a safe and efficient way to store data.
+</details>
+<details><summary>
+
 ## 
 </summary>
 
