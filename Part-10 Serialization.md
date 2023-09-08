@@ -277,8 +277,8 @@ at java.io.ObjectOutputStream.writeObject0(Unknown Source)
 at java.io.ObjectOutputStream.defaultWriteFields(Unknown Source)
 
 This is because Wall is not serializable. Two solutions are possible.
-1. Make Wall transient. Wall object will not be serialized. This causes the wall object state to be lost.
-2. Make Wall implement Serializable. Wall object will also be serialized and the state of wall object
+1. Make Wall transient. Wall objects will not be serialized. This causes the wall object state to be lost.
+2. Make Wall implement Serializable. The wall object will also be serialized and the state of the wall object
 along with the house will be stored.
 
             class House implements Serializable {
@@ -297,9 +297,9 @@ along with the house will be stored.
                     int color;
             }
 
-With both these programs, earlier main method would run without throwing an exception.
+With both these programs, the earlier main method would run without throwing an exception.
 
-If you try de-serializing, In Example2, state of wall object is retained whereas in Example1, state of wall
+If you try de-serializing, In Example 2, the state of the wall object is retained whereas in Example 1, the state of the wall
 object is lost.
 </details>
 <details><summary>
@@ -307,6 +307,9 @@ object is lost.
 ## Are the constructors in an object invoked when it is de-serialized?
 </summary>
 
+No, the constructors in an object are not invoked when it is de-serialized. The deserialization process creates a new object and initializes its fields with the values that were serialized. The constructors are not called because the object is already created and its fields are already initialized.
+
+There are some exceptions to this rule. For example, if the object implements the Externalizable interface, then its readExternal() method will be called during deserialization. This method can be used to initialize the object's fields in any way that is desired.
 </details>
 <details><summary>
 	
