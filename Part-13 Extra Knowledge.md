@@ -115,6 +115,24 @@ The heap and stack are two important parts of the Java memory model. They work t
 </details>
 <details><summary>
 
+## What is the stored procedure in JDBC?
+</summary>
+
+A stored procedure is a set of SQL statements that are stored together as a single block of code in a database. Stored procedures can be reused multiple times without having to write the queries again. They can provide multiple output values and accept input as well as output parameters.
+
+Stored procedures are executed on the server side and perform a set of actions, before returning the results to the client side. They consist of database access commands (SQL), control statements, and data structures that manipulate the data obtained from the database.
+
+Stored procedures are accessible by all applications that can access relational databases, including Java, Python, and PHP. The procedure code is defined in a Java class method and stored in the database. This is executed using SQL.
+</details>
+<details><summary>
+
+## 
+</summary>
+
+
+</details>
+<details><summary>
+
 ## 
 </summary>
 
