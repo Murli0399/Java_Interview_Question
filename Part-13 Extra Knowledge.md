@@ -126,6 +126,30 @@ Stored procedures are accessible by all applications that can access relational 
 </details>
 <details><summary>
 
+## What is a connection pool? How is it used to improve performance in database applications?
+</summary>
+
+A connection pool is a cache of database connections that can be reused when a database is accessed. Connection pooling is a technique that can improve the performance of database applications.
+
+Connection pooling works by:
+
+- Creating a pool of open connections.
+- Passing these connections from database operation to database operation as needed.
+- Avoiding the overhead of creating a new database connection every time an application or server object requires access to a database.
+- Conserving application resources for future requests.
+- Allowing a database to scale effectively as the data stored there and the number of clients accessing it grow.
+
+Connection pooling can be implemented by deploying an intermediary queuing system to manage and recycle database connections. The JDBC Connection Pool Assistant can help you create and deploy a connection pool.
+</details>
+<details><summary>
+
+## 
+</summary>
+
+
+</details>
+<details><summary>
+
 ## 
 </summary>
 
