@@ -215,6 +215,45 @@ If used unwisely, the value of the PATH variable can slow down the operating sys
 </details>
 <details><summary>
 
+## What configurations do you need to make in web.xml to deploy a servlet in a web application?
+</summary>
+
+To configure a servlet in web.xml, you need to:
+- Define the servlet name and class name using the <servlet> element
+- Map the servlet to a URL or URL pattern
+- Add initializations and security roles for the servlet
+- Define mappings between URL paths and the servlets that handle requests with those paths
+
+The web server uses this configuration to identify the servlet to handle a given request. For example, the doGet() method for HTTP GET requests.
+
+The web.xml file is located in the WEB-INF directory. It does not represent the entire configuration that is available for the web application. Other servlets, filters, and listeners can be defined using programmatic configurations, annotations, and web fragments.
+</details>
+<details><summary>
+
+## Explain how the session is utilized for security implementation. Please explain who creates the session and how is session information exchanged between the browser and server.
+</summary>
+
+A session is a unique identifier that identifies a user's session on a website or application. A session is created when a user logs in to a website or app. The server creates a session ID, or session token, which is a randomly generated string. The session ID is attached to the response and is valid for a period of time.
+
+The session management process is as follows:
+1. The user enters login credentials and submits.
+2. The client sends a request with the login credentials.
+3. The server receives the request and checks if the login credentials are valid.
+4. If valid, the server creates a session and attaches the session ID to the response.
+
+The session ID is used to identify if the request came from the authenticated user without needing re-authentication.
+
+Session management involves sharing secrets with authenticated users. Secure cryptographic network communications are essential to maintaining session management security.
+</details>
+<details><summary>
+
+## 
+</summary>
+
+
+</details>
+<details><summary>
+
 ## 
 </summary>
 
