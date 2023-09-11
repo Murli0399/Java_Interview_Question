@@ -187,10 +187,20 @@ In general, ClassCastExceptions are more common than ClassNotFoundExceptions. Th
 </details>
 <details><summary>
 
-## 
+## What is JSON? How is it utilized?
 </summary>
 
+JSON (JavaScript Object Notation) is a text-based format for storing and transporting data. It is often used when data is sent from a server to a web page or browser. JSON is a lightweight format that is easy to read and write. It is also easy for software to parse and generate.
 
+JSON is used as an alternative to Extensible Markup Language (XML). It was introduced in the early 2000s as part of JavaScript. Today, 
+JSON is the universal standard of data exchange.
+
+JSON is used for:
+- Exchanging data between web clients and web servers
+- Transmitting data in web applications
+- Serializing structured data and exchanging it over a network
+
+JSON is a language-independent data format that supports almost every kind of language, framework, and library.
 </details>
 <details><summary>
 
