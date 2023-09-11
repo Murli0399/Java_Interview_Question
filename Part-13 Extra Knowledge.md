@@ -270,13 +270,49 @@ An entity-relationship (ER) model is a high-level data model that describes how 
 The ER model is based on two concepts:
 - Entities: Tables that contain specific information
 - Relationships: Associations or interactions between entities
-- 
+
 The ER model is commonly used in software engineering to represent things a business needs to remember to perform business processes. It can also be used to teach students the basics of database structure.
 
 An entity type in an ER diagram is defined by a name and a set of attributes. For example, a student entity type might have the attributes roll number, student name, age, and mobile number.
 </details>
 <details><summary>
 
+## What is a database trigger? How is it used to enforce business rules?
+</summary>
+
+A database trigger is a set of procedural codes that is automatically executed in response to a specific event in a database. Triggers are used to enforce business rules, maintain data integrity, and automate certain actions within a database.
+
+Triggers can be defined to run instead of or after DML (Data Manipulation Language) actions such as INSERT, UPDATE, and DELETE.
+
+Triggers can also be defined to run after system events such as a login or logout.
+
+Triggers are an important method for enforcing business rules because they automatically perform an action after a change is made to the database.
+</details>
+<details><summary>
+
+## What all commands in Unix are you aware of? Please explain their usage.
+</summary>
+
+Here are some Unix commands and their usage:
+- cat: Creates and displays short files
+- chmod: Changes permissions
+- cd: Changes directory
+- cp: Copies files
+- date: Displays the system date and time
+- ls: Lists the contents of a directory
+- man: Gets documentation for any command
+- ftp: Connects to a remote machine to download or upload files
+- grep: Searches a file
+
+Other Unix commands include:
+mv, rm, mkdir, rmdir, ps, kill.
+When writing Unix commands, you can follow these general rules:
+- Enter commands in lowercase
+- Options are often single letters prefixed with a dash (-)
+- Options are set off by any number of spaces or tabs
+</details>
+<details><summary>
+
 ## 
 </summary>
 
@@ -289,3 +325,32 @@ An entity type in an ER diagram is defined by a name and a set of attributes. Fo
 
 
 </details>
+<details><summary>
+
+## 
+</summary>
+
+
+</details>
+<details><summary>
+
+## 
+</summary>
+
+
+</details>
+<details><summary>
+
+## 
+</summary>
+
+
+</details>
+<details><summary>
+
+## 
+</summary>
+
+
+</details>
+
