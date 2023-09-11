@@ -204,10 +204,14 @@ JSON is a language-independent data format that supports almost every kind of la
 </details>
 <details><summary>
 
-## 
+## What is the usage of the PATH variable in an operating system? How is it utilized, when would you like to update it?
 </summary>
 
+The PATH variable is an environment variable that contains a list of directories the operating system checks before running a command. The PATH variable makes it easy to run commonly used programs located in their own folders. Updating the PATH variable allows you to run any executables found in the directories mentioned in PATH from any directory without typing the absolute file path.
 
+The PATH variable is the most frequently used environment variable. It is an important security control. The default systemwide PATH value is specified in the /etc/profile file. Each user normally has a PATH value in the user's $HOME/. profile file.
+
+If used unwisely, the value of the PATH variable can slow down the operating system by searching too many locations, or invalid locations.
 </details>
 <details><summary>
 
