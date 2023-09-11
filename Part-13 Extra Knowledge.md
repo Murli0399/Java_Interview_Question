@@ -305,7 +305,9 @@ Here are some Unix commands and their usage:
 - grep: Searches a file
 
 Other Unix commands include:
+
 mv, rm, mkdir, rmdir, ps, kill.
+
 When writing Unix commands, you can follow these general rules:
 - Enter commands in lowercase
 - Options are often single letters prefixed with a dash (-)
@@ -313,31 +315,63 @@ When writing Unix commands, you can follow these general rules:
 </details>
 <details><summary>
 
-## 
+## What is shell scripting? What purpose is it used for?
 </summary>
 
+Shell scripting is a computer program that is used to automate repetitive tasks. It is often used by system administrators to save time and increase accuracy. Shell scripts can be used for tasks such as:
+- Backing up files
+- Monitoring system resources
+- Managing user accounts
+- Creating command tools
+- Manipulating files
+- Running programs
+- Linking programs together
+- Completing batches
 
+Shell scripts are written as a sequence of commands in a file. The file is made up of ASCII text, also called plain text. You can use a text editor to create shell scripts. Some good command line text editors include vim, emacs, and nano.
+
+Shell scripts are easier to write and debug than other programming languages like C or C++. You can transfer the shell script to other UNIX and similar operating systems and execute it.
 </details>
 <details><summary>
 
-## 
+## How does your computer know what path to take to reach the external server
 </summary>
 
+When a computer tries to reach a server, it uses a Domain Name System (DNS) server to translate the URL into an IP address. This process is called DNS resolution. The DNS server then provides the IP address to reach the server.
 
+The router uses a forwarding table to determine the best path to reach the destination device. The router consults the routing table to find the IP address of the destination device. The router then uses the forwarding table to pick the next path based on the destination IP address.
+
+You can use Traceroute to trace the path between your computer and a target destination.
 </details>
 <details><summary>
 
-## 
+## Explain how you can read fields sent in a request from the browser using a servlet.
 </summary>
 
+Servlets are classes in a Java web application that handle requests and responses from client browsers. When a form is submitted, the servlet's doPost() method is invoked. The field values are submitted to the servlet as parameters in the HTTP request. You can use the following methods on the request object to get the parameter values: getParameter(, getParameterValues(, getParameterNames(.
 
+The getParameter() method returns the value of a request parameter as a string. If there is no parameter, it returns null. You can use this method when the parameter has a single value.
+
+The getParameterValues() method is used if the parameter appears more than once and returns multiple values. For example, a checkbox.
+
+The getParameterNames() method is used if you want a complete list of all parameters in the current request.
 </details>
 <details><summary>
 
-## 
+## What objects are implicitly available in JSP? Explain their usage
 </summary>
 
+JSP implicit objects are created automatically by the container during the translation of a JSP page to a servlet. These objects can be used directly in scriptlets without initializing or declaring them.
 
+Here are some of the implicit objects in JSP:
+- page: A synonym for "this", used to call methods defined by the translated servlet class
+- pageContext: The context for the JSP page, which provides access to other objects
+- servletContext: The context for the JSP page's servlet and any web components in the same application
+- Exception: Allows the designated JSP to access exception data
+
+Other implicit objects include: out, request, response, session, and application.
+
+You can use these objects to get, set, and remove attributes in four scopes: page, request, session, and application.
 </details>
 <details><summary>
 
