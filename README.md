@@ -3,37 +3,11 @@ We have lots of Java questions and detailed answers. And this repo was specially
 
 
 ### Collections
-- 134 . Why do we need collections in Java?
-- 135 . What are the important interfaces in the collection hierarchy?
-- 136 . What are the important methods that are declared in the collection interface?
-- 137 . Can you explain briefly about the List interface?
-- 138 . Explain ArrayList with an example.
-- 139 . Can an ArrayList have duplicate elements?
-- 140 . How do you iterate around an ArrayList using an iterator?
-- 141 . How do you sort an ArrayList?
-- 142 . How do you sort elements in an ArrayList using a comparable interface?
-- 143 . How do you sort elements in an ArrayList using a comparator interface?
-- 144 . What is vector class? How is it different from an ArrayList?
-- 145 . What is linkedList? What interfaces does it implement? How is it different from an ArrayList?
-- 146 . Can you briefly explain the Set interface?
-- 147 . What are the important interfaces related to the Set interface?
-- 148 . What is the difference between Set and sortedSet interfaces?
-- 149 . Can you give examples of classes that implement the Set interface?
-- 150 . What is a HashSet?
-- 151 . What is a linkedHashSet? How is different from a HashSet?
-- 152 . What is a TreeSet? How is different from a HashSet?
-- 153 . Can you give examples of implementations of navigableSet?
-- 154 . Explain briefly about the Queue interface.
 - 155 . What are the important interfaces related to the Queue interface? @
 - 156 . Explain the Deque interface. @
 - 157 . Explain the BlockingQueue interface. @
 - 158 . What is a priority queue? @
 - 159 . Can you give example implementations of the BlockingQueue interface? @
-- 160 . Can you briefly explain the Map interface?
-- 161 . What is the difference between a Map and a sorted map?
-- 162 . What is a HashMap?
-- 163 . What are the different methods in a Hash Map?
-- 164 . What is a TreeMap? How is different from a HashMap?
 - 165 . Can you give an example of the implementation of a navigable map interface? @
 - 166 . What are the static methods present in the collections class? @
 
