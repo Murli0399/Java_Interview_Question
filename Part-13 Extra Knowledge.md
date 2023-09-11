@@ -143,10 +143,19 @@ Connection pooling can be implemented by deploying an intermediary queuing syste
 </details>
 <details><summary>
 
-## 
+## Handling and fixing 'Out of Memory' exceptions?
 </summary>
 
+Out of Memory exceptions, or OutOfMemoryError, are runtime errors in Java that occur when the Java Virtual Machine (JVM) cannot allocate an object due to insufficient space in the Java heap. The Java Garbage Collector (GC) cannot free up the space required for a new object.
 
+Here are some ways to fix OutOfMemoryError:
+- Increase the size of the Metaspace by adding the -XX:MaxMetaspaceSize flag to the startup parameters of your Java application.
+- Increase the heap size of the Perm space by using the JVM option "-XX: MaxPermSize".
+- Restructure your code to use less memory. For example, you could stream the output instead of holding the whole thing in memory.
+- Give the JVM more memory with the -Xmx option.
+- Keep data access to a minimum. Let the database do the hard work for you (querying) and only bring back the data you need to the JVM.
+
+You can look in the atlassian-confluence.log to see which type of OutOfMemory Error you're receiving.
 </details>
 <details><summary>
 
