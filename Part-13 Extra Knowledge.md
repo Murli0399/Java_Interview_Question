@@ -262,10 +262,18 @@ Here are some differences between a view and a table:
 </details>
 <details><summary>
 
-## 
+## What is meant by an entity-relationship (E-R) model? Explain the terms Entity, Entity Type, and Entity Set in
 </summary>
 
+An entity-relationship (ER) model is a high-level data model that describes how entities relate to each other in a specific domain. The ER model is used to design a database by identifying entities and the relationships between them. The ER model is represented by an ER diagram, which is a blueprint for a database.
 
+The ER model is based on two concepts:
+- Entities: Tables that contain specific information
+- Relationships: Associations or interactions between entities
+- 
+The ER model is commonly used in software engineering to represent things a business needs to remember to perform business processes. It can also be used to teach students the basics of database structure.
+
+An entity type in an ER diagram is defined by a name and a set of attributes. For example, a student entity type might have the attributes roll number, student name, age, and mobile number.
 </details>
 <details><summary>
 
