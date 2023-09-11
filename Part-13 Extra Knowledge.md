@@ -159,6 +159,55 @@ You can look in the atlassian-confluence.log to see which type of OutOfMemory Er
 </details>
 <details><summary>
 
+## What is the difference between a ClassCastException and a ClassNotFoundException in Java?
+</summary>
+
+The main difference between a ClassCastException and a ClassNotFoundException in Java is that a ClassCastException is thrown when an object is not of the expected type, while a ClassNotFoundException is thrown when a class cannot be found.
+
+A ClassCastException is a checked exception, which means that it must be caught or declared in the method signature. It is thrown when an object is cast to a type that it is not compatible with. For example, the following code will throw a ClassCastException:
+```
+Object o = new Integer(10);
+String s = (String) o; // This will throw a ClassCastException
+```
+
+In this example, the object o is an Integer, but it is being cast to a String. This is not allowed, because an Integer cannot be converted to a String.
+
+A ClassNotFoundException is an unchecked exception, which means that it does not need to be caught or declared in the method signature. It is thrown when a class cannot be found. For example, the following code will throw a ClassNotFoundException:
+```
+try {
+  Class<?> c = Class.forName("java.lang.String");
+} catch (ClassNotFoundException e) {
+  // This will be executed if the class cannot be found
+}
+```
+
+In this example, the class java.lang.String is being looked up, but it cannot be found. This is because the class is not in the classpath.
+
+In general, ClassCastExceptions are more common than ClassNotFoundExceptions. This is because ClassCastExceptions can be caused by a variety of errors, such as misspelling a class name or using an incompatible version of a class. ClassNotFoundExceptions are typically only caused by missing classes.
+</details>
+<details><summary>
+
+## 
+</summary>
+
+
+</details>
+<details><summary>
+
+## 
+</summary>
+
+
+</details>
+<details><summary>
+
+## 
+</summary>
+
+
+</details>
+<details><summary>
+
 ## 
 </summary>
 
