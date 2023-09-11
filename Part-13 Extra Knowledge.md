@@ -247,10 +247,18 @@ Session management involves sharing secrets with authenticated users. Secure cry
 </details>
 <details><summary>
 
-## 
+## What is the difference between a database view and a table in a database?
 </summary>
 
+A database view is a virtual table that is extracted from a database. A table is an actual table that exists in physical locations. A view is a subset of a database and is based on a query that runs on one or more database tables. A view is used to query certain data present in different tables. A table is an independent data object that stores the data of a database.
 
+Here are some differences between a view and a table:
+- A view depends on the table.
+- A view is a virtual table, it does not occupy storage space.
+- A table is structured with columns and rows.
+- A table is an independent data object.
+- A table holds the basic user data and instances of defined objects.
+- A view is used to query certain data present in different tables.
 </details>
 <details><summary>
 
