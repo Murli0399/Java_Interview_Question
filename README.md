@@ -35,7 +35,7 @@ We have lots of Java questions and detailed answers. And this repo was specially
 
 ### Multithreading
 
-- 201 . Describe a few other important methods in threads.
+- 201 . Describe a few other important methods in threads
 - 203 . What are the important methods in Java for inter-thread communication?
 - 204 . What is the use of the wait method?
 - 205 . What is the use of the notify method?
