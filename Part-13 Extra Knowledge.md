@@ -375,10 +375,15 @@ You can use these objects to get, set, and remove attributes in four scopes: pag
 </details>
 <details><summary>
 
-## 
+## Difference between hashmap and hashtable?
 </summary>
 
+HashMap and Hashtable are both data structures in Java that store key-value pairs. The main difference between them is that HashMap is not thread-safe, while Hashtable is thread-safe. This means that HashMap is faster for single-threaded tasks, but Hashtable is thread-safe and can be shared with many threads.
 
+Here are some other differences between HashMap and Hashtable:
+- HashMap allows one null key and several null values, while Hashtable doesn't allow any null keys or values.
+- HashMap is non-synchronized, making it faster for single-threaded tasks, while Hashtable is inherently synchronized.
+- HashMap uses Iterator to iterate over values, whereas Hashtable has Enumerator for the same.
 </details>
 <details><summary>
 
