@@ -387,6 +387,65 @@ Here are some other differences between HashMap and Hashtable:
 </details>
 <details><summary>
 
+## What is constructor chaining?
+</summary>
+
+Constructor chaining is the process of calling one constructor from another constructor in the same class. It is used to initialize the object with some default values. Constructor chaining can be done in two ways:
+
+- Using the this() keyword to call the constructor in the same class.
+- Using the super() keyword to call the constructor in the parent class.
+
+The following is an example of constructor chaining using the this() keyword:
+```
+public class Person {
+
+    private String name;
+    private int age;
+
+    public Person(String name) {
+        this.name = name;
+    }
+
+    public Person(String name, int age) {
+        this(name); // Chaining to the constructor with one parameter
+        this.age = age;
+    }
+
+}
+```
+The following is an example of constructor chaining using the super() keyword:
+```
+public class Car extends Vehicle {
+
+    private String make;
+    private String model;
+
+    public Car(String make, String model) {
+        super(make, model); // Chaining to the constructor in the parent class
+        this.make = make;
+        this.model = model;
+    }
+
+}
+```
+Constructor chaining is a powerful feature that can help to make your code more concise and efficient.
+</details>
+<details><summary>
+
+## 
+</summary>
+
+
+</details>
+<details><summary>
+
+## 
+</summary>
+
+
+</details>
+<details><summary>
+
 ## 
 </summary>
 
