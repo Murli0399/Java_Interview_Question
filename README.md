@@ -24,14 +24,6 @@ We have lots of Java questions and detailed answers. And this repo was specially
 - 176 . What are atomic operations in Java?
 - 177 . What is BlockingQueue in Java?
 
-### Generics
-- 178 . What are Generics?
-- 179 . Why do we need Generics? Can you give an example of how Generics make a program more flexible?
-- 180 . How do you declare a generic class?
-- 181 . What are the restrictions in using a generic type that is declared in a class declaration?
-- 182 . How can we restrict Generics to a subclass of a particular class?
-- 183 . How can we restrict Generics to a superclass of a particular class?
-- 184 . Can you give an example of a generic method?
 
 ### Multithreading
 
