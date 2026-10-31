@@ -21,6 +21,20 @@ Here are some key concepts and features of functional programming in Java:
 **5. Streams:** The Stream API introduced in Java 8 enables functional-style operations on collections of data. Streams provide a way to process data in a declarative manner, allowing operations like filtering, mapping, and reducing.
 
 By incorporating functional programming principles into your Java code, you can write more concise, modular, and maintainable programs. However, it's important to note that Java is a multi-paradigm language, and functional programming is just one aspect of its capabilities.
+
+**Example:**
+
+```java
+List<Integer> nums = List.of(1, 2, 3, 4, 5, 6);
+
+// Imperative: how to do it, mutating state
+int sum = 0;
+for (int n : nums) if (n % 2 == 0) sum += n * n;
+
+// Functional: what to do, no mutation
+int sum2 = nums.stream().filter(n -> n % 2 == 0).mapToInt(n -> n * n).sum();  // 56
+```
+
 </details>
 <details><summary>
 
@@ -30,6 +44,7 @@ By incorporating functional programming principles into your Java code, you can 
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
+
 ```
 public class FunctionalProgrammingExample {
     public static void main(String[] args) {
@@ -53,6 +68,7 @@ public class FunctionalProgrammingExample {
     }
 }
 ```
+
 In this example, we have a list of numbers [1, 2, 3, 4, 5]. We apply functional programming concepts to manipulate and process this list:
 
 - Mapping and Filtering: We use the stream() method to convert the list into a stream of elements. Then, we apply the filter() method to keep only the even numbers and the map() method to square each number. Finally, we collect the results into a new list using collect().
@@ -75,6 +91,7 @@ Some of the predefined interfaces in java which can be consider as functional in
 ### java.lang.Comparable: public int compareTo(Object obj);
 ### java.util.Comparator: public int compare(Object obj1, Object obj2);
 ### java.lang.Runnable: public void run();
+
 ```
 @FunctionalInterface
 interface Intr{
@@ -90,6 +107,7 @@ i1.sayHello("Admin");
 }
 }
 ```
+
 </details>
 <details><summary>
 
@@ -129,63 +147,71 @@ Example: filtering a stream obtained from a source(collection) produces a new st
 </summary>
 Suppose we have a list of Person objects representing individuals with their names and ages:
 
-            import java.util.ArrayList;
-            import java.util.List;
+```java
+        import java.util.ArrayList;
+        import java.util.List;
 
-            class Person {
-                private String name;
-                private int age;
+        class Person {
+            private String name;
+            private int age;
 
-                public Person(String name, int age) {
-                    this.name = name;
-                    this.age = age;
-                }
-
-                public String getName() {
-                    return name;
-                }
-
-                public int getAge() {
-                    return age;
-                }
+            public Person(String name, int age) {
+                this.name = name;
+                this.age = age;
             }
 
-            public class StreamExample {
-                public static void main(String[] args) {
-                    List<Person> people = new ArrayList<>();
-                    people.add(new Person("John", 25));
-                    people.add(new Person("Alice", 32));
-                    people.add(new Person("Bob", 18));
-                    people.add(new Person("Emily", 27));
-                    people.add(new Person("David", 40));
-                }
+            public String getName() {
+                return name;
             }
+
+            public int getAge() {
+                return age;
+            }
+        }
+
+        public class StreamExample {
+            public static void main(String[] args) {
+                List<Person> people = new ArrayList<>();
+                people.add(new Person("John", 25));
+                people.add(new Person("Alice", 32));
+                people.add(new Person("Bob", 18));
+                people.add(new Person("Emily", 27));
+                people.add(new Person("David", 40));
+            }
+        }
+```
 
 Now, let's use streams to perform some operations on this list.
 
 **1. Filtering:** Suppose we want to find all the people who are older than 30. We can use the filter operation to achieve this:
+
 ```
 List<Person> olderThan30 = people.stream()
         .filter(person -> person.getAge() > 30)
         .collect(Collectors.toList());
 ```
+
 In this code, we create a stream from the people list, apply a filter operation to keep only the persons whose age is greater than 30, and finally collect the filtered persons into a new list olderThan30.
 
 **2. Mapping:** Suppose we want to extract only the names of the people in the list. We can use the map operation to transform each Person object into its corresponding name:
+
 ```
 List<String> names = people.stream()
         .map(Person::getName)
         .collect(Collectors.toList());
 ```
+
 In this example, we use the map operation to convert each Person object into its name using a method reference Person::getName. Finally, we collect the names into a new list.
 
 **3. Aggregation:** Suppose we want to find the average age of all the people in the list. We can use the mapToInt and average operations for this:
+
 ```
 double averageAge = people.stream()
         .mapToInt(Person::getAge)
         .average()
         .orElse(0.0);
 ```
+
 Here, we first use the mapToInt operation to convert each Person object into its age as an integer. Then, we apply the average operation to compute the average of all the ages. The orElse(0.0) is used to handle the case where the stream is empty, returning 0.0 as the default value.
 
 These are just a few examples of how streams can be used in Java to filter, transform, and aggregate data. Streams provide a powerful and expressive way to work with collections, allowing you to write more concise and readable code. They also support parallel processing, making it easier to leverage the capabilities of multi-core processors for improved performance.
@@ -204,30 +230,39 @@ gives the final result.
 Here are some commonly used intermediate operations in Java streams:
 
 - **filter:** It takes a predicate as an argument and returns a stream consisting of the elements that match the predicate.
+
 ```
 List<Integer> evenNumbers = numbers.stream()
                                   .filter(n -> n % 2 == 0)
                                   .collect(Collectors.toList());
 ```
+
 - **map:** It takes a function as an argument and applies the function to each element of the stream, returning a stream of the transformed elements.
+
 ```
 List<String> names = people.stream()
                            .map(Person::getName)
                            .collect(Collectors.toList());
 ```
+
 - **distinct:** It returns a stream consisting of the distinct elements of the original stream, removing duplicates.
+
 ```
 List<Integer> distinctNumbers = numbers.stream()
                                        .distinct()
                                        .collect(Collectors.toList());
 ```
+
 - **sorted:** It returns a stream with the elements sorted according to the natural order or a provided comparator.
+
 ```
 List<Integer> sortedNumbers = numbers.stream()
                                      .sorted()
                                      .collect(Collectors.toList());
 ```
+
 - **limit and skip:** limit returns a stream consisting of the first n elements, while skip discards the first n elements and returns the rest.
+
 ```
 List<Integer> firstThree = numbers.stream()
                                  .limit(3)
@@ -237,6 +272,7 @@ List<Integer> skipFirstTwo = numbers.stream()
                                     .skip(2)
                                     .collect(Collectors.toList());
 ```
+
 These are just a few examples of intermediate operations. There are more operations available in the Stream API that can be used to transform, filter, and manipulate the elements of a stream.
 </details>
 <details><summary>
@@ -250,22 +286,29 @@ Unlike intermediate operations, which are lazy and do not perform any computatio
 Here are some commonly used terminal operations in Java streams:
 
 - **forEach:** It performs an action for each element of the stream.
+
 ```
 numbers.stream()
        .forEach(System.out::println);
 ```
+
 - **collect:** It accumulates the elements of the stream into a collection or a single value.
+
 ```
 List<Integer> evenNumbers = numbers.stream()
                                   .filter(n -> n % 2 == 0)
                                   .collect(Collectors.toList());
 ```
+
 - **count:** It returns the number of elements in the stream.
+
 ```
 long count = numbers.stream()
                     .count();
 ```
+
 - **anyMatch, allMatch, and noneMatch:** These operations check if any, all, or none of the elements of the stream match a given predicate, respectively.
+
 ```
 boolean anyMatch = numbers.stream()
                           .anyMatch(n -> n > 5);
@@ -276,11 +319,14 @@ boolean allMatch = numbers.stream()
 boolean noneMatch = numbers.stream()
                            .noneMatch(n -> n < 0);
 ```
+
 - **reduce:** It performs a reduction on the elements of the stream using a binary operator and returns an Optional that may contain the reduced value.
+
 ```
 Optional<Integer> sum = numbers.stream()
                                .reduce((a, b) -> a + b);
 ```
+
 These are just a few examples of terminal operations. Terminal operations are the final step in a stream pipeline and produce a result or a side-effect. They allow you to consume or transform the elements of a stream into a final output.
 </details>
 <details><summary>
@@ -296,6 +342,7 @@ Instead of creating a Lambda Expression with all the details, with the help of m
 There are four types of method references in Java:
 
 ### Reference to a static method: It references a static method using the 
+
 ```
 syntax Class::staticMethod.
 
@@ -303,7 +350,9 @@ syntax Class::staticMethod.
 Function<String, Integer> parser = Integer::parseInt;
 Integer number = parser.apply("123"); // invokes Integer.parseInt("123")
 ```
+
 ### Reference to an instance method of a particular object: It references an instance method of a specific object using the 
+
 ```
 syntax object::instanceMethod.
 
@@ -312,7 +361,9 @@ String str = "Hello, world!";
 Function<String, Integer> lengthGetter = String::length;
 Integer length = lengthGetter.apply(str); // invokes str.length()
 ```
+
 ### Reference to an instance method of an arbitrary object of a particular type: It references an instance method of any object of a specific type using the 
+
 ```
 syntax Class::instanceMethod.
 
@@ -320,7 +371,9 @@ syntax Class::instanceMethod.
 Function<String, String> upperCaseConverter = String::toUpperCase;
 String result = upperCaseConverter.apply("hello"); // invokes "hello".toUpperCase()
 ```
+
 ### Reference to a constructor: It references a constructor of a class using the 
+
 ```
 syntax ClassName::new.
 
@@ -328,6 +381,7 @@ syntax ClassName::new.
 Supplier<List<String>> listSupplier = ArrayList::new;
 List<String> list = listSupplier.get(); // invokes new ArrayList<>()
 ```
+
 Method references are particularly useful when working with functional interfaces, such as in the context of streams or functional programming in general. They allow you to pass method references as arguments to higher-order functions or assign them to functional interface variables.
 
 Overall, method references provide a concise and readable way to refer to existing methods or constructors without the need to explicitly define lambda expressions.
@@ -355,6 +409,19 @@ Lambda expressions can be used in various contexts, such as:
 **2. Higher-order functions:** Lambda expressions can be passed as arguments to methods or assigned to variables, enabling you to create higher-order functions that take behavior as input.
 
 **3. Stream operations:** Lambda expressions are commonly used with stream operations to specify transformations, filters, or aggregations on streams of data.
+
+**Example:**
+
+```java
+Runnable r = () -> System.out.println("run");                 // no params
+Function<String, Integer> len = s -> s.length();              // one param
+Comparator<String> byLen = (a, b) -> Integer.compare(a.length(), b.length()); // two params
+BiFunction<Integer, Integer, Integer> add = (a, b) -> {
+    int result = a + b;                                        // block body
+    return result;
+};
+```
+
 </details>
 <details><summary>
 
@@ -376,6 +443,7 @@ public class LambdaExample {
     }
 }
 ```
+
 In this example, we define a functional interface Calculator with a single abstract method calculate that takes two integer parameters and returns an integer. Then, we use a lambda expression (a, b) -> a + b to implement the calculate method.
 
 The lambda expression (a, b) -> a + b represents an anonymous function that takes two integers a and b as parameters and returns their sum. The arrow -> separates the parameter list from the body of the lambda expression, and the body a + b specifies the addition operation.
@@ -399,6 +467,7 @@ Lambda expressions are used to implement the abstract method of a functional int
 When a lambda expression is assigned to a functional interface, it becomes an instance of that interface. This allows you to treat the lambda expression as an object and pass it around, assign it to variables, or use it as an argument in methods.
 
 Here's an example to illustrate the relationship between lambda expressions and functional interfaces:
+
 ```
 interface MyFunction {
     int calculate(int a, int b);
@@ -415,6 +484,7 @@ public class LambdaAndFunctionalInterface {
     }
 }
 ```
+
 In this example, we define a functional interface MyFunction with a single abstract method calculate. The calculate method takes two integer parameters and returns an integer.
 
 We use a lambda expression (a, b) -> a + b to implement the calculate method of the MyFunction interface. The lambda expression specifies the addition operation by taking two integers a and b and returning their sum.
@@ -432,6 +502,7 @@ Lambda expressions enable us to provide a concise implementation of the abstract
 While functional interfaces are defined as having a single abstract method, it is still possible to work with multiple arguments by leveraging Java's support for functional interfaces with default methods or by using predefined functional interfaces from the Java API. Here are a few examples:
 
 ### Consumer<T, U>:
+
 ```
 import java.util.function.BiConsumer;
 
@@ -442,9 +513,11 @@ public class ConsumerExample {
     }
 }
 ```
+
 In this example, we use the BiConsumer functional interface, which takes two arguments (String and Integer) and performs an action without returning a value. The accept() method is used to consume the arguments and print the length of the string.
 
 ### BiFunction<T, U, R>:
+
 ```
 import java.util.function.BiFunction;
 
@@ -456,6 +529,7 @@ public class BiFunctionExample {
     }
 }
 ```
+
 Here, the BiFunction functional interface takes two arguments (Integer and Integer) and returns a result (Integer). The apply() method is used to apply the multiplication operation on the arguments and obtain the result.
 </details>
 <details><summary>
@@ -469,6 +543,7 @@ public R apply(T t);
 ```
 
 ### Example:
+
 ```
 import java.util.function.Function;
 public class Main {
@@ -482,6 +557,7 @@ public class Main {
     }
 }
 ```
+
 </details>
 <details><summary>
 
@@ -492,9 +568,11 @@ This interface contains only one abstract method called:
 ```
 public boolean test(T t);
 ```
+
 This method test() checks whether supplied obj satisfying a condition or not.
 
 ### Example:
+
 ```
 import java.util.function.Predicate;
 public class Main {
@@ -507,12 +585,15 @@ public class Main {
 ```
 
 In java 8 Collection interface defines a method called:
+
 ```
 public boolean removeIf(Predicate filter)
 ```
+
 Based on the condition of Predicate, this method will remove/filter the elements
 from the Collection classes
 Example: Removing the Students from the List whose marks is less than 700
+
 ```
 import java.util.List;
 import java.util.ArrayList;
@@ -531,6 +612,7 @@ public class Main{
     }
 }
 ```
+
 </details>
 <details><summary>
 
@@ -541,7 +623,9 @@ It represents a function which takes in one argument and produces a result. Howe
 ```
 public void accept(T t);
 ```
+
 ### Example:
+
 ```
 import java.util.function.Consumer;
 public class Main {
@@ -555,6 +639,7 @@ public class Main {
     }
 }
 ```
+
 </details>
 <details><summary>
 
@@ -565,7 +650,9 @@ It represents a function which does not take in any argument but produces a valu
 ```
 public T get();
 ```
+
 ### Example:
+
 ```
 import java.util.function.Supplier;
 public class Main {
@@ -577,4 +664,5 @@ public class Main {
     }
 }
 ```
+
 </details>

@@ -18,6 +18,16 @@ Platform independence, also known as "write once, run anywhere," refers to the a
 Java is one of the most popular platform-independent languages. Once we compile a Java program and build a jar, we can run the jar (compiled Java program) in any Operating System - where a JVM is installed. Java achieves Platform Independence in a beautiful way. On compiling a Java file the output is a class file- which contains an internal Java representation called bytecode. 
 
 JVM converts bytecode to executable instructions. The executable instructions are different in different operating systems. So, there are different JVM for different operating systems. A JVM for Windows is different from a JVM for Mac. However, both the JVM's understand the bytecode and convert it to the executable code for the respective operating system.
+
+**Example:**
+
+Compile once, run on any OS that has a JVM:
+
+```bash
+javac Hello.java      # produces Hello.class (bytecode), same file for every OS
+java Hello            # Windows, Linux or macOS JVM runs the same Hello.class
+```
+
 </details>
   
 <details><summary>
@@ -29,6 +39,23 @@ Bytecode is a low-level representation of code that is executed by a virtual mac
 If i talk about Java, when you write a Java program, it is first compiled into bytecode. And the Java compiler (javac) translates the human-readable Java source code into a compact and platform-neutral binary format which is called by bytecode. This bytecode is stored in .class files.
 
 Bytecode is designed to be easily interpreted and executed by the Java Virtual Machine (JVM), which is specific to each platform or operating system. Instead of directly executing machine-specific instructions, the JVM reads the bytecode instructions one by one and dynamically translates them into machine code that can be executed by the underlying hardware.
+
+**Example:**
+
+```bash
+javac Hello.java
+javap -c Hello        # disassemble to see the bytecode instructions
+```
+
+```text
+public static void main(java.lang.String[]);
+  Code:
+     0: getstatic     #7    // Field java/lang/System.out:Ljava/io/PrintStream;
+     3: ldc           #13   // String Hello
+     5: invokevirtual #15   // Method java/io/PrintStream.println:(Ljava/lang/String;)V
+     8: return
+```
+
 </details>
   
 <details><summary>
@@ -37,7 +64,7 @@ Bytecode is designed to be easily interpreted and executed by the Java Virtual M
 </summary>
 JDK (Java Development Kit), JVM (Java Virtual Machine), and JRE (Java Runtime Environment) are key components of the Java platform. Each serves a specific purpose in the Java development and execution process. Here's a comparison of these three components:
 	
-![Diagram](img/java_enviroment.png)
+![Diagram](../img/java_enviroment.png)
 	
 ### JDK (Java Development Kit):
 The JDK is a software development kit that includes the necessary tools and libraries for Java development.
@@ -57,6 +84,15 @@ The JRE is a subset of the JDK. It includes the necessary components to run Java
 The JRE consists of the JVM, Java class libraries, and other runtime dependencies required for executing Java applications.
 It provides the runtime environment for running Java applications on end-user machines or servers.
 Users who only need to run Java applications, rather than developing them, can install the JRE. It allows them to execute Java programs without the need for the full JDK.
+
+**Example:**
+
+**JDK** ⊃ **JRE** ⊃ **JVM**:
+
+- Developer machine: install the JDK to get `javac`, `jar`, `jdb`, `jcmd`.
+- Production Docker image: a JRE-only image (e.g. `eclipse-temurin:21-jre`) is smaller because it has no compiler.
+- The JVM inside it is what executes the bytecode, manages memory and runs the GC.
+
 </details>
   
 <details><summary>
@@ -64,4 +100,15 @@ Users who only need to run Java applications, rather than developing them, can i
 ## What is the role of class loader in java ?
 </summary>
 Java ClassLoader is an abstract class. It belongs to a java.lang package. It loads classes from different resources. Java ClassLoader is used to load the classes at run time. In other words, JVM performs the linking process at runtime. Classes are loaded into the JVM according to need. If a loaded class depends on another class, that class is loaded as well. When we request to load a class, it delegates the class to its parent. In this way, uniqueness is maintained in the runtime environment. It is essential to execute a Java program.
+
+**Example:**
+
+```java
+System.out.println(String.class.getClassLoader());   // null -> Bootstrap loader
+System.out.println(java.sql.Driver.class.getClassLoader()); // platform loader
+System.out.println(Main.class.getClassLoader());     // jdk.internal.loader.ClassLoaders$AppClassLoader
+
+Class<?> clazz = Class.forName("com.example.PaymentService"); // loaded at runtime by name
+```
+
 </details>

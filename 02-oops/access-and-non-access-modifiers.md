@@ -8,34 +8,36 @@ When a class member (class, method, or field) is declared with the default modif
 
 Example
 
-	package com.rithus.classmodifiers.defaultaccess.a;
+```java
+package com.rithus.classmodifiers.defaultaccess.a;
 
-	/* No public before class. So this class has default access*/
-	class DefaultAccessClass {
-	//Default access is also called package access
-	}
+/* No public before class. So this class has default access*/
+class DefaultAccessClass {
+//Default access is also called package access
+}
 
-	Another Class in Same Package: Has access to default class
-	package com.rithus.classmodifiers.defaultaccess.a;
+Another Class in Same Package: Has access to default class
+package com.rithus.classmodifiers.defaultaccess.a;
 
-	public class AnotherClassInSamePackage {
-			//DefaultAccessClass and AnotherClassInSamePackage
-			//are in same package.
-			//So, DefaultAccessClass is visible.
-			//An instance of the class can be created.
-			DefaultAccessClass defaultAccess;
-	}
+public class AnotherClassInSamePackage {
+		//DefaultAccessClass and AnotherClassInSamePackage
+		//are in same package.
+		//So, DefaultAccessClass is visible.
+		//An instance of the class can be created.
+		DefaultAccessClass defaultAccess;
+}
 
-	Class in Different Package: NO access to default class
-	package com.rithus.classmodifiers.defaultaccess.b;
+Class in Different Package: NO access to default class
+package com.rithus.classmodifiers.defaultaccess.b;
 
-	public class ClassInDifferentPackage {
-			//Class DefaultAccessClass and Class ClassInDifferentPackage
-			//are in different packages (*.a and *.b)
-			//So, DefaultAccessClass is not visible to ClassInDifferentPackage
-			//Below line of code will cause compilation error if uncommented
-			//DefaultAccessClass defaultAccess; //COMPILE ERROR!!
-	}
+public class ClassInDifferentPackage {
+		//Class DefaultAccessClass and Class ClassInDifferentPackage
+		//are in different packages (*.a and *.b)
+		//So, DefaultAccessClass is not visible to ClassInDifferentPackage
+		//Below line of code will cause compilation error if uncommented
+		//DefaultAccessClass defaultAccess; //COMPILE ERROR!!
+}
+```
 
 </details>
 <details><summary>
@@ -46,18 +48,20 @@ In Java, the private access modifier is one of the four access modifiers used to
 
 When a class member is declared as private, it is accessible only within the same class where it is defined. It is not visible or accessible from any other class, including subclasses and other classes in the same package.
 
-	public class MyClass {
-	    private int privateField;
+```java
+public class MyClass {
+    private int privateField;
 
-	    private void privateMethod() {
-		System.out.println("This is a private method.");
-	    }
+    private void privateMethod() {
+	System.out.println("This is a private method.");
+    }
 
-	    public void publicMethod() {
-		privateField = 10;   // Accessible within the same class
-		privateMethod();     // Accessible within the same class
-	    }
-	}
+    public void publicMethod() {
+	privateField = 10;   // Accessible within the same class
+	privateMethod();     // Accessible within the same class
+    }
+}
+```
 
 </details>
 <details><summary>
@@ -68,20 +72,22 @@ In Java, the default or package access modifier is a level of access control tha
 
 When a class member (class, method, or field) is declared with the default modifier, it is accessible within the same package (i.e., the classes that belong to the same package). It is not accessible outside of the package, including subclasses in other packages.
 
-	package com.example;
+```java
+package com.example;
 
-	class MyClass {
-	    void myMethod() {
-		System.out.println("This method has default access.");
-	    }
-	}
+class MyClass {
+    void myMethod() {
+	System.out.println("This method has default access.");
+    }
+}
 
-	public class Main {
-	    public static void main(String[] args) {
-		MyClass myObject = new MyClass();
-		myObject.myMethod();  // Accessible within the same package
-	    }
-	}
+public class Main {
+    public static void main(String[] args) {
+	MyClass myObject = new MyClass();
+	myObject.myMethod();  // Accessible within the same package
+    }
+}
+```
 
 </details>
 <details><summary>
@@ -92,29 +98,31 @@ In Java, the protected access modifier is one of the four access modifiers used 
 
 When a class member is declared as protected, it is accessible within the same package and can also be accessed by subclasses (whether they are in the same package or not) and non-subclasses outside the package.
 
-	package com.example;
+```java
+package com.example;
 
-	public class Superclass {
-	    protected int protectedField;
+public class Superclass {
+    protected int protectedField;
 
-	    protected void protectedMethod() {
-		System.out.println("This is a protected method.");
-	    }
-	}
+    protected void protectedMethod() {
+	System.out.println("This is a protected method.");
+    }
+}
 
-	public class Subclass extends Superclass {
-	    public void accessProtectedMember() {
-		protectedField = 10;      // Accessible in subclass
-		protectedMethod();        // Accessible in subclass
-	    }
-	}
+public class Subclass extends Superclass {
+    public void accessProtectedMember() {
+	protectedField = 10;      // Accessible in subclass
+	protectedMethod();        // Accessible in subclass
+    }
+}
 
-	public class Main {
-	    public static void main(String[] args) {
-		Subclass subclassObject = new Subclass();
-		subclassObject.accessProtectedMember();  // Accessible in subclass
-	    }
-	}
+public class Main {
+    public static void main(String[] args) {
+	Subclass subclassObject = new Subclass();
+	subclassObject.accessProtectedMember();  // Accessible in subclass
+    }
+}
+```
 
 </details>
 <details><summary>
@@ -127,23 +135,25 @@ When a class member is declared as public, it is accessible from any other class
 
 The public access modifier is used when you want a class member to be accessible and visible from any part of the program. It is typically used for creating public APIs, exposing functionality to other classes, and facilitating easy integration with other modules or libraries.
 
-	package com.example;
+```java
+package com.example;
 
-	public class MyClass {
-	    public int publicField;
+public class MyClass {
+    public int publicField;
 
-	    public void publicMethod() {
-		System.out.println("This is a public method.");
-	    }
-	}
+    public void publicMethod() {
+	System.out.println("This is a public method.");
+    }
+}
 
-	public class Main {
-	    public static void main(String[] args) {
-		MyClass myObject = new MyClass();
-		myObject.publicField = 10;      // Accessible from any class
-		myObject.publicMethod();        // Accessible from any class
-	    }
-	}
+public class Main {
+    public static void main(String[] args) {
+	MyClass myObject = new MyClass();
+	myObject.publicField = 10;      // Accessible from any class
+	myObject.publicMethod();        // Accessible from any class
+    }
+}
+```
 
 </details>
 <details><summary>
@@ -160,27 +170,29 @@ In Java, when a class is in the same package as another class, it has access to 
 
 Look at the code below to understand what can be accessed and what cannot be.
 
-	package com.rithus.membermodifiers.access;
+```java
+package com.rithus.membermodifiers.access;
 
-	public class TestClassInSamePackage {
-		public static void main(String[] args) {
-				ExampleClass example = new ExampleClass();
+public class TestClassInSamePackage {
+	public static void main(String[] args) {
+			ExampleClass example = new ExampleClass();
 
-				example.publicVariable = 5;
-				example.publicMethod();
+			example.publicVariable = 5;
+			example.publicMethod();
 
-				//privateVariable is not visible
-				//Below Line, uncommented, would give compiler error
-				//example.privateVariable=5; //COMPILE ERROR
-				//example.privateMethod();
+			//privateVariable is not visible
+			//Below Line, uncommented, would give compiler error
+			//example.privateVariable=5; //COMPILE ERROR
+			//example.privateMethod();
 
-				example.protectedVariable = 5;
-				example.protectedMethod();
+			example.protectedVariable = 5;
+			example.protectedMethod();
 
-				example.defaultVariable = 5;
-				example.defaultMethod();
-		}
+			example.defaultVariable = 5;
+			example.defaultMethod();
 	}
+}
+```
 
 </details>
 <details><summary>
@@ -193,33 +205,35 @@ In Java, when a class is in a different package than another class, it has acces
 	
 Look at the code below to understand what can be accessed and what cannot be.
 
-	package com.rithus.membermodifiers.access.different;
+```java
+package com.rithus.membermodifiers.access.different;
 
-	import com.rithus.membermodifiers.access.ExampleClass;
+import com.rithus.membermodifiers.access.ExampleClass;
 
-	public class TestClassInDifferentPackage {
-			public static void main(String[] args) {
-					ExampleClass example = new ExampleClass();
+public class TestClassInDifferentPackage {
+		public static void main(String[] args) {
+				ExampleClass example = new ExampleClass();
 
-					example.publicVariable = 5;
-					example.publicMethod();
+				example.publicVariable = 5;
+				example.publicMethod();
 
-					//privateVariable,privateMethod are not visible
-					//Below Lines, uncommented, would give compiler error
-					//example.privateVariable=5; //COMPILE ERROR
-					//example.privateMethod();//COMPILE ERROR
+				//privateVariable,privateMethod are not visible
+				//Below Lines, uncommented, would give compiler error
+				//example.privateVariable=5; //COMPILE ERROR
+				//example.privateMethod();//COMPILE ERROR
 
-					//protectedVariable,protectedMethod are not visible
-					//Below Lines, uncommented, would give compiler error
-					//example.protectedVariable = 5; //COMPILE ERROR
-					//example.protectedMethod();//COMPILE ERROR
+				//protectedVariable,protectedMethod are not visible
+				//Below Lines, uncommented, would give compiler error
+				//example.protectedVariable = 5; //COMPILE ERROR
+				//example.protectedMethod();//COMPILE ERROR
 
-					//defaultVariable,defaultMethod are not visible
-					//Below Lines, uncommented, would give compiler error
-					//example.defaultVariable = 5;//COMPILE ERROR
-					//example.defaultMethod();//COMPILE ERROR
-			}
-	}	
+				//defaultVariable,defaultMethod are not visible
+				//Below Lines, uncommented, would give compiler error
+				//example.defaultVariable = 5;//COMPILE ERROR
+				//example.defaultMethod();//COMPILE ERROR
+		}
+}	
+```
 	
 </details>
 <details><summary>
@@ -236,26 +250,28 @@ In Java, when a subclass is in the same package as its superclass, it has access
 	
 Look at the code below to understand what can be accessed and what cannot be.
 
-	package com.rithus.membermodifiers.access;
+```java
+package com.rithus.membermodifiers.access;
 
-	public class SubClassInSamePackage extends ExampleClass {
+public class SubClassInSamePackage extends ExampleClass {
 
-		void subClassMethod(){
-				publicVariable = 5;
-				publicMethod();
+	void subClassMethod(){
+			publicVariable = 5;
+			publicMethod();
 
-				//privateVariable is not visible to SubClass
-				//Below Line, uncommented, would give compiler error
-				//privateVariable=5; //COMPILE ERROR
-				//privateMethod();
+			//privateVariable is not visible to SubClass
+			//Below Line, uncommented, would give compiler error
+			//privateVariable=5; //COMPILE ERROR
+			//privateMethod();
 
-				protectedVariable = 5;
-				protectedMethod();
+			protectedVariable = 5;
+			protectedMethod();
 
-				defaultVariable = 5;
-				defaultMethod();
-		}
-	}	
+			defaultVariable = 5;
+			defaultMethod();
+	}
+}	
+```
 
 </details>
 <details><summary>
@@ -270,30 +286,32 @@ In Java, when a subclass is in a different package than its superclass, it has a
 	
 Look at the code below to understand what can be accessed and what cannot be.
 
-	package com.rithus.membermodifiers.access.different;
+```java
+package com.rithus.membermodifiers.access.different;
 
-	import com.rithus.membermodifiers.access.ExampleClass;
+import com.rithus.membermodifiers.access.ExampleClass;
 
-	public class SubClassInDifferentPackage extends ExampleClass {
+public class SubClassInDifferentPackage extends ExampleClass {
 
-		void subClassMethod(){
-			publicVariable = 5;
-			publicMethod();
+	void subClassMethod(){
+		publicVariable = 5;
+		publicMethod();
 
-			//privateVariable is not visible to SubClass
-			//Below Line, uncommented, would give compiler error
-			//privateVariable=5; //COMPILE ERROR
-			//privateMethod();
+		//privateVariable is not visible to SubClass
+		//Below Line, uncommented, would give compiler error
+		//privateVariable=5; //COMPILE ERROR
+		//privateMethod();
 
-			protectedVariable = 5;
-			protectedMethod();
+		protectedVariable = 5;
+		protectedMethod();
 
-			//privateVariable is not visible to SubClass
-			//Below Line, uncommented, would give compiler error
-			//defaultVariable = 5; //COMPILE ERROR
-			//defaultMethod();
-		}
-	}	
+		//privateVariable is not visible to SubClass
+		//Below Line, uncommented, would give compiler error
+		//defaultVariable = 5; //COMPILE ERROR
+		//defaultMethod();
+	}
+}	
+```
 
 </details>
 <details><summary>
@@ -306,18 +324,20 @@ In Java, the final modifier can be used to restrict the behavior of a class. Whe
 
 2. Performance optimizations: Declaring a class as final allows the compiler and runtime environment to perform certain optimizations. Since a final class cannot be subclassed, method calls can be resolved at compile-time instead of runtime, leading to potential performance improvements.
 	
-		Final Class examples : String, Integer, Double and other wrapper classes
+```java
+	Final Class examples : String, Integer, Double and other wrapper classes
 
-		final public class FinalClass {
-		}
+	final public class FinalClass {
+	}
 
-		Below class will not compile if uncommented. FinalClass cannot be extended.
+	// Below class will not compile if uncommented. FinalClass cannot be extended.
 
-		/*
-		class ExtendingFinalClass extends FinalClass{ //COMPILER ERROR
+	/*
+	class ExtendingFinalClass extends FinalClass{ //COMPILER ERROR
 
-		}
-		*/	
+	}
+	*/	
+```
 
 </details>
 <details><summary>
@@ -330,22 +350,24 @@ In Java, the final modifier can be applied to a method to indicate that the meth
 
 2. Efficiency and performance: Marking a method as final allows the compiler to perform certain optimizations. Since the method cannot be overridden, the compiler can make direct invocations of the method without the need for dynamic dispatch, which can result in improved performance.
 	
-		public class FinalMemberModifiersExample {
-			final void finalMethod(){
-			}
+```java
+	public class FinalMemberModifiersExample {
+		final void finalMethod(){
 		}
+	}
 
-		Any SubClass extending above class cannot override the finalMethod().
+	Any SubClass extending above class cannot override the finalMethod().
 
-		class SubClass extends FinalMemberModifiersExample {
-			//final method cannot be over-riddent
-			//Below method, uncommented, causes compilation Error
-			/*
-			final void finalMethod(){
+	class SubClass extends FinalMemberModifiersExample {
+		//final method cannot be over-riddent
+		//Below method, uncommented, causes compilation Error
+		/*
+		final void finalMethod(){
 
-			}
-			*/
-		}	
+		}
+		*/
+	}	
+```
 
 </details>
 <details><summary>
@@ -354,14 +376,16 @@ In Java, the final modifier can be applied to a method to indicate that the meth
 </summary>
 In Java, a final variable is a variable that cannot be reassigned once it has been assigned a value. Once a final variable is assigned a value, its value remains constant throughout the program's execution.  It provides immutability, represents constants, and can contribute to thread safety in concurrent programs.
 
-	public class MyClass {
-	    private final int myFinalVariable = 10;
+```java
+public class MyClass {
+    private final int myFinalVariable = 10;
 
-	    public void myMethod() {
-		// Cannot reassign value to myFinalVariable
-		// myFinalVariable = 20;  // This would cause a compilation error
-	    }
-	}
+    public void myMethod() {
+	// Cannot reassign value to myFinalVariable
+	// myFinalVariable = 20;  // This would cause a compilation error
+    }
+}
+```
 
 </details>
 <details><summary>
@@ -370,14 +394,16 @@ In Java, a final variable is a variable that cannot be reassigned once it has be
 </summary>
 In Java, a final argument refers to a method parameter that is declared with the final modifier. When a method parameter is marked as final, it means that its value cannot be changed within the method body. Ensure its immutability and read-only access within the method. It communicates the intent that the parameter should not be modified and provides an extra level of safety in method implementation.
 
-	public void myMethod(final int value) {
-	    // Cannot modify the value of the 'value' parameter
-	    // value = 10;  // This would cause a compilation error
+```java
+public void myMethod(final int value) {
+    // Cannot modify the value of the 'value' parameter
+    // value = 10;  // This would cause a compilation error
 
-	    // Read-only access to the 'value' parameter
-	    int result = value * 2;
-	    System.out.println(result);
-	}
+    // Read-only access to the 'value' parameter
+    int result = value * 2;
+    System.out.println(result);
+}
+```
 
 </details>
 <details><summary>
@@ -395,6 +421,26 @@ When a variable is declared as volatile, the following behaviors are guaranteed:
 It's important to note that the volatile keyword only provides guarantees for individual variable accesses. It does not guarantee the atomicity of compound actions, such as incrementing a volatile variable. For atomic operations, you would need to use other mechanisms, such as locks or atomic classes like AtomicInteger, AtomicLong, etc.
 
 The main use case for the volatile keyword is in scenarios where variables are shared among multiple threads, and you want to ensure that the changes made by one thread are immediately visible to others without the need for explicit synchronization mechanisms like locks.
+
+**Example:**
+
+```java
+class Task implements Runnable {
+    private volatile boolean running = true;  // without volatile, run() may loop forever
+
+    public void run() {
+        while (running) { /* work */ }
+        System.out.println("stopped");
+    }
+
+    public void stop() { running = false; }   // visible to the worker thread immediately
+}
+
+// volatile does NOT make this safe: count++ is read + add + write
+private volatile int count;
+void increment() { count++; }   // use AtomicInteger instead
+```
+
 </details>
 <details><summary>
 	
@@ -416,25 +462,27 @@ Static Variable/Method – Example
 count variable in Cricketer class is static. The method to get the count value 
 getCount() is also a static method.
 
-	public class Cricketer {
-		private static int count;
+```java
+public class Cricketer {
+	private static int count;
 
-		public Cricketer() {
-				count++;
-		}
-
-		static int getCount() {
-				return count;
-		}
-
-		public static void main(String[] args) {
-				Cricketer cricketer1 = new Cricketer();
-				Cricketer cricketer2 = new Cricketer();
-				Cricketer cricketer3 = new Cricketer();
-				Cricketer cricketer4 = new Cricketer();
-				System.out.println(Cricketer.getCount());//4
-		}
+	public Cricketer() {
+			count++;
 	}
+
+	static int getCount() {
+			return count;
+	}
+
+	public static void main(String[] args) {
+			Cricketer cricketer1 = new Cricketer();
+			Cricketer cricketer2 = new Cricketer();
+			Cricketer cricketer3 = new Cricketer();
+			Cricketer cricketer4 = new Cricketer();
+			System.out.println(Cricketer.getCount());//4
+	}
+}
+```
 
 4 instances of the Cricketer class are created. Variable count is incremented 
 with every instance createdin the constructor.

@@ -17,6 +17,20 @@ Exception handling is crucial in Java (and in programming in general) for severa
 - **Code maintainability** Exception handling promotes code maintainability by separating the normal code flow from the error-handling code. By encapsulating error-handling logic in exception handlers, you can keep the main code clean and focused on its primary functionality. This separation enhances code readability and maintainability.
 
 In summary, exception handling is essential in Java because it allows you to manage errors, control program flow, debug code, ensure stability, provide a better user experience, and maintain code quality. It is a fundamental aspect of writing robust and reliable software.
+
+**Example:**
+
+```java
+public User loadUser(long id) {
+    try {
+        return userClient.fetch(id);                       // may fail: network, timeout
+    } catch (TimeoutException e) {
+        log.warn("User service timed out for id {}", id);  // program keeps running gracefully
+        return User.anonymous();                           // sensible fallback
+    }
+}
+```
+
 </details>
 <details><summary>
 
@@ -28,17 +42,19 @@ The Try-Catch pattern allows you to enclose a section of code that might throw a
 
 The basic structure of the Try-Catch pattern is as follows:
 
-        try {
-            // Code that might throw an exception
-        } catch (ExceptionType1 exception1) {
-            // Exception handling code for ExceptionType1
-        } catch (ExceptionType2 exception2) {
-            // Exception handling code for ExceptionType2
-        } catch (ExceptionType3 exception3) {
-            // Exception handling code for ExceptionType3
-        } finally {
-            // Code that is always executed, regardless of whether an exception occurred or not
-        }
+```java
+    try {
+        // Code that might throw an exception
+    } catch (ExceptionType1 exception1) {
+        // Exception handling code for ExceptionType1
+    } catch (ExceptionType2 exception2) {
+        // Exception handling code for ExceptionType2
+    } catch (ExceptionType3 exception3) {
+        // Exception handling code for ExceptionType3
+    } finally {
+        // Code that is always executed, regardless of whether an exception occurred or not
+    }
+```
 
 In this pattern, the try block contains the code that might throw an exception. The catch blocks handle specific types of exceptions, allowing you to provide appropriate error handling or recovery mechanisms. The finally block, which is optional, is used for code that needs to be executed regardless of whether an exception occurred or not (e.g., cleanup operations).
 
@@ -61,6 +77,24 @@ The "finally" block is an optional component of the Try-Catch-Finally pattern us
 - **Consistency and code readability** By placing code that must be executed in all circumstances in a "finally" block, you make your code more readable and maintainable. It clearly indicates the intention that certain operations are meant to be executed regardless of exceptions. This helps in writing robust and error-tolerant code.
 
 To summarize, the "finally" block is used to execute code that should always run, regardless of exceptions. It is primarily used for cleanup operations, guaranteeing execution, propagating exceptions, and enhancing code readability. It plays a crucial role in ensuring the proper handling of resources and maintaining code consistency.
+
+**Example:**
+
+```java
+Connection conn = null;
+try {
+    conn = dataSource.getConnection();
+    // run queries...
+} catch (SQLException e) {
+    log.error("Query failed", e);
+} finally {
+    if (conn != null) {
+        try { conn.close(); } catch (SQLException ignored) {}   // always released
+    }
+}
+// Modern code: try-with-resources does this automatically
+```
+
 </details>
 <details><summary>
 
@@ -72,28 +106,44 @@ The finally block is always get executed unless there is an abnormal program ter
 - If an exception occurs like closing a file or DB connection, then the finally block is used to clean up the code.
 - We cannot say the finally block is always executes because sometimes if any statement like System.exit() or some similar code is written into try block then program will automatically terminate and the finally block will not be executed in this case.
 - A finally block will not execute due to other conditions like when JVM runs out of memory when our java process is killed forcefully from task manager or console when our machine shuts down due to power failure and deadlock condition in our try block.
+
+**Example:**
+
+```java
+try {
+    System.out.println("in try");
+    System.exit(0);          // JVM exits -> finally does NOT run
+} finally {
+    System.out.println("finally");   // never printed
+}
+// Also skipped if the JVM crashes, the process is killed (kill -9),
+// or the thread runs an infinite loop / deadlocks inside try.
+```
+
 </details>
 <details><summary>
 
 ## Will finally be executed in the program below?
 </summary>
 
-        private static void method2() {
-              Connection connection = new Connection();
-              connection.open();
-              try {
-                  // LOGIC
-                  String str = null;
-                  str.toString();
-                  return;
-              } catch (Exception e) {
-                  // NOT PRINTING EXCEPTION TRACE - BAD PRACTICE
-                  System.out.println("Exception Handled - Method 2");
-                  return;
-              } finally {
-                  connection.close();
-              }
-        }
+```java
+    private static void method2() {
+          Connection connection = new Connection();
+          connection.open();
+          try {
+              // LOGIC
+              String str = null;
+              str.toString();
+              return;
+          } catch (Exception e) {
+              // NOT PRINTING EXCEPTION TRACE - BAD PRACTICE
+              System.out.println("Exception Handled - Method 2");
+              return;
+          } finally {
+              connection.close();
+          }
+    }
+```
 
 In the provided code snippet, the finally block will be executed even when there is a return statement in the try or catch block.
 
@@ -113,11 +163,13 @@ Yes, it is allowed to have a try block without a corresponding catch block. In s
 
 In some cases, you may have code that needs to be executed within a try block, but you don't need to catch or handle any specific exceptions. In such situations, you can use a finally block without any catch blocks. The code within the finally block will execute regardless of whether an exception occurred or not.
 
-      try {
-          // Code that doesn't throw a specific exception
-      } finally {
-          // Code that is always executed, regardless of whether an exception occurred or not
-      }
+```java
+  try {
+      // Code that doesn't throw a specific exception
+  } finally {
+      // Code that is always executed, regardless of whether an exception occurred or not
+  }
+```
 
 Using a try block without a corresponding catch block can be useful in situations where you only need to ensure that certain code is executed, such as releasing resources or cleaning up operations. The finally block allows you to accomplish this even if an exception occurs within the try block.
 </details>
@@ -127,15 +179,17 @@ Using a try block without a corresponding catch block can be useful in situation
 </summary>
 No. Below method would give a Compilation Error!! (End of try block)
 
-        private static void method2() {
-            Connection connection = new Connection();
-            connection.open();
-            try {
-                // LOGIC
-                String str = null;
-                str.toString();
-            }//COMPILER ERROR!!
-        }
+```java
+    private static void method2() {
+        Connection connection = new Connection();
+        connection.open();
+        try {
+            // LOGIC
+            String str = null;
+            str.toString();
+        }//COMPILER ERROR!!
+    }
+```
 
 </details>
 <details><summary>
@@ -166,6 +220,34 @@ Here's a simplified visual representation of the exception hierarchy:
 The Exception class itself has many subclasses that provide more specific types of exceptions. For example, RuntimeException and its subclasses represent exceptions that are unchecked (do not need to be declared in the method signature or caught explicitly). IOException and its subclasses represent exceptions related to input/output operations. Similarly, other subclasses of Exception cover different categories of exceptional conditions.
 
 It's important to understand this hierarchy when handling exceptions in Java. Catching and handling exceptions at appropriate levels in the hierarchy allows for more precise exception handling and error recovery in your code.
+
+**Example:**
+
+```text
+Throwable
+├── Error                       (JVM problems - don't catch)
+│   ├── OutOfMemoryError
+│   └── StackOverflowError
+└── Exception
+    ├── IOException             (checked)
+    ├── SQLException            (checked)
+    └── RuntimeException        (unchecked)
+        ├── NullPointerException
+        ├── IllegalArgumentException
+        ├── ArithmeticException
+        └── IndexOutOfBoundsException
+```
+
+```java
+try {
+    readFile();
+} catch (FileNotFoundException e) {   // most specific first
+    ...
+} catch (IOException e) {             // then its parent
+    ...
+}
+```
+
 </details>
 <details><summary>
 
@@ -177,6 +259,19 @@ It's important to understand this hierarchy when handling exceptions in Java. Ca
 - Exception represents exceptional conditions that can be caught and handled by the application code. They can be checked or unchecked exceptions. Checked exceptions must be declared or caught, while unchecked exceptions (subclasses of RuntimeException) do not require explicit handling.
 
 Overall, Error indicates critical problems, while Exception is used for anticipated exceptional conditions that can be handled by the application code.
+
+**Example:**
+
+```java
+void recurse() { recurse(); }   // StackOverflowError - an Error: fix the code, don't catch it
+
+try {
+    int x = Integer.parseInt("abc");
+} catch (NumberFormatException e) {   // an Exception: recoverable, handle it
+    System.out.println("Invalid number, using default");
+}
+```
+
 </details>
 <details><summary>
 
@@ -202,6 +297,22 @@ The main difference between checked exceptions and unchecked exceptions in Java 
 - This provides flexibility to developers, but it also places the responsibility on them to ensure proper error handling and validation within their code.
 
 In summary, checked exceptions are checked by the compiler and must be declared or caught, while unchecked exceptions do not require explicit handling or declaration. Checked exceptions are typically used for anticipated exceptional conditions that can be recovered from, while unchecked exceptions are usually caused by programming errors and may require fixing the code itself.
+
+**Example:**
+
+```java
+// Checked: compiler forces you to handle or declare
+public String readConfig(Path p) throws IOException {
+    return Files.readString(p);
+}
+
+// Unchecked: compiler doesn't force handling - usually a bug or invalid input
+public int divide(int a, int b) {
+    if (b == 0) throw new IllegalArgumentException("Divisor must not be zero");
+    return a / b;
+}
+```
+
 </details>
 <details><summary>
 
@@ -211,26 +322,32 @@ In Java, you can throw an exception from a method using the throw keyword follow
 
 - **Declare the exception in the method signature** If the exception you want to throw is a checked exception, you need to declare it in the method signature using the throws keyword. This notifies the calling code that the method can throw this exception, and the caller must handle or declare it.
 
-        public void someMethod() throws SomeException {
-            // code that may throw SomeException
-        }
+```java
+    public void someMethod() throws SomeException {
+        // code that may throw SomeException
+    }
+```
 
 - **Create an instance of the exception class** Within the method, when you encounter a condition that warrants an exception, create an instance of the appropriate exception class using the new keyword.
 
-        public void someMethod() throws SomeException {
-            if (someCondition) {
-                SomeException exception = new SomeException("Exception message");
-                throw exception;
-            }
+```java
+    public void someMethod() throws SomeException {
+        if (someCondition) {
+            SomeException exception = new SomeException("Exception message");
+            throw exception;
         }
+    }
+```
 
 You can also directly throw an instance of the exception class without assigning it to a variable:
 
-        public void someMethod() throws SomeException {
-            if (someCondition) {
-                throw new SomeException("Exception message");
-            }
+```java
+    public void someMethod() throws SomeException {
+        if (someCondition) {
+            throw new SomeException("Exception message");
         }
+    }
+```
 
 - **Propagate the exception** Once the throw statement is executed, the exception is thrown out of the method, propagating it to the calling code. The calling code can then catch the exception and handle it or propagate it further.
 When throwing an exception, it's important to choose the appropriate exception class that accurately represents the exceptional condition you want to convey. It's also good practice to provide a descriptive message with the exception to aid in troubleshooting and error handling.
@@ -245,15 +362,17 @@ When you throw a checked exception from a method, you are indicating that the me
 
 If a method throws a checked exception, the caller of that method is required to either catch the exception using a try-catch block or declare that it can also throw the exception using the throws keyword. This ensures that the caller acknowledges and handles the possibility of an exceptional situation.
 
-            class AmountAdder {
-                    static Amount addAmounts(Amount amount1, Amount amount2) {
-                            if (!amount1.currency.equals(amount2.currency)) {
-                                    throw new Exception("Currencies don't match");// COMPILER ERROR!
-                                    // Unhandled exception type Exception
-                            }
-                            return new Amount(amount1.currency, amount1.amount + amount2.amount);
-                    }
-            }
+```java
+        class AmountAdder {
+                static Amount addAmounts(Amount amount1, Amount amount2) {
+                        if (!amount1.currency.equals(amount2.currency)) {
+                                throw new Exception("Currencies don't match");// COMPILER ERROR!
+                                // Unhandled exception type Exception
+                        }
+                        return new Amount(amount1.currency, amount1.amount + amount2.amount);
+                }
+        }
+```
 
 If the caller chooses to catch the checked exception, it can provide appropriate error-handling logic to deal with the exceptional condition. If the caller declares that it can also throw the exception, the responsibility of handling the exception is then passed to the caller's caller.
 
@@ -278,6 +397,28 @@ When handling checked exceptions in Java, you have several options to eliminate 
 6. **Handle with Optional** If you are using Java 8 or later, you can use the Optional class to handle checked exceptions in a more functional style. You can wrap the potentially exception-throwing code in a lambda expression and use Optional to handle the exception elegantly.
 
 It's important to note that the appropriate choice depends on the specific scenario and requirements of your application. Consider the nature of the exception, the level at which it can be effectively handled, and the design principles of your code when selecting the appropriate approach.
+
+**Example:**
+
+```java
+// Option 1: handle it
+void load() {
+    try { Files.readString(Path.of("a.txt")); }
+    catch (IOException e) { log.error("Read failed", e); }
+}
+
+// Option 2: declare it and let the caller decide
+void load2() throws IOException {
+    Files.readString(Path.of("a.txt"));
+}
+
+// Option 3: wrap in an unchecked exception (common in lambdas and service layers)
+void load3() {
+    try { Files.readString(Path.of("a.txt")); }
+    catch (IOException e) { throw new UncheckedIOException(e); }
+}
+```
+
 </details>
 <details><summary>
 
@@ -287,39 +428,45 @@ To create a custom exception in Java, you need to create a new class that extend
 
 1. Create a new class that extends Exception or one of its subclasses. For example:
 
-            public class CustomException extends Exception {
-                // Custom exception code...
-            }
+```java
+        public class CustomException extends Exception {
+            // Custom exception code...
+        }
+```
 
 2. Optionally, you can add constructors to your custom exception class to provide additional functionality or customization. For example:
 
-            public class CustomException extends Exception {
-                public CustomException() {
-                    super();
-                }
-                
-                public CustomException(String message) {
-                    super(message);
-                }
-                
-                public CustomException(String message, Throwable cause) {
-                    super(message, cause);
-                }
-                
-                // Additional constructors or custom code...
+```java
+        public class CustomException extends Exception {
+            public CustomException() {
+                super();
             }
+            
+            public CustomException(String message) {
+                super(message);
+            }
+            
+            public CustomException(String message, Throwable cause) {
+                super(message, cause);
+            }
+            
+            // Additional constructors or custom code...
+        }
+```
 
 3. In your code, when an exceptional situation occurs that warrants throwing your custom exception, you can create an instance of your custom exception class and throw it using the throw keyword. For example:
 
-            public class Example {
-                public static void main(String[] args) {
-                    try {
-                        throw new CustomException("Something went wrong.");
-                    } catch (CustomException e) {
-                        System.out.println("Custom Exception caught: " + e.getMessage());
-                    }
+```java
+        public class Example {
+            public static void main(String[] args) {
+                try {
+                    throw new CustomException("Something went wrong.");
+                } catch (CustomException e) {
+                    System.out.println("Custom Exception caught: " + e.getMessage());
                 }
             }
+        }
+```
 
 In this example, we create an instance of the CustomException class with a specific message, and then we throw it using the throw keyword. The catch block catches the custom exception and handles it accordingly.
 
@@ -333,25 +480,29 @@ In Java, you can handle multiple exception types using a single exception handli
 
 **Option 1:** Multiple Catch Blocks
 
-            try {
-                // Code that may throw exceptions
-            } catch (ExceptionType1 e) {
-                // Handling logic for ExceptionType1
-            } catch (ExceptionType2 e) {
-                // Handling logic for ExceptionType2
-            } catch (ExceptionType3 e) {
-                // Handling logic for ExceptionType3
-            }
+```java
+        try {
+            // Code that may throw exceptions
+        } catch (ExceptionType1 e) {
+            // Handling logic for ExceptionType1
+        } catch (ExceptionType2 e) {
+            // Handling logic for ExceptionType2
+        } catch (ExceptionType3 e) {
+            // Handling logic for ExceptionType3
+        }
+```
 
 In this approach, each catch block handles a specific exception type. When an exception occurs, the catch blocks are evaluated in order, and the first catch block that matches the exception type is executed.
 
 **Option 2:** Catching a Common Superclass
 
-            try {
-                // Code that may throw exceptions
-            } catch (ExceptionType1 | ExceptionType2 | ExceptionType3 e) {
-                // Common handling logic for ExceptionType1, ExceptionType2, and ExceptionType3
-            }
+```java
+        try {
+            // Code that may throw exceptions
+        } catch (ExceptionType1 | ExceptionType2 | ExceptionType3 e) {
+            // Common handling logic for ExceptionType1, ExceptionType2, and ExceptionType3
+        }
+```
 
 In this approach, a single catch block handles multiple exception types by using the pipe symbol (|) to specify multiple exception types separated by it. The catch block will execute if any of the specified exception types are thrown.
 
@@ -375,12 +526,14 @@ Here's how the "try with resources" statement works:
 
 Here's an example that demonstrates the usage of "try with resources" with a file stream:
 
-            try (FileInputStream fileInputStream = new FileInputStream("file.txt")) {
-                // Code that uses the fileInputStream
-                // ...
-            } catch (IOException e) {
-                // Exception handling code
-            }
+```java
+        try (FileInputStream fileInputStream = new FileInputStream("file.txt")) {
+            // Code that uses the fileInputStream
+            // ...
+        } catch (IOException e) {
+            // Exception handling code
+        }
+```
 
 In this example, the FileInputStream is declared and initialized within the parentheses after the try keyword. The resource, in this case, the file stream, will be automatically closed at the end of the try block, whether an exception occurs or not.
 
@@ -408,13 +561,15 @@ When you use the "try with resources" statement in Java, it ensures that resourc
 
 Here's an example to illustrate how "try with resources" works:
 
-            try (FileInputStream fileInputStream = new FileInputStream("file.txt");
-                InputStreamReader inputStreamReader = new InputStreamReader(fileInputStream)) {
-                // Code that uses fileInputStream and inputStreamReader
-                // ...
-            } catch (IOException e) {
-                // Exception handling code
-            }
+```java
+        try (FileInputStream fileInputStream = new FileInputStream("file.txt");
+            InputStreamReader inputStreamReader = new InputStreamReader(fileInputStream)) {
+            // Code that uses fileInputStream and inputStreamReader
+            // ...
+        } catch (IOException e) {
+            // Exception handling code
+        }
+```
 
 In this example, we have two resources declared and initialized within the parentheses after the try keyword: fileInputStream and inputStreamReader. These resources will be automatically closed in the reverse order of their declaration, meaning inputStreamReader will be closed first, followed by fileInputStream.
 
@@ -447,4 +602,24 @@ Here are a few exception handling best practices in Java:
 **10. Use try-with-resources -** Utilize the "try with resources" statement when working with resources that need to be closed, such as file streams or database connections. This ensures proper resource management and eliminates the need for explicit finally blocks.
 
 By following these exception handling best practices, you can improve the robustness, maintainability, and reliability of your Java code.
+
+**Example:**
+
+```java
+// Bad: swallowed, generic, loses the cause
+try { process(); } catch (Exception e) { }
+
+// Good
+try {
+    process(order);
+} catch (PaymentDeclinedException e) {                 // catch specific exceptions
+    throw new OrderFailedException("Order " + order.id() + " declined", e); // keep the cause
+} finally {
+    metrics.increment("orders.processed");
+}
+
+// Use try-with-resources, don't use exceptions for normal flow control,
+// log once (where handled), and never expose stack traces to API clients.
+```
+
 </details>

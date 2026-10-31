@@ -9,6 +9,18 @@ The default values for arrays in Java depend on the data type of the elements. F
 - String: null
 - Boolean: false
 - Char: Unicode (\u0000)
+
+**Example:**
+
+```java
+int[] ints = new int[2];           // [0, 0]
+double[] ds = new double[2];       // [0.0, 0.0]
+boolean[] flags = new boolean[2];  // [false, false]
+char[] cs = new char[2];           // ['\u0000', '\u0000']
+String[] strs = new String[2];     // [null, null] - any object type defaults to null
+System.out.println(Arrays.toString(ints) + Arrays.toString(strs));
+```
+
 </details>
 <details><summary>
 
@@ -26,6 +38,7 @@ There are two ways to print the contents of an array in Java:
 3. Inside the for loop, print the current element of the array.
 
 Example:
+
 ```
 int[] array = {1, 2, 3, 4, 5};
 
@@ -33,6 +46,7 @@ for (int i = 0; i < array.length; i++) {
   System.out.println(array[i]);
 }
 ```
+
 ### Using the Arrays.toString() method
 
 1. Import the java.util.Arrays class.
@@ -40,6 +54,7 @@ for (int i = 0; i < array.length; i++) {
 3. Print the result of the Arrays.toString() method.
 
 Example:
+
 ```
 import java.util.Arrays;
 
@@ -62,6 +77,7 @@ Another way to compare two arrays is to use the Arrays.compare() method. This me
 Finally, you can also compare two arrays by using a loop and comparing the elements of the arrays one by one. This method is less efficient than the equals() or compare() methods, but it can be used if you need to compare arrays of different types or sizes.
 
 Here is an example of how to use the Arrays.equals() method to compare two arrays:
+
 ```
 int[] array1 = {1, 2, 3};
 int[] array2 = {1, 2, 3};
@@ -72,6 +88,7 @@ boolean equal = Arrays.equals(array1, array2);
 In this example, the equal variable will be true because the two arrays are equal.
 
 Here is an example of how to use the Arrays.compare() method to compare two arrays:
+
 ```
 int[] array1 = {1, 2, 3};
 int[] array2 = {1, 2, 4};
@@ -82,6 +99,7 @@ int result = Arrays.compare(array1, array2);
 In this example, the result variable will be -1 because the first array is less than the second array.
 
 Here is an example of how to compare two arrays by using a loop:
+
 ```
 int[] array1 = {1, 2, 3};
 int[] array2 = {1, 2, 4};
@@ -110,6 +128,7 @@ For example, an enum type for compass directions could have the constants NORTH,
 Enums are useful for representing a fixed set of constants, such as the days of the week or the colors of the rainbow. They can also be used to represent more complex concepts, such as the different types of exceptions that can occur in a program.
 
 Here is an example of an enum in Java:
+
 ```
 enum DaysOfWeek {
     Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday
@@ -117,6 +136,7 @@ enum DaysOfWeek {
 ```
 
 This enum type defines the seven days of the week. You can create a variable of type DaysOfWeek and assign it one of the constants, such as:
+
 ```
 DaysOfWeek today = DaysOfWeek.Monday;
 ```
@@ -137,12 +157,35 @@ Here are some things to keep in mind when using enums in switch statements:
 - You access enum constants using dot syntax.
 - An enum class can have attributes and methods, in addition to constants.
 - You cannot create objects of an enum class, and it cannot extend other classes.
+
+**Example:**
+
+```java
+enum Status { ACTIVE, SUSPENDED, CLOSED }
+
+String label(Status s) {
+    return switch (s) {               // Java 14+ switch expression
+        case ACTIVE -> "Active";
+        case SUSPENDED -> "On hold";
+        case CLOSED -> "Closed";
+    };                                // compiler checks all enum values are covered
+}
+```
+
 </details>
 <details><summary>
 
 ## What are asserts used for?
 </summary>
 
+**Example:**
+
+```java
+int divide(int a, int b) {
+    assert b != 0 : "divisor must not be zero";   // checked only when run with: java -ea
+    return a / b;
+}
+```
 
 </details>
 <details><summary>
@@ -150,6 +193,19 @@ Here are some things to keep in mind when using enums in switch statements:
 ## When should asserts be used?
 </summary>
 
+**Example:**
+
+```java
+// OK: internal invariants you believe can never be false
+private void rebalance(Node n) {
+    assert n.height >= 0 : "height corrupted";
+}
+
+// NOT OK: validating public input (asserts are disabled by default in production)
+public void setAge(int age) {
+    if (age < 0) throw new IllegalArgumentException("age must be >= 0");  // use this instead
+}
+```
 
 </details>
 <details><summary>
@@ -157,6 +213,13 @@ Here are some things to keep in mind when using enums in switch statements:
 ## What is tokenizing?
 </summary>
 
+**Example:**
+
+```java
+String csv = "id,name,,city";
+String[] parts = csv.split(",");        // [id, name, , city] (keeps empty token)
+String[] words = "  java   spring ".trim().split("\\s+"); // [java, spring]
+```
 
 </details>
 <details><summary>
@@ -164,12 +227,16 @@ Here are some things to keep in mind when using enums in switch statements:
 ## Can you give an example of tokenizing?
 </summary>
 
+**Example:**
 
-</details>
-<details><summary>
+```java
+Scanner sc = new Scanner("10 20 30");
+int sum = 0;
+while (sc.hasNextInt()) sum += sc.nextInt();
+System.out.println(sum);   // 60
 
-## 
-</summary>
-
+StringTokenizer st = new StringTokenizer("a;b;c", ";");   // legacy; prefer split()
+while (st.hasMoreTokens()) System.out.println(st.nextToken());
+```
 
 </details>
