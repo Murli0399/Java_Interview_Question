@@ -5,6 +5,17 @@
 A framework is a set of classes and interfaces which provide a ready-made architecture. In order to implement a new feature or a class, there is no need to define a framework. However, an optimal object-oriented design always includes a framework with a collection of classes such that all the classes perform the same kind of task. Before Collection Framework(or before JDK 1.2) was introduced, the standard methods for grouping Java objects (or collections) were Arrays or Vectors, or Hash tables. All of these collections had no common interface. Therefore, though the main aim of all the collections is the same, the implementation of all these collections was defined independently and had no correlation among them. And also, it is very difficult for the users to remember all the different methods, syntax, and constructors present in every collection class.
 
 Collection Framework is a powerful framework in java. This framework defines the most common methods that can be used for any collection of objects. But the question arises that we have an array concept in java then why we need collection framework in java? Now let’s see that why we need collection framework in java with some valid points of difference between array and collection.
+
+**Example:**
+
+```java
+int[] arr = new int[3];          // fixed size, no built-in search/sort helpers
+List<Integer> list = new ArrayList<>();   // grows as needed
+list.add(5); list.add(1); list.add(3);
+Collections.sort(list);          // [1, 3, 5]
+System.out.println(list.contains(3)); // true
+```
+
 </details>
 <details><summary>
 	
@@ -25,6 +36,22 @@ The Java Collections Framework provides several important interfaces in its coll
 - **Iterator** The Iterator interface provides a way to iterate over the elements in a collection. It defines methods for checking if there are more elements, retrieving the next element, and removing elements during iteration.
 
 These interfaces, along with their respective implementations, form the foundation of the Java Collections Framework. They provide a wide range of functionality for working with collections and enable you to choose the most appropriate collection type based on your specific requirements.
+
+**Example:**
+
+```text
+Iterable
+└── Collection
+    ├── List   -> ArrayList, LinkedList, Vector
+    ├── Set    -> HashSet, LinkedHashSet
+    │   └── SortedSet -> NavigableSet -> TreeSet
+    └── Queue  -> PriorityQueue
+        └── Deque -> ArrayDeque, LinkedList
+
+Map (separate hierarchy) -> HashMap, LinkedHashMap, Hashtable
+└── SortedMap -> NavigableMap -> TreeMap
+```
+
 </details>
 <details><summary>
 	
@@ -61,6 +88,22 @@ The Collection interface in the Java Collections Framework defines a set of comm
 These methods provide the basic operations for adding, removing, querying, and manipulating elements in a collection. Implementations of the Collection interface, such as ArrayList, HashSet, and LinkedList, provide their own specific implementations of these methods to suit their respective collection types.
 
 It's important to note that the Collection interface does not specify methods for indexed access or positional operations. For those functionalities, you would typically use the List interface, which extends Collection and provides additional methods for working with ordered collections.
+
+**Example:**
+
+```java
+Collection<String> c = new ArrayList<>(List.of("a", "b"));
+c.add("c");
+c.addAll(List.of("d", "e"));
+c.remove("a");
+c.removeIf(s -> s.equals("e"));
+System.out.println(c.size() + " " + c.contains("b") + " " + c.isEmpty()); // 3 true false
+c.retainAll(List.of("b", "c"));      // keep only these
+Object[] arr = c.toArray();
+c.stream().forEach(System.out::println);
+c.clear();
+```
+
 </details>
 <details><summary>
 	
@@ -91,6 +134,19 @@ The List interface defines several methods to work with lists, including:
 Several classes in Java implement the List interface, such as ArrayList, LinkedList, and Vector. These classes provide different implementations with varying performance characteristics and usage scenarios.
 
 By utilizing the List interface, you can easily work with ordered collections of elements, perform operations like insertion, deletion, retrieval, and modification efficiently.
+
+**Example:**
+
+```java
+List<String> names = new ArrayList<>(List.of("Asha", "Ravi"));
+names.add(1, "Kiran");              // insert at index -> [Asha, Kiran, Ravi]
+names.add("Asha");                  // duplicates allowed
+System.out.println(names.get(0));   // Asha (index-based access)
+System.out.println(names.indexOf("Asha") + " " + names.lastIndexOf("Asha")); // 0 3
+names.set(2, "Meena");
+List<String> sub = names.subList(0, 2);
+```
+
 </details>
 <details><summary>
 	
@@ -98,38 +154,40 @@ By utilizing the List interface, you can easily work with ordered collections of
 </summary>
 The ArrayList class in Java is an implementation of the List interface that uses a dynamically resizable array to store elements. It provides a flexible and efficient way to work with ordered collections of objects. Let's walk through an example to understand how ArrayList works:
 
-      import java.util.ArrayList;
+```java
+  import java.util.ArrayList;
 
-      public class ArrayListExample {
-          public static void main(String[] args) {
-              // Create an ArrayList to store integers
-              ArrayList<Integer> numbers = new ArrayList<>();
+  public class ArrayListExample {
+      public static void main(String[] args) {
+          // Create an ArrayList to store integers
+          ArrayList<Integer> numbers = new ArrayList<>();
 
-              // Add elements to the ArrayList
-              numbers.add(10);
-              numbers.add(20);
-              numbers.add(30);
-              numbers.add(40);
+          // Add elements to the ArrayList
+          numbers.add(10);
+          numbers.add(20);
+          numbers.add(30);
+          numbers.add(40);
 
-              // Access elements by index
-              System.out.println("Element at index 2: " + numbers.get(2));  // Output: 30
+          // Access elements by index
+          System.out.println("Element at index 2: " + numbers.get(2));  // Output: 30
 
-              // Update an element at a specific index
-              numbers.set(1, 25);
-              System.out.println("Updated element at index 1: " + numbers.get(1));  // Output: 25
+          // Update an element at a specific index
+          numbers.set(1, 25);
+          System.out.println("Updated element at index 1: " + numbers.get(1));  // Output: 25
 
-              // Remove an element by value
-              numbers.remove(Integer.valueOf(30));
+          // Remove an element by value
+          numbers.remove(Integer.valueOf(30));
 
-              // Remove an element by index
-              numbers.remove(0);
+          // Remove an element by index
+          numbers.remove(0);
 
-              // Iterate over the elements using a for-each loop
-              for (Integer number : numbers) {
-                  System.out.println(number);
-              }
+          // Iterate over the elements using a for-each loop
+          for (Integer number : numbers) {
+              System.out.println(number);
           }
       }
+  }
+```
 
 </details>
 <details><summary>
@@ -140,22 +198,24 @@ Yes, an ArrayList can have duplicate elements. The ArrayList class allows duplic
 
 Here's an example to demonstrate adding duplicate elements to an ArrayList:
       
-      import java.util.ArrayList;
+```java
+  import java.util.ArrayList;
 
-      public class ArrayListExample {
-          public static void main(String[] args) {
-              ArrayList<String> fruits = new ArrayList<>();
+  public class ArrayListExample {
+      public static void main(String[] args) {
+          ArrayList<String> fruits = new ArrayList<>();
 
-              // Adding duplicate elements
-              fruits.add("apple");
-              fruits.add("banana");
-              fruits.add("apple");
-              fruits.add("orange");
-              fruits.add("banana");
+          // Adding duplicate elements
+          fruits.add("apple");
+          fruits.add("banana");
+          fruits.add("apple");
+          fruits.add("orange");
+          fruits.add("banana");
 
-              System.out.println(fruits);
-          }
+          System.out.println(fruits);
       }
+  }
+```
 
 In this example, we create an ArrayList named fruits to store strings. We add multiple elements to the list, including duplicates such as "apple" and "banana". When we print the ArrayList, it will display all the elements, including the duplicate ones:
 
@@ -173,26 +233,28 @@ To iterate over an ArrayList using an Iterator, you can follow these steps:
 5. Perform the desired operations with each element within the loop.
 Here's an example that demonstrates iterating over an ArrayList using an Iterator:
 
-          import java.util.ArrayList;
-          import java.util.Iterator;
-          public class ArrayListIteratorExample {
-            public static void main(String[] args) {
-              ArrayList<String> fruits = new ArrayList<>();
-              // Add elements to the ArrayList
-              fruits.add("apple");
-              fruits.add("banana");
-              fruits.add("orange");
+```java
+      import java.util.ArrayList;
+      import java.util.Iterator;
+      public class ArrayListIteratorExample {
+        public static void main(String[] args) {
+          ArrayList<String> fruits = new ArrayList<>();
+          // Add elements to the ArrayList
+          fruits.add("apple");
+          fruits.add("banana");
+          fruits.add("orange");
 
-              // Obtain an Iterator object
-              Iterator<String> iterator = fruits.iterator();
+          // Obtain an Iterator object
+          Iterator<String> iterator = fruits.iterator();
 
-              // Iterate over the ArrayList using the Iterator
-              while (iterator.hasNext()) {
-                  String fruit = iterator.next();
-                  System.out.println(fruit);
-              }
-            }
+          // Iterate over the ArrayList using the Iterator
+          while (iterator.hasNext()) {
+              String fruit = iterator.next();
+              System.out.println(fruit);
           }
+        }
+      }
+```
 
 </details>
 <details><summary>
@@ -203,33 +265,35 @@ To sort an ArrayList in Java, you can use the Collections.sort() method. The Col
 
 Here's an example that demonstrates sorting an ArrayList of integers:
 
-        import java.util.ArrayList;
-        import java.util.Collections;
-        import java.util.Comparator;
+```java
+    import java.util.ArrayList;
+    import java.util.Collections;
+    import java.util.Comparator;
 
-        public class ArrayListSortExample {
-            public static void main(String[] args) {
-                ArrayList<String> fruits = new ArrayList<>();
+    public class ArrayListSortExample {
+        public static void main(String[] args) {
+            ArrayList<String> fruits = new ArrayList<>();
 
-                // Add elements to the ArrayList
-                fruits.add("apple");
-                fruits.add("banana");
-                fruits.add("orange");
-                fruits.add("pear");
+            // Add elements to the ArrayList
+            fruits.add("apple");
+            fruits.add("banana");
+            fruits.add("orange");
+            fruits.add("pear");
 
-                // Sort the ArrayList in acending order
-                Collections.sort(fruits);
+            // Sort the ArrayList in acending order
+            Collections.sort(fruits);
 
-                // Print the sorted ArrayList
-                System.out.println(fruits);
+            // Print the sorted ArrayList
+            System.out.println(fruits);
 
-                // Sort the ArrayList in descending order
-                Collections.sort(fruits, Comparator.reverseOrder());
+            // Sort the ArrayList in descending order
+            Collections.sort(fruits, Comparator.reverseOrder());
 
-                // Print the sorted ArrayList
-                System.out.println(fruits);
-            }
+            // Print the sorted ArrayList
+            System.out.println(fruits);
         }
+    }
+```
 
 </details>
 <details><summary>
@@ -240,53 +304,55 @@ To sort elements in an ArrayList using the Comparable interface, you need to imp
 
 Here's an example that demonstrates sorting an ArrayList of custom objects using the Comparable interface:
 
-        import java.util.ArrayList;
-        import java.util.Collections;
+```java
+    import java.util.ArrayList;
+    import java.util.Collections;
 
-        public class Student implements Comparable<Student> {
-            private int id;
-            private String name;
+    public class Student implements Comparable<Student> {
+        private int id;
+        private String name;
 
-            public Student(int id, String name) {
-                this.id = id;
-                this.name = name;
-            }
-
-            public int getId() {
-                return id;
-            }
-
-            public String getName() {
-                return name;
-            }
-
-            @Override
-            public int compareTo(Student other) {
-                // Compare students based on their IDs
-                return Integer.compare(this.id, other.id);
-            }
-
-            @Override
-            public String toString() {
-                return "Student{" +
-                        "id=" + id +
-                        ", name='" + name + '\'' +
-                        '}';
-            }
-
-            public static void main(String[] args) {
-                ArrayList<Student> students = new ArrayList<>();
-                students.add(new Student(2, "Alice"));
-                students.add(new Student(1, "Bob"));
-                students.add(new Student(3, "Charlie"));
-
-                // Sort the ArrayList
-                Collections.sort(students);
-
-                // Print the sorted ArrayList
-                System.out.println(students);
-            }
+        public Student(int id, String name) {
+            this.id = id;
+            this.name = name;
         }
+
+        public int getId() {
+            return id;
+        }
+
+        public String getName() {
+            return name;
+        }
+
+        @Override
+        public int compareTo(Student other) {
+            // Compare students based on their IDs
+            return Integer.compare(this.id, other.id);
+        }
+
+        @Override
+        public String toString() {
+            return "Student{" +
+                    "id=" + id +
+                    ", name='" + name + '\'' +
+                    '}';
+        }
+
+        public static void main(String[] args) {
+            ArrayList<Student> students = new ArrayList<>();
+            students.add(new Student(2, "Alice"));
+            students.add(new Student(1, "Bob"));
+            students.add(new Student(3, "Charlie"));
+
+            // Sort the ArrayList
+            Collections.sort(students);
+
+            // Print the sorted ArrayList
+            System.out.println(students);
+        }
+    }
+```
 
 </details>
 <details><summary>
@@ -297,56 +363,58 @@ To sort elements in an ArrayList using the Comparator interface, you need to cre
 
 Here's an example that demonstrates sorting an ArrayList of custom objects using the Comparator interface:
 
-        import java.util.ArrayList;
-        import java.util.Collections;
-        import java.util.Comparator;
+```java
+    import java.util.ArrayList;
+    import java.util.Collections;
+    import java.util.Comparator;
 
-        public class Student {
-            private int id;
-            private String name;
+    public class Student {
+        private int id;
+        private String name;
 
-            public Student(int id, String name) {
-                this.id = id;
-                this.name = name;
-            }
-
-            public int getId() {
-                return id;
-            }
-
-            public String getName() {
-                return name;
-            }
-
-            @Override
-            public String toString() {
-                return "Student{" +
-                        "id=" + id +
-                        ", name='" + name + '\'' +
-                        '}';
-            }
-
-            public static void main(String[] args) {
-                ArrayList<Student> students = new ArrayList<>();
-                students.add(new Student(2, "Alice"));
-                students.add(new Student(1, "Bob"));
-                students.add(new Student(3, "Charlie"));
-
-                // Create a Comparator to sort students based on their IDs
-                Comparator<Student> idComparator = new Comparator<Student>() {
-                    @Override
-                    public int compare(Student s1, Student s2) {
-                        return Integer.compare(s1.getId(), s2.getId());
-                    }
-                };
-
-                // Sort the ArrayList using the Comparator
-                Collections.sort(students, idComparator);
-
-                // Print the sorted ArrayList
-                System.out.println(students);
-            }
+        public Student(int id, String name) {
+            this.id = id;
+            this.name = name;
         }
+
+        public int getId() {
+            return id;
+        }
+
+        public String getName() {
+            return name;
+        }
+
+        @Override
+        public String toString() {
+            return "Student{" +
+                    "id=" + id +
+                    ", name='" + name + '\'' +
+                    '}';
+        }
+
+        public static void main(String[] args) {
+            ArrayList<Student> students = new ArrayList<>();
+            students.add(new Student(2, "Alice"));
+            students.add(new Student(1, "Bob"));
+            students.add(new Student(3, "Charlie"));
+
+            // Create a Comparator to sort students based on their IDs
+            Comparator<Student> idComparator = new Comparator<Student>() {
+                @Override
+                public int compare(Student s1, Student s2) {
+                    return Integer.compare(s1.getId(), s2.getId());
+                }
+            };
+
+            // Sort the ArrayList using the Comparator
+            Collections.sort(students, idComparator);
+
+            // Print the sorted ArrayList
+            System.out.println(students);
+        }
+    }
+```
 
 </details>
 <details><summary>
@@ -366,6 +434,18 @@ A Vector is similar to an ArrayList in that both can store and manipulate collec
 - **Legacy** Vectors were introduced in the early versions of Java and have been available since Java 1.0. ArrayLists were added in Java 1.2 as part of the Java Collections Framework. ArrayLists are considered a more modern alternative to Vectors and provide greater flexibility in most use cases.
 
 In general, unless you specifically require thread-safe behavior, it is recommended to use ArrayLists instead of Vectors for better performance.
+
+**Example:**
+
+```java
+List<Integer> vector = new Vector<>();      // every method synchronized (slow, legacy)
+List<Integer> arrayList = new ArrayList<>(); // not synchronized (fast)
+
+// Need thread safety today? Prefer these over Vector:
+List<Integer> sync = Collections.synchronizedList(new ArrayList<>());
+List<Integer> cow = new CopyOnWriteArrayList<>();   // read-heavy lists
+```
+
 </details>
 <details><summary>
 	
@@ -386,12 +466,39 @@ Here are the key differences between a LinkedList and an ArrayList:
 - **Memory Overhead** LinkedList has a higher memory overhead compared to ArrayList. In addition to storing the elements, LinkedList also needs to store references to the next and previous nodes, leading to more memory usage per element. ArrayList, being backed by an array, has less memory overhead.
 
 In summary, LinkedList is suitable when you frequently perform insertions and deletions in the middle of the list, while ArrayList is more efficient for random access and provides better performance when you mostly access elements by their indices.
+
+**Example:**
+
+```java
+List<Integer> array = new ArrayList<>();   // get(i) O(1); insert in middle O(n) (shifts elements)
+LinkedList<Integer> linked = new LinkedList<>(); // get(i) O(n); add/remove at ends O(1)
+
+linked.addFirst(1);
+linked.addLast(2);
+linked.removeFirst();
+
+// In practice ArrayList (or ArrayDeque for queues) wins almost always due to CPU cache locality.
+```
+
 </details>
 <details><summary>
 	
 ## Can you briefly explain about the Set Interface?
 </summary>
 In Java, the Set interface is part of the Java Collections Framework and represents a collection of unique elements. It is an interface that extends the Collection interface and defines the behavior of a set, which is a mathematical concept where each element occurs only once.
+
+**Example:**
+
+```java
+Set<String> emails = new HashSet<>();
+System.out.println(emails.add("a@x.com"));  // true
+System.out.println(emails.add("a@x.com"));  // false - duplicates ignored
+System.out.println(emails.size());          // 1
+
+// Common use: remove duplicates from a list
+List<Integer> unique = new ArrayList<>(new LinkedHashSet<>(List.of(3, 1, 3, 2))); // [3, 1, 2]
+```
+
 </details>
 <details><summary>
 	
@@ -436,6 +543,17 @@ The main difference between the Set and SortedSet interfaces in Java is as follo
 - Provides additional methods for accessing elements based on their position in the sorted set.
 - Examples: TreeSet.
 In summary, while the Set interface does not impose any specific order on its elements, the SortedSet interface ensures that the elements are stored in a sorted order. The choice between these interfaces depends on whether you need a sorted collection and if maintaining a specific order is important for your use case.
+
+**Example:**
+
+```java
+Set<Integer> set = new HashSet<>(List.of(5, 1, 3));        // no order guarantee
+SortedSet<Integer> sorted = new TreeSet<>(List.of(5, 1, 3)); // [1, 3, 5]
+System.out.println(sorted.first() + " " + sorted.last());   // 1 5
+System.out.println(sorted.headSet(3));                      // [1]
+System.out.println(sorted.tailSet(3));                      // [3, 5]
+```
+
 </details>
 <details><summary>
 	
@@ -468,6 +586,17 @@ HashSet is a class in Java that implements the Set interface. It provides a coll
 - **Null Values** HashSet allows storing a single null value. If you attempt to add multiple null values, only one null value will be stored.
 
 HashSet provides an efficient way to store and work with a collection of unique elements, without any specific ordering requirements. It is commonly used when you need to check for element existence or eliminate duplicates from a collection.
+
+**Example:**
+
+```java
+Set<String> tags = new HashSet<>();
+tags.add("java"); tags.add("kafka"); tags.add("java");
+System.out.println(tags.size());            // 2
+System.out.println(tags.contains("kafka")); // true, O(1) average
+// Internally a HashSet is a HashMap whose keys are the elements and values a dummy object.
+```
+
 </details>
 <details><summary>
 	
@@ -486,6 +615,16 @@ Here are the key differences between LinkedHashSet and HashSet:
 - **Null Values** Both LinkedHashSet and HashSet allow storing a single null value. However, if you attempt to add multiple null values, only one null value will be stored in both cases.
 
 In summary, LinkedHashSet provides the benefits of both HashSet (efficient element access and elimination of duplicates) and LinkedHashSet (predictable iteration order based on insertion). If you require a set implementation that maintains the insertion order of elements, LinkedHashSet is a suitable choice. If ordering is not important and you prioritize slightly better performance, HashSet may be preferable.
+
+**Example:**
+
+```java
+Set<String> hash = new HashSet<>(List.of("banana", "apple", "cherry"));
+Set<String> linked = new LinkedHashSet<>(List.of("banana", "apple", "cherry"));
+System.out.println(hash);    // order not guaranteed
+System.out.println(linked);  // [banana, apple, cherry] - insertion order kept
+```
+
 </details>
 <details><summary>
 	
@@ -506,6 +645,17 @@ Here are the key differences between TreeSet and HashSet:
 - **Use Case** TreeSet is particularly useful when you need elements to be stored in sorted order or when you require operations like retrieving the first or last element, finding elements greater than or less than a given value, or obtaining a range of elements. HashSet, on the other hand, is suitable when you don't need any particular order or when you prioritize constant-time performance.
 
 In summary, TreeSet maintains elements in sorted order using a balanced binary tree, providing efficient sorted operations. HashSet does not guarantee any specific order but offers constant-time performance for basic operations. The choice between TreeSet and HashSet depends on whether you require sorted order and additional sorted set operations or prefer constant-time performance and no specific order requirements.
+
+**Example:**
+
+```java
+TreeSet<Integer> scores = new TreeSet<>(List.of(70, 95, 82));
+System.out.println(scores);                 // [70, 82, 95] sorted, O(log n) operations
+System.out.println(scores.ceiling(80));     // 82
+TreeSet<String> byLength = new TreeSet<>(Comparator.comparing(String::length).thenComparing(s -> s));
+// TreeSet uses compareTo/compare (not equals) to detect duplicates.
+```
+
 </details>
 <details><summary>
 	
@@ -518,6 +668,19 @@ Certainly! Here are some examples of implementations of the NavigableSet interfa
 - **TreeSet with custom Comparator** You can also create a TreeSet instance with a custom Comparator to define a specific sorting order for the elements. By providing a Comparator during the TreeSet creation, you can have control over the ordering of the elements.
 
 These are a few examples of implementations of the NavigableSet interface. NavigableSet provides additional navigation methods that allow you to retrieve elements based on their relationship to other elements in the set. The choice of implementation depends on factors such as sorting requirements, concurrency needs, and specific ordering criteria.
+
+**Example:**
+
+```java
+NavigableSet<Integer> set = new TreeSet<>(List.of(10, 20, 30, 40));
+System.out.println(set.lower(30));    // 20  (< 30)
+System.out.println(set.floor(25));    // 20  (<= 25)
+System.out.println(set.higher(30));   // 40  (> 30)
+System.out.println(set.descendingSet()); // [40, 30, 20, 10]
+System.out.println(set.pollFirst());  // 10 (removes it)
+// Implementations: TreeSet, ConcurrentSkipListSet (thread-safe)
+```
+
 </details>
 <details><summary>
 	
@@ -536,6 +699,18 @@ Here are some key features of the Queue interface:
 - **Interface Hierarchy** The Queue interface extends the Collection interface and adds specific queue-related operations. It also extends the Iterable interface, which allows iterating over the elements of the queue using the foreach loop or an iterator.
 
 Queues are commonly used in scenarios where elements need to be processed in the order they were added, such as handling tasks in a multi-threaded environment, implementing job scheduling systems, or modeling real-life scenarios like waiting lines or event handling. The Queue interface provides a standardized way to work with such collections and offers flexibility in choosing the appropriate implementation based on your specific needs.
+
+**Example:**
+
+```java
+Queue<String> tasks = new LinkedList<>();
+tasks.offer("t1"); tasks.offer("t2");
+System.out.println(tasks.peek());  // t1 (does not remove)
+System.out.println(tasks.poll());  // t1 (removes)
+System.out.println(tasks.poll());  // t2
+System.out.println(tasks.poll());  // null when empty (remove() would throw)
+```
+
 </details>
 <details><summary>
 	
@@ -556,6 +731,22 @@ Here are some key features of the Map interface:
 - **Interface Hierarchy** The Map interface extends the Collection interface and provides additional methods specific to key-value mappings. It also provides keyset, values, and entrySet views, allowing access to the keys, values, and entries of the map.
 
 Maps are commonly used in various applications for efficient storage and retrieval of data based on keys. They are useful when you need to associate values with unique identifiers or perform lookups based on specific keys. The Map interface provides a standardized way to work with such collections and offers flexibility in choosing the appropriate implementation based on your specific requirements.
+
+**Example:**
+
+```java
+Map<String, Integer> wordCount = new HashMap<>();
+for (String w : "to be or not to be".split(" ")) {
+    wordCount.merge(w, 1, Integer::sum);
+}
+System.out.println(wordCount);                     // {not=1, be=2, or=1, to=2}
+System.out.println(wordCount.getOrDefault("is", 0)); // 0
+wordCount.putIfAbsent("is", 1);
+for (Map.Entry<String, Integer> e : wordCount.entrySet()) {
+    System.out.println(e.getKey() + " -> " + e.getValue());
+}
+```
+
 </details>
 <details><summary>
 	
@@ -572,6 +763,16 @@ The main difference between the Map and SortedMap interfaces in Java lies in the
 - **Use Cases** The Map interface is suitable when you need to associate values with unique keys without any specific order requirement. It provides efficient key-value pair storage and retrieval. The SortedMap interface, on the other hand, is used when you require the keys to be stored and accessed in a specific order. It is useful for scenarios where you need to iterate over the keys in a sorted manner or perform operations based on key ranges.
 
 In summary, the main distinction between the Map and SortedMap interfaces is the ordering of keys. Map does not guarantee any order, while SortedMap ensures that the keys are sorted. The choice between the two interfaces depends on whether you require a specific key ordering and the additional operations provided by the SortedMap interface.
+
+**Example:**
+
+```java
+Map<String, Integer> map = new HashMap<>(Map.of("b", 2, "a", 1, "c", 3));    // no order
+SortedMap<String, Integer> sorted = new TreeMap<>(map);                      // {a=1, b=2, c=3}
+System.out.println(sorted.firstKey() + " " + sorted.lastKey());             // a c
+System.out.println(sorted.headMap("c"));                                    // {a=1, b=2}
+```
+
 </details>
 <details><summary>
 	
@@ -592,6 +793,20 @@ Here are the key characteristics of HashMap:
 - **Null Keys and Values** HashMap allows storing a single null key and multiple null values. If you attempt to add multiple entries with the same key, the previous value associated with that key will be overwritten.
 
 HashMap is commonly used in various applications for efficient key-value storage and retrieval. It provides a flexible and efficient way to map keys to values, allowing for fast access to elements based on their keys.
+
+**Example:**
+
+```java
+Map<Long, String> users = new HashMap<>();
+users.put(1L, "Asha");
+users.put(2L, "Ravi");
+users.put(null, "unknown");          // one null key allowed
+System.out.println(users.get(2L));   // Ravi, O(1) average
+users.computeIfAbsent(3L, id -> "User-" + id);
+users.forEach((id, name) -> System.out.println(id + "=" + name));
+// See collections-internals-and-concurrent.md for how buckets, hashing and resizing work.
+```
+
 </details>
 <details><summary>
 	
@@ -622,6 +837,23 @@ HashMap in Java provides various methods to manipulate and access its elements. 
 - **clear()** Removes all the key-value pairs from the HashMap, making it empty.
 
 These are some of the commonly used methods provided by the HashMap class. These methods allow you to add, retrieve, remove, and perform other operations on the key-value pairs stored in the HashMap.
+
+**Example:**
+
+```java
+Map<String, Integer> m = new HashMap<>();
+m.put("a", 1);
+m.putIfAbsent("a", 5);                 // ignored, key exists
+m.getOrDefault("z", 0);                // 0
+m.containsKey("a"); m.containsValue(1);
+m.merge("a", 10, Integer::sum);        // a=11
+m.compute("a", (k, v) -> v == null ? 1 : v * 2);  // a=22
+m.computeIfPresent("a", (k, v) -> v - 2);         // a=20
+m.replace("a", 100);
+m.remove("a");
+m.keySet(); m.values(); m.entrySet();
+```
+
 </details>
 <details><summary>
 	
@@ -642,6 +874,18 @@ Here are the key differences between TreeMap and HashMap:
 - **Use Case** TreeMap is particularly useful when you need the keys to be stored and accessed in a specific order or when you require operations like retrieving the first or last key, finding keys greater than or less than a given value, or obtaining a range of keys. HashMap, on the other hand, is suitable when you don't need any particular order or when you prioritize constant-time performance.
 
 In summary, TreeMap maintains elements in a sorted order using a balanced binary search tree, providing efficient sorted operations. HashMap does not guarantee any specific order but offers constant-time performance for basic operations. The choice between TreeMap and HashMap depends on whether you require sorted order and additional sorted map operations or prefer constant-time performance and do not require any specific ordering.
+
+**Example:**
+
+```java
+TreeMap<String, Integer> prices = new TreeMap<>();
+prices.put("mango", 120); prices.put("apple", 80); prices.put("kiwi", 60);
+System.out.println(prices);                      // {apple=80, kiwi=60, mango=120} sorted by key
+System.out.println(prices.firstEntry());         // apple=80
+System.out.println(prices.floorKey("lemon"));    // kiwi
+// TreeMap: O(log n), sorted, no null key. HashMap: O(1) average, unordered, one null key.
+```
+
 </details>
 <details><summary>
 	
@@ -654,4 +898,21 @@ Comparable	Comparator
 3) Comparable provides compareTo() method to sort elements.	Comparator provides compare() method to sort elements.
 4) Comparable is present in java.lang package.	A Comparator is present in the java.util package.
 5) We can sort the list elements of Comparable type by Collections.sort(List) method.	We can sort the list elements of Comparator type by Collections.sort(List, Comparator) method.
+
+**Example:**
+
+```java
+class Product implements Comparable<Product> {
+    String name; double price;
+    Product(String n, double p) { name = n; price = p; }
+    @Override public int compareTo(Product o) { return name.compareTo(o.name); } // natural order
+    @Override public String toString() { return name + ":" + price; }
+}
+
+List<Product> list = new ArrayList<>(List.of(new Product("pen", 10), new Product("book", 250)));
+Collections.sort(list);                                       // by name (Comparable)
+list.sort(Comparator.comparingDouble(p -> p.price));          // by price (Comparator)
+list.sort(Comparator.comparingDouble((Product p) -> p.price).reversed()); // price desc
+```
+
 </details>

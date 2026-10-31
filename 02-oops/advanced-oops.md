@@ -17,35 +17,38 @@ Method overriding occurs when a subclass provides its own implementation of a me
 The method to be executed is determined at runtime based on the actual object being referred to by the reference variable.
 Polymorphism is achieved through inheritance, where subclasses inherit the properties and behaviors of their superclass. It allows for code reuse, flexibility, and the ability to write generic code that can operate on objects of different types.
 
-    class Animal {
-      public void makeSound() {
-          System.out.println("Animal makes a sound");
-      }
-    }
+```java
+class Animal {
+  public void makeSound() {
+      System.out.println("Animal makes a sound");
+  }
+}
 
-    class Dog extends Animal {
-      @Override
-      public void makeSound() {
-          System.out.println("Dog barks");
-      }
-    }
+class Dog extends Animal {
+  @Override
+  public void makeSound() {
+      System.out.println("Dog barks");
+  }
+}
 
-    class Cat extends Animal {
-        @Override
-        public void makeSound() {
-            System.out.println("Cat meows");
-        }
+class Cat extends Animal {
+    @Override
+    public void makeSound() {
+        System.out.println("Cat meows");
     }
+}
 
-    public class Main {
-        public static void main(String[] args) {
-            Animal animal1 = new Dog(); // Dog object assigned to Animal reference
-            Animal animal2 = new Cat(); // Cat object assigned to Animal reference
+public class Main {
+    public static void main(String[] args) {
+        Animal animal1 = new Dog(); // Dog object assigned to Animal reference
+        Animal animal2 = new Cat(); // Cat object assigned to Animal reference
 
-            animal1.makeSound(); // Output: Dog barks
-            animal2.makeSound(); // Output: Cat meows
-        }
+        animal1.makeSound(); // Output: Dog barks
+        animal2.makeSound(); // Output: Cat meows
     }
+}
+```
+
 </details>
 <details><summary>
 	
@@ -67,23 +70,25 @@ Polymorphism and inheritance: instanceof can be used to determine if an object i
 
 Here's an example that demonstrates the use of the instanceof operator:
 
-    class Animal { }
-    class Dog extends Animal { }
-    class Cat extends Animal { }
+```java
+class Animal { }
+class Dog extends Animal { }
+class Cat extends Animal { }
 
-    public class Main {
-        public static void main(String[] args) {
-            Animal animal1 = new Dog();
-            Animal animal2 = new Cat();
-            Animal animal3 = new Animal();
+public class Main {
+    public static void main(String[] args) {
+        Animal animal1 = new Dog();
+        Animal animal2 = new Cat();
+        Animal animal3 = new Animal();
 
-            System.out.println(animal1 instanceof Dog);  // Output: true
-            System.out.println(animal2 instanceof Cat);  // Output: true
-            System.out.println(animal3 instanceof Animal);  // Output: true
-            System.out.println(animal1 instanceof Animal);  // Output: true
-            System.out.println(animal2 instanceof Dog);  // Output: false
-        }
+        System.out.println(animal1 instanceof Dog);  // Output: true
+        System.out.println(animal2 instanceof Cat);  // Output: true
+        System.out.println(animal3 instanceof Animal);  // Output: true
+        System.out.println(animal1 instanceof Animal);  // Output: true
+        System.out.println(animal2 instanceof Dog);  // Output: false
     }
+}
+```
 
 </details>
 <details><summary>
@@ -97,85 +102,89 @@ In general, low coupling is desirable as it promotes better software design, mod
 - **Tight coupling** - When an object creates the object to be used, then it is a tight coupling situation. As the main object creates the object itself, this object can not be changed from outside world easily marked it as tightly coupled objects.
 
         
-        public class Tester {
-            public static void main(String args[]) {
-                A a = new A();
+```java
+    public class Tester {
+        public static void main(String args[]) {
+            A a = new A();
 
-                  //a.display() will print A and B
-                  //this implementation can not be changed dynamically
-                  //being tight coupling
-                  a.display();
-            }
+              //a.display() will print A and B
+              //this implementation can not be changed dynamically
+              //being tight coupling
+              a.display();
         }
+    }
 
-        class A {
-           B b;
-           public A() {
-              //b is tightly coupled to A
-              b = new B();
-           }
+    class A {
+       B b;
+       public A() {
+          //b is tightly coupled to A
+          b = new B();
+       }
 
-           public void display() {
-              System.out.println("A");
-              b.display();
-           }
-        }
+       public void display() {
+          System.out.println("A");
+          b.display();
+       }
+    }
 
-        class B {    
-           public B(){}
-           public void display() {
-              System.out.println("B");
-           }
-        }
+    class B {    
+       public B(){}
+       public void display() {
+          System.out.println("B");
+       }
+    }
+```
 
 
 - **Loose coupling** - When an object gets the object to be used from the outside, then it is a loose coupling situation. As the main object is merely using the object, this object can be changed from the outside world easily marked it as loosely coupled objects.
 
-        public class Tester {
-           public static void main(String args[]) throws IOException {
-              Show b = new B();
-              Show c = new C();
+```java
+    public class Tester {
+       public static void main(String args[]) throws IOException {
+          Show b = new B();
+          Show c = new C();
 
-              A a = new A(b);          
-              //a.display() will print A and B    
-              a.display();
+          A a = new A(b);          
+          //a.display() will print A and B    
+          a.display();
 
-              A a1 = new A(c);
-              //a.display() will print A and C    
-              a1.display();
-           }
-        }
+          A a1 = new A(c);
+          //a.display() will print A and C    
+          a1.display();
+       }
+    }
 
-        interface Show {
-           public void display();
-        }
+    interface Show {
+       public void display();
+    }
 
-        class A {
-           Show s;
-           public A(Show s) {
-              //s is loosely coupled to A
-              this.s = s;
-           }
+    class A {
+       Show s;
+       public A(Show s) {
+          //s is loosely coupled to A
+          this.s = s;
+       }
 
-           public void display() {
-              System.out.println("A");
-              s.display();
-           }
-        }
+       public void display() {
+          System.out.println("A");
+          s.display();
+       }
+    }
 
-        class B implements Show {    
-           public B(){}
-           public void display() {
-              System.out.println("B");
-           }
-        }
+    class B implements Show {    
+       public B(){}
+       public void display() {
+          System.out.println("B");
+       }
+    }
 
-        class C implements Show {    
-           public C(){}
-           public void display() {
-              System.out.println("C");
-           }
-        }
+    class C implements Show {    
+       public C(){}
+       public void display() {
+          System.out.println("C");
+       }
+    }
+```
 
 Reducing coupling is typically achieved through good software design practices, such as following the principles of encapsulation, abstraction, and dependency inversion. Using design patterns, interfaces, and dependency injection can also help to decouple components and promote modular and reusable code.
 
@@ -191,48 +200,53 @@ Cohesion in Java is the principle of Object-Oriented programming. Cohesion is cl
 to database. Theresponsibilities of this class are not really related. This is 
 not cohesive class.
 
-    class DownloadAndStore{
-            void downloadFromInternet(){
-            }
+```java
+class DownloadAndStore{
+        void downloadFromInternet(){
+        }
 
-            void parseData(){
-            }
+        void parseData(){
+        }
 
-            void storeIntoDatabase(){
-            }
+        void storeIntoDatabase(){
+        }
 
-            void doEverything(){
-                    downloadFromInternet();
-                    parseData();
-                    storeIntoDatabase();
-            }
-    }
+        void doEverything(){
+                downloadFromInternet();
+                parseData();
+                storeIntoDatabase();
+        }
+}
+```
 
 **Solution** - This is a better way of approaching the problem. Different classes have their 
 own responsibilities.
 
-    class InternetDownloader {
-            public void downloadFromInternet() {
-            }
-    }
+```java
+class InternetDownloader {
+        public void downloadFromInternet() {
+        }
+}
 
-    class DataParser {
-            public void parseData() {
-            }
-    }
+class DataParser {
+        public void parseData() {
+        }
+}
 
-    class DatabaseStorer {
-            public void storeIntoDatabase() {
-            }
-    }
+class DatabaseStorer {
+        public void storeIntoDatabase() {
+        }
+}
 
-    class DownloadAndStore {
-            void doEverything() {
-                    new InternetDownloader().downloadFromInternet();
-                    new DataParser().parseData();
-                    new DatabaseStorer().storeIntoDatabase();
-            }
-    }
+class DownloadAndStore {
+        void doEverything() {
+                new InternetDownloader().downloadFromInternet();
+                new DataParser().parseData();
+                new DatabaseStorer().storeIntoDatabase();
+        }
+}
+```
+
 </details>
 <details><summary>
 	
@@ -255,62 +269,64 @@ The Java Bean class is the example of a fully encapsulated class.
 
 - The standard IDE's are providing the facility to generate the getters and setters. So, it is easy and fast to create an encapsulated class in Java.
 
-        Approach 1
-        In this approach we create a public variable score. The main method directly 
-        accesses the score variable, updates it.
+```java
+    Approach 1
+    // In this approach we create a public variable score. The main method directly
+    accesses the score variable, updates it.
 
-        public class CricketScorer {
-                public int score;
-        }
+    public class CricketScorer {
+            public int score;
+    }
 
-        Let’s use the CricketScorer class.
-        public static void main(String[] args) {
-                CricketScorer scorer = new CricketScorer();
-                scorer.score = scorer.score + 4;
-        }
+    // Let’s use the CricketScorer class.
+    public static void main(String[] args) {
+            CricketScorer scorer = new CricketScorer();
+            scorer.score = scorer.score + 4;
+    }
 
-        Approach 2
-        In this approach, we make score as private and access value through get and set 
-        methods. However, the logic of adding 4 to the score is performed in the main 
-        method.
+    Approach 2
+    // In this approach, we make score as private and access value through get and set
+    methods. However, the logic of adding 4 to the score is performed in the main 
+    method.
 
-        public class CricketScorer {
-                private int score;
+    public class CricketScorer {
+            private int score;
 
-                public int getScore() {
-                        return score;
-                }
+            public int getScore() {
+                    return score;
+            }
 
-                public void setScore(int score) {
-                        this.score = score;
-                }
-        }
+            public void setScore(int score) {
+                    this.score = score;
+            }
+    }
 
-        Let’s use the CricketScorer class.
+    // Let’s use the CricketScorer class.
 
-        public static void main(String[] args) {
-                CricketScorer scorer = new CricketScorer();
-                int score = scorer.getScore();
-                scorer.setScore(score + 4);
-        }
+    public static void main(String[] args) {
+            CricketScorer scorer = new CricketScorer();
+            int score = scorer.getScore();
+            scorer.setScore(score + 4);
+    }
 
 
-        Approach 3
-        In this approach - For better encapsulation, the logic of doing the four 
-        operation also is moved to the CricketScorer class.
+    Approach 3
+    // In this approach - For better encapsulation, the logic of doing the four
+    operation also is moved to the CricketScorer class.
 
-        public class CricketScorer {
-                private int score;
-                        public void four() {
-                                score += 4;
-                        }
-        }
+    public class CricketScorer {
+            private int score;
+                    public void four() {
+                            score += 4;
+                    }
+    }
 
-        Let’s use the CricketScorer class.
-        public static void main(String[] args) {
-                CricketScorer scorer = new CricketScorer();
-                scorer.four();
-        }
+    // Let’s use the CricketScorer class.
+    public static void main(String[] args) {
+            CricketScorer scorer = new CricketScorer();
+            scorer.four();
+    }
+```
 
 **Description** - In terms of encapsulation Approach 3 > Approach 2 > Approach 1. In Approach 3, 
 the user of scorer class does not even know that there is a variable called 
@@ -333,10 +349,13 @@ Additionally, it can access all the members of the outer class, including privat
 - Nested classes are used to develop more readable and maintainable code because it logically group classes and interfaces in one place only.
 - Code Optimization: It requires less code to write.
 
-        class OuterClass {
-            public class InnerClass {
-            }
+```java
+    class OuterClass {
+        public class InnerClass {
         }
+    }
+```
+
 </details>
 <details><summary>
 	
@@ -349,10 +368,12 @@ The static nested class cannot access non-static (instance) data members or
 
 Inner Classes are classes which are declared inside other classes. Consider the following example:
 
-    class OuterClass {
-         public static class StaticNestedClass {
-         }
-    }
+```java
+class OuterClass {
+     public static class StaticNestedClass {
+     }
+}
+```
 
 </details>
 <details><summary>
@@ -363,13 +384,15 @@ we can write a class within a method and this will be a local type. Like local v
 
 A method-local inner class can be instantiated only within the method where the inner class is defined. 
 
-    class OuterClass {
-		public void exampleMethod() {
-			class MethodLocalInnerClass {
-				
-			};
-		}
-    }
+```java
+class OuterClass {
+	public void exampleMethod() {
+		class MethodLocalInnerClass {
+			
+		};
+	}
+}
+```
 
 </details>
 <details><summary>
@@ -385,37 +408,39 @@ In simple words, a class that has no name is known as an anonymous inner class i
 
 Below examples shows various ways to create Anonymous classes.
 
-	class Animal {
-		void bark() {
-			System.out .println("Animal Bark");
-		}
-	};
-
-	public class AnonymousClass {
-		private static String[] reverseSort(String[] array) {
-			Comparator<String> reverseComparator = new Comparator<String>() {	
-				/* Anonymous Class */
-				@Override
-				public int compare(String string1, String string2) {
-					return string2.compareTo(string1);
-				}
-			};
-		Arrays.sort(array, reverseComparator);
-		return array;
+```java
+class Animal {
+	void bark() {
+		System.out .println("Animal Bark");
 	}
+};
 
-	public static void main(String[] args) {
-		String[] array = { "Apple", "Cat", "Boy" };
-		System.out .println(Arrays.toString(reverseSort(array)));//[Cat, Boy, Apple]
-		
-		/* Second Anonymous Class - SubClass of Animal*/
-		Animal animal = new Animal() {
-			oid bark() {
-				System.out .println("Subclass bark");
+public class AnonymousClass {
+	private static String[] reverseSort(String[] array) {
+		Comparator<String> reverseComparator = new Comparator<String>() {	
+			/* Anonymous Class */
+			@Override
+			public int compare(String string1, String string2) {
+				return string2.compareTo(string1);
 			}
 		};
-		animal.bark();//Subclass bark
+	Arrays.sort(array, reverseComparator);
+	return array;
+}
+
+public static void main(String[] args) {
+	String[] array = { "Apple", "Cat", "Boy" };
+	System.out .println(Arrays.toString(reverseSort(array)));//[Cat, Boy, Apple]
+	
+	/* Second Anonymous Class - SubClass of Animal*/
+	Animal animal = new Animal() {
+		oid bark() {
+			System.out .println("Subclass bark");
 		}
+	};
+	animal.bark();//Subclass bark
 	}
+}
+```
 
 </details>

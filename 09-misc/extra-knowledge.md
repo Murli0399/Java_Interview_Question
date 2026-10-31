@@ -4,6 +4,21 @@
 </summary>
 An API (Application Programming Interface) is a set of rules that define how applications or devices can connect to and communicate with each other. A REST API is a specific type of API that adheres to the constraints of the REST architectural style. REST stands for Representational State Transfer. REST is a style of web architecture that governs the behavior of clients and servers. REST APIs use HTTP requests to interact with data. Traditional APIs can use a variety of protocols.
 REST APIs are also known as RESTful APIs. When a client requests a resource using a REST API, the server transfers back the current state of the resource in a standardized representation.
+
+**Example:**
+
+```java
+// REST API in Spring Boot: resources + HTTP verbs + status codes, usually JSON
+@RestController
+@RequestMapping("/api/users")
+class UserController {
+    @GetMapping("/{id}") User get(@PathVariable Long id) { ... }          // read
+    @PostMapping @ResponseStatus(HttpStatus.CREATED)
+    User create(@RequestBody User u) { ... }                               // create
+    @DeleteMapping("/{id}") void delete(@PathVariable Long id) { ... }    // delete
+}
+```
+
 </details>
 <details><summary>
 
@@ -47,6 +62,25 @@ Here are some examples of how the Reflection API can be used:
 - To override the access control restrictions on classes and members.
 
 The Reflection API is a powerful tool that can be used to do things that would not be possible without it. However, it is important to use it carefully, as it can also be used to do things that could have unintended consequences.
+
+**Example:**
+
+```java
+Class<?> clazz = Class.forName("com.example.User");
+Object user = clazz.getDeclaredConstructor().newInstance();
+
+Field name = clazz.getDeclaredField("name");
+name.setAccessible(true);                  // bypass private
+name.set(user, "Asha");
+
+Method greet = clazz.getMethod("greet");
+System.out.println(greet.invoke(user));
+
+for (Method m : clazz.getDeclaredMethods()) {
+    if (m.isAnnotationPresent(Deprecated.class)) System.out.println(m.getName());
+}
+```
+
 </details>
 <details><summary>
 
@@ -69,6 +103,18 @@ The use of the Java Reflection API in the Spring Framework also makes it possibl
 
 
 Overall, the use of the Java Reflection API in the Spring Framework makes it a more powerful and flexible framework than would be possible without it.
+
+**Example:**
+
+```java
+@Service
+class OrderService {
+    @Autowired private PaymentClient client;   // Spring sets this private field via reflection
+}
+// Also: scanning @Component classes, calling @PostConstruct/@EventListener methods,
+// binding JSON to objects (Jackson), creating proxies for @Transactional.
+```
+
 </details>
 <details><summary>
 
@@ -82,6 +128,17 @@ Authentication is the process of verifying a user's identity before granting acc
 For example, when you go through security at an airport, you show your ID to authenticate your identity. Authorization is like an airline determining which people can come on board.
 
 Authentication and authorization are often used interchangeably, but they are two separate functions.
+
+**Example:**
+
+```java
+// Authentication: who are you? -> 401 if missing/invalid
+// Authorization:  are you allowed? -> 403 if not permitted
+@GetMapping("/admin/reports")
+@PreAuthorize("hasRole('ADMIN')")      // authenticated users without ADMIN get 403
+public List<Report> reports() { ... }
+```
+
 </details>
 <details><summary>
 
@@ -112,6 +169,18 @@ The stack is a small, fixed-size area of memory that is used to store local vari
 The stack is used in a last-in, first-out (LIFO) manner. This means that the last variable that was declared is the first variable that is removed. The stack is also used to store the return address of a method call. The return address is the location of the code that will be executed after the method call returns.
 
 The heap and stack are two important parts of the Java memory model. They work together to provide a safe and efficient way to store data.
+
+**Example:**
+
+```java
+void handle() {
+    int retries = 3;                    // stack (primitive local)
+    Order order = new Order(42);        // 'order' reference on stack, Order object on heap
+    process(order);                     // new stack frame; same heap object shared
+}                                       // frame popped; Order collectable once unreachable
+// StackOverflowError: too-deep recursion. OutOfMemoryError: Java heap space: too many live objects.
+```
+
 </details>
 <details><summary>
 
@@ -123,6 +192,19 @@ A stored procedure is a set of SQL statements that are stored together as a sing
 Stored procedures are executed on the server side and perform a set of actions, before returning the results to the client side. They consist of database access commands (SQL), control statements, and data structures that manipulate the data obtained from the database.
 
 Stored procedures are accessible by all applications that can access relational databases, including Java, Python, and PHP. The procedure code is defined in a Java class method and stored in the database. This is executed using SQL.
+
+**Example:**
+
+```java
+try (Connection conn = dataSource.getConnection();
+     CallableStatement cs = conn.prepareCall("{call get_order_total(?, ?)}")) {
+    cs.setLong(1, orderId);                         // IN parameter
+    cs.registerOutParameter(2, Types.DECIMAL);      // OUT parameter
+    cs.execute();
+    BigDecimal total = cs.getBigDecimal(2);
+}
+```
+
 </details>
 <details><summary>
 
@@ -140,6 +222,24 @@ Connection pooling works by:
 - Allowing a database to scale effectively as the data stored there and the number of clients accessing it grow.
 
 Connection pooling can be implemented by deploying an intermediary queuing system to manage and recycle database connections. The JDBC Connection Pool Assistant can help you create and deploy a connection pool.
+
+**Example:**
+
+Spring Boot uses **HikariCP** by default:
+
+```yaml
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/app
+    hikari:
+      maximum-pool-size: 20       # max connections; size for DB capacity, not request count
+      minimum-idle: 5
+      connection-timeout: 3000    # ms to wait for a free connection before failing
+      max-lifetime: 1800000       # recycle connections before DB/firewall timeouts
+```
+
+Pool exhaustion shows as `SQLTransientConnectionException: Connection is not available`; check `hikaricp_connections_pending` metrics, long transactions and slow queries.
+
 </details>
 <details><summary>
 
@@ -156,6 +256,19 @@ Here are some ways to fix OutOfMemoryError:
 - Keep data access to a minimum. Let the database do the hard work for you (querying) and only bring back the data you need to the JVM.
 
 You can look in the atlassian-confluence.log to see which type of OutOfMemory Error you're receiving.
+
+**Example:**
+
+```bash
+# capture a heap dump automatically when OOM happens
+java -Xmx1g -XX:+HeapDumpOnOutOfMemoryError -XX:HeapDumpPath=/dumps -jar app.jar
+
+# or take one from a running JVM
+jcmd <pid> GC.heap_dump /dumps/app.hprof
+```
+
+Open the `.hprof` in Eclipse MAT, check the dominator tree for the largest retained objects, and follow the path to GC roots to find who holds them (often an unbounded cache or a static collection).
+
 </details>
 <details><summary>
 
@@ -165,6 +278,7 @@ You can look in the atlassian-confluence.log to see which type of OutOfMemory Er
 The main difference between a ClassCastException and a ClassNotFoundException in Java is that a ClassCastException is thrown when an object is not of the expected type, while a ClassNotFoundException is thrown when a class cannot be found.
 
 A ClassCastException is a checked exception, which means that it must be caught or declared in the method signature. It is thrown when an object is cast to a type that it is not compatible with. For example, the following code will throw a ClassCastException:
+
 ```
 Object o = new Integer(10);
 String s = (String) o; // This will throw a ClassCastException
@@ -173,6 +287,7 @@ String s = (String) o; // This will throw a ClassCastException
 In this example, the object o is an Integer, but it is being cast to a String. This is not allowed, because an Integer cannot be converted to a String.
 
 A ClassNotFoundException is an unchecked exception, which means that it does not need to be caught or declared in the method signature. It is thrown when a class cannot be found. For example, the following code will throw a ClassNotFoundException:
+
 ```
 try {
   Class<?> c = Class.forName("java.lang.String");
@@ -201,6 +316,18 @@ JSON is used for:
 - Serializing structured data and exchanging it over a network
 
 JSON is a language-independent data format that supports almost every kind of language, framework, and library.
+
+**Example:**
+
+```java
+record User(Long id, String name) {}
+
+ObjectMapper mapper = new ObjectMapper();
+String json = mapper.writeValueAsString(new User(1L, "Asha"));  // {"id":1,"name":"Asha"}
+User u = mapper.readValue("{\"id\":2,\"name\":\"Ravi\"}", User.class);
+// Spring Boot does this automatically for @RequestBody / @RestController return values.
+```
+
 </details>
 <details><summary>
 
@@ -259,6 +386,18 @@ Here are some differences between a view and a table:
 - A table is an independent data object.
 - A table holds the basic user data and instances of defined objects.
 - A view is used to query certain data present in different tables.
+
+**Example:**
+
+```sql
+CREATE VIEW active_customers AS
+SELECT id, name, email FROM customers WHERE status = 'ACTIVE';
+
+SELECT * FROM active_customers WHERE name LIKE 'A%';   -- queried like a table
+```
+
+The view stores only the query; the data stays in `customers`. A **materialized view** stores the result and must be refreshed.
+
 </details>
 <details><summary>
 
@@ -287,6 +426,22 @@ Triggers can be defined to run instead of or after DML (Data Manipulation Langua
 Triggers can also be defined to run after system events such as a login or logout.
 
 Triggers are an important method for enforcing business rules because they automatically perform an action after a change is made to the database.
+
+**Example:**
+
+```sql
+CREATE TRIGGER trg_prevent_negative_stock
+BEFORE UPDATE ON products
+FOR EACH ROW
+BEGIN
+  IF NEW.stock < 0 THEN
+    SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Stock cannot be negative';
+  END IF;
+END;
+```
+
+Use sparingly: business logic hidden in triggers is hard to test and debug; prefer application code or constraints (`CHECK (stock >= 0)`).
+
 </details>
 <details><summary>
 
@@ -312,6 +467,21 @@ When writing Unix commands, you can follow these general rules:
 - Enter commands in lowercase
 - Options are often single letters prefixed with a dash (-)
 - Options are set off by any number of spaces or tabs
+
+**Example:**
+
+```bash
+ls -lah                      # list files with sizes
+grep -rn "ERROR" logs/       # search text recursively
+tail -f app.log              # follow a log file
+ps aux | grep java           # find running Java processes
+top -H -p <pid>              # CPU per thread of a process
+df -h ; du -sh *             # disk usage
+netstat -tulpn / ss -tulpn   # listening ports
+curl -i http://localhost:8080/actuator/health
+chmod +x run.sh ; kill -15 <pid>
+```
+
 </details>
 <details><summary>
 
@@ -331,6 +501,18 @@ Shell scripting is a computer program that is used to automate repetitive tasks.
 Shell scripts are written as a sequence of commands in a file. The file is made up of ASCII text, also called plain text. You can use a text editor to create shell scripts. Some good command line text editors include vim, emacs, and nano.
 
 Shell scripts are easier to write and debug than other programming languages like C or C++. You can transfer the shell script to other UNIX and similar operating systems and execute it.
+
+**Example:**
+
+```bash
+#!/usr/bin/env bash
+set -euo pipefail                      # stop on errors and undefined vars
+
+LOG_DIR=/var/log/app
+find "$LOG_DIR" -name "*.log" -mtime +7 -delete   # delete logs older than 7 days
+echo "Cleanup done at $(date)"
+```
+
 </details>
 <details><summary>
 
@@ -384,6 +566,19 @@ Here are some other differences between HashMap and Hashtable:
 - HashMap allows one null key and several null values, while Hashtable doesn't allow any null keys or values.
 - HashMap is non-synchronized, making it faster for single-threaded tasks, while Hashtable is inherently synchronized.
 - HashMap uses Iterator to iterate over values, whereas Hashtable has Enumerator for the same.
+
+**Example:**
+
+```java
+Map<String, String> hm = new HashMap<>();
+hm.put(null, "ok");                  // HashMap: one null key, null values allowed; not synchronized
+
+Map<String, String> ht = new Hashtable<>();
+// ht.put(null, "x");                // NullPointerException: Hashtable allows no nulls
+// Hashtable synchronizes every method (legacy). For thread safety use ConcurrentHashMap.
+Map<String, String> chm = new ConcurrentHashMap<>();
+```
+
 </details>
 <details><summary>
 
@@ -396,6 +591,7 @@ Constructor chaining is the process of calling one constructor from another cons
 - Using the super() keyword to call the constructor in the parent class.
 
 The following is an example of constructor chaining using the this() keyword:
+
 ```
 public class Person {
 
@@ -413,7 +609,9 @@ public class Person {
 
 }
 ```
+
 The following is an example of constructor chaining using the super() keyword:
+
 ```
 public class Car extends Vehicle {
 
@@ -428,27 +626,6 @@ public class Car extends Vehicle {
 
 }
 ```
+
 Constructor chaining is a powerful feature that can help to make your code more concise and efficient.
 </details>
-<details><summary>
-
-## 
-</summary>
-
-
-</details>
-<details><summary>
-
-## 
-</summary>
-
-
-</details>
-<details><summary>
-
-## 
-</summary>
-
-
-</details>
-

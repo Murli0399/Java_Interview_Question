@@ -6,6 +6,25 @@ A String is an unavoidable type of variable while writing any application progra
 
 Once String object is created its data or state can't be changed but a new String object is created.
 As Java uses the concept of String literal. Suppose there are 5 reference variables, all refer to one object "Sachin". If one reference variable changes the value of the object, it will be affected by all the reference variables. That is why String objects are immutable in Java.
+
+**Example:**
+
+```java
+String s = "java";
+s.toUpperCase();              // returns a NEW String, s is unchanged
+System.out.println(s);        // java
+s = s.toUpperCase();          // reassign the reference to the new object
+System.out.println(s);        // JAVA
+
+String a = "hi";
+String b = "hi";
+String c = new String("hi");
+System.out.println(a == b);       // true  (same pooled literal)
+System.out.println(a == c);       // false (new object on the heap)
+System.out.println(a.equals(c));  // true  (same content)
+System.out.println(a == c.intern()); // true (intern returns the pooled copy)
+```
+
 </details>
 	
 <details><summary>
@@ -17,15 +36,21 @@ String is a class and strings in java treated as an object, hence the object of 
 Approach 1
 In the below example we are directly referencing a String literal.
 	
-	String str1 = "value";
+```java
+String str1 = "value";
+```
+
 This value will be stored in a "String constant pool" – which is inside the 
 Heap memory. If compiler finds a String literal, JVM checks the if String constant pool if exists in the pool. it is reused.
 
 Approach 2
 However, if new operator is used to create string object, the new object is created on the heap. There will not be any case to reuse of values.
 
-	//String Object - created on the heap
-	String str2 = new String("value");
+```java
+//String Object - created on the heap
+String str2 = new String("value");
+```
+
 </details>
   
 <details><summary>
@@ -43,12 +68,15 @@ Each time a new String object is created through concatenation, the previous Str
 ### Time complexity
 The time complexity of string concatenation using the + operator inside a loop is quadratic, meaning it grows exponentially with the number of iterations. For each concatenation operation, the entire concatenated string is copied into a new object, resulting in increasing time complexity. This can lead to significant performance degradation for large loops.
 
-	String s3 = "Value1";
-	String s2 = "Value2";
+```java
+String s3 = "Value1";
+String s2 = "Value2";
 
-	for (int i = 0; i < 100000; ++i) {
-		s3 = s3 + s2;
-	}
+for (int i = 0; i < 100000; ++i) {
+	s3 = s3 + s2;
+}
+```
+
 How many objects are created in memory? More than 100000 Strings are created. 
 This will have a huge performance impact.
 </details>
@@ -59,12 +87,15 @@ This will have a huge performance impact.
 </summary>
 To solve the performance problem associated with string concatenation using the + operator inside loops, we can use the StringBuilder class. StringBuilder provides a mutable buffer for efficiently constructing strings by appending individual values. 
 	
-	StringBuffer s3 = new StringBuffer("Value1");
-	String s2 = "Value2";
+```java
+StringBuffer s3 = new StringBuffer("Value1");
+String s2 = "Value2";
 
-	for (int i = 0; i < 100000; ++i) {
-		s3.append(s2);
-	}
+for (int i = 0; i < 100000; ++i) {
+	s3.append(s2);
+}
+```
+
 </details>
   
 <details><summary>
@@ -76,6 +107,18 @@ String concatenation involves creating new String objects, while StringBuffer al
 String is not thread-safe, while StringBuffer is synchronized and thread-safe.
 StringBuffer is more memory-efficient for frequent modifications, while String objects may result in additional memory usage.
 Use String when immutability is desired, and StringBuffer when frequent modifications are needed.
+
+**Example:**
+
+```java
+String s = "a";
+s.concat("b");                 // new object returned, s still "a"
+
+StringBuffer sb = new StringBuffer("a");
+sb.append("b");                // same object modified in place
+System.out.println(sb);        // ab
+```
+
 </details>
   
 <details><summary>
@@ -86,6 +129,20 @@ StringBuilder is not thread-safe, while StringBuffer is thread-safe.
 StringBuilder provides better performance due to the absence of synchronization.
 Use StringBuilder in single-threaded scenarios or when manual synchronization is applied.
 Use StringBuffer in multi-threaded scenarios where thread safety is required.
+
+**Example:**
+
+```java
+// StringBuilder: not synchronized, faster -> use for local string building
+StringBuilder csv = new StringBuilder();
+for (String col : List.of("id", "name", "city")) csv.append(col).append(',');
+csv.setLength(csv.length() - 1);   // remove trailing comma
+System.out.println(csv);           // id,name,city
+
+// StringBuffer: synchronized methods, only if one instance is shared between threads
+StringBuffer shared = new StringBuffer();
+```
+
 </details>
   
 <details><summary>
@@ -94,26 +151,29 @@ Use StringBuffer in multi-threaded scenarios where thread safety is required.
 </summary>
 Certainly! The String class in Java provides a wide range of utility methods to perform various operations on strings. Here are some examples of commonly used utility methods in the String class:
 
-	1. Length:
-	int length(): Returns the length of the string.
+```java
+1. Length:
+int length(): Returns the length of the string.
 
-	2.Concatenation:
-	String concat(String str): Concatenates the specified string to the end of the current string.
-	static String join(CharSequence delimiter, CharSequence... elements): Joins multiple strings using the specified delimiter.
+2.Concatenation:
+String concat(String str): Concatenates the specified string to the end of the current string.
+static String join(CharSequence delimiter, CharSequence... elements): Joins multiple strings using the specified delimiter.
 
-	3. Substring:
-	String substring(int beginIndex); //Returns a new string that is a substring of the current string, starting from the specified index.
-	String substring(int beginIndex, int endIndex); //Returns a new string that is a substring of the current string, starting from the specified begin index and ending at the specified end index (exclusive).
+3. Substring:
+String substring(int beginIndex); //Returns a new string that is a substring of the current string, starting from the specified index.
+String substring(int beginIndex, int endIndex); //Returns a new string that is a substring of the current string, starting from the specified begin index and ending at the specified end index (exclusive).
 
-	4. Case conversion:
-	String toLowerCase(): //Converts the string to lowercase.
-	String toUpperCase(): //Converts the string to uppercase.
+4. Case conversion:
+String toLowerCase(): //Converts the string to lowercase.
+String toUpperCase(): //Converts the string to uppercase.
 
-	5. Character extraction:
-	char charAt(int index): //Returns the character at the specified index in the string.
-	int codePointAt(int index): //Returns the Unicode code point value of the character at the specified index.
+5. Character extraction:
+char charAt(int index): //Returns the character at the specified index in the string.
+int codePointAt(int index): //Returns the Unicode code point value of the character at the specified index.
 
-	6. Comparison:
-	boolean equals(Object obj): //Checks if the current string is equal to the specified object.
-	boolean equalsIgnoreCase(String anotherString): //Checks if the current string is equal to the specified string, ignoring case.
+6. Comparison:
+boolean equals(Object obj): //Checks if the current string is equal to the specified object.
+boolean equalsIgnoreCase(String anotherString): //Checks if the current string is equal to the specified string, ignoring case.
+```
+
 </details>

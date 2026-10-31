@@ -14,39 +14,41 @@ There are several reasons why threads are used in Java:
 
 Here's a simple example to illustrate the use of threads in Java:
 
-        public class ThreadExample {
-            public static void main(String[] args) {
-                Thread thread1 = new Thread(new Task("Task 1"));
-                Thread thread2 = new Thread(new Task("Task 2"));
-                
-                thread1.start(); // Start executing Task 1 in a separate thread
-                thread2.start(); // Start executing Task 2 in a separate thread
-                
-                // Perform other tasks in the main thread
-                System.out.println("Main thread is performing other tasks...");
-            }
+```java
+    public class ThreadExample {
+        public static void main(String[] args) {
+            Thread thread1 = new Thread(new Task("Task 1"));
+            Thread thread2 = new Thread(new Task("Task 2"));
+            
+            thread1.start(); // Start executing Task 1 in a separate thread
+            thread2.start(); // Start executing Task 2 in a separate thread
+            
+            // Perform other tasks in the main thread
+            System.out.println("Main thread is performing other tasks...");
         }
+    }
 
-        class Task implements Runnable {
-            private String name;
-            
-            public Task(String name) {
-                this.name = name;
-            }
-            
-            public void run() {
-                System.out.println("Executing " + name);
-                
-                // Simulate some work
-                try {
-                    Thread.sleep(2000); // Sleep for 2 seconds
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-                
-                System.out.println(name + " completed");
-            }
+    class Task implements Runnable {
+        private String name;
+        
+        public Task(String name) {
+            this.name = name;
         }
+        
+        public void run() {
+            System.out.println("Executing " + name);
+            
+            // Simulate some work
+            try {
+                Thread.sleep(2000); // Sleep for 2 seconds
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            
+            System.out.println(name + " completed");
+        }
+    }
+```
 
 In this example, two instances of the Task class are created, representing two different tasks. Each task is executed in a separate thread using the Thread class. The run() method of the Task class contains the code that will be executed in each thread. The Thread.sleep() method is used to simulate some work being done. While the tasks are being executed in separate threads, the main thread continues to perform other tasks concurrently.
 </details>
@@ -58,32 +60,40 @@ In Java, you can create a thread by following one of the two approaches: extendi
 
 1. Extending the Thread class:
 
-        public class MyThread extends Thread {
-            public void run() {
-                // Code to be executed in the thread
-            }
+```java
+    public class MyThread extends Thread {
+        public void run() {
+            // Code to be executed in the thread
         }
+    }
+```
 
 To start the thread, you create an instance of your MyThread class and call the start() method:
 
-        MyThread thread = new MyThread();
-        thread.start();
+```java
+    MyThread thread = new MyThread();
+    thread.start();
+```
 
 The run() method contains the code that will be executed in the thread. You can override this method to define the behavior of your thread.
 
 2. Implementing the Runnable interface:
 
-        public class MyRunnable implements Runnable {
-            public void run() {
-                // Code to be executed in the thread
-            }
+```java
+    public class MyRunnable implements Runnable {
+        public void run() {
+            // Code to be executed in the thread
         }
+    }
+```
 
 To start the thread, you create an instance of your MyRunnable class and pass it to the Thread constructor. Then, you call the start() method on the Thread object:
 
-        MyRunnable runnable = new MyRunnable();
-        Thread thread = new Thread(runnable);
-        thread.start();
+```java
+    MyRunnable runnable = new MyRunnable();
+    Thread thread = new Thread(runnable);
+    thread.start();
+```
 
 The run() method in the Runnable implementation contains the code that will be executed in the thread.
 
@@ -110,6 +120,26 @@ In Java, a thread can be in one of several states throughout its lifecycle. The 
 6. Terminated: A thread enters the "Terminated" state when its run() method completes or when an unhandled exception occurs within the thread. In this state, the thread has finished its execution and cannot be restarted.
 
 It's important to note that the exact state transitions and behavior of threads can be influenced by factors such as thread scheduling, synchronization, and blocking operations. The Java Thread API provides methods and mechanisms to control and manage thread states effectively.
+
+**Example:**
+
+```java
+Object lock = new Object();
+Thread t = new Thread(() -> {
+    synchronized (lock) {
+        try { lock.wait(); } catch (InterruptedException ignored) {}
+    }
+});
+System.out.println(t.getState());  // NEW
+t.start();
+Thread.sleep(100);
+System.out.println(t.getState());  // WAITING (inside wait())
+synchronized (lock) { lock.notify(); }
+t.join();
+System.out.println(t.getState());  // TERMINATED
+// Other states: RUNNABLE, BLOCKED (waiting for a monitor lock), TIMED_WAITING (sleep/wait with timeout)
+```
+
 </details>
 <details><summary>
 
@@ -119,24 +149,26 @@ In Java, the priority of a thread is an integer value that determines the relati
 
 You can change the priority of a thread using the setPriority() method provided by the Thread class. Here's an example that demonstrates how to change the priority of a thread:
 
-          public class PriorityExample {
-              public static void main(String[] args) {
-                  Thread thread1 = new Thread(new Task(), "Thread 1");
-                  Thread thread2 = new Thread(new Task(), "Thread 2");
-                  
-                  thread1.setPriority(Thread.MAX_PRIORITY); // Set Thread 1 priority to maximum
-                  thread2.setPriority(Thread.MIN_PRIORITY); // Set Thread 2 priority to minimum
-                  
-                  thread1.start();
-                  thread2.start();
-              }
+```java
+      public class PriorityExample {
+          public static void main(String[] args) {
+              Thread thread1 = new Thread(new Task(), "Thread 1");
+              Thread thread2 = new Thread(new Task(), "Thread 2");
+              
+              thread1.setPriority(Thread.MAX_PRIORITY); // Set Thread 1 priority to maximum
+              thread2.setPriority(Thread.MIN_PRIORITY); // Set Thread 2 priority to minimum
+              
+              thread1.start();
+              thread2.start();
           }
+      }
 
-          class Task implements Runnable {
-              public void run() {
-                  System.out.println("Executing task in " + Thread.currentThread().getName());
-              }
+      class Task implements Runnable {
+          public void run() {
+              System.out.println("Executing task in " + Thread.currentThread().getName());
           }
+      }
+```
 
 In this example, two instances of the Task class are created, representing two different tasks to be executed in separate threads. The setPriority() method is used to set the priority of each thread.
 
@@ -156,26 +188,28 @@ The ExecutorService interface extends the Executor interface and adds additional
 
 Here's an example that demonstrates the usage of ExecutorService:
 
-            import java.util.concurrent.ExecutorService;
-            import java.util.concurrent.Executors;
+```java
+        import java.util.concurrent.ExecutorService;
+        import java.util.concurrent.Executors;
 
-            public class ExecutorServiceExample {
-                public static void main(String[] args) {
-                    // Create an ExecutorService with a fixed thread pool of size 5
-                    ExecutorService executorService = Executors.newFixedThreadPool(5);
+        public class ExecutorServiceExample {
+            public static void main(String[] args) {
+                // Create an ExecutorService with a fixed thread pool of size 5
+                ExecutorService executorService = Executors.newFixedThreadPool(5);
 
-                    // Submit tasks for execution
-                    for (int i = 0; i < 10; i++) {
-                        int taskId = i;
-                        executorService.submit(() -> {
-                            System.out.println("Task " + taskId + " is being executed by thread: " + Thread.currentThread().getName());
-                        });
-                    }
-
-                    // Shutdown the ExecutorService to reject any new tasks and wait for the previously submitted tasks to complete
-                    executorService.shutdown();
+                // Submit tasks for execution
+                for (int i = 0; i < 10; i++) {
+                    int taskId = i;
+                    executorService.submit(() -> {
+                        System.out.println("Task " + taskId + " is being executed by thread: " + Thread.currentThread().getName());
+                    });
                 }
+
+                // Shutdown the ExecutorService to reject any new tasks and wait for the previously submitted tasks to complete
+                executorService.shutdown();
             }
+        }
+```
 
 In this example, we create an ExecutorService using the Executors.newFixedThreadPool() method, which creates a thread pool with a fixed number of threads (in this case, 5). We then submit 10 tasks for execution using the submit() method of the ExecutorService. Each task is a lambda expression that prints a message indicating the task ID and the name of the thread executing it.
 
@@ -191,28 +225,38 @@ There are several ways to create an ExecutorService in Java, depending on your s
 
 - **Executors.newFixedThreadPool(int nThreads):** This method creates an ExecutorService with a fixed-size thread pool, where nThreads specifies the number of threads in the pool. All submitted tasks will be executed concurrently by the available threads.
 
-            ExecutorService executorService = Executors.newFixedThreadPool(5);
+```java
+        ExecutorService executorService = Executors.newFixedThreadPool(5);
+```
 
 - **Executors.newCachedThreadPool():** This method creates an ExecutorService with a dynamically adjusting thread pool. Threads will be created as needed and reused if available. If a thread is idle for a certain period, it will be terminated and removed from the pool.
 
-            ExecutorService executorService = Executors.newCachedThreadPool();
+```java
+        ExecutorService executorService = Executors.newCachedThreadPool();
+```
 
 - **Executors.newSingleThreadExecutor():** This method creates an ExecutorService with a single thread. It ensures that all submitted tasks are executed sequentially, one after the other, in the order they were submitted.
 
-            ExecutorService executorService = Executors.newSingleThreadExecutor();
+```java
+        ExecutorService executorService = Executors.newSingleThreadExecutor();
+```
 
 - **Executors.newScheduledThreadPool(int corePoolSize):** This method creates an ExecutorService that can schedule tasks to run after a specified delay or at fixed intervals. The corePoolSize parameter determines the number of threads in the pool.
 
-            ExecutorService executorService = Executors.newScheduledThreadPool(3);
+```java
+        ExecutorService executorService = Executors.newScheduledThreadPool(3);
+```
 
 - **ThreadPoolExecutor class:** Apart from the factory methods provided by the Executors class, you can also create an ExecutorService using the ThreadPoolExecutor class, which offers more customization options. You can specify the core pool size, maximum pool size, keep-alive time, work queue type, and other parameters.
 
-            ExecutorService executorService = new ThreadPoolExecutor(
-                3, // core pool size
-                5, // maximum pool size
-                60, TimeUnit.SECONDS, // keep-alive time for idle threads
-                new ArrayBlockingQueue<>(10) // work queue type and size
-            );
+```java
+        ExecutorService executorService = new ThreadPoolExecutor(
+            3, // core pool size
+            5, // maximum pool size
+            60, TimeUnit.SECONDS, // keep-alive time for idle threads
+            new ArrayBlockingQueue<>(10) // work queue type and size
+        );
+```
 
 Using the ThreadPoolExecutor class gives you fine-grained control over the thread pool configuration, allowing you to tailor it to your specific needs.
 
@@ -226,38 +270,40 @@ To check whether an ExecutorService task executed successfully, you can use the 
 
 Here's an example that demonstrates how to use Future to check the execution status of a task:
 
-            import java.util.concurrent.ExecutorService;
-            import java.util.concurrent.Executors;
-            import java.util.concurrent.Future;
+```java
+        import java.util.concurrent.ExecutorService;
+        import java.util.concurrent.Executors;
+        import java.util.concurrent.Future;
 
-            public class ExecutorServiceExample {
-                public static void main(String[] args) {
-                    ExecutorService executorService = Executors.newFixedThreadPool(5);
+        public class ExecutorServiceExample {
+            public static void main(String[] args) {
+                ExecutorService executorService = Executors.newFixedThreadPool(5);
 
-                    // Submit a task for execution
-                    Future<String> future = executorService.submit(() -> {
-                        // Simulating a task that takes some time to complete
-                        Thread.sleep(2000);
-                        return "Task completed successfully";
-                    });
+                // Submit a task for execution
+                Future<String> future = executorService.submit(() -> {
+                    // Simulating a task that takes some time to complete
+                    Thread.sleep(2000);
+                    return "Task completed successfully";
+                });
 
-                    // Check if the task has completed
-                    if (future.isDone()) {
-                        try {
-                            // Retrieve the result of the task
-                            String result = future.get();
-                            System.out.println("Task result: " + result);
-                        } catch (Exception e) {
-                            System.err.println("An error occurred while retrieving the task result: " + e.getMessage());
-                        }
-                    } else {
-                        System.out.println("Task is still running");
+                // Check if the task has completed
+                if (future.isDone()) {
+                    try {
+                        // Retrieve the result of the task
+                        String result = future.get();
+                        System.out.println("Task result: " + result);
+                    } catch (Exception e) {
+                        System.err.println("An error occurred while retrieving the task result: " + e.getMessage());
                     }
-
-                    // Shutdown the ExecutorService
-                    executorService.shutdown();
+                } else {
+                    System.out.println("Task is still running");
                 }
+
+                // Shutdown the ExecutorService
+                executorService.shutdown();
             }
+        }
+```
 
 In this example, we submit a task to the ExecutorService using the submit() method, which returns a Future object representing the task's execution. We can then use the isDone() method of the Future to check if the task has completed.
 
@@ -281,39 +327,41 @@ To execute a Callable from an ExecutorService, you can use the submit() method, 
 
 Here's an example that demonstrates how to create a Callable and execute it using an ExecutorService:
 
-            import java.util.concurrent.Callable;
-            import java.util.concurrent.ExecutorService;
-            import java.util.concurrent.Executors;
-            import java.util.concurrent.Future;
+```java
+        import java.util.concurrent.Callable;
+        import java.util.concurrent.ExecutorService;
+        import java.util.concurrent.Executors;
+        import java.util.concurrent.Future;
 
-            public class CallableExample {
-                public static void main(String[] args) {
-                    ExecutorService executorService = Executors.newFixedThreadPool(5);
+        public class CallableExample {
+            public static void main(String[] args) {
+                ExecutorService executorService = Executors.newFixedThreadPool(5);
 
-                    // Create a Callable task
-                    Callable<Integer> task = () -> {
-                        // Simulating some computation
-                        Thread.sleep(2000);
-                        return 42;
-                    };
+                // Create a Callable task
+                Callable<Integer> task = () -> {
+                    // Simulating some computation
+                    Thread.sleep(2000);
+                    return 42;
+                };
 
-                    // Submit the task for execution
-                    Future<Integer> future = executorService.submit(task);
+                // Submit the task for execution
+                Future<Integer> future = executorService.submit(task);
 
-                    // Do other tasks or operations while the Callable is executing
+                // Do other tasks or operations while the Callable is executing
 
-                    try {
-                        // Retrieve the result of the Callable task
-                        Integer result = future.get();
-                        System.out.println("Task result: " + result);
-                    } catch (Exception e) {
-                        System.err.println("An error occurred while retrieving the task result: " + e.getMessage());
-                    }
-
-                    // Shutdown the ExecutorService
-                    executorService.shutdown();
+                try {
+                    // Retrieve the result of the Callable task
+                    Integer result = future.get();
+                    System.out.println("Task result: " + result);
+                } catch (Exception e) {
+                    System.err.println("An error occurred while retrieving the task result: " + e.getMessage());
                 }
+
+                // Shutdown the ExecutorService
+                executorService.shutdown();
             }
+        }
+```
 
 In this example, we create a Callable task using a lambda expression. The Callable returns an Integer result after a simulated computation. We then submit the Callable task to the ExecutorService using the submit() method, which returns a Future object.
 
@@ -331,17 +379,19 @@ In Java, synchronization can be achieved using the synchronized keyword and intr
 
 Here's a simple example that demonstrates synchronization:
 
-            public class Counter {
-                private int count;
+```java
+        public class Counter {
+            private int count;
 
-                public synchronized void increment() {
-                    count++;
-                }
-
-                public synchronized int getCount() {
-                    return count;
-                }
+            public synchronized void increment() {
+                count++;
             }
+
+            public synchronized int getCount() {
+                return count;
+            }
+        }
+```
 
 In this example, the Counter class has two methods: increment() and getCount(). Both methods are marked as synchronized, which means only one thread can execute these methods at a time.
 
@@ -356,22 +406,24 @@ By synchronizing critical sections of code or methods, you can enforce mutual ex
 ## Can you give an example of a Synchronization block ?
 </summary>
 
-            public class Counter {
-                private int count;
-                private Object lock = new Object();
+```java
+        public class Counter {
+            private int count;
+            private Object lock = new Object();
 
-                public void increment() {
-                    synchronized (lock) {
-                        count++;
-                    }
-                }
-
-                public int getCount() {
-                    synchronized (lock) {
-                        return count;
-                    }
+            public void increment() {
+                synchronized (lock) {
+                    count++;
                 }
             }
+
+            public int getCount() {
+                synchronized (lock) {
+                    return count;
+                }
+            }
+        }
+```
 
 In this example, the Counter class has two methods: increment() and getCount(). Instead of marking the entire methods as synchronized, we use synchronization blocks to achieve thread-safety.
 
@@ -391,17 +443,19 @@ Yes, a static method can be synchronized in Java. When a static method is marked
 
 Here's an example that demonstrates synchronization on a static method:
 
-            public class Counter {
-                private static int count;
+```java
+        public class Counter {
+            private static int count;
 
-                public static synchronized void increment() {
-                    count++;
-                }
-
-                public static synchronized int getCount() {
-                    return count;
-                }
+            public static synchronized void increment() {
+                count++;
             }
+
+            public static synchronized int getCount() {
+                return count;
+            }
+        }
+```
 
 In this example, the increment() and getCount() methods are static and marked as synchronized using the synchronized keyword. This ensures that only one thread can execute these methods at any given time for the entire Counter class.
 
@@ -417,40 +471,42 @@ The join() method in Java is used to pause the execution of a thread until the t
 
 Here's a simple example that demonstrates the use of the join() method:
 
-            public class JoinExample {
-                public static void main(String[] args) throws InterruptedException {
-                    Thread thread1 = new Thread(() -> {
-                        System.out.println("Thread 1 started");
-                        try {
-                            Thread.sleep(2000);
-                        } catch (InterruptedException e) {
-                            e.printStackTrace();
-                        }
-                        System.out.println("Thread 1 completed");
-                    });
+```java
+        public class JoinExample {
+            public static void main(String[] args) throws InterruptedException {
+                Thread thread1 = new Thread(() -> {
+                    System.out.println("Thread 1 started");
+                    try {
+                        Thread.sleep(2000);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                    System.out.println("Thread 1 completed");
+                });
 
-                    Thread thread2 = new Thread(() -> {
-                        System.out.println("Thread 2 started");
-                        try {
-                            Thread.sleep(3000);
-                        } catch (InterruptedException e) {
-                            e.printStackTrace();
-                        }
-                        System.out.println("Thread 2 completed");
-                    });
+                Thread thread2 = new Thread(() -> {
+                    System.out.println("Thread 2 started");
+                    try {
+                        Thread.sleep(3000);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                    System.out.println("Thread 2 completed");
+                });
 
-                    thread1.start();
-                    thread2.start();
+                thread1.start();
+                thread2.start();
 
-                    // Wait for thread1 to complete before proceeding
-                    thread1.join();
+                // Wait for thread1 to complete before proceeding
+                thread1.join();
 
-                    // Wait for thread2 to complete before proceeding
-                    thread2.join();
+                // Wait for thread2 to complete before proceeding
+                thread2.join();
 
-                    System.out.println("All threads completed");
-                }
+                System.out.println("All threads completed");
             }
+        }
+```
 
 In this example, we have two threads: thread1 and thread2. Each thread performs some tasks and then completes after a certain delay using Thread.sleep().
 
@@ -470,26 +526,28 @@ The main use of the yield() method is to improve the fairness and responsiveness
 
 Here's a simple example that demonstrates the use of the yield() method:
 
-            public class YieldExample {
-                public static void main(String[] args) {
-                    Thread thread1 = new Thread(() -> {
-                        for (int i = 1; i <= 5; i++) {
-                            System.out.println("Thread 1 - " + i);
-                            Thread.yield(); // Yield the execution to other threads
-                        }
-                    });
+```java
+        public class YieldExample {
+            public static void main(String[] args) {
+                Thread thread1 = new Thread(() -> {
+                    for (int i = 1; i <= 5; i++) {
+                        System.out.println("Thread 1 - " + i);
+                        Thread.yield(); // Yield the execution to other threads
+                    }
+                });
 
-                    Thread thread2 = new Thread(() -> {
-                        for (int i = 1; i <= 5; i++) {
-                            System.out.println("Thread 2 - " + i);
-                            Thread.yield(); // Yield the execution to other threads
-                        }
-                    });
+                Thread thread2 = new Thread(() -> {
+                    for (int i = 1; i <= 5; i++) {
+                        System.out.println("Thread 2 - " + i);
+                        Thread.yield(); // Yield the execution to other threads
+                    }
+                });
 
-                    thread1.start();
-                    thread2.start();
-                }
+                thread1.start();
+                thread2.start();
             }
+        }
+```
 
 In this example, we have two threads: thread1 and thread2. Each thread prints a message with a sequence number and then calls yield() to give other threads a chance to run.
 
@@ -511,47 +569,49 @@ When a deadlock occurs, the threads involved are unable to make progress, leadin
 
 Here's a simplified example that illustrates a deadlock scenario:
 
-            public class DeadlockExample {
-                private static final Object resource1 = new Object();
-                private static final Object resource2 = new Object();
+```java
+        public class DeadlockExample {
+            private static final Object resource1 = new Object();
+            private static final Object resource2 = new Object();
 
-                public static void main(String[] args) {
-                    Thread thread1 = new Thread(() -> {
-                        synchronized (resource1) {
-                            System.out.println("Thread 1 acquired resource 1");
-                            try {
-                                Thread.sleep(1000);
-                            } catch (InterruptedException e) {
-                                e.printStackTrace();
-                            }
-
-                            synchronized (resource2) {
-                                System.out.println("Thread 1 acquired resource 2");
-                                // Perform operations using both resources
-                            }
+            public static void main(String[] args) {
+                Thread thread1 = new Thread(() -> {
+                    synchronized (resource1) {
+                        System.out.println("Thread 1 acquired resource 1");
+                        try {
+                            Thread.sleep(1000);
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
                         }
-                    });
 
-                    Thread thread2 = new Thread(() -> {
                         synchronized (resource2) {
-                            System.out.println("Thread 2 acquired resource 2");
-                            try {
-                                Thread.sleep(1000);
-                            } catch (InterruptedException e) {
-                                e.printStackTrace();
-                            }
-
-                            synchronized (resource1) {
-                                System.out.println("Thread 2 acquired resource 1");
-                                // Perform operations using both resources
-                            }
+                            System.out.println("Thread 1 acquired resource 2");
+                            // Perform operations using both resources
                         }
-                    });
+                    }
+                });
 
-                    thread1.start();
-                    thread2.start();
-                }
+                Thread thread2 = new Thread(() -> {
+                    synchronized (resource2) {
+                        System.out.println("Thread 2 acquired resource 2");
+                        try {
+                            Thread.sleep(1000);
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
+
+                        synchronized (resource1) {
+                            System.out.println("Thread 2 acquired resource 1");
+                            // Perform operations using both resources
+                        }
+                    }
+                });
+
+                thread1.start();
+                thread2.start();
             }
+        }
+```
 
 In this example, two threads, thread1 and thread2, attempt to acquire two resources, resource1 and resource2. However, they acquire the resources in different orders, leading to a potential deadlock situation.
 

@@ -5,6 +5,25 @@
 In object-oriented programming, a class is a blueprint or template that defines the structure and behavior of objects. It serves as a blueprint for creating instances, also known as objects, which are individual occurrences based on the class.
 
 A class encapsulates data, known as attributes or fields, and defines the operations, known as methods or functions, that can be performed on that data. It provides a way to organize related data and behavior into a cohesive unit.
+
+**Example:**
+
+```java
+public class BankAccount {                 // class = blueprint
+    private final String accountNo;       // state (fields)
+    private double balance;
+
+    public BankAccount(String accountNo) { this.accountNo = accountNo; }
+
+    public void deposit(double amount) {  // behaviour (methods)
+        if (amount <= 0) throw new IllegalArgumentException("Amount must be positive");
+        balance += amount;
+    }
+
+    public double getBalance() { return balance; }
+}
+```
+
 </details>
   
 <details><summary>
@@ -12,6 +31,17 @@ A class encapsulates data, known as attributes or fields, and defines the operat
 ## What is an Object?
 </summary>
 In object-oriented programming, an object is an instance of a class. It represents a specific occurrence or entity based on the structure and behavior defined by its class. An object combines data, known as attributes or properties, with the methods or functions that operate on that data.
+
+**Example:**
+
+```java
+BankAccount a = new BankAccount("ACC-1");   // two objects (instances) of one class
+BankAccount b = new BankAccount("ACC-2");
+a.deposit(500);
+System.out.println(a.getBalance());   // 500.0
+System.out.println(b.getBalance());   // 0.0 - each object has its own state
+```
+
 </details>
   
 <details><summary>
@@ -19,6 +49,14 @@ In object-oriented programming, an object is an instance of a class. It represen
 ## What is state of an Object?
 </summary>
 The state of an object refers to the set of values stored in its attributes or instance variables at a given point in time. It represents the current snapshot of the object's data. The state of an object can change over time as its attributes are modified.
+
+**Example:**
+
+```java
+BankAccount acc = new BankAccount("ACC-1");  // state: balance = 0.0
+acc.deposit(1000);                           // state changes: balance = 1000.0
+```
+
 </details>
   
 <details><summary>
@@ -26,6 +64,14 @@ The state of an object refers to the set of values stored in its attributes or i
 ## What is behavior of an Object?
 </summary>
 The behavior of an object refers to the actions or operations that an object can perform. It represents the functionality or capabilities associated with an object based on its class definition. The behavior is defined by the methods or functions defined within the class.
+
+**Example:**
+
+```java
+acc.deposit(200);              // behaviour = methods that act on the object's state
+double b = acc.getBalance();
+```
+
 </details>
   
 <details><summary>
@@ -40,19 +86,20 @@ Since every class in Java implicitly or explicitly extends the Object class, all
 
 It's important to note that even if a class doesn't explicitly extend any other class, it still inherits from Object by default. This inheritance relationship establishes a foundation for the object-oriented features and functionality in Java.
 	
-	Let’s look at a simple example:
+```java
+// Let’s look at a simple example:
 
-	String str = "Testing";
-	System.out.println(str.toString());
-	System.out.println(str.hashCode());
-	System.out.println(str.clone());
+String str = "Testing";
+System.out.println(str.toString());
+System.out.println(str.hashCode());
+System.out.println(str.getClass()); // class java.lang.String
 
-	if(str instanceof Object){
-		System.out.println("I extend Object");//Will be printed
-	}
+if(str instanceof Object){
+	System.out.println("I extend Object");//Will be printed
+}
+```
 
-In the above example, toString, hashCode and clone methods for String class are 
-inherited from Object class and overridden.
+In the above example, toString and hashCode come from Object (String overrides both) and getClass is inherited as-is. Note: clone() is protected in Object, so str.clone() would not compile.
 </details>
   
 <details><summary>
@@ -65,20 +112,23 @@ By default, the toString() method in the Object class returns a string that cons
 
 However, it is common practice to override the toString() method in custom classes to provide a more meaningful and human-readable representation of the object's state. By overriding the toString() method, you can define the format and content of the string representation according to your requirements.
 	
-	class Animal {
-		public Animal(String name, String type) {
-			this.name = name;
-			this.type = type;
-		}
-		String name;
-		String type;
-		public String toString() {
-			return "Animal [name=" + name + ", type=" + type + "]";
-		}
+```java
+class Animal {
+	public Animal(String name, String type) {
+		this.name = name;
+		this.type = type;
 	}
-	Run this piece of code:
-	Animal animal = new Animal("Tommy","Dog");
-	System.out.println(animal);//Animal [name=Tommy, type=Dog]
+	String name;
+	String type;
+	public String toString() {
+		return "Animal [name=" + name + ", type=" + type + "]";
+	}
+}
+// Run this piece of code:
+Animal animal = new Animal("Tommy","Dog");
+System.out.println(animal);//Animal [name=Tommy, type=Dog]
+```
+
 </details>  
 <details><summary>
 
@@ -88,31 +138,35 @@ The equals() method in Java is used to compare the equality of two objects. It i
 
 The primary purpose of the equals() method is to determine if two objects have the same logical equivalence, rather than just checking if they are the same object in terms of memory reference (which is done by using the == operator). By default, the equals() method in the Object class performs the same reference comparison as the == operator, but it can be overridden to provide a more meaningful comparison based on the content or attributes of the objects.
 
-	class Client {
-		private int id;
-		public Client(int id) {
-				this.id = id;
-		}
-		@Override
-		public boolean equals(Object obj) {
-			Client other = (Client) obj;
-			if (id != other.id)
-				return false;
-			return true;
-		}
+```java
+class Client {
+	private int id;
+	public Client(int id) {
+			this.id = id;
 	}
+	@Override
+	public boolean equals(Object obj) {
+		Client other = (Client) obj;
+		if (id != other.id)
+			return false;
+		return true;
+	}
+}
+```
 
 Consider running the code below:
 	
-	Client client1 = new Client(25);
-	Client client2 = new Client(25);
-	Client client3 = client1;
+```java
+Client client1 = new Client(25);
+Client client2 = new Client(25);
+Client client3 = client1;
 
-	//both id's are 25
-	System.out.println(client1.equals(client2));//true
+//both id's are 25
+System.out.println(client1.equals(client2));//true
 
-	//both id's are 25
-	System.out.println(client1.equals(client3));//true
+//both id's are 25
+System.out.println(client1.equals(client3));//true
+```
 
 Above code compares the values (id's) of the objects.
 </details>
@@ -132,6 +186,34 @@ When implementing the equals() method in Java, there are several important consi
 7. Override hashCode(): If equals() is overridden, hashCode() should be overridden to maintain consistency.
 8. Comparable attributes: If implementing Comparable, attributes used in equals() should match those used in compareTo().
 Considering these points ensures correct and reliable behavior when comparing objects for equality.
+
+**Example:**
+
+```java
+public final class Employee {
+    private final long id;
+    private final String email;
+
+    public Employee(long id, String email) { this.id = id; this.email = email; }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;                         // reflexive, fast path
+        if (!(o instanceof Employee other)) return false;   // handles null and other types
+        return id == other.id && Objects.equals(email, other.email);
+    }
+
+    @Override
+    public int hashCode() {                                  // MUST be consistent with equals
+        return Objects.hash(id, email);
+    }
+}
+
+Set<Employee> set = new HashSet<>();
+set.add(new Employee(1, "a@x.com"));
+System.out.println(set.contains(new Employee(1, "a@x.com"))); // true only because hashCode is overridden too
+```
+
 </details>
   
 <details><summary>
@@ -142,13 +224,16 @@ The hashCode() method in Java is used to generate a unique integer value, known 
 
 The primary purpose of the hashCode() method is to support efficient storage and retrieval of objects in hash-based data structures such as HashMap, HashSet, and Hashtable. These data structures use hash codes to determine the storage location (bucket) for objects, which allows for fast retrieval and efficient search operations.
 
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + id;
-		return result;
-	}
+```java
+@Override
+public int hashCode() {
+	final int prime = 31;
+	int result = 1;
+	result = prime * result + id;
+	return result;
+}
+```
+
 </details>
   
 <details><summary>
@@ -161,45 +246,56 @@ The idea behind inheritance in Java is that you can create new classes that are 
 
 Inheritance represents the IS-A relationship which is also known as a parent-child relationship.
 
-	public class Actor {
-		public void act(){
-			System.out.println("Act");
-		};
-	}
+```java
+public class Actor {
+	public void act(){
+		System.out.println("Act");
+	};
+}
+```
 
 We can extend this class by using the keyword extends. Hero class extends Actor.
 
-	//IS-A relationship. Hero is-a Actor
-	public class Hero extends Actor {
-		public void fight(){
-			System.out.println("fight");
-		};
-	}
+```java
+//IS-A relationship. Hero is-a Actor
+public class Hero extends Actor {
+	public void fight(){
+		System.out.println("fight");
+	};
+}
+```
 
 We can now create an instance of Hero class. Since Hero extends Animal, the 
 methods defined in Animal are also available through an instance of Hero class. 
 In the example below, we invoke the act method on hero object.
 
-	Hero hero = new Hero();
-	//act method inherited from Actor
-	hero.act();//Act
-	hero.fight();//fight
+```java
+Hero hero = new Hero();
+//act method inherited from Actor
+hero.act();//Act
+hero.fight();//fight
+```
 
 Let’s look at another class extending Actor class - Comedian.
 
-	//IS-A relationship. Comedian is-a Actor
-	public class Comedian extends Actor {
-		public void performComedy(){
-			System.out.println("Comedy");
-		};
-	}
+```java
+//IS-A relationship. Comedian is-a Actor
+public class Comedian extends Actor {
+	public void performComedy(){
+		System.out.println("Comedy");
+	};
+}
+```
 
 We can now reuse Actor methods from an instance of Comedian class as well.
 
-	Comedian comedian = new Comedian();
-	//act method inherited from Actor
-	comedian.act();//Act
-	comedian.performComedy();//Comedy
+```java
+Comedian comedian = new Comedian();
+//act method inherited from Actor
+comedian.act();//Act
+comedian.performComedy();//Comedy
+```
+
 </details>
   
 <details><summary>
@@ -217,23 +313,28 @@ So, we perform method overloading to figure out the program quickly.
 Example 1
 doIt method is overloaded in the below example:
 
-	class Foo{
-		public void doIt(int number){
+```java
+class Foo{
+	public void doIt(int number){
 
-		}
-		public void doIt(String string){
-
-		}
 	}
+	public void doIt(String string){
+
+	}
+}
+```
 
 Example 2
 Overloading can also be done from a sub class.
 
-	class Bar extends Foo{
-		public void doIt(float number){
+```java
+class Bar extends Foo{
+	public void doIt(float number){
 
-		}
 	}
+}
+```
+
 </details>
   
 <details><summary>
@@ -254,20 +355,24 @@ Rules for Java Method Overriding
 
 Let’s define an Animal class with a method shout.
 
-	public class Animal {
-		public String bark() {
-			return "Don't Know!";
-		}
+```java
+public class Animal {
+	public String bark() {
+		return "Don't Know!";
 	}
+}
+```
 
 Let’s create a sub class of Animal – Cat - overriding the existing shout method 
 in Animal.
 
-	class Cat extends Animal {
-		public String bark() {
-			return "Meow Meow";
-		}
+```java
+class Cat extends Animal {
+	public String bark() {
+		return "Meow Meow";
 	}
+}
+```
 
 bark method in Cat class is overriding the bark method in Animal class.
 </details>
@@ -280,33 +385,36 @@ Yes, the super class reference variable can hold the sub class object actually, 
 
 But, using this reference you can access the members of super class only, if you try to access the sub class members a compile time error will be generated.
 
-	class Vehicle {
-	    public void drive() {
-		System.out.println("Driving a vehicle.");
-	    }
-	}
+```java
+class Vehicle {
+    public void drive() {
+	System.out.println("Driving a vehicle.");
+    }
+}
 
-	class Car extends Vehicle {
-	    public void drive() {
-		System.out.println("Driving a car.");
-	    }
+class Car extends Vehicle {
+    public void drive() {
+	System.out.println("Driving a car.");
+    }
 
-	    public void accelerate() {
-		System.out.println("Accelerating the car.");
-	    }
-	}
+    public void accelerate() {
+	System.out.println("Accelerating the car.");
+    }
+}
 
-        Vehicle vehicle1 = new Vehicle();
-        Vehicle vehicle2 = new Car();
-        Car car = new Car();
+    Vehicle vehicle1 = new Vehicle();
+    Vehicle vehicle2 = new Car();
+    Car car = new Car();
 
-        vehicle1.drive();  // Output: Driving a vehicle.
-        vehicle2.drive();  // Output: Driving a car.
-        car.drive();       // Output: Driving a car.
+    vehicle1.drive();  // Output: Driving a vehicle.
+    vehicle2.drive();  // Output: Driving a car.
+    car.drive();       // Output: Driving a car.
 
-        // vehicle2.accelerate();  // Error: The reference type is Vehicle which doesn't have the accelerate() method.
-        ((Car) vehicle2).accelerate();  // Casting vehicle2 to Car type to access the accelerate() method.
-        car.accelerate();               // Output: Accelerating the car.
+    // vehicle2.accelerate();  // Error: The reference type is Vehicle which doesn't have the accelerate() method.
+    ((Car) vehicle2).accelerate();  // Casting vehicle2 to Car type to access the accelerate() method.
+    car.accelerate();               // Output: Accelerating the car.
+```
+
 </details>
   
 <details><summary>
@@ -315,15 +423,17 @@ But, using this reference you can access the members of super class only, if you
 </summary>
 No, multiple inheritance is not allowed for classes in Java. Java supports single inheritance, where a class can inherit from only one superclass. However, multiple inheritance is supported through interfaces, allowing a class to implement multiple interfaces and inherit their abstract method contracts.
 
-	class Dog extends Animal, Pet { //COMPILER ERROR
-	}
+```java
+class Dog extends Animal, Pet { //COMPILER ERROR
+}
 
-	However, we can create an Inheritance Chain
-	class Pet extends Animal {
-	}
+// However, we can create an Inheritance Chain
+class Pet extends Animal {
+}
 
-	class Dog extends Pet {
-	}
+class Dog extends Pet {
+}
+```
 
 </details>
   
@@ -338,6 +448,24 @@ The interface in Java is a mechanism to achieve abstraction. There can be only a
 In other words, you can say that interfaces can have abstract methods and variables. It cannot have a method body.
 
 Java Interface also represents the IS-A relationship.
+
+**Example:**
+
+```java
+public interface PaymentGateway {
+    PaymentResult charge(String customerId, BigDecimal amount);   // abstract by default
+
+    default boolean supportsRefund() { return false; }            // Java 8 default method
+
+    static PaymentGateway noop() { return (c, a) -> PaymentResult.ok(); } // static method
+}
+
+class RazorpayGateway implements PaymentGateway {
+    public PaymentResult charge(String customerId, BigDecimal amount) { /* call API */ return PaymentResult.ok(); }
+    @Override public boolean supportsRefund() { return true; }
+}
+```
+
 </details>
   
 <details><summary>
@@ -346,12 +474,15 @@ Java Interface also represents the IS-A relationship.
 </summary>
 An interface is declared by using the interface keyword. It provides total abstraction; means all the methods in an interface are declared with the empty body, and all the fields are public, static and final by default. A class that implements an interface must implement all the methods declared in the interface.
 
-	interface InterfaceName {
-	    // Constant declarations (optional)
-	    // Method signatures (abstract methods)
-	    // Default methods (optional)
-	    // Static methods (optional)
-	}
+```java
+interface InterfaceName {
+    // Constant declarations (optional)
+    // Method signatures (abstract methods)
+    // Default methods (optional)
+    // Static methods (optional)
+}
+```
+
 </details>
   
 <details><summary>
@@ -367,19 +498,22 @@ To implement an interface in Java:
 5. Instantiate the class and use its implemented methods.
 
 
-		interface Printable {
-			void print();
-		}
+```java
+	interface Printable {
+		void print();
+	}
 
-		class Printer implements Printable {
-		    @Override
-		    public void print() {
-			System.out.println("Printing document...");
-		    }
-		}
+	class Printer implements Printable {
+	    @Override
+	    public void print() {
+		System.out.println("Printing document...");
+	    }
+	}
 
-        Printer printer = new Printer();
-        printer.print();  // Output: Printing document...
+    Printer printer = new Printer();
+    printer.print();  // Output: Printing document...
+```
+
 </details>
   
 <details><summary>
@@ -389,32 +523,37 @@ To implement an interface in Java:
 Variables in an interface are always public, static, final. Variables in an 
 interface cannot be declared private.
 
-	interface ExampleInterface1 {
-		//By default - public static final. No other modifier allowed
-		//value1,value2,value3,value4 all are - public static final
-		int value1 = 10;
-		public int value2 = 15;
-		public static int value3 = 20;
-		public static final int value4 = 25;
-		//private int value5 = 10;//COMPILER ERROR
-	}
+```java
+interface ExampleInterface1 {
+	//By default - public static final. No other modifier allowed
+	//value1,value2,value3,value4 all are - public static final
+	int value1 = 10;
+	public int value2 = 15;
+	public static int value3 = 20;
+	public static final int value4 = 25;
+	//private int value5 = 10;//COMPILER ERROR
+}
+```
 
 Interface methods are by default public and abstract. Before Java 8, A concrete 
 method (fully defined method) cannot be created in an interface. Consider the 
 example below:
 
-	interface ExampleInterface1 {
-		//By default - public abstract. No other modifier allowed
-		void method1();//method1 is public and abstract
-		//private void method6();//COMPILER ERROR!
+```java
+interface ExampleInterface1 {
+	//By default - public abstract. No other modifier allowed
+	void method1();//method1 is public and abstract
+	//private void method6();//COMPILER ERROR!
 
-		//This method, uncommented, would have given COMPILER ERROR!
+	//This method, uncommented, would have given COMPILER ERROR!
 
-		//in Java 7. Allowed from Java 8.
-		default void method5() {
-				System.out .println("Method5");
-		}
+	//in Java 7. Allowed from Java 8.
+	default void method5() {
+			System.out .println("Method5");
 	}
+}
+```
+
 </details>
   
 <details><summary>
@@ -422,6 +561,23 @@ example below:
 ## Can you extend an interface?
 </summary>
 No, we cannot directly extend an interface with another interface in Java using the extends keyword. Interfaces do not support inheritance through the extends keyword. Instead, interfaces can only be implemented by classes or extended indirectly through other interfaces. This means that a class can implement multiple interfaces, effectively inheriting and providing behavior from each interface.
+
+**Example:**
+
+```java
+interface Readable { String read(String key); }
+interface Writable { void write(String key, String value); }
+
+interface KeyValueStore extends Readable, Writable {   // an interface can extend many
+    void delete(String key);
+}
+
+class RedisStore implements KeyValueStore {
+    public String read(String k) { return null; }
+    public void write(String k, String v) { }
+    public void delete(String k) { }
+}
+```
 
 </details>
   
@@ -431,22 +587,24 @@ No, we cannot directly extend an interface with another interface in Java using 
 </summary>
 Yes, in Java, a class can implement multiple interfaces. This allows the class to inherit and provide behavior from multiple sources. To implement multiple interfaces, the class declaration uses the implements keyword followed by the names of the interfaces, separated by commas.
 
-	interface ExampleInterface2 {
-		void method2();
-	}
+```java
+interface ExampleInterface2 {
+	void method2();
+}
 
-	class SampleImpl implements ExampleInterface1,ExampleInterface2{
-		/* A class should implement all the methods in an interface.
-		If either of method1 or method2 is commented, it would
-		result in compilation error.
-		*/
-		public void method2() {
-				System.out.println("Sample Implementation for Method2");
-		}
-		public void method1() {
-				System.out.println("Sample Implementation for Method1");
-		}
+class SampleImpl implements ExampleInterface1,ExampleInterface2{
+	/* A class should implement all the methods in an interface.
+	// If either of method1 or method2 is commented, it would
+	result in compilation error.
+	*/
+	public void method2() {
+			System.out.println("Sample Implementation for Method2");
 	}
+	public void method1() {
+			System.out.println("Sample Implementation for Method1");
+	}
+}
+```
 
 </details>
   
@@ -456,19 +614,22 @@ Yes, in Java, a class can implement multiple interfaces. This allows the class t
 </summary>
 An abstract class in Java is a class that cannot be directly instantiated and serves as a blueprint for other classes. It is declared using the abstract keyword and may contain both abstract and non-abstract methods. Abstract methods are declared without an implementation and must be overridden by subclasses. Abstract classes are meant to be extended by other classes using the extends keyword. They can have constructors and provide common behavior for subclasses. The purpose of an abstract class is to define common characteristics and behaviors that subclasses can inherit and implement.
 
-	abstract class Bike{  
-		abstract void run();  
+```java
+abstract class Bike{  
+	abstract void run();  
+}  
+
+class Honda4 extends Bike{  
+	void run(){
+		System.out.println("running safely");
 	}  
-	
-	class Honda4 extends Bike{  
-		void run(){
-			System.out.println("running safely");
-		}  
-		public static void main(String args[]){  
-			 Bike obj = new Honda4();  
-			 obj.run();  
-		}  
+	public static void main(String args[]){  
+		 Bike obj = new Honda4();  
+		 obj.run();  
 	}  
+}  
+```
+
 </details>
   
 <details><summary>
@@ -484,6 +645,33 @@ When you want to provide default implementations for some methods while allowing
 When you want to create a base class that cannot be instantiated on its own but can be extended by subclasses.
 The main purpose of an abstract class is to provide a structure and guidelines for subclasses, ensuring consistency and allowing for polymorphic behavior. It promotes code reuse, maintainability, and extensibility in object-oriented programming.
 
+**Example:**
+
+```java
+abstract class Notification {
+    protected final String recipient;                 // shared state
+    Notification(String recipient) { this.recipient = recipient; }
+
+    public final void send() {                        // shared flow (template method)
+        validate();
+        deliver(format());
+        log();
+    }
+
+    protected abstract String format();               // subclasses fill in the differences
+    protected abstract void deliver(String message);
+
+    private void validate() { if (recipient == null) throw new IllegalStateException(); }
+    private void log() { System.out.println("sent to " + recipient); }
+}
+
+class EmailNotification extends Notification {
+    EmailNotification(String to) { super(to); }
+    protected String format() { return "<html>Hi</html>"; }
+    protected void deliver(String msg) { /* SMTP */ }
+}
+```
+
 </details>
   
 <details><summary>
@@ -496,16 +684,19 @@ When we need just the method declaration in a super class, it can be achieved by
 
 Abstract method is also called subclass responsibility as it doesn't have the implementation in the super class. Therefore a subclass must override it to provide the method definition.
 
-	abstract class Animal {
-	    abstract void makeSound(); // Abstract method declaration
-	}
+```java
+abstract class Animal {
+    abstract void makeSound(); // Abstract method declaration
+}
 
-	class Dog extends Animal {
-	    @Override
-	    void makeSound() {
-		System.out.println("Bark!"); // Implementation of the abstract method
-	    }
-	}
+class Dog extends Animal {
+    @Override
+    void makeSound() {
+	System.out.println("Bark!"); // Implementation of the abstract method
+    }
+}
+```
+
 </details>
   
 <details><summary>
@@ -523,16 +714,19 @@ Abstract class	Interface
 7) An abstract class can be extended using keyword "extends".	An interface can be implemented using keyword "implements".
 8) A Java abstract class can have class members like private, protected, etc.	Members of a Java interface are public by default.
 
-	Example:
-	
-		public abstract class Shape{
-			public abstract void draw();
-		}
-	Example:
-	
-		public interface Drawable{
-			void draw();
-		}
+```java
+Example:
+
+	public abstract class Shape{
+		public abstract void draw();
+	}
+Example:
+
+	public interface Drawable{
+		void draw();
+	}
+```
+
 </details>
   
 <details><summary>
@@ -551,20 +745,23 @@ There are two types of constructors in Java: no-arg constructor, and parameteriz
 
 Note: It is called constructor because it constructs the values at the time of object creation. It is not necessary to write a constructor for a class. It is because java compiler creates a default constructor if your class doesn't have any.
 
-	class Animal {
-		String name;
-		// This is called a one argument constructor.
-		public Animal(String name) {
-			this.name = name;
-		}
-		public static void main(String[] args) {
-		// Since we provided a constructor, compiler does not
-		// provide a default constructor.
-		// Animal animal = new Animal();//COMPILER ERROR!
-		// The only way we can create Animal1 object is by using
-			Animal animal = new Animal("Tommy");
-		}
+```java
+class Animal {
+	String name;
+	// This is called a one argument constructor.
+	public Animal(String name) {
+		this.name = name;
 	}
+	public static void main(String[] args) {
+	// Since we provided a constructor, compiler does not
+	// provide a default constructor.
+	// Animal animal = new Animal();//COMPILER ERROR!
+	// The only way we can create Animal1 object is by using
+		Animal animal = new Animal("Tommy");
+	}
+}
+```
+
 </details>
   
 <details><summary>
@@ -575,33 +772,40 @@ Default Constructor is the constructor that is provided by the compiler. It has 
 example below, there are no Constructors defined in the Animal class. Compiler provides us with a
 default constructor, which helps us create an instance of animal class.
 
-	public class Animal {
-		String name;
-		public static void main(String[] args) {
-		// Compiler provides this class with a default no-argument constructor.
-		// This allows us to create an instance of Animal class.
-		Animal animal = new Animal();
-		}
+```java
+public class Animal {
+	String name;
+	public static void main(String[] args) {
+	// Compiler provides this class with a default no-argument constructor.
+	// This allows us to create an instance of Animal class.
+	Animal animal = new Animal();
 	}
+}
+```
+
 </details>
   
 <details><summary>
 	
 ## Will this code compile?
 </summary>	
-	class Animal {
-		String name;
-		public Animal() {
-			this.name = "Default Name";
-		}
-	// This is called a one argument constructor.
-		public Animal(String name) {
-			this.name = name;
-		}
-		public static void main(String[] args) {
-			Animal animal = new Animal();
-		}
+
+```java
+class Animal {
+	String name;
+	public Animal() {
+		this.name = "Default Name";
 	}
+// This is called a one argument constructor.
+	public Animal(String name) {
+		this.name = name;
+	}
+	public static void main(String[] args) {
+		Animal animal = new Animal();
+	}
+}
+```
+
 Answer is no. Since we provided a constructor, compiler does not provide a default constructor
 </details>
   
@@ -614,20 +818,27 @@ that it should be the first statement i
 Both example constructors below can replaces the no argument "public Animal() " constructor in Example
 
 
-	public Animal() {
-		super();
-		this.name = "Default Name";
-	}
+```java
+public Animal() {
+	super();
+	this.name = "Default Name";
+}
+```
+
 </details>
   
 <details><summary>
 	
 ## Will this code Compile?
 </summary>
-	public Animal() {
-		this.name = "Default Name";
-		super();
-	}
+
+```java
+public Animal() {
+	this.name = "Default Name";
+	super();
+}
+```
+
 Answer is NO. super should be always called on the first line of the constructor.
 </details>
   
@@ -640,12 +851,15 @@ There can be a lot of usage of Java this keyword. In Java, this is a reference v
 Another constructor in the same class can be invoked from a constructor, using this({parameters})
 method call.
 
-	public Animal() {
-		this("Default Name");
-	}
-	public Animal(String name) {
-		this.name = name;
-	}
+```java
+public Animal() {
+	this("Default Name");
+}
+public Animal(String name) {
+	this.name = name;
+}
+```
+
 </details>
   
 <details><summary>
@@ -654,14 +868,16 @@ method call.
 </summary>
 No, you cannot call a constructor from a method. The only place from which you can invoke constructors using “this()” or, “super()” is the first line of another constructor. If you try to invoke constructors explicitly elsewhere, a compile time error will be generated.
 
-	class Animal {
-		String name;
-			public Animal() {
-		}
-		public method() {
-			Animal();// Compiler error
-		}
+```java
+class Animal {
+	String name;
+		public Animal() {
 	}
+	public method() {
+		Animal();// Compiler error
+	}
+}
+```
 
 </details>
   
@@ -673,32 +889,34 @@ If a super class constructor is not explicitly called from a sub class construct
 constructor is automatically invoked (as first line) from a sub class constructor.
 Consider the example below:
 
-	class Animal {
-		public Animal() {
-			System.out.println("Animal Constructor");
-		}
+```java
+class Animal {
+	public Animal() {
+		System.out.println("Animal Constructor");
 	}
-	
-	class Dog extends Animal {
-		public Dog() {
-			System.out.println("Dog Constructor");
-		}
+}
+
+class Dog extends Animal {
+	public Dog() {
+		System.out.println("Dog Constructor");
 	}
-	
-	class Labrador extends Dog {
-		public Labrador() {
-			System.out.println("Labrador Constructor");
-		}
+}
+
+class Labrador extends Dog {
+	public Labrador() {
+		System.out.println("Labrador Constructor");
 	}
-	
-	public class ConstructorExamples {
-		public static void main(String[] args) {
-			Labrador labrador = new Labrador();
-		}
+}
+
+public class ConstructorExamples {
+	public static void main(String[] args) {
+		Labrador labrador = new Labrador();
 	}
-	Program Output
-	Animal Constructor
-	Dog Constructor
-	Labrador Constructor
+}
+Program Output
+Animal Constructor
+Dog Constructor
+Labrador Constructor
+```
 
 </details>
