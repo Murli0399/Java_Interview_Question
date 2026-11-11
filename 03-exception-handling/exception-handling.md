@@ -1,3 +1,5 @@
+# Exception handling
+
 <details><summary>
 
 ## [Easy] Why is Exception Handling important?

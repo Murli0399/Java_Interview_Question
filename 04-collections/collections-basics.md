@@ -1,3 +1,5 @@
+# Collections basics
+
 <details><summary>
 	
 ## [Easy] Why do we need Collections in Java?

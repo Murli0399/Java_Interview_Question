@@ -1,3 +1,5 @@
+# Functional programming
+
 <details><summary>
 
 ## [Easy] What is functional programming?

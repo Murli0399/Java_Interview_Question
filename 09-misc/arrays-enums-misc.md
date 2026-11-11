@@ -1,3 +1,5 @@
+# Arrays, enums and misc
+
 <details><summary>
 
 ## [Easy] What are the default values in an array?

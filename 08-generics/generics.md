@@ -1,3 +1,5 @@
+# Generics
+
 <details><summary>
 
 ### [Easy] What are Generics?

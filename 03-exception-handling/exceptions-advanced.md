@@ -1,3 +1,5 @@
+# Exceptions (advanced)
+
 <details><summary>
 
 ## [Easy] What is the difference between throw and throws?
