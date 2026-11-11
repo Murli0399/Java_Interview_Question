@@ -1,7 +1,10 @@
+# Advanced OOP
+
 <details><summary>
 	
-## What is Polymorphism?
+## [Easy] What is Polymorphism?
 </summary>
+
 Polymorphism in Java is the ability of an object to take on many forms. It allows a reference variable of a superclass to represent objects of its subclasses. In other words, it enables objects of different classes to be treated as objects of a common superclass during runtime.
 
 There are two types of polymorphism in Java:
@@ -50,10 +53,12 @@ public class Main {
 ```
 
 </details>
+
 <details><summary>
 	
-## What is the use of instanceof Operator in Java?
+## [Easy] What is the use of instanceof Operator in Java?
 </summary>
+
 The instanceof operator in Java is used to test if an object is an instance of a particular class or implements a specific interface. It allows you to check the type of an object at runtime.
 
 The instanceof operator has the following syntax:
@@ -91,10 +96,12 @@ public class Main {
 ```
 
 </details>
+
 <details><summary>
 	
-## What is Coupling?
+## [Easy] What is Coupling?
 </summary>
+
 Coupling in Java refers to the degree of dependency or interconnectedness between classes or components within a software system. It measures how closely one class or component relies on or interacts with another.
 
 In general, low coupling is desirable as it promotes better software design, modularity, and maintainability. High coupling, on the other hand, can lead to code that is difficult to understand, modify, and reuse.
@@ -190,10 +197,12 @@ Reducing coupling is typically achieved through good software design practices, 
 
 By minimizing coupling, you can improve code maintainability, reusability, testability, and overall software quality. It allows for easier understanding and modification of individual components without affecting the entire system.
 </details>
+
 <details><summary>
 	
-## What is Cohesion?
+## [Easy] What is Cohesion?
 </summary>
+
 Cohesion in Java is the principle of Object-Oriented programming. Cohesion is closely related to ensuring that the purpose for which a class is getting created in Java is well-focused and single. In other words, the more closely related stuff is grouped in a class, the higher will be the cohesiveness.
 
 **Example Problem** - Example class below is downloading from internet, parsing data and storing data 
@@ -248,10 +257,12 @@ class DownloadAndStore {
 ```
 
 </details>
+
 <details><summary>
 	
-## What is Encapsulation?
+## [Easy] What is Encapsulation?
 </summary>
+
 Encapsulation in Java is a process of wrapping code and data together into a single unit, for example, a capsule which is mixed of several medicines.
 
 We can create a fully encapsulated class in Java by making all the data members of the class private. Now we can use setter and getter methods to set and get the data in it.
@@ -333,53 +344,74 @@ the user of scorer class does not even know that there is a variable called
 score. Implementation of Scorer can change without changing other classes using 
 Scorer.
 </details>
+
 <details><summary>
 	
-## What is an Inner Class?
+## [Medium] What is an Inner Class?
 </summary>
-Java inner class or nested class is a class that is declared inside the class or interface.
 
-We use inner classes to logically group classes and interfaces in one place to be more readable and maintainable.
+An **inner class** is a non-static class declared inside another class. Each inner-class object is tied to an instance of the outer class and can access all of its members, including private fields and methods.
 
-Additionally, it can access all the members of the outer class, including private data members and methods.
-
-### Advantage of Java inner classes
-
-- Nested classes represent a particular type of relationship that is it can access all the members (data members and methods) of the outer class, including private.
-- Nested classes are used to develop more readable and maintainable code because it logically group classes and interfaces in one place only.
-- Code Optimization: It requires less code to write.
-
-```java
-    class OuterClass {
-        public class InnerClass {
-        }
-    }
-```
-
-</details>
-<details><summary>
-	
-## What is a Static Inner Class?
-</summary>
-A static class is a class that is created inside a class, is called a static nested class in Java. It cannot access non-static data members and methods. It can be accessed by outer class name.
-
-It can access static data members of the outer class, including private.
-The static nested class cannot access non-static (instance) data members or
-
-Inner Classes are classes which are declared inside other classes. Consider the following example:
+Types of nested classes in Java:
+1. **Inner (member) class:** non-static, needs an outer instance.
+2. **Static nested class:** no outer instance needed.
+3. **Local class:** declared inside a method.
+4. **Anonymous class:** declared and instantiated in one expression.
 
 ```java
 class OuterClass {
-     public static class StaticNestedClass {
-     }
+	private String secret = "outer-data";
+
+	public class InnerClass {
+		void print() { System.out.println(secret); }   // can read outer's private field
+	}
 }
+
+OuterClass outer = new OuterClass();
+OuterClass.InnerClass inner = outer.new InnerClass();  // needs an outer instance
+inner.print();
 ```
 
+Benefits: logical grouping of classes used in one place, better encapsulation, and access to the outer object's state.
+
 </details>
+
 <details><summary>
 	
-## Can you create an inner class inside a method?
+## [Medium] What is a Static Inner Class?
 </summary>
+
+A **static nested class** is a class declared `static` inside another class. It behaves like a top-level class that is namespaced inside the outer class:
+
+- It does **not** need an instance of the outer class: `new Outer.Nested()`.
+- It can access the outer class's **static** members (even private ones), but **not instance** members directly.
+- Common uses: builders (`HttpRequest.Builder`), helper types tightly tied to one class (`Map.Entry`), and avoiding a hidden reference to the outer object.
+
+```java
+class OuterClass {
+	private static int counter = 0;
+	private int instanceValue = 5;
+
+	public static class StaticNestedClass {
+		void show() {
+			System.out.println(counter);          // OK: static member
+			// System.out.println(instanceValue); // COMPILER ERROR: needs an OuterClass instance
+		}
+	}
+}
+
+OuterClass.StaticNestedClass nested = new OuterClass.StaticNestedClass();
+```
+
+Prefer static nested classes over inner classes unless you need access to the outer instance; a non-static inner class holds a reference to its outer object, which can cause memory leaks.
+
+</details>
+
+<details><summary>
+	
+## [Medium] Can you create an inner class inside a method?
+</summary>
+
 we can write a class within a method and this will be a local type. Like local variables, the scope of the inner class is restricted within the method.
 
 A method-local inner class can be instantiated only within the method where the inner class is defined. 
@@ -395,52 +427,36 @@ class OuterClass {
 ```
 
 </details>
+
 <details><summary>
 	
-## What is an Anonymous Class?
+## [Medium] What is an Anonymous Class?
 </summary>
-Java anonymous inner class is an inner class without a name and for which only a single object is created. An anonymous inner class can be useful when making an instance of an object with certain "extras" such as overloading methods of a class or interface, without having to actually subclass a class.
 
-In simple words, a class that has no name is known as an anonymous inner class in Java. It should be used if you have to override a method of class or interface. Java Anonymous inner class can be created in two ways:
-
-1. Class (may be abstract or concrete).
-2. Interface
-
-Below examples shows various ways to create Anonymous classes.
+An anonymous class is a class **without a name**, declared and instantiated in a single expression. It either extends a class or implements an interface, and is used once, typically to **override** a method on the spot.
 
 ```java
 class Animal {
-	void bark() {
-		System.out .println("Animal Bark");
-	}
+	void bark() { System.out.println("Animal Bark"); }
+}
+
+// 1. Implementing an interface
+Comparator<String> reverse = new Comparator<String>() {
+	@Override
+	public int compare(String a, String b) { return b.compareTo(a); }
 };
+String[] array = { "Apple", "Cat", "Boy" };
+Arrays.sort(array, reverse);
+System.out.println(Arrays.toString(array));   // [Cat, Boy, Apple]
 
-public class AnonymousClass {
-	private static String[] reverseSort(String[] array) {
-		Comparator<String> reverseComparator = new Comparator<String>() {	
-			/* Anonymous Class */
-			@Override
-			public int compare(String string1, String string2) {
-				return string2.compareTo(string1);
-			}
-		};
-	Arrays.sort(array, reverseComparator);
-	return array;
-}
-
-public static void main(String[] args) {
-	String[] array = { "Apple", "Cat", "Boy" };
-	System.out .println(Arrays.toString(reverseSort(array)));//[Cat, Boy, Apple]
-	
-	/* Second Anonymous Class - SubClass of Animal*/
-	Animal animal = new Animal() {
-		oid bark() {
-			System.out .println("Subclass bark");
-		}
-	};
-	animal.bark();//Subclass bark
-	}
-}
+// 2. Extending a class
+Animal animal = new Animal() {
+	@Override
+	void bark() { System.out.println("Subclass bark"); }
+};
+animal.bark();                                // Subclass bark
 ```
+
+Since Java 8, a **lambda** replaces an anonymous class when the target is a functional interface: `Comparator<String> reverse = (a, b) -> b.compareTo(a);`. Anonymous classes are still needed to extend a class, implement an interface with several methods, or hold state.
 
 </details>

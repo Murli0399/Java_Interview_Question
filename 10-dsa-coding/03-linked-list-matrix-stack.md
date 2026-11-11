@@ -8,7 +8,7 @@ class ListNode { int val; ListNode next; ListNode() {} ListNode(int v) { val = v
 
 <details><summary>
 
-## 13. Reverse a linked list
+## [Easy] 13. Reverse a linked list
 </summary>
 
 **Example:** `1 → 2 → 3 → 4 → null` → `4 → 3 → 2 → 1 → null`
@@ -33,7 +33,7 @@ ListNode reverse(ListNode head) {
 
 <details><summary>
 
-## 14. Detect a cycle and return where it starts
+## [Medium] 14. Detect a cycle and return where it starts
 </summary>
 
 **Example:** `3 → 2 → 0 → -4 → (back to 2)` → node with value `2`
@@ -63,7 +63,7 @@ ListNode cycleStart(ListNode head) {
 
 <details><summary>
 
-## 15. Merge two sorted lists
+## [Easy] 15. Merge two sorted lists
 </summary>
 
 **Example:** `1 → 2 → 4` and `1 → 3 → 4` → `1 → 1 → 2 → 3 → 4 → 4`
@@ -88,7 +88,7 @@ ListNode merge(ListNode a, ListNode b) {
 
 <details><summary>
 
-## 16. Word search in a matrix
+## [Medium] 16. Word search in a matrix
 </summary>
 
 **Example:** board `[["A","B","C","E"],["S","F","C","S"],["A","D","E","E"]]`, word `"ABCCED"` → `true`; `"ABCB"` → `false`
@@ -122,7 +122,7 @@ boolean dfs(char[][] b, String w, int r, int c, int i) {
 
 <details><summary>
 
-## 17. Valid parentheses
+## [Easy] 17. Valid parentheses
 </summary>
 
 **Example:** `"()[]{}"` → `true`; `"(]"` → `false`; `"([)]"` → `false`

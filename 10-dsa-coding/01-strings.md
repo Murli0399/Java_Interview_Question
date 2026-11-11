@@ -4,7 +4,7 @@ Try each on paper (20–30 min) before opening the solution. Say brute force fir
 
 <details><summary>
 
-## 1. Check whether a pattern exists in a text (substring search)
+## [Medium] 1. Check whether a pattern exists in a text (substring search)
 </summary>
 
 **Example:** `text = "tracxn", pattern = "acx"` → `true`; `text = "abcdef", pattern = "acf"` → `false`
@@ -39,7 +39,7 @@ boolean contains(String text, String pat) {
 
 <details><summary>
 
-## 2. Valid palindrome (ignore case and non-alphanumerics)
+## [Easy] 2. Valid palindrome (ignore case and non-alphanumerics)
 </summary>
 
 **Example:** `"A man, a plan, a canal: Panama"` → `true`; `"race a car"` → `false`
@@ -64,7 +64,7 @@ boolean isPalindrome(String s) {
 
 <details><summary>
 
-## 3. Longest palindromic substring
+## [Medium] 3. Longest palindromic substring
 </summary>
 
 **Example:** `"babad"` → `"bab"` (or `"aba"`); `"cbbd"` → `"bb"`
@@ -94,7 +94,7 @@ int expand(String s, int l, int r) {
 
 <details><summary>
 
-## 4. Longest substring without repeating characters
+## [Medium] 4. Longest substring without repeating characters
 </summary>
 
 **Example:** `"abcabcbb"` → `3` ("abc"); `"pwwkew"` → `3` ("wke")
@@ -122,7 +122,7 @@ int lengthOfLongestSubstring(String s) {
 
 <details><summary>
 
-## 5. Group anagrams
+## [Medium] 5. Group anagrams
 </summary>
 
 **Example:** `["eat","tea","tan","ate","nat","bat"]` → `[["eat","tea","ate"],["tan","nat"],["bat"]]`
@@ -146,7 +146,7 @@ List<List<String>> groupAnagrams(String[] words) {
 
 <details><summary>
 
-## 6. String compression
+## [Easy] 6. String compression
 </summary>
 
 **Example:** `"aabcccccaaa"` → `"a2b1c5a3"`; `"abc"` → `"abc"` (compressed isn't shorter)

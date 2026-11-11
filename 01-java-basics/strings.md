@@ -1,11 +1,19 @@
+# Strings
+
 <details><summary>
 	
-## Are all String’s immutable?
+## [Easy] Are all String’s immutable?
 </summary>
-A String is an unavoidable type of variable while writing any application program. String references are used to store various attributes like username, password, etc. In Java, String objects are immutable. Immutable simply means unmodifiable or unchangeable.
 
-Once String object is created its data or state can't be changed but a new String object is created.
-As Java uses the concept of String literal. Suppose there are 5 reference variables, all refer to one object "Sachin". If one reference variable changes the value of the object, it will be affected by all the reference variables. That is why String objects are immutable in Java.
+Yes. Every `String` object is immutable: once created, its characters never change. Methods like `toUpperCase()`, `concat()` or `replace()` return a **new** String and leave the original untouched.
+
+Why Java made String immutable:
+- **String pool:** many references can safely share one literal (`"Sachin"`); if one reference could change it, every other reference would see the change.
+- **Security:** values like file paths, URLs, class names and DB usernames can't be altered after validation.
+- **Thread safety:** immutable objects can be shared across threads without synchronization.
+- **Hash caching:** `hashCode()` is computed once and cached, which makes String a fast, reliable `HashMap` key.
+
+Note: the *reference* can be reassigned (`s = s.toUpperCase()`); the *object* never changes.
 
 **Example:**
 
@@ -26,11 +34,90 @@ System.out.println(a == c.intern()); // true (intern returns the pooled copy)
 ```
 
 </details>
-	
+
 <details><summary>
 	
-## Where are string values stored in memory?
+## [Easy] What are differences between String and StringBuffer?
 </summary>
+
+| | String | StringBuffer |
+|---|---|---|
+| Mutability | Immutable | Mutable (modified in place) |
+| Thread safety | Thread-safe *because* it is immutable | Thread-safe because its methods are `synchronized` |
+| Concatenation | Creates a new object each time | Appends to the same buffer |
+| Performance for many modifications | Poor | Good (slower than `StringBuilder` due to locking) |
+| `equals()` | Compares content | Not overridden: compares references (use `compareTo` or `toString().equals`) |
+
+Use `String` for values that don't change, `StringBuilder` for building strings in one thread, and `StringBuffer` only when one buffer really is shared across threads.
+
+**Example:**
+
+```java
+String s = "a";
+s.concat("b");                 // new object returned, s still "a"
+
+StringBuffer sb = new StringBuffer("a");
+sb.append("b");                // same object modified in place
+System.out.println(sb);        // ab
+```
+
+</details>
+
+<details><summary>
+	
+## [Easy] What are differences between StringBuilder and StringBuffer?
+</summary>
+
+StringBuilder is not thread-safe, while StringBuffer is thread-safe.
+StringBuilder provides better performance due to the absence of synchronization.
+Use StringBuilder in single-threaded scenarios or when manual synchronization is applied.
+Use StringBuffer in multi-threaded scenarios where thread safety is required.
+
+**Example:**
+
+```java
+// StringBuilder: not synchronized, faster -> use for local string building
+StringBuilder csv = new StringBuilder();
+for (String col : List.of("id", "name", "city")) csv.append(col).append(',');
+csv.setLength(csv.length() - 1);   // remove trailing comma
+System.out.println(csv);           // id,name,city
+
+// StringBuffer: synchronized methods, only if one instance is shared between threads
+StringBuffer shared = new StringBuffer();
+```
+
+</details>
+
+<details><summary>
+	
+## [Easy] Can you give examples of different utility methods in String class?
+</summary>
+
+| Method | What it does | Example |
+|---|---|---|
+| `length()` | Number of chars | `"java".length()` → 4 |
+| `charAt(i)` | Char at index | `"java".charAt(1)` → `'a'` |
+| `substring(b, e)` | Part of string, `e` exclusive | `"backend".substring(0, 4)` → `"back"` |
+| `indexOf / lastIndexOf` | Position of a char/substring | `"banana".indexOf("an")` → 1 |
+| `contains`, `startsWith`, `endsWith` | Search | `"api/v1".startsWith("api")` → true |
+| `equals`, `equalsIgnoreCase`, `compareTo` | Compare | `"a".compareTo("b")` → -1 |
+| `toUpperCase`, `toLowerCase` | Case | |
+| `trim()` / `strip()` (Java 11, Unicode-aware) | Remove surrounding whitespace | |
+| `isEmpty()` / `isBlank()` (Java 11) | Empty / only whitespace | `"  ".isBlank()` → true |
+| `replace`, `replaceAll` (regex) | Replace | `"a-b".replace("-", "_")` |
+| `split(regex)` | Split into array | `"a,b".split(",")` |
+| `String.join`, `String.valueOf` | Build / convert | `String.join("-", "a", "b")` → `"a-b"` |
+| `repeat(n)` (Java 11), `lines()` (Java 11) | Repeat / split into lines | `"ab".repeat(2)` → `"abab"` |
+| `chars()` | `IntStream` of characters | `"aab".chars().filter(c -> c == 'a').count()` → 2 |
+| `intern()` | Returns the pooled copy | |
+
+</details>
+
+<details><summary>
+	
+## [Medium] Where are string values stored in memory?
+</summary>
+
 String is a class and strings in java treated as an object, hence the object of String class will be stored in Heap area. But depends on how we are create them. So we have two method for creating String value.
 
 Approach 1
@@ -52,128 +139,47 @@ String str2 = new String("value");
 ```
 
 </details>
-  
+
 <details><summary>
 	
-## Why should you be careful about String Concatenation(+) operator in Loops?
+## [Medium] Why should you be careful about String Concatenation(+) operator in Loops?
 </summary>
-Using the string concatenation operator (+) inside loops can be inefficient and lead to performance issues. It is important to be careful when concatenating strings within loops because of the following reasons:
 
-### String immutability
-In Java, String objects are immutable, meaning their values cannot be changed once they are created. When you use the + operator to concatenate strings, a new String object is created for each concatenation operation. This can lead to unnecessary memory allocation and object creation inside the loop.
+Because `String` is immutable, `s = s + x` inside a loop creates a **new String object every iteration** and copies all existing characters into it.
 
-### String memory overhead
-Each time a new String object is created through concatenation, the previous String objects are discarded, resulting in additional memory usage. In a loop with a large number of iterations, this can cause unnecessary memory overhead and impact performance.
-
-### Time complexity
-The time complexity of string concatenation using the + operator inside a loop is quadratic, meaning it grows exponentially with the number of iterations. For each concatenation operation, the entire concatenated string is copied into a new object, resulting in increasing time complexity. This can lead to significant performance degradation for large loops.
+- For n iterations the total copying is 1 + 2 + … + n characters, so the cost is **O(n²)** (quadratic, not exponential).
+- Each iteration also leaves a garbage object behind, increasing GC work.
 
 ```java
 String s3 = "Value1";
 String s2 = "Value2";
 
 for (int i = 0; i < 100000; ++i) {
-	s3 = s3 + s2;
+	s3 = s3 + s2;   // a new String (and a growing copy) every time
 }
 ```
 
-How many objects are created in memory? More than 100000 Strings are created. 
-This will have a huge performance impact.
+About 100,000 intermediate String objects are created. A single `a + b + c` outside a loop is fine: the compiler optimises it (since Java 9 via `invokedynamic` / `StringConcatFactory`).
+
 </details>
-  
+
 <details><summary>
 	
-## How do you solve above problem?
+## [Medium] How do you avoid the cost of String concatenation in loops?
 </summary>
-To solve the performance problem associated with string concatenation using the + operator inside loops, we can use the StringBuilder class. StringBuilder provides a mutable buffer for efficiently constructing strings by appending individual values. 
-	
+
+Use a mutable `StringBuilder` (or `StringBuffer` if one instance is shared between threads). It appends into an internal resizable buffer, so the loop becomes O(n).
+
 ```java
-StringBuffer s3 = new StringBuffer("Value1");
+StringBuilder s3 = new StringBuilder("Value1");
 String s2 = "Value2";
 
 for (int i = 0; i < 100000; ++i) {
 	s3.append(s2);
 }
+String result = s3.toString();
 ```
 
-</details>
-  
-<details><summary>
-	
-## What are differences between String and StringBuffer?
-</summary>
-String objects are immutable, while StringBuffer objects are mutable.
-String concatenation involves creating new String objects, while StringBuffer allows in-place modifications.
-String is not thread-safe, while StringBuffer is synchronized and thread-safe.
-StringBuffer is more memory-efficient for frequent modifications, while String objects may result in additional memory usage.
-Use String when immutability is desired, and StringBuffer when frequent modifications are needed.
-
-**Example:**
-
-```java
-String s = "a";
-s.concat("b");                 // new object returned, s still "a"
-
-StringBuffer sb = new StringBuffer("a");
-sb.append("b");                // same object modified in place
-System.out.println(sb);        // ab
-```
-
-</details>
-  
-<details><summary>
-	
-## What are differences between StringBuilder and StringBuffer?
-</summary>
-StringBuilder is not thread-safe, while StringBuffer is thread-safe.
-StringBuilder provides better performance due to the absence of synchronization.
-Use StringBuilder in single-threaded scenarios or when manual synchronization is applied.
-Use StringBuffer in multi-threaded scenarios where thread safety is required.
-
-**Example:**
-
-```java
-// StringBuilder: not synchronized, faster -> use for local string building
-StringBuilder csv = new StringBuilder();
-for (String col : List.of("id", "name", "city")) csv.append(col).append(',');
-csv.setLength(csv.length() - 1);   // remove trailing comma
-System.out.println(csv);           // id,name,city
-
-// StringBuffer: synchronized methods, only if one instance is shared between threads
-StringBuffer shared = new StringBuffer();
-```
-
-</details>
-  
-<details><summary>
-	
-## Can you give examples of different utility methods in String class?
-</summary>
-Certainly! The String class in Java provides a wide range of utility methods to perform various operations on strings. Here are some examples of commonly used utility methods in the String class:
-
-```java
-1. Length:
-int length(): Returns the length of the string.
-
-2.Concatenation:
-String concat(String str): Concatenates the specified string to the end of the current string.
-static String join(CharSequence delimiter, CharSequence... elements): Joins multiple strings using the specified delimiter.
-
-3. Substring:
-String substring(int beginIndex); //Returns a new string that is a substring of the current string, starting from the specified index.
-String substring(int beginIndex, int endIndex); //Returns a new string that is a substring of the current string, starting from the specified begin index and ending at the specified end index (exclusive).
-
-4. Case conversion:
-String toLowerCase(): //Converts the string to lowercase.
-String toUpperCase(): //Converts the string to uppercase.
-
-5. Character extraction:
-char charAt(int index): //Returns the character at the specified index in the string.
-int codePointAt(int index): //Returns the Unicode code point value of the character at the specified index.
-
-6. Comparison:
-boolean equals(Object obj): //Checks if the current string is equal to the specified object.
-boolean equalsIgnoreCase(String anotherString): //Checks if the current string is equal to the specified string, ignoring case.
-```
+Other options: `String.join(",", list)`, `Collectors.joining(",")`, or `StringJoiner` when building delimited text.
 
 </details>

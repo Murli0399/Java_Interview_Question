@@ -2,7 +2,108 @@
 
 <details><summary>
 
-## How does HashMap work internally?
+## [Easy] What is the difference between HashMap, LinkedHashMap and TreeMap?
+</summary>
+
+| | HashMap | LinkedHashMap | TreeMap |
+|---|---|---|---|
+| Order | None | Insertion (or access) order | Sorted by key |
+| get/put | O(1) average | O(1) average | O(log n) |
+| Null key | One allowed | One allowed | Not allowed (natural ordering) |
+| Structure | Hash table | Hash table + doubly linked list | Red-black tree |
+
+```java
+Map<String, Integer> tree = new TreeMap<>(Map.of("b", 2, "a", 1, "c", 3));
+System.out.println(tree);              // {a=1, b=2, c=3}
+System.out.println(((TreeMap<String,Integer>) tree).firstKey()); // a
+```
+</details>
+
+<details><summary>
+
+## [Easy] What are the important interfaces related to the Queue interface?
+</summary>
+
+- `Queue<E>`: FIFO operations `offer`, `poll`, `peek` (return special values) and `add`, `remove`, `element` (throw exceptions).
+- `Deque<E>`: double-ended queue; insert/remove at both ends. Works as a queue and as a stack.
+- `BlockingQueue<E>`: waits when empty (`take`) or full (`put`); used for producer-consumer.
+- `BlockingDeque<E>`: blocking version of `Deque`.
+- `TransferQueue<E>`: producer can wait until a consumer receives the element (`transfer`).
+
+```java
+Queue<String> q = new ArrayDeque<>();
+q.offer("a"); q.offer("b");
+System.out.println(q.poll()); // a
+System.out.println(q.peek()); // b
+```
+</details>
+
+<details><summary>
+
+## [Easy] Explain the Deque interface.
+</summary>
+
+A `Deque` supports insertion and removal at both the head and tail. `ArrayDeque` is the recommended implementation for both stacks and queues: it is faster than `Stack` (synchronized, legacy) and `LinkedList` (node allocation per element).
+
+```java
+Deque<Integer> stack = new ArrayDeque<>();
+stack.push(1); stack.push(2);
+System.out.println(stack.pop());   // 2 (LIFO)
+
+Deque<Integer> queue = new ArrayDeque<>();
+queue.offerLast(1); queue.offerLast(2);
+System.out.println(queue.pollFirst()); // 1 (FIFO)
+```
+
+Note: `ArrayDeque` does not allow `null` elements.
+</details>
+
+<details><summary>
+
+## [Easy] What are the important static methods in the Collections class?
+</summary>
+
+```java
+List<Integer> nums = new ArrayList<>(List.of(5, 3, 9, 1));
+
+Collections.sort(nums);                         // [1, 3, 5, 9]
+Collections.reverse(nums);                      // [9, 5, 3, 1]
+Collections.shuffle(nums);
+int max = Collections.max(nums);                // 9
+int freq = Collections.frequency(nums, 3);      // 1
+Collections.swap(nums, 0, 1);
+int idx = Collections.binarySearch(List.of(1, 3, 5), 3); // 1 (list must be sorted)
+
+List<Integer> readOnly = Collections.unmodifiableList(nums);
+List<Integer> syncList = Collections.synchronizedList(new ArrayList<>());
+List<String> empty = Collections.emptyList();
+List<String> filled = Collections.nCopies(3, "x"); // [x, x, x]
+```
+</details>
+
+<details><summary>
+
+## [Easy] When does a collection throw UnsupportedOperationException?
+</summary>
+
+When you modify a collection that doesn't support modification: `List.of()`, `Map.of()`, `Collections.unmodifiableList()`, or `Arrays.asList()` (fixed size: `set` works, `add`/`remove` don't).
+
+```java
+List<Integer> fixed = Arrays.asList(1, 2, 3);
+fixed.set(0, 9);   // OK
+fixed.add(4);      // UnsupportedOperationException
+
+List<Integer> immutable = List.of(1, 2);
+immutable.set(0, 5); // UnsupportedOperationException
+
+List<Integer> mutable = new ArrayList<>(List.of(1, 2)); // copy to modify
+mutable.add(3);      // OK
+```
+</details>
+
+<details><summary>
+
+## [Medium] How does HashMap work internally?
 </summary>
 
 A `HashMap` is an array of buckets (`Node<K,V>[] table`).
@@ -25,7 +126,7 @@ System.out.println(stock.get("apple")); // 15
 
 <details><summary>
 
-## What is the initial capacity and load factor of a collection?
+## [Medium] What is the initial capacity and load factor of a collection?
 </summary>
 
 - **Initial capacity:** the number of buckets/slots created up front. `HashMap` default is 16; `ArrayList` creates a 10-slot array on the first `add`.
@@ -42,7 +143,7 @@ List<String> names = new ArrayList<>(1000);
 
 <details><summary>
 
-## Why must HashMap keys be immutable?
+## [Medium] Why must HashMap keys be immutable?
 </summary>
 
 The bucket is chosen from `hashCode()` at insertion time. If a mutable key changes after insertion, its hash changes and the map looks in the wrong bucket, so the entry is effectively lost.
@@ -60,26 +161,7 @@ That is why `String`, `Integer` and records make good keys.
 
 <details><summary>
 
-## What is the difference between HashMap, LinkedHashMap and TreeMap?
-</summary>
-
-| | HashMap | LinkedHashMap | TreeMap |
-|---|---|---|---|
-| Order | None | Insertion (or access) order | Sorted by key |
-| get/put | O(1) average | O(1) average | O(log n) |
-| Null key | One allowed | One allowed | Not allowed (natural ordering) |
-| Structure | Hash table | Hash table + doubly linked list | Red-black tree |
-
-```java
-Map<String, Integer> tree = new TreeMap<>(Map.of("b", 2, "a", 1, "c", 3));
-System.out.println(tree);              // {a=1, b=2, c=3}
-System.out.println(((TreeMap<String,Integer>) tree).firstKey()); // a
-```
-</details>
-
-<details><summary>
-
-## How do you build an LRU cache with LinkedHashMap?
+## [Medium] How do you build an LRU cache with LinkedHashMap?
 </summary>
 
 `LinkedHashMap` with `accessOrder = true` moves an entry to the end on every `get`. Override `removeEldestEntry` to evict when full.
@@ -111,46 +193,7 @@ Interviewers often ask for the manual version too (HashMap + doubly linked list)
 
 <details><summary>
 
-## What are the important interfaces related to the Queue interface?
-</summary>
-
-- `Queue<E>`: FIFO operations `offer`, `poll`, `peek` (return special values) and `add`, `remove`, `element` (throw exceptions).
-- `Deque<E>`: double-ended queue; insert/remove at both ends. Works as a queue and as a stack.
-- `BlockingQueue<E>`: waits when empty (`take`) or full (`put`); used for producer-consumer.
-- `BlockingDeque<E>`: blocking version of `Deque`.
-- `TransferQueue<E>`: producer can wait until a consumer receives the element (`transfer`).
-
-```java
-Queue<String> q = new ArrayDeque<>();
-q.offer("a"); q.offer("b");
-System.out.println(q.poll()); // a
-System.out.println(q.peek()); // b
-```
-</details>
-
-<details><summary>
-
-## Explain the Deque interface.
-</summary>
-
-A `Deque` supports insertion and removal at both the head and tail. `ArrayDeque` is the recommended implementation for both stacks and queues: it is faster than `Stack` (synchronized, legacy) and `LinkedList` (node allocation per element).
-
-```java
-Deque<Integer> stack = new ArrayDeque<>();
-stack.push(1); stack.push(2);
-System.out.println(stack.pop());   // 2 (LIFO)
-
-Deque<Integer> queue = new ArrayDeque<>();
-queue.offerLast(1); queue.offerLast(2);
-System.out.println(queue.pollFirst()); // 1 (FIFO)
-```
-
-Note: `ArrayDeque` does not allow `null` elements.
-</details>
-
-<details><summary>
-
-## What is a PriorityQueue?
+## [Medium] What is a PriorityQueue?
 </summary>
 
 A queue that always returns the smallest element (by natural order or a `Comparator`). It is backed by a **binary heap**: `offer`/`poll` are O(log n), `peek` is O(1). Iteration order is **not** sorted.
@@ -179,7 +222,7 @@ int kthLargest(int[] nums, int k) {
 
 <details><summary>
 
-## Explain the BlockingQueue interface and give implementations.
+## [Medium] Explain the BlockingQueue interface and give implementations.
 </summary>
 
 `BlockingQueue` adds methods that wait: `put()` blocks when full, `take()` blocks when empty. It handles all the locking, which makes producer-consumer code simple.
@@ -215,7 +258,7 @@ producer.start(); consumer.start();
 
 <details><summary>
 
-## Can you give an example of the NavigableMap interface?
+## [Medium] Can you give an example of the NavigableMap interface?
 </summary>
 
 `NavigableMap` (implemented by `TreeMap`) adds closest-match lookups.
@@ -235,30 +278,7 @@ Real use: price slabs, time-based lookups ("which config was active at time T").
 
 <details><summary>
 
-## What are the important static methods in the Collections class?
-</summary>
-
-```java
-List<Integer> nums = new ArrayList<>(List.of(5, 3, 9, 1));
-
-Collections.sort(nums);                         // [1, 3, 5, 9]
-Collections.reverse(nums);                      // [9, 5, 3, 1]
-Collections.shuffle(nums);
-int max = Collections.max(nums);                // 9
-int freq = Collections.frequency(nums, 3);      // 1
-Collections.swap(nums, 0, 1);
-int idx = Collections.binarySearch(List.of(1, 3, 5), 3); // 1 (list must be sorted)
-
-List<Integer> readOnly = Collections.unmodifiableList(nums);
-List<Integer> syncList = Collections.synchronizedList(new ArrayList<>());
-List<String> empty = Collections.emptyList();
-List<String> filled = Collections.nCopies(3, "x"); // [x, x, x]
-```
-</details>
-
-<details><summary>
-
-## What is the difference between synchronized and concurrent collections?
+## [Medium] What is the difference between synchronized and concurrent collections?
 </summary>
 
 - **Synchronized collections** (`Collections.synchronizedMap`, `Vector`, `Hashtable`) wrap every method in one lock. Only one thread works at a time, and iteration still needs manual locking.
@@ -277,32 +297,7 @@ concurrent.merge("hits", 1, Integer::sum); // atomic, no external lock
 
 <details><summary>
 
-## How does ConcurrentHashMap work in Java 8+?
-</summary>
-
-- No segment locks any more (that was Java 7). The table is a plain array of nodes.
-- Inserting into an **empty bucket** uses a lock-free **CAS**.
-- Inserting into a non-empty bucket locks **only that bucket's first node** (`synchronized`).
-- Reads (`get`) take no lock; fields are `volatile`, so readers see the latest values.
-- Resizing is done cooperatively by multiple threads.
-- `null` keys and values are **not allowed**, because `get()` returning `null` must mean "absent" unambiguously in concurrent code.
-
-Use the atomic compound methods instead of check-then-act:
-
-```java
-ConcurrentHashMap<String, Integer> counts = new ConcurrentHashMap<>();
-
-// WRONG: race between get and put
-// if (!counts.containsKey(w)) counts.put(w, 1); else counts.put(w, counts.get(w) + 1);
-
-counts.merge("java", 1, Integer::sum);                    // atomic increment
-counts.computeIfAbsent("cache", k -> expensiveLoad(k));   // load once
-```
-</details>
-
-<details><summary>
-
-## Explain the copy-on-write approach.
+## [Medium] Explain the copy-on-write approach.
 </summary>
 
 `CopyOnWriteArrayList` and `CopyOnWriteArraySet` create a **new copy of the underlying array on every write**. Readers iterate over an unchanging snapshot with no locking.
@@ -322,28 +317,7 @@ System.out.println(listeners); // [a, b, c, c]
 
 <details><summary>
 
-## What is the compare-and-swap (CAS) approach?
-</summary>
-
-CAS is a CPU instruction: "set the value to `new` **only if** it is still `expected`", returning whether it succeeded. Threads retry in a loop instead of blocking on a lock. `AtomicInteger`, `ConcurrentHashMap` and `ConcurrentLinkedQueue` are built on it.
-
-```java
-AtomicInteger counter = new AtomicInteger();
-
-// what incrementAndGet() does internally (simplified)
-int prev, next;
-do {
-    prev = counter.get();
-    next = prev + 1;
-} while (!counter.compareAndSet(prev, next));
-```
-
-Trade-off: no blocking or deadlocks, but heavy contention means many retries. The **ABA problem** (value changes A→B→A) is solved with `AtomicStampedReference`.
-</details>
-
-<details><summary>
-
-## What is a Lock? How is it different from synchronized?
+## [Medium] What is a Lock? How is it different from synchronized?
 </summary>
 
 `java.util.concurrent.locks.Lock` (e.g. `ReentrantLock`) does what `synchronized` does, plus:
@@ -376,27 +350,7 @@ void transfer(Account from, Account to, int amount) throws InterruptedException 
 
 <details><summary>
 
-## When does a collection throw UnsupportedOperationException?
-</summary>
-
-When you modify a collection that doesn't support modification: `List.of()`, `Map.of()`, `Collections.unmodifiableList()`, or `Arrays.asList()` (fixed size: `set` works, `add`/`remove` don't).
-
-```java
-List<Integer> fixed = Arrays.asList(1, 2, 3);
-fixed.set(0, 9);   // OK
-fixed.add(4);      // UnsupportedOperationException
-
-List<Integer> immutable = List.of(1, 2);
-immutable.set(0, 5); // UnsupportedOperationException
-
-List<Integer> mutable = new ArrayList<>(List.of(1, 2)); // copy to modify
-mutable.add(3);      // OK
-```
-</details>
-
-<details><summary>
-
-## What is the difference between fail-fast and fail-safe iterators?
+## [Medium] What is the difference between fail-fast and fail-safe iterators?
 </summary>
 
 - **Fail-fast** (`ArrayList`, `HashMap`): track a `modCount`; if the collection is structurally changed during iteration (other than via the iterator), they throw `ConcurrentModificationException`.
@@ -416,7 +370,7 @@ list.removeIf(x -> x % 2 == 0);
 
 <details><summary>
 
-## What are atomic operations and atomic classes in Java?
+## [Medium] What are atomic operations and atomic classes in Java?
 </summary>
 
 An atomic operation completes fully or not at all; no other thread can see it half-done. `count++` is **not** atomic (read, add, write). `java.util.concurrent.atomic` provides lock-free atomic classes:
@@ -440,7 +394,7 @@ System.out.println(hits.sum());
 
 <details><summary>
 
-## Comparable vs Comparator: how do you sort by multiple fields?
+## [Medium] Comparable vs Comparator: how do you sort by multiple fields?
 </summary>
 
 `Comparable` defines one natural order inside the class (`compareTo`). `Comparator` defines external, swappable orders. Java 8 comparators chain cleanly:
@@ -458,4 +412,50 @@ emps.sort(Comparator.comparing(Employee::dept)
                     .thenComparing(Employee::name));
 // Eng/Ravi, Eng/Asha, Sales/Meena
 ```
+</details>
+
+<details><summary>
+
+## [Hard] How does ConcurrentHashMap work in Java 8+?
+</summary>
+
+- No segment locks any more (that was Java 7). The table is a plain array of nodes.
+- Inserting into an **empty bucket** uses a lock-free **CAS**.
+- Inserting into a non-empty bucket locks **only that bucket's first node** (`synchronized`).
+- Reads (`get`) take no lock; fields are `volatile`, so readers see the latest values.
+- Resizing is done cooperatively by multiple threads.
+- `null` keys and values are **not allowed**, because `get()` returning `null` must mean "absent" unambiguously in concurrent code.
+
+Use the atomic compound methods instead of check-then-act:
+
+```java
+ConcurrentHashMap<String, Integer> counts = new ConcurrentHashMap<>();
+
+// WRONG: race between get and put
+// if (!counts.containsKey(w)) counts.put(w, 1); else counts.put(w, counts.get(w) + 1);
+
+counts.merge("java", 1, Integer::sum);                    // atomic increment
+counts.computeIfAbsent("cache", k -> expensiveLoad(k));   // load once
+```
+</details>
+
+<details><summary>
+
+## [Hard] What is the compare-and-swap (CAS) approach?
+</summary>
+
+CAS is a CPU instruction: "set the value to `new` **only if** it is still `expected`", returning whether it succeeded. Threads retry in a loop instead of blocking on a lock. `AtomicInteger`, `ConcurrentHashMap` and `ConcurrentLinkedQueue` are built on it.
+
+```java
+AtomicInteger counter = new AtomicInteger();
+
+// what incrementAndGet() does internally (simplified)
+int prev, next;
+do {
+    prev = counter.get();
+    next = prev + 1;
+} while (!counter.compareAndSet(prev, next));
+```
+
+Trade-off: no blocking or deadlocks, but heavy contention means many retries. The **ABA problem** (value changes A→B→A) is solved with `AtomicStampedReference`.
 </details>

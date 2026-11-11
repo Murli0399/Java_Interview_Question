@@ -4,7 +4,7 @@ Interviewers usually ask "what's new in Java 8" and "which newer features have y
 
 <details><summary>
 
-## What are the new features in Java 5?
+## [Easy] What are the new features in Java 5?
 </summary>
 
 - **Generics:** `List<String>` instead of raw `List` with casts
@@ -16,7 +16,7 @@ Interviewers usually ask "what's new in Java 8" and "which newer features have y
 
 <details><summary>
 
-## What are the new features in Java 6 and 7?
+## [Easy] What are the new features in Java 6 and 7?
 </summary>
 
 **Java 6:** scripting engine API (JSR 223), JDBC 4.0 (drivers auto-loaded), compiler API, performance improvements.
@@ -43,7 +43,7 @@ Also NIO.2 (`Path`, `Files`) and the Fork/Join framework.
 
 <details><summary>
 
-## What are the new features in Java 8?
+## [Easy] What are the new features in Java 8?
 </summary>
 
 The biggest release for interviews:
@@ -71,7 +71,25 @@ interface Greeter {
 
 <details><summary>
 
-## What changed in Java 9, 10 and 11?
+## [Easy] What is a record and when would you use it?
+</summary>
+
+A `record` is a concise, immutable data class. The compiler generates the constructor, accessors (`name()`, not `getName()`), `equals`, `hashCode` and `toString`.
+
+```java
+public record UserDto(Long id, String email) {
+    public UserDto {                       // compact constructor for validation
+        if (email == null || !email.contains("@")) throw new IllegalArgumentException("Bad email");
+    }
+}
+```
+
+Use for DTOs, API responses, events, map keys and value objects. Not for JPA entities (entities need a no-arg constructor and mutable state for Hibernate proxies).
+</details>
+
+<details><summary>
+
+## [Medium] What changed in Java 9, 10 and 11?
 </summary>
 
 **Java 9:** module system (JPMS, `module-info.java`), `List.of()/Set.of()/Map.of()` immutable factories, JShell, private interface methods, `Stream.takeWhile/dropWhile`.
@@ -96,7 +114,7 @@ HttpResponse<String> res = client.send(
 
 <details><summary>
 
-## What are the key features from Java 12 to 17?
+## [Medium] What are the key features from Java 12 to 17?
 </summary>
 
 - **Switch expressions** (14)
@@ -130,7 +148,7 @@ record Square(double side) implements Shape {}
 
 <details><summary>
 
-## What are the key features of Java 21?
+## [Medium] What are the key features of Java 21?
 </summary>
 
 - **Virtual threads** (final): cheap threads for blocking IO at massive scale
@@ -149,22 +167,4 @@ double area(Shape s) {
 List<Integer> list = List.of(1, 2, 3);
 list.getFirst(); list.getLast(); list.reversed();
 ```
-</details>
-
-<details><summary>
-
-## What is a record and when would you use it?
-</summary>
-
-A `record` is a concise, immutable data class. The compiler generates the constructor, accessors (`name()`, not `getName()`), `equals`, `hashCode` and `toString`.
-
-```java
-public record UserDto(Long id, String email) {
-    public UserDto {                       // compact constructor for validation
-        if (email == null || !email.contains("@")) throw new IllegalArgumentException("Bad email");
-    }
-}
-```
-
-Use for DTOs, API responses, events, map keys and value objects. Not for JPA entities (entities need a no-arg constructor and mutable state for Hibernate proxies).
 </details>

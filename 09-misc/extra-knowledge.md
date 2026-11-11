@@ -1,7 +1,10 @@
+# Extra knowledge (web, DB, OS)
+
 <details><summary>
 
-## Difference between API and REST API?
+## [Easy] Difference between API and REST API?
 </summary>
+
 An API (Application Programming Interface) is a set of rules that define how applications or devices can connect to and communicate with each other. A REST API is a specific type of API that adheres to the constraints of the REST architectural style. REST stands for Representational State Transfer. REST is a style of web architecture that governs the behavior of clients and servers. REST APIs use HTTP requests to interact with data. Traditional APIs can use a variety of protocols.
 REST APIs are also known as RESTful APIs. When a client requests a resource using a REST API, the server transfers back the current state of the resource in a standardized representation.
 
@@ -20,105 +23,42 @@ class UserController {
 ```
 
 </details>
+
 <details><summary>
 
-## What is domain vs. endpoint in API?
-</summary>
-A domain is a library of common components, such as parameters, responses, and data models, that are used across multiple API definitions. An endpoint is a component of an API. It's a specific location within an API that accepts requests and sends back responses.
-Endpoints are the locations of the resources, and the API uses endpoint URLs to retrieve the requested resources. For example, assuming the base URL of https://api.example.com/v1, the /users endpoint refers to https://api.example.com/v1/users.
-APIs work by sending requests for information from a web application or web server and receiving a response.
-</details>
-<details><summary>
-
-## Difference between Http and Https?
+## [Easy] What is domain vs. endpoint in API?
 </summary>
 
-HTTP (Hypertext Transfer Protocol) is the primary protocol for transmitting information across the internet. HTTPS (Hypertext Transfer Protocol Secure) is a more secure version of HTTP. The main difference between the two is that HTTPS uses encryption to protect information as it is sent between clients and servers. HTTPS encrypts data entered into a user's device and data going from the website to the browser. This makes it difficult for anyone to intercept information like passwords or credit card numbers.
+- **Domain (host):** the address of the server that hosts the API, e.g. `api.example.com`. Together with the scheme and an optional base path it forms the **base URL**: `https://api.example.com/v1`.
+- **Endpoint:** a specific URL path plus HTTP method that performs one operation on a resource, e.g. `GET https://api.example.com/v1/users/42` or `POST /v1/orders`.
 
-Here are some other differences between HTTP and HTTPS:
-- HTTP sends data over port 80, while HTTPS uses port 443.
-- HTTP operates at the application layer, while HTTPS operates at the transport layer.
-- HTTP transfers data in plain text, while HTTPS transfers data in cipher text.
-- HTTP is faster than HTTPS because HTTPS consumes computation power to encrypt the communication channel.
+So one domain hosts many endpoints. In API design, endpoints are usually resource nouns (`/users`, `/orders/{id}/items`), with the action expressed by the HTTP method.
 
-HTTPS requires an SSL certificate and a CA signature, while HTTP does not require SSL certificates.
 </details>
+
 <details><summary>
 
-## What is reflection API in Java?
+## [Easy] Difference between Http and Https?
 </summary>
-The Java Reflection API is a set of classes and interfaces that allows Java code to examine or modify the runtime behavior of a class at run time. The java.lang.Class class provides many methods that can be used to get metadata, and examine and change the run time behavior of a class. The java.lang and java.lang.reflect packages provide classes for Java reflection.
 
-The Reflection API is mainly used in:
-- IDE (Integrated Development Environment) e.g., Eclipse, MyEclipse, NetBeans, etc.
-- Debugger
-- Test Tools etc.
+**HTTPS** is HTTP sent over an encrypted **TLS** connection (the successor of SSL). The HTTP protocol itself is the same; HTTPS wraps it in a secure channel.
 
-Here are some examples of how the Reflection API can be used:
-- To get information about the fields, methods, and constructors of a class.
-- To create instances of classes at runtime.
-- To invoke methods at runtime.
-- To get and set the values of fields at runtime.
-- To override the access control restrictions on classes and members.
+| | HTTP | HTTPS |
+|---|---|---|
+| Encryption | None; data travels as plain text | Encrypted with TLS |
+| Default port | 80 | 443 |
+| Server identity | Not verified | Verified with an X.509 **TLS certificate** signed by a trusted Certificate Authority |
+| Integrity | Data can be altered in transit | Tampering is detected |
+| Layer | Application layer | Still the application layer (HTTP), running on top of TLS, on top of TCP |
+| Performance | No handshake cost | Small TLS handshake cost; with TLS 1.3 and HTTP/2 the difference is negligible |
 
-The Reflection API is a powerful tool that can be used to do things that would not be possible without it. However, it is important to use it carefully, as it can also be used to do things that could have unintended consequences.
-
-**Example:**
-
-```java
-Class<?> clazz = Class.forName("com.example.User");
-Object user = clazz.getDeclaredConstructor().newInstance();
-
-Field name = clazz.getDeclaredField("name");
-name.setAccessible(true);                  // bypass private
-name.set(user, "Asha");
-
-Method greet = clazz.getMethod("greet");
-System.out.println(greet.invoke(user));
-
-for (Method m : clazz.getDeclaredMethods()) {
-    if (m.isAnnotationPresent(Deprecated.class)) System.out.println(m.getName());
-}
-```
+Modern browsers, APIs and app stores expect HTTPS everywhere. HTTPS protects passwords, tokens and payment data from interception.
 
 </details>
+
 <details><summary>
 
-## Where is the Java Reflection API used in the Spring Framework?
-</summary>
-The Java Reflection API is used in the Spring Framework in a number of places, including:
-
-- To create Spring beans at runtime.
-- To inject dependencies into Spring Beans.
-- To resolve the type of a Spring bean at runtime.
-- To invoke methods on Spring beans.
-- To get and set the values of fields on Spring beans.
-- To override the access control restrictions on Spring beans.
-
-
-The use of the Java Reflection API in the Spring Framework allows for a greater degree of flexibility and extensibility than would be possible without it. For example, it allows Spring beans to be created at runtime, even if the classes for those beans are not known at compile time. This can be useful in situations where the Spring beans are dynamically generated or loaded from a database.
-
-
-The use of the Java Reflection API in the Spring Framework also makes it possible to inject dependencies into Spring beans that are not known at compile time. This can be useful in situations where the dependencies are provided by a third-party library or are dynamically generated.
-
-
-Overall, the use of the Java Reflection API in the Spring Framework makes it a more powerful and flexible framework than would be possible without it.
-
-**Example:**
-
-```java
-@Service
-class OrderService {
-    @Autowired private PaymentClient client;   // Spring sets this private field via reflection
-}
-// Also: scanning @Component classes, calling @PostConstruct/@EventListener methods,
-// binding JSON to objects (Jackson), creating proxies for @Transactional.
-```
-
-</details>
-<details><summary>
-
-## What is the difference between authentication and authorization in api?
+## [Easy] What is the difference between authentication and authorization in api?
 </summary>
 
 Authentication and authorization are two different security functions. Authentication verifies a user's identity, while authorization determines what resources a user can access.
@@ -140,35 +80,43 @@ public List<Report> reports() { ... }
 ```
 
 </details>
+
 <details><summary>
 
-## Difference between Abstract class vs. interface?
+## [Easy] Difference between Abstract class vs. interface?
 </summary>
 
-Abstract classes and interfaces are both used for abstraction in object-oriented programming. The main difference between the two is that abstract classes can have state, while interfaces cannot. Abstract classes are used to define default behavior for subclasses. Interfaces are used to define behavior that can be implemented by multiple unrelated classes.
+- An **abstract class** can have state (instance fields), constructors, and both abstract and concrete methods with any access modifier. A class can extend only one.
+- An **interface** defines a contract. It can have abstract, `default`, `static` (Java 8) and `private` (Java 9) methods, but only `public static final` constants and no constructors. A class can implement many interfaces, and an interface can extend many interfaces.
+- Abstract classes can have initialization blocks; interfaces can't.
 
-Here are some other differences between abstract classes and interfaces:
+Use an abstract class to share code and state among closely related classes; use an interface for a capability that unrelated classes can provide. (See the full comparison table in `02-oops/oops-basics.md`.)
 
-- Abstract classes can have abstract and non-abstract methods, while interfaces can only have abstract, static, and default methods.
-- Abstract classes can extend one abstract class and implement multiple interfaces, while interfaces can only extend other interfaces.
-- Abstract classes have no restrictions on field and method modifiers, while in an interface, all are public by default.
-- Abstract classes can have instance and static initialization blocks, while interfaces cannot.
-- Abstract classes can be used to provide a base for a hierarchy of classes or provide a common implementation. Interfaces can be used to define a contract behavior.
 </details>
+
 <details><summary>
 
-## Difference between heap and stack memory?
+## [Easy] Difference between heap and stack memory?
 </summary>
 
-In Java, heap and stack are two different types of memory that are used to store data. The heap is used to store objects, while the stack is used to store local variables and method call information.
+| | Stack | Heap |
+|---|---|---|
+| What it stores | Method frames: local primitives, references, return addresses | All objects and arrays |
+| Ownership | **One stack per thread** | **Shared** by all threads |
+| Lifetime | Frame is popped when the method returns (LIFO) | Objects live until they're unreachable and the GC reclaims them |
+| Size | Small (typically 512 KB–1 MB per thread, `-Xss`) | Large (`-Xms` / `-Xmx`) |
+| Speed | Very fast allocation | Slower, managed by GC |
+| Error when full | `StackOverflowError` (e.g. deep recursion) | `OutOfMemoryError: Java heap space` |
+| Thread safety | Naturally thread-safe (private to the thread) | Needs synchronization for shared mutable objects |
 
-The heap is a large, unstructured area of memory that can be used to store any type of object. Objects are created on the heap by the new keyword. The garbage collector is responsible for managing the heap and removing objects that are no longer needed.
+```java
+void handle() {
+	int retries = 3;                 // stack
+	Order order = new Order(42);     // reference on the stack, Order object on the heap
+}
+```
 
-The stack is a small, fixed-size area of memory that is used to store local variables and method call information. Local variables are variables that are declared within a method. Method call information is used to keep track of the current method call and the methods that have been called before it.
-
-The stack is used in a last-in, first-out (LIFO) manner. This means that the last variable that was declared is the first variable that is removed. The stack is also used to store the return address of a method call. The return address is the location of the code that will be executed after the method call returns.
-
-The heap and stack are two important parts of the Java memory model. They work together to provide a safe and efficient way to store data.
+The JIT can sometimes avoid heap allocation for objects that never escape a method (escape analysis), but conceptually objects live on the heap.
 
 **Example:**
 
@@ -182,127 +130,10 @@ void handle() {
 ```
 
 </details>
+
 <details><summary>
 
-## What is the stored procedure in JDBC?
-</summary>
-
-A stored procedure is a set of SQL statements that are stored together as a single block of code in a database. Stored procedures can be reused multiple times without having to write the queries again. They can provide multiple output values and accept input as well as output parameters.
-
-Stored procedures are executed on the server side and perform a set of actions, before returning the results to the client side. They consist of database access commands (SQL), control statements, and data structures that manipulate the data obtained from the database.
-
-Stored procedures are accessible by all applications that can access relational databases, including Java, Python, and PHP. The procedure code is defined in a Java class method and stored in the database. This is executed using SQL.
-
-**Example:**
-
-```java
-try (Connection conn = dataSource.getConnection();
-     CallableStatement cs = conn.prepareCall("{call get_order_total(?, ?)}")) {
-    cs.setLong(1, orderId);                         // IN parameter
-    cs.registerOutParameter(2, Types.DECIMAL);      // OUT parameter
-    cs.execute();
-    BigDecimal total = cs.getBigDecimal(2);
-}
-```
-
-</details>
-<details><summary>
-
-## What is a connection pool? How is it used to improve performance in database applications?
-</summary>
-
-A connection pool is a cache of database connections that can be reused when a database is accessed. Connection pooling is a technique that can improve the performance of database applications.
-
-Connection pooling works by:
-
-- Creating a pool of open connections.
-- Passing these connections from database operation to database operation as needed.
-- Avoiding the overhead of creating a new database connection every time an application or server object requires access to a database.
-- Conserving application resources for future requests.
-- Allowing a database to scale effectively as the data stored there and the number of clients accessing it grow.
-
-Connection pooling can be implemented by deploying an intermediary queuing system to manage and recycle database connections. The JDBC Connection Pool Assistant can help you create and deploy a connection pool.
-
-**Example:**
-
-Spring Boot uses **HikariCP** by default:
-
-```yaml
-spring:
-  datasource:
-    url: jdbc:mysql://localhost:3306/app
-    hikari:
-      maximum-pool-size: 20       # max connections; size for DB capacity, not request count
-      minimum-idle: 5
-      connection-timeout: 3000    # ms to wait for a free connection before failing
-      max-lifetime: 1800000       # recycle connections before DB/firewall timeouts
-```
-
-Pool exhaustion shows as `SQLTransientConnectionException: Connection is not available`; check `hikaricp_connections_pending` metrics, long transactions and slow queries.
-
-</details>
-<details><summary>
-
-## Handling and fixing 'Out of Memory' exceptions?
-</summary>
-
-Out of Memory exceptions, or OutOfMemoryError, are runtime errors in Java that occur when the Java Virtual Machine (JVM) cannot allocate an object due to insufficient space in the Java heap. The Java Garbage Collector (GC) cannot free up the space required for a new object.
-
-Here are some ways to fix OutOfMemoryError:
-- Increase the size of the Metaspace by adding the -XX:MaxMetaspaceSize flag to the startup parameters of your Java application.
-- Increase the heap size of the Perm space by using the JVM option "-XX: MaxPermSize".
-- Restructure your code to use less memory. For example, you could stream the output instead of holding the whole thing in memory.
-- Give the JVM more memory with the -Xmx option.
-- Keep data access to a minimum. Let the database do the hard work for you (querying) and only bring back the data you need to the JVM.
-
-You can look in the atlassian-confluence.log to see which type of OutOfMemory Error you're receiving.
-
-**Example:**
-
-```bash
-# capture a heap dump automatically when OOM happens
-java -Xmx1g -XX:+HeapDumpOnOutOfMemoryError -XX:HeapDumpPath=/dumps -jar app.jar
-
-# or take one from a running JVM
-jcmd <pid> GC.heap_dump /dumps/app.hprof
-```
-
-Open the `.hprof` in Eclipse MAT, check the dominator tree for the largest retained objects, and follow the path to GC roots to find who holds them (often an unbounded cache or a static collection).
-
-</details>
-<details><summary>
-
-## What is the difference between a ClassCastException and a ClassNotFoundException in Java?
-</summary>
-
-The main difference between a ClassCastException and a ClassNotFoundException in Java is that a ClassCastException is thrown when an object is not of the expected type, while a ClassNotFoundException is thrown when a class cannot be found.
-
-A ClassCastException is a checked exception, which means that it must be caught or declared in the method signature. It is thrown when an object is cast to a type that it is not compatible with. For example, the following code will throw a ClassCastException:
-
-```
-Object o = new Integer(10);
-String s = (String) o; // This will throw a ClassCastException
-```
-
-In this example, the object o is an Integer, but it is being cast to a String. This is not allowed, because an Integer cannot be converted to a String.
-
-A ClassNotFoundException is an unchecked exception, which means that it does not need to be caught or declared in the method signature. It is thrown when a class cannot be found. For example, the following code will throw a ClassNotFoundException:
-
-```
-try {
-  Class<?> c = Class.forName("java.lang.String");
-} catch (ClassNotFoundException e) {
-  // This will be executed if the class cannot be found
-}
-```
-
-In this example, the class java.lang.String is being looked up, but it cannot be found. This is because the class is not in the classpath.
-
-In general, ClassCastExceptions are more common than ClassNotFoundExceptions. This is because ClassCastExceptions can be caused by a variety of errors, such as misspelling a class name or using an incompatible version of a class. ClassNotFoundExceptions are typically only caused by missing classes.
-</details>
-<details><summary>
-
-## What is JSON? How is it utilized?
+## [Easy] What is JSON? How is it utilized?
 </summary>
 
 JSON (JavaScript Object Notation) is a text-based format for storing and transporting data. It is often used when data is sent from a server to a web page or browser. JSON is a lightweight format that is easy to read and write. It is also easy for software to parse and generate.
@@ -329,52 +160,22 @@ User u = mapper.readValue("{\"id\":2,\"name\":\"Ravi\"}", User.class);
 ```
 
 </details>
+
 <details><summary>
 
-## What is the usage of the PATH variable in an operating system? How is it utilized, when would you like to update it?
+## [Easy] What is the usage of the PATH variable in an operating system? How is it utilized, when would you like to update it?
 </summary>
 
 The PATH variable is an environment variable that contains a list of directories the operating system checks before running a command. The PATH variable makes it easy to run commonly used programs located in their own folders. Updating the PATH variable allows you to run any executables found in the directories mentioned in PATH from any directory without typing the absolute file path.
 
-The PATH variable is the most frequently used environment variable. It is an important security control. The default systemwide PATH value is specified in the /etc/profile file. Each user normally has a PATH value in the user's $HOME/. profile file.
+The system-wide default is set in files such as `/etc/profile` or `/etc/environment`. Order matters: the first matching executable in PATH wins, so never put writable or untrusted directories (like `.`) at the front. Each user normally sets PATH in `~/.profile`, `~/.bashrc` or `~/.zshrc`. Update it when you install a tool (for example a new JDK) and want to run its commands from any directory, e.g. `export PATH="$JAVA_HOME/bin:$PATH"`.
 
 If used unwisely, the value of the PATH variable can slow down the operating system by searching too many locations, or invalid locations.
 </details>
+
 <details><summary>
 
-## What configurations do you need to make in web.xml to deploy a servlet in a web application?
-</summary>
-
-To configure a servlet in web.xml, you need to:
-- Define the servlet name and class name using the <servlet> element
-- Map the servlet to a URL or URL pattern
-- Add initializations and security roles for the servlet
-- Define mappings between URL paths and the servlets that handle requests with those paths
-
-The web server uses this configuration to identify the servlet to handle a given request. For example, the doGet() method for HTTP GET requests.
-
-The web.xml file is located in the WEB-INF directory. It does not represent the entire configuration that is available for the web application. Other servlets, filters, and listeners can be defined using programmatic configurations, annotations, and web fragments.
-</details>
-<details><summary>
-
-## Explain how the session is utilized for security implementation. Please explain who creates the session and how is session information exchanged between the browser and server.
-</summary>
-
-A session is a unique identifier that identifies a user's session on a website or application. A session is created when a user logs in to a website or app. The server creates a session ID, or session token, which is a randomly generated string. The session ID is attached to the response and is valid for a period of time.
-
-The session management process is as follows:
-1. The user enters login credentials and submits.
-2. The client sends a request with the login credentials.
-3. The server receives the request and checks if the login credentials are valid.
-4. If valid, the server creates a session and attaches the session ID to the response.
-
-The session ID is used to identify if the request came from the authenticated user without needing re-authentication.
-
-Session management involves sharing secrets with authenticated users. Secure cryptographic network communications are essential to maintaining session management security.
-</details>
-<details><summary>
-
-## What is the difference between a database view and a table in a database?
+## [Easy] What is the difference between a database view and a table in a database?
 </summary>
 
 A database view is a virtual table that is extracted from a database. A table is an actual table that exists in physical locations. A view is a subset of a database and is based on a query that runs on one or more database tables. A view is used to query certain data present in different tables. A table is an independent data object that stores the data of a database.
@@ -399,53 +200,10 @@ SELECT * FROM active_customers WHERE name LIKE 'A%';   -- queried like a table
 The view stores only the query; the data stays in `customers`. A **materialized view** stores the result and must be refreshed.
 
 </details>
+
 <details><summary>
 
-## What is meant by an entity-relationship (E-R) model? Explain the terms Entity, Entity Type, and Entity Set in
-</summary>
-
-An entity-relationship (ER) model is a high-level data model that describes how entities relate to each other in a specific domain. The ER model is used to design a database by identifying entities and the relationships between them. The ER model is represented by an ER diagram, which is a blueprint for a database.
-
-The ER model is based on two concepts:
-- Entities: Tables that contain specific information
-- Relationships: Associations or interactions between entities
-
-The ER model is commonly used in software engineering to represent things a business needs to remember to perform business processes. It can also be used to teach students the basics of database structure.
-
-An entity type in an ER diagram is defined by a name and a set of attributes. For example, a student entity type might have the attributes roll number, student name, age, and mobile number.
-</details>
-<details><summary>
-
-## What is a database trigger? How is it used to enforce business rules?
-</summary>
-
-A database trigger is a set of procedural codes that is automatically executed in response to a specific event in a database. Triggers are used to enforce business rules, maintain data integrity, and automate certain actions within a database.
-
-Triggers can be defined to run instead of or after DML (Data Manipulation Language) actions such as INSERT, UPDATE, and DELETE.
-
-Triggers can also be defined to run after system events such as a login or logout.
-
-Triggers are an important method for enforcing business rules because they automatically perform an action after a change is made to the database.
-
-**Example:**
-
-```sql
-CREATE TRIGGER trg_prevent_negative_stock
-BEFORE UPDATE ON products
-FOR EACH ROW
-BEGIN
-  IF NEW.stock < 0 THEN
-    SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Stock cannot be negative';
-  END IF;
-END;
-```
-
-Use sparingly: business logic hidden in triggers is hard to test and debug; prefer application code or constraints (`CHECK (stock >= 0)`).
-
-</details>
-<details><summary>
-
-## What all commands in Unix are you aware of? Please explain their usage.
+## [Easy] What all commands in Unix are you aware of? Please explain their usage.
 </summary>
 
 Here are some Unix commands and their usage:
@@ -456,7 +214,11 @@ Here are some Unix commands and their usage:
 - date: Displays the system date and time
 - ls: Lists the contents of a directory
 - man: Gets documentation for any command
-- ftp: Connects to a remote machine to download or upload files
+- ssh / scp: Log in to a remote machine securely / copy files to it
+- tail -f, less: Follow or page through log files
+- ps, top, kill: Inspect and stop processes
+- df -h, du -sh: Check disk usage
+- curl: Call HTTP endpoints from the terminal
 - grep: Searches a file
 
 Other Unix commands include:
@@ -483,9 +245,10 @@ chmod +x run.sh ; kill -15 <pid>
 ```
 
 </details>
+
 <details><summary>
 
-## What is shell scripting? What purpose is it used for?
+## [Easy] What is shell scripting? What purpose is it used for?
 </summary>
 
 Shell scripting is a computer program that is used to automate repetitive tasks. It is often used by system administrators to save time and increase accuracy. Shell scripts can be used for tasks such as:
@@ -514,20 +277,10 @@ echo "Cleanup done at $(date)"
 ```
 
 </details>
+
 <details><summary>
 
-## How does your computer know what path to take to reach the external server
-</summary>
-
-When a computer tries to reach a server, it uses a Domain Name System (DNS) server to translate the URL into an IP address. This process is called DNS resolution. The DNS server then provides the IP address to reach the server.
-
-The router uses a forwarding table to determine the best path to reach the destination device. The router consults the routing table to find the IP address of the destination device. The router then uses the forwarding table to pick the next path based on the destination IP address.
-
-You can use Traceroute to trace the path between your computer and a target destination.
-</details>
-<details><summary>
-
-## Explain how you can read fields sent in a request from the browser using a servlet.
+## [Easy] Explain how you can read fields sent in a request from the browser using a servlet.
 </summary>
 
 Servlets are classes in a Java web application that handle requests and responses from client browsers. When a form is submitted, the servlet's doPost() method is invoked. The field values are submitted to the servlet as parameters in the HTTP request. You can use the following methods on the request object to get the parameter values: getParameter(, getParameterValues(, getParameterNames(.
@@ -538,34 +291,22 @@ The getParameterValues() method is used if the parameter appears more than once 
 
 The getParameterNames() method is used if you want a complete list of all parameters in the current request.
 </details>
+
 <details><summary>
 
-## What objects are implicitly available in JSP? Explain their usage
+## [Easy] Difference between hashmap and hashtable?
 </summary>
 
-JSP implicit objects are created automatically by the container during the translation of a JSP page to a servlet. These objects can be used directly in scriptlets without initializing or declaring them.
+| | `HashMap` | `Hashtable` |
+|---|---|---|
+| Thread-safe | No | Yes – every method is `synchronized` (one lock for the whole table) |
+| Nulls | One `null` key, any number of `null` values | No `null` keys or values (`NullPointerException`) |
+| Iteration | Fail-fast `Iterator` | `Iterator` (fail-fast) and legacy `Enumeration` (not fail-fast) |
+| Performance | Faster | Slower due to locking |
+| Collision handling (Java 8+) | Buckets turn into balanced trees when large | Linked lists only |
+| Status | Modern (Java 1.2, part of the Collections Framework) | Legacy (Java 1.0) |
 
-Here are some of the implicit objects in JSP:
-- page: A synonym for "this", used to call methods defined by the translated servlet class
-- pageContext: The context for the JSP page, which provides access to other objects
-- servletContext: The context for the JSP page's servlet and any web components in the same application
-- Exception: Allows the designated JSP to access exception data
-
-Other implicit objects include: out, request, response, session, and application.
-
-You can use these objects to get, set, and remove attributes in four scopes: page, request, session, and application.
-</details>
-<details><summary>
-
-## Difference between hashmap and hashtable?
-</summary>
-
-HashMap and Hashtable are both data structures in Java that store key-value pairs. The main difference between them is that HashMap is not thread-safe, while Hashtable is thread-safe. This means that HashMap is faster for single-threaded tasks, but Hashtable is thread-safe and can be shared with many threads.
-
-Here are some other differences between HashMap and Hashtable:
-- HashMap allows one null key and several null values, while Hashtable doesn't allow any null keys or values.
-- HashMap is non-synchronized, making it faster for single-threaded tasks, while Hashtable is inherently synchronized.
-- HashMap uses Iterator to iterate over values, whereas Hashtable has Enumerator for the same.
+`Hashtable` is effectively obsolete. Use `HashMap` for single-threaded code and **`ConcurrentHashMap`** when multiple threads share a map; it is thread-safe with much better concurrency than `Hashtable`.
 
 **Example:**
 
@@ -580,9 +321,10 @@ Map<String, String> chm = new ConcurrentHashMap<>();
 ```
 
 </details>
+
 <details><summary>
 
-## What is constructor chaining?
+## [Easy] What is constructor chaining?
 </summary>
 
 Constructor chaining is the process of calling one constructor from another constructor in the same class. It is used to initialize the object with some default values. Constructor chaining can be done in two ways:
@@ -628,4 +370,321 @@ public class Car extends Vehicle {
 ```
 
 Constructor chaining is a powerful feature that can help to make your code more concise and efficient.
+</details>
+
+<details><summary>
+
+## [Medium] What is reflection API in Java?
+</summary>
+
+The Java Reflection API is a set of classes and interfaces that allows Java code to examine or modify the runtime behavior of a class at run time. The java.lang.Class class provides many methods that can be used to get metadata, and examine and change the run time behavior of a class. The java.lang and java.lang.reflect packages provide classes for Java reflection.
+
+The Reflection API is mainly used in:
+- IDE (Integrated Development Environment) e.g., Eclipse, MyEclipse, NetBeans, etc.
+- Debugger
+- Test Tools etc.
+
+Here are some examples of how the Reflection API can be used:
+- To get information about the fields, methods, and constructors of a class.
+- To create instances of classes at runtime.
+- To invoke methods at runtime.
+- To get and set the values of fields at runtime.
+- To override the access control restrictions on classes and members.
+
+The Reflection API is a powerful tool that can be used to do things that would not be possible without it. However, it is important to use it carefully, as it can also be used to do things that could have unintended consequences.
+
+**Example:**
+
+```java
+Class<?> clazz = Class.forName("com.example.User");
+Object user = clazz.getDeclaredConstructor().newInstance();
+
+Field name = clazz.getDeclaredField("name");
+name.setAccessible(true);                  // bypass private
+name.set(user, "Asha");
+
+Method greet = clazz.getMethod("greet");
+System.out.println(greet.invoke(user));
+
+for (Method m : clazz.getDeclaredMethods()) {
+    if (m.isAnnotationPresent(Deprecated.class)) System.out.println(m.getName());
+}
+```
+
+</details>
+
+<details><summary>
+
+## [Medium] Where is the Java Reflection API used in the Spring Framework?
+</summary>
+
+Spring uses reflection throughout its container and web layer:
+- **Creating beans:** instantiating classes found by component scanning or declared with `@Bean`.
+- **Dependency injection:** calling constructors, setting `@Autowired` fields (even private ones) and invoking setter methods.
+- **Reading annotations:** discovering `@Component`, `@Transactional`, `@RequestMapping`, `@Value`, etc. at startup.
+- **Calling lifecycle and handler methods:** `@PostConstruct`, `@EventListener`, `@Scheduled`, controller methods mapped to URLs.
+- **Data binding:** mapping request parameters and JSON (Jackson) onto objects, and Spring Data mapping rows/documents to entities.
+- **AOP proxies:** JDK dynamic proxies and CGLIB subclasses for `@Transactional`, `@Cacheable`, `@Async`.
+
+Because reflection is slow and hard for native compilation, Spring 6 / Boot 3 added **AOT processing**, which generates much of this wiring at build time (used for GraalVM native images).
+
+**Example:**
+
+```java
+@Service
+class OrderService {
+    @Autowired private PaymentClient client;   // Spring sets this private field via reflection
+}
+// Also: scanning @Component classes, calling @PostConstruct/@EventListener methods,
+// binding JSON to objects (Jackson), creating proxies for @Transactional.
+```
+
+</details>
+
+<details><summary>
+
+## [Medium] What is the stored procedure in JDBC?
+</summary>
+
+A **stored procedure** is a named block of SQL and procedural logic saved **in the database** (written in the database's language, e.g. MySQL's SQL/PSM or Oracle's PL/SQL). It can take **IN**, **OUT** and **INOUT** parameters and return result sets.
+
+In JDBC you call it with a **`CallableStatement`**, using the escape syntax `{call procedure_name(?, ?)}`: set IN parameters with `setXxx`, register OUT parameters with `registerOutParameter`, then `execute()` and read OUT values with `getXxx`.
+
+Pros: fewer network round trips for multi-step logic, logic shared by many applications, permissions at the procedure level. Cons: business logic hidden in the database, harder to version, test and scale, and tied to one database vendor. Spring offers `SimpleJdbcCall` to call procedures with less code.
+
+**Example:**
+
+```java
+try (Connection conn = dataSource.getConnection();
+     CallableStatement cs = conn.prepareCall("{call get_order_total(?, ?)}")) {
+    cs.setLong(1, orderId);                         // IN parameter
+    cs.registerOutParameter(2, Types.DECIMAL);      // OUT parameter
+    cs.execute();
+    BigDecimal total = cs.getBigDecimal(2);
+}
+```
+
+</details>
+
+<details><summary>
+
+## [Medium] What is a connection pool? How is it used to improve performance in database applications?
+</summary>
+
+Opening a database connection is expensive (TCP handshake, TLS, authentication, session setup – often tens of milliseconds). A **connection pool** opens a set of connections up front and **reuses** them: the app borrows a connection, runs its queries, and returns it to the pool instead of closing it.
+
+Benefits:
+- Much lower latency per request (no connect cost).
+- Caps the number of concurrent connections, protecting the database from overload.
+- Health checks, timeouts and recycling of stale connections.
+
+In Spring Boot the default pool is **HikariCP**. Key settings: `maximum-pool-size`, `minimum-idle`, `connection-timeout` (how long a request waits for a free connection), and `max-lifetime`.
+
+A bigger pool is not always faster: the database can only do so much in parallel, and connections held during slow calls (e.g. a remote API call inside a transaction) exhaust the pool. Keep transactions short.
+
+**Example:**
+
+Spring Boot uses **HikariCP** by default:
+
+```yaml
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/app
+    hikari:
+      maximum-pool-size: 20       # max connections; size for DB capacity, not request count
+      minimum-idle: 5
+      connection-timeout: 3000    # ms to wait for a free connection before failing
+      max-lifetime: 1800000       # recycle connections before DB/firewall timeouts
+```
+
+Pool exhaustion shows as `SQLTransientConnectionException: Connection is not available`; check `hikaricp_connections_pending` metrics, long transactions and slow queries.
+
+</details>
+
+<details><summary>
+
+## [Medium] What is the difference between a ClassCastException and a ClassNotFoundException in Java?
+</summary>
+
+| | `ClassCastException` | `ClassNotFoundException` |
+|---|---|---|
+| Type | **Unchecked** (`RuntimeException`) | **Checked** (`Exception` → `ReflectiveOperationException`) |
+| When | Casting an object to a type it isn't an instance of | Loading a class **by name** at runtime when it isn't on the classpath |
+| Typical cause | Wrong cast, raw types / unchecked generics, two class loaders loading the same class | Missing JAR or dependency, typo in a class name, wrong JDBC driver name |
+| Thrown by | The JVM during a cast | `Class.forName()`, `ClassLoader.loadClass()`, `findSystemClass()` |
+
+```java
+Object o = Integer.valueOf(10);
+String s = (String) o;                    // ClassCastException: Integer cannot be cast to String
+
+try {
+	Class.forName("com.mysql.cj.jdbc.Driver");   // throws if the MySQL driver JAR is missing
+} catch (ClassNotFoundException e) {
+	System.out.println("Driver not on classpath");
+}
+```
+
+Related: **`NoClassDefFoundError`** is an `Error` thrown when a class that was present **at compile time** can't be found or initialised at runtime (e.g. a JAR missing from the deployment, or a static initializer that failed earlier).
+
+</details>
+
+<details><summary>
+
+## [Medium] What configurations do you need to make in web.xml to deploy a servlet in a web application?
+</summary>
+
+To configure a servlet in web.xml, you need to:
+- Define the servlet name and class name using the <servlet> element
+- Map the servlet to a URL or URL pattern
+- Add initializations and security roles for the servlet
+- Define mappings between URL paths and the servlets that handle requests with those paths
+
+The web server uses this configuration to identify the servlet to handle a given request. For example, the doGet() method for HTTP GET requests.
+
+The web.xml file is located in the WEB-INF directory. It does not represent the entire configuration that is available for the web application. Other servlets, filters, and listeners can be defined using programmatic configurations, annotations, and web fragments.
+</details>
+
+<details><summary>
+
+## [Medium] Explain how the session is utilized for security implementation. Please explain who creates the session and how is session information exchanged between the browser and server.
+</summary>
+
+HTTP is stateless, so after login the server needs a way to recognise the same user on later requests. A **session** does that.
+
+1. The user submits credentials.
+2. The **server** validates them and **creates the session**: a server-side record (in memory, Redis, or a database) holding the user's identity and roles.
+3. The server generates a random, unguessable **session ID** and sends it to the browser in a `Set-Cookie` header (in Java servlet containers the cookie is named `JSESSIONID`).
+4. The **browser automatically sends the cookie** back on every request to that site.
+5. The server looks up the session by ID and treats the request as authenticated.
+6. On logout or timeout, the server invalidates the session.
+
+Security practices:
+- Mark the cookie **`HttpOnly`** (JavaScript can't read it), **`Secure`** (sent only over HTTPS) and **`SameSite`** (limits cross-site sending, helps against CSRF).
+- **Regenerate the session ID after login** to prevent session fixation (Spring Security does this by default).
+- Use short idle timeouts and server-side invalidation on logout.
+- Keep CSRF protection enabled for cookie-based sessions.
+- With several app instances, store sessions centrally (Spring Session + Redis) or use sticky sessions.
+
+</details>
+
+<details><summary>
+
+## [Medium] What is meant by an entity-relationship (E-R) model? Explain the terms Entity, Entity Type, and Entity Set in a DBMS.
+</summary>
+
+An **E-R model** is a high-level, conceptual way to design a database by describing the things in a domain and how they relate. It is drawn as an **E-R diagram** and later converted into tables.
+
+- **Entity:** one real-world object you store data about, e.g. the student "Asha, roll no. 17".
+- **Entity type:** the category/definition, with a name and attributes, e.g. `Student(roll_no, name, age, mobile)`. It becomes a table.
+- **Entity set:** the collection of all entities of one type at a point in time, e.g. all students currently stored. It corresponds to the rows of the table.
+- **Attributes:** properties of an entity (simple, composite, multi-valued, derived); a **key attribute** uniquely identifies an entity (primary key).
+- **Relationships:** associations between entities, with **cardinality** one-to-one, one-to-many or many-to-many (e.g. a Student *enrolls in* many Courses). Many-to-many becomes a join table.
+- **Weak entity:** depends on another entity for its identity (e.g. an `OrderItem` belongs to an `Order`).
+
+</details>
+
+<details><summary>
+
+## [Medium] What is a database trigger? How is it used to enforce business rules?
+</summary>
+
+A **trigger** is procedural code the database runs **automatically** when a specific event happens on a table:
+
+- **Timing:** `BEFORE`, `AFTER`, or `INSTEAD OF` (the latter mainly on views).
+- **Events:** `INSERT`, `UPDATE`, `DELETE` (and in some databases DDL or login events).
+- **Granularity:** for each row, or once per statement (depending on the database).
+
+Uses: enforcing rules the application might forget (no negative stock), writing audit/history rows, keeping derived columns or summary tables in sync.
+
+Trade-offs: logic becomes hidden from application developers, harder to test and debug, can slow down writes, and is vendor-specific. Prefer constraints (`CHECK`, `FOREIGN KEY`, `UNIQUE`) for simple rules, and application code or events for business workflows.
+
+**Example:**
+
+```sql
+CREATE TRIGGER trg_prevent_negative_stock
+BEFORE UPDATE ON products
+FOR EACH ROW
+BEGIN
+  IF NEW.stock < 0 THEN
+    SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Stock cannot be negative';
+  END IF;
+END;
+```
+
+Use sparingly: business logic hidden in triggers is hard to test and debug; prefer application code or constraints (`CHECK (stock >= 0)`).
+
+</details>
+
+<details><summary>
+
+## [Medium] How does your computer know what path to take to reach the external server
+</summary>
+
+1. **DNS resolution:** the computer asks a DNS resolver (usually from the router/ISP or a public one like 8.8.8.8) to translate the hostname (`api.example.com`) into an IP address. Results are cached in the browser/OS for the record's TTL.
+2. **Local or remote?** Using its IP address and subnet mask, the computer decides whether the destination is on the local network. If not, it sends the packet to its **default gateway** (the router), using ARP to find the router's MAC address.
+3. **Routing hop by hop:** each router looks up the destination IP in its **routing table** and forwards the packet to the best next hop. Across the internet, ISPs exchange routes using **BGP**.
+4. The packet reaches the server; then TCP (and TLS for HTTPS) connections are set up and the request is sent.
+
+`traceroute` (`tracert` on Windows) shows the hops, and `nslookup`/`dig` shows DNS results.
+
+</details>
+
+<details><summary>
+
+## [Medium] What objects are implicitly available in JSP? Explain their usage
+</summary>
+
+JSP has **nine implicit objects**, created by the container when it translates the page into a servlet:
+
+| Object | Type | Use |
+|---|---|---|
+| `request` | `HttpServletRequest` | Request parameters, headers, attributes |
+| `response` | `HttpServletResponse` | Set headers, cookies, redirect |
+| `out` | `JspWriter` | Write output to the page |
+| `session` | `HttpSession` | Per-user data across requests |
+| `application` | `ServletContext` | Application-wide data and config |
+| `config` | `ServletConfig` | Init parameters for this JSP |
+| `pageContext` | `PageContext` | Access to all the others and to the four scopes |
+| `page` | `Object` (`this`) | The servlet instance itself (rarely used) |
+| `exception` | `Throwable` | Available only in error pages (`isErrorPage="true"`) |
+
+Attributes can be stored in four scopes: page, request, session and application. JSP is legacy today; Spring Boot apps typically use Thymeleaf or a separate front end consuming REST APIs.
+
+</details>
+
+<details><summary>
+
+## [Hard] Handling and fixing 'Out of Memory' exceptions?
+</summary>
+
+`OutOfMemoryError` is an **Error** thrown when the JVM can't allocate memory and the GC can't free enough. First read the message, because it tells you which area ran out:
+
+| Message | Cause | Typical fix |
+|---|---|---|
+| `Java heap space` | Too many live objects, or a leak | Find the leak (heap dump); stream/paginate large data; then size `-Xmx` |
+| `GC overhead limit exceeded` | GC runs constantly but frees almost nothing | Same as above – usually a leak or too-small heap |
+| `Metaspace` | Too many classes loaded (dynamic proxies, class loader leaks on redeploy) | Fix the leak; raise `-XX:MaxMetaspaceSize` |
+| `unable to create native thread` | Too many threads or OS limits | Use bounded thread pools; check `ulimit` |
+| `Direct buffer memory` | Off-heap NIO buffers | Tune `-XX:MaxDirectMemorySize`, release buffers |
+
+Steps:
+1. Enable `-XX:+HeapDumpOnOutOfMemoryError -XX:HeapDumpPath=/dumps`.
+2. Analyse the dump with Eclipse MAT or VisualVM (dominator tree, path to GC roots).
+3. Fix the root cause: unbounded caches/collections, `ThreadLocal` leaks, loading whole result sets into memory.
+4. Only then tune memory: `-Xmx`, or `-XX:MaxRAMPercentage=75` in containers.
+
+Note: PermGen (`-XX:MaxPermSize`) was removed in Java 8 and replaced by Metaspace.
+
+**Example:**
+
+```bash
+# capture a heap dump automatically when OOM happens
+java -Xmx1g -XX:+HeapDumpOnOutOfMemoryError -XX:HeapDumpPath=/dumps -jar app.jar
+
+# or take one from a running JVM
+jcmd <pid> GC.heap_dump /dumps/app.hprof
+```
+
+Open the `.hprof` in Eclipse MAT, check the dominator tree for the largest retained objects, and follow the path to GC roots to find who holds them (often an unbounded cache or a static collection).
+
 </details>

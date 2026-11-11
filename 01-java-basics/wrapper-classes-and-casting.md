@@ -1,7 +1,10 @@
+# Wrapper classes and casting
+
 <details><summary>
 	
-## What are wrapper classes?
+## [Easy] What are wrapper classes?
 </summary>
+
 Wrapper classes in Java are a set of classes that encapsulate primitive data types (such as int, float, char, etc.) and provide object-oriented representations for them. They allow primitive types to be used as objects in Java programs by wrapping them within instances of the corresponding wrapper classes.
 Here are the wrapper classes for each primitive type:
 
@@ -29,11 +32,12 @@ System.out.println(Integer.MAX_VALUE);          // 2147483647
 ```
 
 </details>
-  
+
 <details><summary>
 	
-## Why do we need Wrapper Classes in Java?
+## [Easy] Why do we need Wrapper Classes in Java?
 </summary>
+
 The Java programming language treats primitive types and objects differently. Primitive types are not considered objects and do not have the capabilities of objects, such as methods and additional functionalities. However, there are situations where we may need to treat primitive types as objects, such as when working with collections, generics, or when using methods that require objects as arguments.
 Wrapper classes bridge this gap by providing a way to wrap primitive types and use them as objects.
 
@@ -56,78 +60,10 @@ Integer missing = stock.get("mango");
 ```
 
 </details>
-  
+
 <details><summary>
 	
-## What are the different ways of creating Wrapper Class Instances?
-</summary>
-In Java, there are several ways to create instances of wrapper classes, which allow you to wrap primitive values within objects. Here are the different ways of creating wrapper class instances:
-
-### Using Constructors
-Each wrapper class provides constructors that accept the corresponding primitive type or a string representation of the value.
-	
-```java
-Integer myInteger = new Integer(10);       // Using int value
-Double myDouble = new Double(3.14);        // Using double value
-Character myChar = new Character('A');     // Using char value
-Boolean myBoolean = new Boolean(true);     // Using boolean value
-```
-
-Some wrapper classes also provide constructors that take a string as an argument to parse and initialize the value:
-
-```java
-Integer myInteger = new Integer("100");     // Using string value
-Double myDouble = new Double("3.14");       // Using string value
-```
-
-### Using Static valueOf() Methods
-Each wrapper class provides a static valueOf() method that creates an instance of the wrapper class from the specified value. These methods often offer better performance compared to using constructors. 
-	
-```java
-Integer myInteger = Integer.valueOf(10);         // Using int value
-Double myDouble = Double.valueOf(3.14);          // Using double value
-Character myChar = Character.valueOf('A');       // Using char value
-Boolean myBoolean = Boolean.valueOf(true);       // Using boolean value
-```
-
-The valueOf() methods also accept a string representation of the value:
-
-```java
-Integer myInteger = Integer.valueOf("100");      // Using string value
-Double myDouble = Double.valueOf("3.14");        // Using string value
-```
-
-### Using Autoboxing
-Java provides autoboxing, which automatically converts primitive values to their corresponding wrapper class instances and vice versa. This simplifies the process of creating wrapper class instances.
-
-```java
-Integer myInteger = 10;        // Autoboxing int to Integer
-Double myDouble = 3.14;        // Autoboxing double to Double
-Character myChar = 'A';        // Autoboxing char to Character
-Boolean myBoolean = true;      // Autoboxing boolean to Boolean
-```
-
-Autoboxing allows you to assign primitive values directly to wrapper class variables, and the conversion is handled implicitly by the compiler.
-
-### Using Static Constants
-Some wrapper classes provide static constants for commonly used values, such as Integer.MAX_VALUE, Double.NaN, or Character.MAX_VALUE. These constants can be directly used to create wrapper class instances.
-
-```java
-Integer myInteger = Integer.MAX_VALUE;
-Double myDouble = Double.NaN;
-Character myChar = Character.MAX_VALUE;
-```
-
-This method is primarily useful when you need to use specific predefined values.
-
-It's important to note that wrapper classes are immutable, meaning their values cannot be changed once created. If you need to perform arithmetic or other operations on the wrapped values, you'll need to create new wrapper instances with the updated values.
-
-In general, using constructors or the valueOf() method are the most common ways to create wrapper class instances, while autoboxing provides a convenient shorthand syntax. The choice depends on your specific requirements and coding style.
-</details>
-  
-<details><summary>
-	
-## What is Auto Boxing?
+## [Easy] What is Auto Boxing?
 </summary>
 
 ### Autoboxing
@@ -147,39 +83,12 @@ int num = myInteger;  // Unboxing Integer to int
 ```
 
 </details>
-  
+
 <details><summary>
 	
-## What are the advantages of Auto Boxing?
+## [Easy] What is Casting?
 </summary>
-Auto Boxing helps in saving memory by reusing already created Wrapper objects. 
-Auto Boxing uses the static valueOf methods. However wrapper classes created 
-using new are not reused.
 
-Two wrapper objects created using new are not same object.
-	
-```java
-Integer nineA = new Integer(9);
-Integer nineB = new Integer(9);
-System.out.println(nineA == nineB);//false
-System.out.println(nineA.equals(nineB));//true
-```
-
-Two wrapper objects created using boxing are same object.
-		
-```java
-Integer nineC = 9;
-Integer nineD = 9;
-System.out.println(nineC == nineD);//true
-System.out.println(nineC.equals(nineD));//true
-```
-
-</details>
-  
-<details><summary>
-	
-## What is Casting?
-</summary>
 Casting is a method or process that converts a data type into another data type in both ways manually and automatically. The automatic conversion is done by the compiler and manual conversion performed by the programmer.
 Convert a value from one data type to another data type is known as type casting.
 
@@ -205,48 +114,124 @@ if (o instanceof String str) System.out.println(str.length()); // safe pattern-m
 ```
 
 </details>
-  
+
 <details><summary>
 	
-## What is Implicit Casting?
+## [Easy] What is Implicit Casting?
 </summary>
-Converting a lower data type into a higher one is called widening type casting. It is also known as implicit conversion or down casting. It is done by compiler or automatically. It is safe because there is no chance to lose data.
-Both data types must be compatible with each other.
-The target type must be larger than the source type.
 
-byte -> short -> char -> int -> long -> float -> double  
-	
+**Implicit (widening) casting** converts a smaller primitive type to a larger one automatically. It is also called *widening conversion* (not "down casting"; up/down casting refers to class references).
+
+Widening paths:
+
+```text
+byte → short → int → long → float → double
+              char ↗
+```
+
+`char` widens to `int` (and beyond), but `byte`/`short` cannot widen to `char`, because `char` is unsigned.
+
 ```java
 int value = 100;
-long number = value; //Implicit Casting
-float f = 100; //Implicit Casting
+long number = value;   // int -> long
+float f = 100;         // int -> float
+double d = 'A';        // char -> double (65.0)
+```
+
+Widening never loses the *magnitude*, but `int → float`, `long → float` and `long → double` can lose **precision**:
+
+```java
+int big = 123_456_789;
+float f2 = big;
+System.out.println((int) f2);   // 123456792
 ```
 
 </details>
-  
+
 <details><summary>
 	
-## What is Explicit Casting?
+## [Easy] What is Explicit Casting?
 </summary>
-Converting a higher data type into a lower one is called narrowing type casting. It is also known as explicit conversion or up casting. It is done manually by the programmer. If we do not perform casting then the compiler reports a compile-time error.
 
-double -> float -> long -> int -> char -> short -> byte  
-Storing larger values into smaller variable types;
-	
-```java
-long number1 = 25678;
-int number2 = (int)number1;//Explicit Casting
-//int x = 35.35;//COMPILER ERROR
-int x = (int)35.35;//Explicit Casting
+**Explicit (narrowing) casting** converts a larger type to a smaller one. The programmer must write the cast, because data can be lost. It is also called *narrowing conversion* (not "up casting").
+
+```text
+double → float → long → int → short → byte
+                         int → char
 ```
 
-Explicit casting would cause truncation of value if the value stored is greater 
-than the size of the variable.
-	
+```java
+long number1 = 25678;
+int number2 = (int) number1;   // explicit
+// int x = 35.35;              // COMPILER ERROR
+int x = (int) 35.35;           // 35 - decimal part truncated, not rounded
+```
+
+If the value doesn't fit, the extra high-order bits are discarded:
+
 ```java
 int bigValue = 280;
 byte small = (byte) bigValue;
-System.out.println(small);//output 24. Only 8 bits remain.
+System.out.println(small);     // 24  (280 - 256), only the low 8 bits remain
 ```
+
+For references, **upcasting** (subclass → superclass) is implicit and always safe; **downcasting** (superclass → subclass) needs an explicit cast and can throw `ClassCastException`. Check first with `instanceof`.
+
+</details>
+
+<details><summary>
+	
+## [Medium] What are the different ways of creating Wrapper Class Instances?
+</summary>
+
+### 1. `valueOf()` (preferred)
+```java
+Integer i = Integer.valueOf(10);
+Integer fromText = Integer.valueOf("100");
+Boolean b = Boolean.valueOf(true);
+```
+`valueOf` can return **cached** instances: `Integer`, `Short`, `Byte`, `Long` cache -128 to 127, `Character` caches 0–127, and `Boolean` has only `TRUE`/`FALSE`.
+
+### 2. Autoboxing
+```java
+Integer i = 10;      // compiler calls Integer.valueOf(10)
+Double d = 3.14;
+```
+
+### 3. Parsing to a primitive (not a wrapper)
+```java
+int n = Integer.parseInt("42");     // returns int
+double x = Double.parseDouble("3.5");
+```
+
+### 4. Constructors (deprecated)
+`new Integer(10)` and `new Integer("100")` were **deprecated in Java 9 and marked for removal in Java 16**. They always create a new object and skip the cache. Don't use them in new code.
+
+Wrapper objects are immutable; arithmetic on them unboxes, computes, and boxes a new object.
+
+</details>
+
+<details><summary>
+	
+## [Medium] What are the advantages of Auto Boxing?
+</summary>
+
+- **Less code:** primitives can be used directly with collections and generics (`list.add(5)`).
+- **Reuse of cached objects:** autoboxing calls `valueOf()`, so values in the cache range (-128 to 127 for `Integer`) reuse the same object instead of allocating a new one.
+
+```java
+Integer nineC = 9;
+Integer nineD = 9;
+System.out.println(nineC == nineD);       // true  - 9 is cached, same object
+Integer big1 = 1000;
+Integer big2 = 1000;
+System.out.println(big1 == big2);         // false - outside the cache, two objects
+System.out.println(big1.equals(big2));    // true
+```
+
+**Pitfalls to mention in interviews:**
+- Always compare wrappers with `equals()`, never `==`.
+- Unboxing `null` throws `NullPointerException` (`int x = map.get("missing");`).
+- Boxing inside hot loops (`Long sum = 0L; sum += i;`) creates many objects; use primitives there.
 
 </details>

@@ -4,7 +4,7 @@ Short programs that often open a Java interview round. Write them without an IDE
 
 <details><summary>
 
-## Reverse a string without using reverse()
+## [Easy] Reverse a string without using reverse()
 </summary>
 
 **Example:** `"tracxn"` → `"nxcart"`
@@ -22,7 +22,7 @@ String reverse(String s) {
 
 <details><summary>
 
-## Check whether a number is prime
+## [Easy] Check whether a number is prime
 </summary>
 
 **Example:** `29` → `true`; `21` → `false`
@@ -40,7 +40,7 @@ Only check up to √n. For many numbers, use the Sieve of Eratosthenes.
 
 <details><summary>
 
-## Fibonacci series (iterative and memoised)
+## [Easy] Fibonacci series (iterative and memoised)
 </summary>
 
 **Example:** first 8 → `0 1 1 2 3 5 8 13`
@@ -66,7 +66,7 @@ long fibMemo(int n) {             // naive recursion is O(2^n); memo makes it O(
 
 <details><summary>
 
-## Check whether two strings are anagrams
+## [Easy] Check whether two strings are anagrams
 </summary>
 
 **Example:** `"listen", "silent"` → `true`
@@ -87,7 +87,7 @@ boolean isAnagram(String a, String b) {
 
 <details><summary>
 
-## Find the missing number in 1..n
+## [Easy] Find the missing number in 1..n
 </summary>
 
 **Example:** `[1, 2, 4, 5]` (n = 5) → `3`
@@ -104,7 +104,7 @@ int missing(int[] a, int n) {
 
 <details><summary>
 
-## Move all zeros to the end, keeping order
+## [Easy] Move all zeros to the end, keeping order
 </summary>
 
 **Example:** `[0, 1, 0, 3, 12]` → `[1, 3, 12, 0, 0]` · [LeetCode 283](https://leetcode.com/problems/move-zeroes/)
@@ -120,7 +120,7 @@ void moveZeroes(int[] a) {
 
 <details><summary>
 
-## Remove duplicates from a sorted array in place
+## [Easy] Remove duplicates from a sorted array in place
 </summary>
 
 **Example:** `[1, 1, 2, 3, 3]` → length `3`, array starts `[1, 2, 3]` · [LeetCode 26](https://leetcode.com/problems/remove-duplicates-from-sorted-array/)
@@ -137,7 +137,7 @@ int removeDuplicates(int[] a) {
 
 <details><summary>
 
-## Print a pattern (Floyd's triangle)
+## [Easy] Print a pattern (Floyd's triangle)
 </summary>
 
 Reported in Tracxn written rounds.
@@ -163,7 +163,7 @@ void floyd(int rows) {
 
 <details><summary>
 
-## FizzBuzz
+## [Easy] FizzBuzz
 </summary>
 
 ```java

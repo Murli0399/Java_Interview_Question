@@ -2,7 +2,7 @@
 
 <details><summary>
 
-## Describe a few other important methods in threads.
+## [Easy] Describe a few other important methods in threads.
 </summary>
 
 | Method | What it does |
@@ -31,21 +31,7 @@ worker.join();        // wait for it to finish
 
 <details><summary>
 
-## What are the important methods for inter-thread communication?
-</summary>
-
-`wait()`, `notify()` and `notifyAll()`, defined in `Object`. They must be called from inside a `synchronized` block on the **same object**, otherwise `IllegalMonitorStateException` is thrown.
-
-- `wait()`: releases the lock and sleeps until notified.
-- `notify()`: wakes **one** waiting thread (which one is not specified).
-- `notifyAll()`: wakes **all** waiting threads; they compete for the lock.
-
-Always call `wait()` inside a `while` loop that re-checks the condition, because of spurious wakeups and because another thread may have changed the state first.
-</details>
-
-<details><summary>
-
-## What is the difference between wait() and sleep()?
+## [Easy] What is the difference between wait() and sleep()?
 </summary>
 
 | | `wait()` | `sleep()` |
@@ -59,7 +45,21 @@ Always call `wait()` inside a `while` loop that re-checks the condition, because
 
 <details><summary>
 
-## Can you write a producer-consumer program with wait and notify?
+## [Medium] What are the important methods for inter-thread communication?
+</summary>
+
+`wait()`, `notify()` and `notifyAll()`, defined in `Object`. They must be called from inside a `synchronized` block on the **same object**, otherwise `IllegalMonitorStateException` is thrown.
+
+- `wait()`: releases the lock and sleeps until notified.
+- `notify()`: wakes **one** waiting thread (which one is not specified).
+- `notifyAll()`: wakes **all** waiting threads; they compete for the lock.
+
+Always call `wait()` inside a `while` loop that re-checks the condition, because of spurious wakeups and because another thread may have changed the state first.
+</details>
+
+<details><summary>
+
+## [Medium] Can you write a producer-consumer program with wait and notify?
 </summary>
 
 ```java
@@ -99,7 +99,7 @@ In real code, use `BlockingQueue` instead; it does exactly this for you.
 
 <details><summary>
 
-## Write a program where two threads print odd and even numbers alternately.
+## [Medium] Write a program where two threads print odd and even numbers alternately.
 </summary>
 
 ```java
@@ -129,7 +129,7 @@ new Thread(() -> { try { p.print(false); } catch (InterruptedException ignored) 
 
 <details><summary>
 
-## What does volatile guarantee, and what doesn't it?
+## [Medium] What does volatile guarantee, and what doesn't it?
 </summary>
 
 `volatile` guarantees **visibility** (a write by one thread is seen by others immediately, not cached in a CPU register) and **ordering** (no reordering around it). It does **not** make compound actions atomic.
@@ -151,23 +151,7 @@ Good uses: stop flags, publishing an immutable object, double-checked locking si
 
 <details><summary>
 
-## What is the Java Memory Model's happens-before relationship?
-</summary>
-
-"Happens-before" means the effects of action A are visible to action B. Key rules:
-
-- Unlocking a monitor happens-before every later lock of the same monitor.
-- A write to a `volatile` variable happens-before every later read of it.
-- `Thread.start()` happens-before any action in the started thread.
-- All actions in a thread happen-before another thread returns from `join()` on it.
-- Writes to `final` fields in a constructor are visible once the object is published.
-
-Without one of these, a thread may see stale or partially constructed data.
-</details>
-
-<details><summary>
-
-## How do you prevent deadlocks?
+## [Medium] How do you prevent deadlocks?
 </summary>
 
 A deadlock needs four conditions at once: mutual exclusion, hold-and-wait, no preemption and circular wait. Break any one:
@@ -193,29 +177,7 @@ void transfer(Account a, Account b, int amount) {
 
 <details><summary>
 
-## What is a ThreadPoolExecutor and how do you size it?
-</summary>
-
-`Executors.newFixedThreadPool(n)` is a shortcut for a `ThreadPoolExecutor`. Know its parameters:
-
-```java
-ThreadPoolExecutor pool = new ThreadPoolExecutor(
-    4,                          // corePoolSize: threads kept alive
-    8,                          // maximumPoolSize: used only when the queue is full
-    60, TimeUnit.SECONDS,       // keepAliveTime for extra threads
-    new ArrayBlockingQueue<>(100),             // bounded queue of pending tasks
-    new ThreadPoolExecutor.CallerRunsPolicy()  // when full: caller runs the task (back-pressure)
-);
-```
-
-Order of growth: core threads → queue → extra threads up to max → rejection policy.
-
-**Sizing:** CPU-bound ≈ number of cores; IO-bound ≈ cores × (1 + wait time / compute time). Avoid `newCachedThreadPool` and unbounded queues in production; they can create unlimited threads or tasks and exhaust memory.
-</details>
-
-<details><summary>
-
-## What is CompletableFuture? Give an example.
+## [Medium] What is CompletableFuture? Give an example.
 </summary>
 
 An asynchronous result you can chain without blocking. Useful for calling several services in parallel and combining results.
@@ -243,34 +205,7 @@ System.out.println(profile.join());
 
 <details><summary>
 
-## What is ThreadLocal and when can it cause a memory leak?
-</summary>
-
-`ThreadLocal` gives each thread its own copy of a variable. Common uses: request IDs/tenant IDs for logging, `SimpleDateFormat` (not thread-safe), transaction context in Spring.
-
-```java
-public final class TenantContext {
-    private static final ThreadLocal<String> TENANT = new ThreadLocal<>();
-    public static void set(String id) { TENANT.set(id); }
-    public static String get() { return TENANT.get(); }
-    public static void clear() { TENANT.remove(); }
-}
-
-// in a servlet filter
-try {
-    TenantContext.set(request.getHeader("X-Tenant-Id"));
-    chain.doFilter(request, response);
-} finally {
-    TenantContext.clear();   // essential with thread pools
-}
-```
-
-**Leak:** pool threads live forever, so a value never `remove()`d stays referenced, and the next request on that thread may even see the previous tenant's data.
-</details>
-
-<details><summary>
-
-## What are CountDownLatch, CyclicBarrier and Semaphore?
+## [Medium] What are CountDownLatch, CyclicBarrier and Semaphore?
 </summary>
 
 - **CountDownLatch:** one or more threads wait until N events happen. Not reusable.
@@ -293,7 +228,7 @@ try { queryDatabase(); } finally { dbSlots.release(); }
 
 <details><summary>
 
-## What is ReadWriteLock?
+## [Medium] What is ReadWriteLock?
 </summary>
 
 Allows many concurrent readers **or** one writer. Useful for read-heavy shared data such as in-memory config.
@@ -318,7 +253,7 @@ class ConfigStore {
 
 <details><summary>
 
-## What are virtual threads (Java 21)?
+## [Medium] What are virtual threads (Java 21)?
 </summary>
 
 Virtual threads are lightweight threads managed by the JVM, not the OS. Millions can exist; when one blocks on IO, the JVM unmounts it from its carrier (platform) thread so the carrier serves another task.
@@ -336,4 +271,69 @@ Thread.ofVirtual().start(() -> System.out.println("hello"));
 - No benefit for CPU-bound work.
 - Don't pool them; create one per task.
 - Long `synchronized` blocks around IO can pin the carrier thread (improved in newer JDKs); `ReentrantLock` avoids it.
+</details>
+
+<details><summary>
+
+## [Hard] What is the Java Memory Model's happens-before relationship?
+</summary>
+
+"Happens-before" means the effects of action A are visible to action B. Key rules:
+
+- Unlocking a monitor happens-before every later lock of the same monitor.
+- A write to a `volatile` variable happens-before every later read of it.
+- `Thread.start()` happens-before any action in the started thread.
+- All actions in a thread happen-before another thread returns from `join()` on it.
+- Writes to `final` fields in a constructor are visible once the object is published.
+
+Without one of these, a thread may see stale or partially constructed data.
+</details>
+
+<details><summary>
+
+## [Hard] What is a ThreadPoolExecutor and how do you size it?
+</summary>
+
+`Executors.newFixedThreadPool(n)` is a shortcut for a `ThreadPoolExecutor`. Know its parameters:
+
+```java
+ThreadPoolExecutor pool = new ThreadPoolExecutor(
+    4,                          // corePoolSize: threads kept alive
+    8,                          // maximumPoolSize: used only when the queue is full
+    60, TimeUnit.SECONDS,       // keepAliveTime for extra threads
+    new ArrayBlockingQueue<>(100),             // bounded queue of pending tasks
+    new ThreadPoolExecutor.CallerRunsPolicy()  // when full: caller runs the task (back-pressure)
+);
+```
+
+Order of growth: core threads → queue → extra threads up to max → rejection policy.
+
+**Sizing:** CPU-bound ≈ number of cores; IO-bound ≈ cores × (1 + wait time / compute time). Avoid `newCachedThreadPool` and unbounded queues in production; they can create unlimited threads or tasks and exhaust memory.
+</details>
+
+<details><summary>
+
+## [Hard] What is ThreadLocal and when can it cause a memory leak?
+</summary>
+
+`ThreadLocal` gives each thread its own copy of a variable. Common uses: request IDs/tenant IDs for logging, `SimpleDateFormat` (not thread-safe), transaction context in Spring.
+
+```java
+public final class TenantContext {
+    private static final ThreadLocal<String> TENANT = new ThreadLocal<>();
+    public static void set(String id) { TENANT.set(id); }
+    public static String get() { return TENANT.get(); }
+    public static void clear() { TENANT.remove(); }
+}
+
+// in a servlet filter
+try {
+    TenantContext.set(request.getHeader("X-Tenant-Id"));
+    chain.doFilter(request, response);
+} finally {
+    TenantContext.clear();   // essential with thread pools
+}
+```
+
+**Leak:** pool threads live forever, so a value never `remove()`d stays referenced, and the next request on that thread may even see the previous tenant's data.
 </details>

@@ -8,7 +8,7 @@ class TreeNode { int val; TreeNode left, right; TreeNode(int v) { val = v; } }
 
 <details><summary>
 
-## 18. Level order traversal (BFS)
+## [Medium] 18. Level order traversal (BFS)
 </summary>
 
 **Example:** tree `[3, 9, 20, null, null, 15, 7]` → `[[3], [9, 20], [15, 7]]`
@@ -40,7 +40,7 @@ List<List<Integer>> levelOrder(TreeNode root) {
 
 <details><summary>
 
-## 19. Lowest common ancestor of a binary tree
+## [Medium] 19. Lowest common ancestor of a binary tree
 </summary>
 
 **Example:** tree `[3,5,1,6,2,0,8,null,null,7,4]`, p = 5, q = 1 → `3`; p = 5, q = 4 → `5`
@@ -61,7 +61,7 @@ TreeNode lca(TreeNode root, TreeNode p, TreeNode q) {
 
 <details><summary>
 
-## 20. Search in a rotated sorted array
+## [Medium] 20. Search in a rotated sorted array
 </summary>
 
 **Example:** `nums = [4,5,6,7,0,1,2], target = 0` → `4`; `target = 3` → `-1`
@@ -91,7 +91,7 @@ int search(int[] a, int t) {
 
 <details><summary>
 
-## Before you say "done" in an interview
+## [Easy] Before you say "done" in an interview
 </summary>
 
 - Empty input, one element, all duplicates, negative numbers

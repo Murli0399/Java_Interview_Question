@@ -17,7 +17,7 @@ List<Employee> emps = List.of(
 
 <details><summary>
 
-## Find the second highest salary.
+## [Easy] Find the second highest salary.
 </summary>
 
 ```java
@@ -33,7 +33,104 @@ System.out.println(second.orElse(null)); // 95000.0
 
 <details><summary>
 
-## Group employees by department and count / average salary.
+## [Easy] Partition numbers into even and odd.
+</summary>
+
+```java
+Map<Boolean, List<Integer>> parts = IntStream.rangeClosed(1, 10).boxed()
+    .collect(Collectors.partitioningBy(n -> n % 2 == 0));
+// {false=[1, 3, 5, 7, 9], true=[2, 4, 6, 8, 10]}
+```
+</details>
+
+<details><summary>
+
+## [Easy] Flatten a list of lists and sort unique words.
+</summary>
+
+```java
+List<List<String>> tags = List.of(List.of("java", "kafka"), List.of("redis", "java"));
+List<String> unique = tags.stream()
+    .flatMap(List::stream)
+    .distinct()
+    .sorted()
+    .toList();
+// [java, kafka, redis]
+```
+</details>
+
+<details><summary>
+
+## [Easy] Join names of employees older than 30, comma-separated.
+</summary>
+
+```java
+String names = emps.stream()
+    .filter(e -> e.age() > 30)
+    .map(Employee::name)
+    .collect(Collectors.joining(", ", "[", "]"));
+// [Ravi, Meena, Vikram]
+```
+</details>
+
+<details><summary>
+
+## [Easy] Sum, max and statistics in one pass.
+</summary>
+
+```java
+DoubleSummaryStatistics stats = emps.stream()
+    .mapToDouble(Employee::salary)
+    .summaryStatistics();
+System.out.println(stats.getMax() + " " + stats.getAverage() + " " + stats.getSum());
+```
+</details>
+
+<details><summary>
+
+## [Easy] Reverse each word of a sentence.
+</summary>
+
+```java
+String sentence = "build backend systems";
+String result = Arrays.stream(sentence.split(" "))
+    .map(w -> new StringBuilder(w).reverse().toString())
+    .collect(Collectors.joining(" "));
+// dliub dnekcab smetsys
+```
+</details>
+
+<details><summary>
+
+## [Easy] Check whether two strings are anagrams using streams.
+</summary>
+
+```java
+boolean isAnagram(String a, String b) {
+    return a.length() == b.length() &&
+        Arrays.equals(a.chars().sorted().toArray(), b.chars().sorted().toArray());
+}
+System.out.println(isAnagram("listen", "silent")); // true
+```
+</details>
+
+<details><summary>
+
+## [Easy] What is the difference between map and flatMap?
+</summary>
+
+`map` transforms each element into exactly one element. `flatMap` transforms each element into a stream and flattens them into one stream.
+
+```java
+List<String> lines = List.of("a b", "c");
+lines.stream().map(l -> l.split(" ")).toList();                      // List<String[]> of 2 arrays
+lines.stream().flatMap(l -> Arrays.stream(l.split(" "))).toList();   // [a, b, c]
+```
+</details>
+
+<details><summary>
+
+## [Medium] Group employees by department and count / average salary.
 </summary>
 
 ```java
@@ -49,7 +146,7 @@ Map<String, Double> avgByDept = emps.stream()
 
 <details><summary>
 
-## Find the highest-paid employee in each department.
+## [Medium] Find the highest-paid employee in each department.
 </summary>
 
 ```java
@@ -66,7 +163,7 @@ Map<String, Employee> top = emps.stream()
 
 <details><summary>
 
-## Count the frequency of each character in a string.
+## [Medium] Count the frequency of each character in a string.
 </summary>
 
 ```java
@@ -80,7 +177,7 @@ Map<Character, Long> freq = input.chars()
 
 <details><summary>
 
-## Find the first non-repeating character in a string.
+## [Medium] Find the first non-repeating character in a string.
 </summary>
 
 ```java
@@ -101,7 +198,7 @@ System.out.println(first); // w
 
 <details><summary>
 
-## Find duplicate elements in a list.
+## [Medium] Find duplicate elements in a list.
 </summary>
 
 ```java
@@ -118,104 +215,7 @@ Set<Integer> duplicates = nums.stream()
 
 <details><summary>
 
-## Partition numbers into even and odd.
-</summary>
-
-```java
-Map<Boolean, List<Integer>> parts = IntStream.rangeClosed(1, 10).boxed()
-    .collect(Collectors.partitioningBy(n -> n % 2 == 0));
-// {false=[1, 3, 5, 7, 9], true=[2, 4, 6, 8, 10]}
-```
-</details>
-
-<details><summary>
-
-## Flatten a list of lists and sort unique words.
-</summary>
-
-```java
-List<List<String>> tags = List.of(List.of("java", "kafka"), List.of("redis", "java"));
-List<String> unique = tags.stream()
-    .flatMap(List::stream)
-    .distinct()
-    .sorted()
-    .toList();
-// [java, kafka, redis]
-```
-</details>
-
-<details><summary>
-
-## Join names of employees older than 30, comma-separated.
-</summary>
-
-```java
-String names = emps.stream()
-    .filter(e -> e.age() > 30)
-    .map(Employee::name)
-    .collect(Collectors.joining(", ", "[", "]"));
-// [Ravi, Meena, Vikram]
-```
-</details>
-
-<details><summary>
-
-## Sum, max and statistics in one pass.
-</summary>
-
-```java
-DoubleSummaryStatistics stats = emps.stream()
-    .mapToDouble(Employee::salary)
-    .summaryStatistics();
-System.out.println(stats.getMax() + " " + stats.getAverage() + " " + stats.getSum());
-```
-</details>
-
-<details><summary>
-
-## Reverse each word of a sentence.
-</summary>
-
-```java
-String sentence = "build backend systems";
-String result = Arrays.stream(sentence.split(" "))
-    .map(w -> new StringBuilder(w).reverse().toString())
-    .collect(Collectors.joining(" "));
-// dliub dnekcab smetsys
-```
-</details>
-
-<details><summary>
-
-## Check whether two strings are anagrams using streams.
-</summary>
-
-```java
-boolean isAnagram(String a, String b) {
-    return a.length() == b.length() &&
-        Arrays.equals(a.chars().sorted().toArray(), b.chars().sorted().toArray());
-}
-System.out.println(isAnagram("listen", "silent")); // true
-```
-</details>
-
-<details><summary>
-
-## What is the difference between map and flatMap?
-</summary>
-
-`map` transforms each element into exactly one element. `flatMap` transforms each element into a stream and flattens them into one stream.
-
-```java
-List<String> lines = List.of("a b", "c");
-lines.stream().map(l -> l.split(" ")).toList();                      // List<String[]> of 2 arrays
-lines.stream().flatMap(l -> Arrays.stream(l.split(" "))).toList();   // [a, b, c]
-```
-</details>
-
-<details><summary>
-
-## Are streams lazy? What happens without a terminal operation?
+## [Medium] Are streams lazy? What happens without a terminal operation?
 </summary>
 
 Yes. Intermediate operations (`filter`, `map`, `sorted`) only build a pipeline; nothing runs until a terminal operation (`collect`, `forEach`, `count`, `findFirst`). Elements flow one at a time through the whole pipeline, and short-circuiting operations stop early.
@@ -232,21 +232,7 @@ A stream can be consumed only once; reusing it throws `IllegalStateException`.
 
 <details><summary>
 
-## When should you avoid parallel streams?
-</summary>
-
-Parallel streams use the shared `ForkJoinPool.commonPool()`. Avoid them when:
-- Work is small (splitting overhead > benefit).
-- Tasks block on IO (they starve the common pool used by the whole JVM, including `CompletableFuture` defaults).
-- The source splits poorly (`LinkedList`, `Stream.iterate`).
-- Operations have side effects or depend on order.
-
-Good fit: large in-memory arrays/`ArrayList`, CPU-heavy pure functions.
-</details>
-
-<details><summary>
-
-## What is Optional and how should you use it?
+## [Medium] What is Optional and how should you use it?
 </summary>
 
 `Optional<T>` makes "maybe no value" explicit in return types.
@@ -261,4 +247,18 @@ User u = repo.findById(id).orElseThrow(() -> new NotFoundException("User " + id)
 ```
 
 Avoid: `optional.get()` without a check, `Optional` as a field or method parameter, and `Optional` of collections (return an empty list instead).
+</details>
+
+<details><summary>
+
+## [Hard] When should you avoid parallel streams?
+</summary>
+
+Parallel streams use the shared `ForkJoinPool.commonPool()`. Avoid them when:
+- Work is small (splitting overhead > benefit).
+- Tasks block on IO (they starve the common pool used by the whole JVM, including `CompletableFuture` defaults).
+- The source splits poorly (`LinkedList`, `Stream.iterate`).
+- Operations have side effects or depend on order.
+
+Good fit: large in-memory arrays/`ArrayList`, CPU-heavy pure functions.
 </details>

@@ -1,14 +1,21 @@
+# Arrays, enums and misc
+
 <details><summary>
 
-## What are the default values in an array?
+## [Easy] What are the default values in an array?
 </summary>
-The default values for arrays in Java depend on the data type of the elements. For example, the default values for each element of an array are:
 
-- Integer, short, long, or byte: 0
-- Double or float: 0.0
-- String: null
-- Boolean: false
-- Char: Unicode (\u0000)
+When you create an array with `new`, every element gets the default value of its type:
+
+| Element type | Default |
+|---|---|
+| `byte`, `short`, `int`, `long` | `0` |
+| `float`, `double` | `0.0` |
+| `char` | `'\u0000'` (the null character) |
+| `boolean` | `false` |
+| Any object reference (`String`, `Integer`, custom classes) | `null` |
+
+The same defaults apply to instance and static fields. **Local variables** get no default; using one before assignment is a compile error.
 
 **Example:**
 
@@ -22,10 +29,12 @@ System.out.println(Arrays.toString(ints) + Arrays.toString(strs));
 ```
 
 </details>
+
 <details><summary>
 
-##  How do you print the content of an array?
+## [Easy] How do you print the content of an array?
 </summary>
+
 There are two ways to print the contents of an array in Java:
 
 - Using a for loop
@@ -65,98 +74,83 @@ System.out.println(Arrays.toString(array));
 
 The output of both methods will be the same.
 </details>
+
 <details><summary>
 
-## How do you compare two arrays?
+## [Easy] How do you compare two arrays?
 </summary>
-There are several ways to compare two arrays in Java. One way is to use the Arrays.equals() method. This method takes two arrays as parameters and returns true if the arrays are equal, or false if they are not equal. The arrays must be of the same type and size in order to use the equals() method.
 
+`==` and `array1.equals(array2)` only compare **references**, so they are false for two different arrays with the same content. Use the `Arrays` helpers:
 
-Another way to compare two arrays is to use the Arrays.compare() method. This method takes two arrays as parameters and returns an integer value indicating the relationship between the arrays. The return value is 0 if the arrays are equal, -1 if the first array is less than the second array, or 1 if the first array is greater than the second array.
+- **`Arrays.equals(a, b)`** – true if both have the same length and equal elements in the same order. Different lengths simply return `false`.
+- **`Arrays.deepEquals(a, b)`** – for nested arrays (`int[][]`).
+- **`Arrays.compare(a, b)`** (Java 9) – lexicographic comparison returning a **negative, zero or positive** number (like `compareTo`).
+- **`Arrays.mismatch(a, b)`** (Java 9) – index of the first difference, or `-1` if equal.
 
-Finally, you can also compare two arrays by using a loop and comparing the elements of the arrays one by one. This method is less efficient than the equals() or compare() methods, but it can be used if you need to compare arrays of different types or sizes.
+```java
+int[] a = {1, 2, 3};
+int[] b = {1, 2, 3};
+int[] c = {1, 2, 4};
 
-Here is an example of how to use the Arrays.equals() method to compare two arrays:
+System.out.println(a == b);                 // false - different objects
+System.out.println(Arrays.equals(a, b));    // true
+System.out.println(Arrays.compare(a, c) < 0);   // true - a comes before c
+System.out.println(Arrays.mismatch(a, c));  // 2
 
-```
-int[] array1 = {1, 2, 3};
-int[] array2 = {1, 2, 3};
-
-boolean equal = Arrays.equals(array1, array2);
-```
-
-In this example, the equal variable will be true because the two arrays are equal.
-
-Here is an example of how to use the Arrays.compare() method to compare two arrays:
-
-```
-int[] array1 = {1, 2, 3};
-int[] array2 = {1, 2, 4};
-
-int result = Arrays.compare(array1, array2);
+int[][] g1 = {{1}, {2}};
+int[][] g2 = {{1}, {2}};
+System.out.println(Arrays.equals(g1, g2));      // false - compares inner array references
+System.out.println(Arrays.deepEquals(g1, g2));  // true
 ```
 
-In this example, the result variable will be -1 because the first array is less than the second array.
+A manual loop must check lengths first, otherwise it can throw `ArrayIndexOutOfBoundsException`.
 
-Here is an example of how to compare two arrays by using a loop:
-
-```
-int[] array1 = {1, 2, 3};
-int[] array2 = {1, 2, 4};
-
-boolean equal = true;
-
-for (int i = 0; i < array1.length; i++) {
-  if (array1[i] != array2[i]) {
-    equal = false;
-    break;
-  }
-}
-```
-
-In this example, the equal variable will be false because the two arrays are not equal.
 </details>
+
 <details><summary>
 
-## What is an enum?
+## [Easy] What is an enum?
 </summary>
 
-In Java, an enum is a special data type that enables for a variable to be a set of predefined constants. The variable must be equal to one of the values that have been predefined for it.
+An **enum** is a special class with a fixed set of named constants, such as days of the week, order statuses or HTTP methods. Each constant is a `public static final` instance of the enum.
 
-For example, an enum type for compass directions could have the constants NORTH, SOUTH, EAST, and WEST.
+```java
+enum OrderStatus {
+	PLACED("Order received"), SHIPPED("On the way"), DELIVERED("Delivered");
 
-Enums are useful for representing a fixed set of constants, such as the days of the week or the colors of the rainbow. They can also be used to represent more complex concepts, such as the different types of exceptions that can occur in a program.
+	private final String label;                       // enums can have fields,
+	OrderStatus(String label) { this.label = label; } // constructors (always private)
+	public String label() { return label; }           // and methods
 
-Here is an example of an enum in Java:
-
-```
-enum DaysOfWeek {
-    Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday
+	public boolean isFinal() { return this == DELIVERED; }
 }
+
+OrderStatus s = OrderStatus.valueOf("SHIPPED");
+System.out.println(s.label() + " " + s.ordinal());   // On the way 1
+for (OrderStatus st : OrderStatus.values()) System.out.println(st);
 ```
 
-This enum type defines the seven days of the week. You can create a variable of type DaysOfWeek and assign it one of the constants, such as:
+Facts interviewers ask about:
+- Enums implicitly extend `java.lang.Enum`, so they **can't extend another class**, but they **can implement interfaces**.
+- You can't create enum instances with `new`; constructors are implicitly private.
+- Compare with `==` (safe, since each constant is a singleton).
+- Use `EnumMap` / `EnumSet` for fast, compact maps and sets keyed by enum.
+- An enum with one constant is the recommended thread-safe, serialization-safe **singleton**.
 
-```
-DaysOfWeek today = DaysOfWeek.Monday;
-```
-
-Enums are a powerful tool that can help you to write more readable and maintainable code.
 </details>
+
 <details><summary>
 
-## Can you use a switch statement around an enum?
+## [Easy] Can you use a switch statement around an enum?
 </summary>
 
-Yes, you can use a switch statement with an enum in Java. You can use enums in switch statements in Java like you would use int primitives. In a switch-case statement, a variable is tested against a set of constant values. If the variable matches a constant value, the corresponding code is executed.
+Yes. In a `switch` on an enum you write the constant names **without** the enum prefix (`case MONDAY`, not `case Day.MONDAY` in the classic syntax).
 
-You can also use enums with if statements and iterations.
-
-Here are some things to keep in mind when using enums in switch statements:
-- Enum constants are public, static, and final by default.
-- You access enum constants using dot syntax.
-- An enum class can have attributes and methods, in addition to constants.
-- You cannot create objects of an enum class, and it cannot extend other classes.
+Points to remember:
+- Enum constants are implicitly `public static final`.
+- Enums can have fields, constructors and methods, and can implement interfaces, but can't extend a class (they already extend `Enum`).
+- You can't create enum instances with `new`.
+- With Java 14+ switch **expressions**, the compiler checks you covered every constant (no `default` needed); if a new constant is added later, the code stops compiling instead of silently doing nothing.
 
 **Example:**
 
@@ -173,10 +167,51 @@ String label(Status s) {
 ```
 
 </details>
+
 <details><summary>
 
-## What are asserts used for?
+## [Easy] What is tokenizing?
 </summary>
+
+**Tokenizing** means splitting a string into smaller pieces (tokens) using a delimiter, for example splitting a CSV line on commas or a sentence on spaces. In Java you usually use `String.split(regex)`, `Scanner`, or the legacy `StringTokenizer`. Note that `split` takes a **regular expression**, so special characters like `.` or `|` must be escaped (`split("\\.")`).
+
+**Example:**
+
+```java
+String csv = "id,name,,city";
+String[] parts = csv.split(",");        // [id, name, , city] (keeps empty token)
+String[] words = "  java   spring ".trim().split("\\s+"); // [java, spring]
+```
+
+</details>
+
+<details><summary>
+
+## [Easy] Can you give an example of tokenizing?
+</summary>
+
+`Scanner` reads typed tokens from a string or stream; `StringTokenizer` is legacy (it doesn't support regex) and `split()` is preferred in new code.
+
+**Example:**
+
+```java
+Scanner sc = new Scanner("10 20 30");
+int sum = 0;
+while (sc.hasNextInt()) sum += sc.nextInt();
+System.out.println(sum);   // 60
+
+StringTokenizer st = new StringTokenizer("a;b;c", ";");   // legacy; prefer split()
+while (st.hasMoreTokens()) System.out.println(st.nextToken());
+```
+
+</details>
+
+<details><summary>
+
+## [Medium] What are asserts used for?
+</summary>
+
+`assert condition : message;` checks an assumption during development and testing. If the condition is false, it throws `AssertionError`. Assertions are **disabled by default** and run only when the JVM starts with `-ea` (enable assertions).
 
 **Example:**
 
@@ -188,10 +223,13 @@ int divide(int a, int b) {
 ```
 
 </details>
+
 <details><summary>
 
-## When should asserts be used?
+## [Medium] When should asserts be used?
 </summary>
+
+Use asserts only for **internal invariants** that should be impossible if your code is correct (e.g. a private method's precondition). Don't use them to validate public method arguments, user input or anything with side effects, because they are switched off in production; throw `IllegalArgumentException`/`IllegalStateException` instead.
 
 **Example:**
 
@@ -205,38 +243,6 @@ private void rebalance(Node n) {
 public void setAge(int age) {
     if (age < 0) throw new IllegalArgumentException("age must be >= 0");  // use this instead
 }
-```
-
-</details>
-<details><summary>
-
-## What is tokenizing?
-</summary>
-
-**Example:**
-
-```java
-String csv = "id,name,,city";
-String[] parts = csv.split(",");        // [id, name, , city] (keeps empty token)
-String[] words = "  java   spring ".trim().split("\\s+"); // [java, spring]
-```
-
-</details>
-<details><summary>
-
-## Can you give an example of tokenizing?
-</summary>
-
-**Example:**
-
-```java
-Scanner sc = new Scanner("10 20 30");
-int sum = 0;
-while (sc.hasNextInt()) sum += sc.nextInt();
-System.out.println(sum);   // 60
-
-StringTokenizer st = new StringTokenizer("a;b;c", ";");   // legacy; prefer split()
-while (st.hasMoreTokens()) System.out.println(st.nextToken());
 ```
 
 </details>
