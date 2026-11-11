@@ -2,7 +2,7 @@
 
 <details><summary>
 
-## 7. Two sum
+## [Easy] 7. Two sum
 </summary>
 
 **Example:** `nums = [2, 7, 11, 15], target = 9` → `[0, 1]`
@@ -28,7 +28,7 @@ int[] twoSum(int[] nums, int target) {
 
 <details><summary>
 
-## 8. Best time to buy and sell stock (I and II)
+## [Easy] 8. Best time to buy and sell stock (I and II)
 </summary>
 
 **Example:** `[7, 1, 5, 3, 6, 4]` → I: `5` (buy 1, sell 6); II: `7` (1→5, 3→6)
@@ -56,7 +56,7 @@ int maxProfitMany(int[] p) {
 
 <details><summary>
 
-## 9. Maximum subarray sum (Kadane's algorithm)
+## [Medium] 9. Maximum subarray sum (Kadane's algorithm)
 </summary>
 
 **Example:** `[-2, 1, -3, 4, -1, 2, 1, -5, 4]` → `6` (subarray `[4, -1, 2, 1]`)
@@ -79,7 +79,7 @@ int maxSubArray(int[] a) {
 
 <details><summary>
 
-## 10. Merge overlapping intervals
+## [Medium] 10. Merge overlapping intervals
 </summary>
 
 **Example:** `[[1,3],[2,6],[8,10],[15,18]]` → `[[1,6],[8,10],[15,18]]`
@@ -103,7 +103,7 @@ int[][] merge(int[][] iv) {
 
 <details><summary>
 
-## 11. Product of array except self (no division)
+## [Medium] 11. Product of array except self (no division)
 </summary>
 
 **Example:** `[1, 2, 3, 4]` → `[24, 12, 8, 6]`
@@ -127,7 +127,7 @@ int[] productExceptSelf(int[] a) {
 
 <details><summary>
 
-## 12. Subarray sum equals K
+## [Medium] 12. Subarray sum equals K
 </summary>
 
 **Example:** `nums = [1, 2, 3], k = 3` → `2` (`[1,2]` and `[3]`); `nums = [1, -1, 0], k = 0` → `3`

@@ -1,7 +1,8 @@
 <details><summary>
 
-## What is functional programming?
+## [Easy] What is functional programming?
 </summary>
+
 Functional programming is a programming paradigm that focuses on using pure functions to structure and solve problems. It is a declarative style of programming where programs are constructed by composing functions, rather than by changing the state of variables.
 
 It is a declarative type of programming style. Its main focus is on “what to solve” in contrast to an imperative style where the main focus is “how to solve”. the functional programming method focuses on results, not the process.
@@ -36,9 +37,10 @@ int sum2 = nums.stream().filter(n -> n % 2 == 0).mapToInt(n -> n * n).sum();  //
 ```
 
 </details>
+
 <details><summary>
 
-## Can you give an example of functional programming?
+## [Easy] Can you give an example of functional programming?
 </summary>
 
 import java.util.Arrays;
@@ -77,74 +79,70 @@ In this example, we have a list of numbers [1, 2, 3, 4, 5]. We apply functional 
 
 Both examples demonstrate how functional programming allows us to express the desired operations in a declarative and concise manner, without explicitly iterating over the elements or managing mutable state.
 </details>
+
 <details><summary>
 
-## What is a Functional Interface?
+## [Easy] What is a Functional Interface?
 </summary>
-A functional interface is an interface that has only one abstract method. It is a key concept in functional programming and is used extensively in Java to support lambda expressions and method references.
 
-In Java, functional interfaces are also known as SAM (Single Abstract Method) interfaces or functional types. They provide a way to define and work with functions as objects. By having only one abstract method, functional interfaces can be implemented using lambda expressions or method references, which provide a more concise syntax compared to traditional anonymous inner classes.
+A **functional interface** has **exactly one abstract method** (a SAM – Single Abstract Method – type). Because of that, it can be implemented with a lambda or a method reference. It may still have any number of `default` and `static` methods, and methods inherited from `Object` (like `equals`) don't count.
 
-Functional interfaces are annotated with the @FunctionalInterface annotation, although it is optional. The purpose of this annotation is to indicate that the interface is intended to be used as a functional interface, and the compiler will enforce that there is only one abstract method within it.
+`@FunctionalInterface` is optional; it makes the compiler fail if someone adds a second abstract method.
 
-Some of the predefined interfaces in java which can be consider as functional interface :
-### java.lang.Comparable: public int compareTo(Object obj);
-### java.util.Comparator: public int compare(Object obj1, Object obj2);
-### java.lang.Runnable: public void run();
-
-```
+```java
 @FunctionalInterface
-interface Intr{
-abstract void sayHello(String name);
+interface Greeter {
+	String greet(String name);                       // the single abstract method
+	default Greeter twice() { return n -> greet(greet(n)); }
 }
-class X implements Intr{
-public void sayHello(String name){
-System.out.println("Welcome "+name);
-}
-public static void main(String[] args) {
-Intr i1 = new X();
-i1.sayHello("Admin");
-}
-}
+
+Greeter hello = name -> "Hello, " + name;            // lambda implements greet()
+System.out.println(hello.greet("Admin"));            // Hello, Admin
+```
+
+Built-in examples:
+- `java.lang.Runnable` – `void run()`
+- `java.util.concurrent.Callable<V>` – `V call() throws Exception`
+- `java.util.Comparator<T>` – `int compare(T a, T b)`
+- `java.util.function`: `Function<T,R>`, `Predicate<T>`, `Consumer<T>`, `Supplier<T>`, `UnaryOperator<T>`, `BinaryOperator<T>`, `BiFunction<T,U,R>`, and primitive versions such as `IntPredicate`, `ToIntFunction<T>`.
+
+(`Comparable` also has one abstract method, but it is meant to be implemented by the class itself, not written as a lambda.)
+
+</details>
+
+<details><summary>
+
+## [Easy] What is a stream?
+</summary>
+
+A **stream** (`java.util.stream.Stream`, Java 8) is a sequence of elements from a source (collection, array, I/O, generator) that you process with a **pipeline** of operations: a source → zero or more **intermediate** operations (`filter`, `map`, `sorted`) → one **terminal** operation (`collect`, `forEach`, `count`).
+
+Key properties:
+- **Doesn't store data.** It pulls elements from the source on demand.
+- **Doesn't modify the source.** `filter` produces a new stream; the original list is unchanged.
+- **Lazy.** Intermediate operations run only when a terminal operation is called, and short-circuiting operations (`findFirst`, `anyMatch`, `limit`) can stop early.
+- **Single use.** A stream can be consumed once; reusing it throws `IllegalStateException`.
+- **Objects and primitives.** `Stream<T>` holds objects; **`IntStream`, `LongStream` and `DoubleStream`** handle primitives without boxing and add `sum()`, `average()`, `range()`.
+- **Can run in parallel** with `parallelStream()` / `.parallel()` (use with care).
+
+```java
+List<String> names = List.of("Asha", "Ravi", "Kiran", "Amit");
+List<String> result = names.stream()
+	.filter(n -> n.startsWith("A"))   // intermediate
+	.map(String::toUpperCase)         // intermediate
+	.sorted()                         // intermediate
+	.toList();                        // terminal -> [AMIT, ASHA]
+
+int total = IntStream.rangeClosed(1, 5).sum();   // 15, primitive stream
 ```
 
 </details>
+
 <details><summary>
 
-## What is a stream?
+## [Easy] Explain about streams with an example?
 </summary>
-This API is also introduced in java 8. This API belongs to java.util.stream package.
-The Stream API is used to process collections of objects. A stream is a sequence of objects that supports various methods which can be pipelined to produce the desired result.
 
-java.util.stream package contains some library classes and interfaces by using which we can perform functional style of programming on the group of objects(collection of data).
-This API has one main interface:
-
-```
-java.util.stream.Stream
-```
-
-**Note**:- Object of this Stream interface represents sequence of object from a source like collections.
-
-The feature of java stream:
-
-- The stream does not stores the elements, it only represents elements in a sequence.
-Example: wire does not store the electricity.
-
-- It holds only objects, primitives are not allowed.
-
-- Operation(filtering) performed on the stream does not modify its source.
-Example: filtering a stream obtained from a source(collection) produces a new stream with the filtered element rather than removing the elements from the source collection.
-
-- With the help of stream obj we can perform various operations on the collection of objects in functional style, like filtering some elements, transform some elements, manipulate, sort, etc.
-
-- Stream is lazy and evaluates code only when required.
-
-- The elements of a stream are only visited once during the life of a stream. a new stream must be generated to revisit the same elements of the source.
-</details>
-<details><summary>
-
-## Explain about streams with an example?
-</summary>
 Suppose we have a list of Person objects representing individuals with their names and ages:
 
 ```java
@@ -216,10 +214,12 @@ Here, we first use the mapToInt operation to convert each Person object into its
 
 These are just a few examples of how streams can be used in Java to filter, transform, and aggregate data. Streams provide a powerful and expressive way to work with collections, allowing you to write more concise and readable code. They also support parallel processing, making it easier to leverage the capabilities of multi-core processors for improved performance.
 </details>
+
 <details><summary>
 
-## What are intermediate operations in streams?
+## [Easy] What are intermediate operations in streams?
 </summary>
+
 Intermediate operations in streams are operations that transform or filter the elements of a stream. These operations are applied to the elements of the stream in a lazy manner, meaning they are not executed until a terminal operation is encountered.
 
 Intermediate operations are typically chained together to form a pipeline of operations that are applied sequentially to the elements of the stream.
@@ -275,10 +275,12 @@ List<Integer> skipFirstTwo = numbers.stream()
 
 These are just a few examples of intermediate operations. There are more operations available in the Stream API that can be used to transform, filter, and manipulate the elements of a stream.
 </details>
+
 <details><summary>
 
-## What are terminal operations in streams?
+## [Easy] What are terminal operations in streams?
 </summary>
+
 Terminal operations in streams are operations that produce a final result or a side-effect. When a terminal operation is invoked on a stream, it triggers the processing of the stream and consumes the elements of the stream.
 
 Unlike intermediate operations, which are lazy and do not perform any computation until a terminal operation is encountered, terminal operations are eagerly executed.
@@ -329,86 +331,33 @@ Optional<Integer> sum = numbers.stream()
 
 These are just a few examples of terminal operations. Terminal operations are the final step in a stream pipeline and produce a result or a side-effect. They allow you to consume or transform the elements of a stream into a final output.
 </details>
+
 <details><summary>
 
-## What are method references?
+## [Easy] What are lambda expressions?
 </summary>
-Method references in Java provide a way to refer to methods or constructors without invoking them. They are a concise and expressive syntax for passing behavior or referencing methods as functional interfaces.
 
-Java provides a new feature called method reference in Java 8. Method reference is used to refer method of functional interface. It is compact and easy form of lambda expression.
+A **lambda expression** (Java 8) is an anonymous function: a short way to provide the implementation of a **functional interface's** single abstract method. It doesn't run by itself; it becomes an instance of the target interface.
 
-Instead of creating a Lambda Expression with all the details, with the help of method reference we can refer an existing class method to the functional interface implementation, which matches the condition of Lambda Expression.
+Syntax: `(parameters) -> expression` or `(parameters) -> { statements; }`
 
-There are four types of method references in Java:
-
-### Reference to a static method: It references a static method using the 
-
-```
-syntax Class::staticMethod.
-
-// Example: Reference to the static method Integer.parseInt(String)
-Function<String, Integer> parser = Integer::parseInt;
-Integer number = parser.apply("123"); // invokes Integer.parseInt("123")
+```java
+Runnable r = () -> System.out.println("run");                    // no parameters
+Predicate<String> isEmpty = s -> s.isEmpty();                    // one parameter, no parentheses needed
+Comparator<String> byLen = (a, b) -> Integer.compare(a.length(), b.length());
+BiFunction<Integer, Integer, Integer> add = (Integer a, Integer b) -> {   // explicit types, block body
+	return a + b;
+};
 ```
 
-### Reference to an instance method of a particular object: It references an instance method of a specific object using the 
+Three parts: **parameter list**, the arrow **`->`**, and the **body**.
 
-```
-syntax object::instanceMethod.
+Rules worth knowing:
+- Variables captured from the enclosing scope must be **effectively final**.
+- `this` inside a lambda refers to the enclosing object (unlike an anonymous class).
+- Lambdas aren't compiled into separate `.class` files on disk; the JVM creates the implementation at runtime via `invokedynamic` (`LambdaMetafactory`).
 
-// Example: Reference to the instance method String.length()
-String str = "Hello, world!";
-Function<String, Integer> lengthGetter = String::length;
-Integer length = lengthGetter.apply(str); // invokes str.length()
-```
-
-### Reference to an instance method of an arbitrary object of a particular type: It references an instance method of any object of a specific type using the 
-
-```
-syntax Class::instanceMethod.
-
-// Example: Reference to the instance method String.toUpperCase()
-Function<String, String> upperCaseConverter = String::toUpperCase;
-String result = upperCaseConverter.apply("hello"); // invokes "hello".toUpperCase()
-```
-
-### Reference to a constructor: It references a constructor of a class using the 
-
-```
-syntax ClassName::new.
-
-// Example: Reference to the constructor of ArrayList
-Supplier<List<String>> listSupplier = ArrayList::new;
-List<String> list = listSupplier.get(); // invokes new ArrayList<>()
-```
-
-Method references are particularly useful when working with functional interfaces, such as in the context of streams or functional programming in general. They allow you to pass method references as arguments to higher-order functions or assign them to functional interface variables.
-
-Overall, method references provide a concise and readable way to refer to existing methods or constructors without the need to explicitly define lambda expressions.
-</details>
-<details><summary>
-
-## What are lambda expressions?
-</summary>
-Lambda expression is, essentially, an anonymous or unnamed method. The lambda expression does not execute on its own. Instead, it is used to implement a method defined by a functional interface.
-
-Using Lambda Expression we can represent an object of a functional interface in much more concise way.
-
-Lambda Expression saves a lot of code. In case of lambda expression, we don't need to define the method again for providing the implementation. Here, we just write the implementation code.
-Java lambda expression is treated as a function, so compiler does not create .class file.
-
-Java lambda expression is consisted of three components.
-**1) Argument-list:** It can be empty or non-empty as well.
-**2) Lambda operator:** **→** It is used to link arguments-list and body of expression.
-**3) Body:** It contains expressions and statements for lambda expression.
-
-Lambda expressions can be used in various contexts, such as:
-
-**1. Functional interfaces:** Lambda expressions can be used to provide an implementation for functional interfaces, which are interfaces that have exactly one abstract method. This allows you to write more concise code when working with functional interfaces, such as in streams, threads, or event handling.
-
-**2. Higher-order functions:** Lambda expressions can be passed as arguments to methods or assigned to variables, enabling you to create higher-order functions that take behavior as input.
-
-**3. Stream operations:** Lambda expressions are commonly used with stream operations to specify transformations, filters, or aggregations on streams of data.
+Typical uses: stream operations, comparators, callbacks, `Runnable`/`Callable` tasks, event handlers.
 
 **Example:**
 
@@ -423,9 +372,10 @@ BiFunction<Integer, Integer, Integer> add = (a, b) -> {
 ```
 
 </details>
+
 <details><summary>
 
-## Can you give an example of lambda expression?
+## [Easy] Can you give an example of lambda expression?
 </summary>
 
 ```
@@ -454,10 +404,12 @@ In the main method, we use the addition object to calculate the sum of 5 and 3 b
 
 Lambda expressions provide a concise and expressive way to represent behavior as anonymous functions, making code more readable and enabling functional programming paradigms in Java.
 </details>
+
 <details><summary>
 
-## Can you explain the relationship between lambda expression and functional interfaces?
+## [Easy] Can you explain the relationship between lambda expression and functional interfaces?
 </summary>
+
 Lambda expressions and functional interfaces are closely related in Java. Lambda expressions are used to provide an implementation for functional interfaces.
 
 A functional interface is an interface that has exactly one abstract method. It serves as a blueprint for a lambda expression or a method reference. Functional interfaces provide a way to define contracts for functional programming in Java.
@@ -495,47 +447,12 @@ In the main method, we use the addition object to calculate the sum of 5 and 3 b
 
 Lambda expressions enable us to provide a concise implementation of the abstract method of a functional interface, making code more readable and enabling functional programming patterns in Java. They are closely tied to functional interfaces and provide a powerful mechanism for writing code in a more functional and expressive style.
 </details>
+
 <details><summary>
 
-## Can you give examples of functional interfaces with multiple arguments?
+## [Easy] What is a Function Functional Interface?
 </summary>
-While functional interfaces are defined as having a single abstract method, it is still possible to work with multiple arguments by leveraging Java's support for functional interfaces with default methods or by using predefined functional interfaces from the Java API. Here are a few examples:
 
-### Consumer<T, U>:
-
-```
-import java.util.function.BiConsumer;
-
-public class ConsumerExample {
-    public static void main(String[] args) {
-        BiConsumer<String, Integer> printLength = (str, length) -> System.out.println(str + " has length: " + length);
-        printLength.accept("Hello", 5);
-    }
-}
-```
-
-In this example, we use the BiConsumer functional interface, which takes two arguments (String and Integer) and performs an action without returning a value. The accept() method is used to consume the arguments and print the length of the string.
-
-### BiFunction<T, U, R>:
-
-```
-import java.util.function.BiFunction;
-
-public class BiFunctionExample {
-    public static void main(String[] args) {
-        BiFunction<Integer, Integer, Integer> multiply = (a, b) -> a * b;
-        int result = multiply.apply(4, 5);
-        System.out.println("Result: " + result);
-    }
-}
-```
-
-Here, the BiFunction functional interface takes two arguments (Integer and Integer) and returns a result (Integer). The apply() method is used to apply the multiplication operation on the arguments and obtain the result.
-</details>
-<details><summary>
-
-## What is a Function Functional Interface?
-</summary>
 This interface defines an abstract method which will takes T type of object as parameter and returns R type of object.
 
 ```
@@ -559,10 +476,12 @@ public class Main {
 ```
 
 </details>
+
 <details><summary>
 
-## What is a Predicate Functional Interface?
+## [Easy] What is a Predicate Functional Interface?
 </summary>
+
 This interface contains only one abstract method called:
 
 ```
@@ -614,37 +533,37 @@ public class Main{
 ```
 
 </details>
+
 <details><summary>
 
-## What is a Consumer Functional Interface?
+## [Easy] What is a Consumer Functional Interface?
 </summary>
-It represents a function which takes in one argument and produces a result. However these kind of functions don’t return any value.
 
-```
+`Consumer<T>` takes **one argument and returns nothing**; it is used for side effects such as printing, logging or saving.
+
+```java
 public void accept(T t);
 ```
 
-### Example:
+```java
+Consumer<String> log = msg -> System.out.println("[LOG] " + msg);
+log.accept("Order placed");
 
+Consumer<String> audit = msg -> System.out.println("[AUDIT] " + msg);
+log.andThen(audit).accept("Payment done");   // runs log, then audit
+
+List.of("a", "b").forEach(log);              // Iterable.forEach takes a Consumer
 ```
-import java.util.function.Consumer;
-public class Main {
-    public static void main(String[] args) {
-        Consumer<Student> c = s -> {
-            System.out.println("Roll is "+s.getRoll());
-            System.out.println("Name is "+s.getName());
-            System.out.println("Marks is "+s.getMarks());
-        };
-        c.accept(new Student(10,"Amit",850));
-    }
-}
-```
+
+Related: `BiConsumer<T, U>` (two arguments, used by `Map.forEach`) and primitive versions like `IntConsumer`.
 
 </details>
+
 <details><summary>
 
-## What is a Supplier Functional Interface?
+## [Easy] What is a Supplier Functional Interface?
 </summary>
+
 It represents a function which does not take in any argument but produces a value of type T.
 
 ```
@@ -663,6 +582,73 @@ public class Main {
         System.out.println(s2.get().getName());
     }
 }
+```
+
+</details>
+
+<details><summary>
+
+## [Medium] What are method references?
+</summary>
+
+A **method reference** is a shorthand for a lambda that only calls an existing method. The syntax uses `::`. There are four kinds:
+
+| Kind | Syntax | Lambda equivalent |
+|---|---|---|
+| Static method | `Integer::parseInt` | `s -> Integer.parseInt(s)` |
+| Instance method of a **particular object** | `System.out::println`, `greeting::concat` | `x -> System.out.println(x)` |
+| Instance method of an **arbitrary object** of a type | `String::toUpperCase` | `s -> s.toUpperCase()` |
+| Constructor | `ArrayList::new` | `() -> new ArrayList<>()` |
+
+```java
+// 1. Static method
+Function<String, Integer> parser = Integer::parseInt;
+parser.apply("123");                         // 123
+
+// 2. Instance method of a particular object (the object is fixed)
+String prefix = "Hello, ";
+Function<String, String> greet = prefix::concat;
+greet.apply("Murli");                        // "Hello, Murli"
+Consumer<String> printer = System.out::println;
+
+// 3. Instance method of an arbitrary object (the object is the first argument)
+Function<String, Integer> length = String::length;
+length.apply("backend");                     // 7
+BiFunction<String, String, Boolean> eq = String::equalsIgnoreCase;
+
+// 4. Constructor
+Supplier<List<String>> listMaker = ArrayList::new;
+Function<String, StringBuilder> sbMaker = StringBuilder::new;
+```
+
+</details>
+
+<details><summary>
+
+## [Medium] Can you give examples of functional interfaces with multiple arguments?
+</summary>
+
+A functional interface has one abstract method, but that method can take several parameters. The JDK provides two-argument versions; for three or more, define your own.
+
+| Interface | Method | Use |
+|---|---|---|
+| `BiFunction<T, U, R>` | `R apply(T t, U u)` | Two inputs, one result |
+| `BiConsumer<T, U>` | `void accept(T t, U u)` | Two inputs, side effect (e.g. `Map.forEach`) |
+| `BiPredicate<T, U>` | `boolean test(T t, U u)` | Two inputs, condition |
+| `BinaryOperator<T>` | `T apply(T a, T b)` | Two inputs and result of the same type (`reduce`) |
+
+```java
+BiConsumer<String, Integer> printLength = (str, len) -> System.out.println(str + " has length " + len);
+printLength.accept("Hello", 5);
+
+BiFunction<Integer, Integer, Integer> multiply = (a, b) -> a * b;
+System.out.println(multiply.apply(4, 5));                 // 20
+
+BinaryOperator<Integer> max = BinaryOperator.maxBy(Comparator.naturalOrder());
+
+@FunctionalInterface
+interface TriFunction<A, B, C, R> { R apply(A a, B b, C c); }   // custom: three arguments
+TriFunction<Integer, Integer, Integer, Integer> sum3 = (a, b, c) -> a + b + c;
 ```
 
 </details>

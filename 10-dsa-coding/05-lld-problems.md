@@ -4,7 +4,7 @@ How to answer: 1) clarify requirements, 2) list classes and relationships, 3) co
 
 <details><summary>
 
-## Design an LRU cache with O(1) get and put
+## [Medium] Design an LRU cache with O(1) get and put
 </summary>
 
 **Practice:** [LeetCode 146](https://leetcode.com/problems/lru-cache/)
@@ -62,7 +62,7 @@ class LRUCache {
 
 <details><summary>
 
-## Design a parking lot
+## [Medium] Design a parking lot
 </summary>
 
 **Requirements to state:** multiple floors; spot sizes small/medium/large; vehicles bike/car/truck; ticket on entry; charge on exit by duration; show free spots.
@@ -132,7 +132,7 @@ class ParkingLot {
 
 <details><summary>
 
-## Design a rate limiter (token bucket)
+## [Hard] Design a rate limiter (token bucket)
 </summary>
 
 **Requirement:** allow at most N requests per second per user, with short bursts allowed.

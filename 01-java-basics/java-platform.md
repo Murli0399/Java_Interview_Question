@@ -1,18 +1,20 @@
 <details><summary>
 	
-## Why is Java so Popular?
+## [Easy] Why is Java so Popular?
 </summary>
+
 Java is one of the most popular languages because Java has several contributions to its widespread adoption and continued relevance in the software development industry. So Java has some key factors which make it  a popular programming language.
 
 - **Simple:-** Java is easy to learn and its syntax is quite simple, clean, and easy to understand. Apart from this automatic memory management also play a role in the same
 - **Object-Oriented**:- Java is ***object-oriented***, it supports all the OOPS characteristics. This makes Java applications easy to develop and maintain, compared to structured programming languages.
 - **Platform Independent:-** Java source code is compiled and converted into bytecode. this bytecode can run on multiple platforms i.e. Write Once and Run Anywhere(WORA), we can compile the java code in one Operating System and execute it on another Operating System. The WORA makes java an Architecture Neutral language. Java also standardized all data types that also contributed to making java a platform-independent language.
 </details>
-  
+
 <details><summary>
 	
-## What is Platform Independence?
+## [Easy] What is Platform Independence?
 </summary>
+
 Platform independence, also known as "write once, run anywhere," refers to the ability of a programming language or framework to run on different platforms without requiring extensive modifications. In the context of Java, platform independence is one of its key features.
 
 Java is one of the most popular platform-independent languages. Once we compile a Java program and build a jar, we can run the jar (compiled Java program) in any Operating System - where a JVM is installed. Java achieves Platform Independence in a beautiful way. On compiling a Java file the output is a class file- which contains an internal Java representation called bytecode. 
@@ -29,11 +31,12 @@ java Hello            # Windows, Linux or macOS JVM runs the same Hello.class
 ```
 
 </details>
-  
+
 <details><summary>
 	
-## What is ByteCode?
+## [Easy] What is ByteCode?
 </summary>
+
 Bytecode is a low-level representation of code that is executed by a virtual machine (VM) rather than directly by the hardware. It serves as an intermediate step between source code and machine code, enabling platform independence and facilitating efficient execution.
 
 If i talk about Java, when you write a Java program, it is first compiled into bytecode. And the Java compiler (javac) translates the human-readable Java source code into a compact and platform-neutral binary format which is called by bytecode. This bytecode is stored in .class files.
@@ -57,11 +60,12 @@ public static void main(java.lang.String[]);
 ```
 
 </details>
-  
+
 <details><summary>
 	
-## Compare JDK vs JVM VS JRE.
+## [Easy] Compare JDK vs JVM VS JRE.
 </summary>
+
 JDK (Java Development Kit), JVM (Java Virtual Machine), and JRE (Java Runtime Environment) are key components of the Java platform. Each serves a specific purpose in the Java development and execution process. Here's a comparison of these three components:
 	
 ![Diagram](../img/java_enviroment.png)
@@ -94,12 +98,22 @@ Users who only need to run Java applications, rather than developing them, can i
 - The JVM inside it is what executes the bytecode, manages memory and runs the GC.
 
 </details>
-  
+
 <details><summary>
 	
-## What is the role of class loader in java ?
+## [Medium] What is the role of class loader in java ?
 </summary>
-Java ClassLoader is an abstract class. It belongs to a java.lang package. It loads classes from different resources. Java ClassLoader is used to load the classes at run time. In other words, JVM performs the linking process at runtime. Classes are loaded into the JVM according to need. If a loaded class depends on another class, that class is loaded as well. When we request to load a class, it delegates the class to its parent. In this way, uniqueness is maintained in the runtime environment. It is essential to execute a Java program.
+
+A class loader loads `.class` files (bytecode) into the JVM **at runtime, on first use** (lazily). `java.lang.ClassLoader` is the abstract base class.
+
+Built-in loaders (Java 9+):
+1. **Bootstrap loader:** core JDK classes (`java.lang.*`); implemented natively, shows as `null`.
+2. **Platform loader:** other JDK modules (`java.sql`, etc.).
+3. **Application (system) loader:** classes on your classpath/module path.
+
+They follow **parent delegation**: a loader first asks its parent and loads the class itself only if the parent can't. This keeps core classes unique and stops anyone replacing `java.lang.String` with their own version.
+
+After loading come **linking** (verification, preparation of static fields, resolution) and **initialization** (static initializers run). Custom class loaders are used by application servers, plugin systems and frameworks that load code dynamically.
 
 **Example:**
 

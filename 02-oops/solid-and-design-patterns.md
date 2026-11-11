@@ -2,7 +2,61 @@
 
 <details><summary>
 
-## Explain the SOLID principles with examples.
+## [Easy] What is the Factory pattern? Give a real example.
+</summary>
+
+A factory hides which concrete class gets created.
+
+```java
+interface SpeechToText { String transcribe(byte[] audio); }
+class ConformerModel implements SpeechToText { public String transcribe(byte[] a) { return "..."; } }
+class WhisperModel implements SpeechToText { public String transcribe(byte[] a) { return "..."; } }
+
+class SpeechModelFactory {
+    static SpeechToText forLanguage(String lang) {
+        return switch (lang) {
+            case "en", "hi" -> new ConformerModel();
+            default -> new WhisperModel();       // fallback for other languages
+        };
+    }
+}
+```
+
+In Spring, a cleaner version injects all implementations as `Map<String, SpeechToText>` (bean name → bean) and picks by key.
+</details>
+
+<details><summary>
+
+## [Easy] What is the Builder pattern?
+</summary>
+
+Builds objects with many optional fields readably and keeps them immutable.
+
+```java
+public final class HttpRequestSpec {
+    private final String url; private final String method; private final int timeoutMs;
+
+    private HttpRequestSpec(Builder b) { url = b.url; method = b.method; timeoutMs = b.timeoutMs; }
+    public static Builder builder(String url) { return new Builder(url); }
+
+    public static final class Builder {
+        private final String url; private String method = "GET"; private int timeoutMs = 3000;
+        private Builder(String url) { this.url = url; }
+        public Builder method(String m) { this.method = m; return this; }
+        public Builder timeoutMs(int t) { this.timeoutMs = t; return this; }
+        public HttpRequestSpec build() { return new HttpRequestSpec(this); }
+    }
+}
+
+HttpRequestSpec req = HttpRequestSpec.builder("https://api.x.com").method("POST").timeoutMs(500).build();
+```
+
+Lombok's `@Builder` generates this.
+</details>
+
+<details><summary>
+
+## [Medium] Explain the SOLID principles with examples.
 </summary>
 
 **S – Single Responsibility:** a class has one reason to change.
@@ -48,7 +102,7 @@ class NotificationService {
 
 <details><summary>
 
-## Write a thread-safe Singleton. Which approach is best?
+## [Medium] Write a thread-safe Singleton. Which approach is best?
 </summary>
 
 ```java
@@ -86,61 +140,7 @@ Without `volatile`, another thread could see a non-null reference to a partially
 
 <details><summary>
 
-## What is the Factory pattern? Give a real example.
-</summary>
-
-A factory hides which concrete class gets created.
-
-```java
-interface SpeechToText { String transcribe(byte[] audio); }
-class ConformerModel implements SpeechToText { public String transcribe(byte[] a) { return "..."; } }
-class WhisperModel implements SpeechToText { public String transcribe(byte[] a) { return "..."; } }
-
-class SpeechModelFactory {
-    static SpeechToText forLanguage(String lang) {
-        return switch (lang) {
-            case "en", "hi" -> new ConformerModel();
-            default -> new WhisperModel();       // fallback for other languages
-        };
-    }
-}
-```
-
-In Spring, a cleaner version injects all implementations as `Map<String, SpeechToText>` (bean name → bean) and picks by key.
-</details>
-
-<details><summary>
-
-## What is the Builder pattern?
-</summary>
-
-Builds objects with many optional fields readably and keeps them immutable.
-
-```java
-public final class HttpRequestSpec {
-    private final String url; private final String method; private final int timeoutMs;
-
-    private HttpRequestSpec(Builder b) { url = b.url; method = b.method; timeoutMs = b.timeoutMs; }
-    public static Builder builder(String url) { return new Builder(url); }
-
-    public static final class Builder {
-        private final String url; private String method = "GET"; private int timeoutMs = 3000;
-        private Builder(String url) { this.url = url; }
-        public Builder method(String m) { this.method = m; return this; }
-        public Builder timeoutMs(int t) { this.timeoutMs = t; return this; }
-        public HttpRequestSpec build() { return new HttpRequestSpec(this); }
-    }
-}
-
-HttpRequestSpec req = HttpRequestSpec.builder("https://api.x.com").method("POST").timeoutMs(500).build();
-```
-
-Lombok's `@Builder` generates this.
-</details>
-
-<details><summary>
-
-## What is the Strategy pattern?
+## [Medium] What is the Strategy pattern?
 </summary>
 
 Encapsulate interchangeable algorithms behind one interface and choose at runtime.
@@ -164,7 +164,7 @@ Other examples: `Comparator`, pricing rules, retry/backoff policies.
 
 <details><summary>
 
-## What is the Observer pattern?
+## [Medium] What is the Observer pattern?
 </summary>
 
 Subjects notify registered observers when something happens, without knowing who they are.
@@ -187,7 +187,7 @@ Spring equivalents: `ApplicationEventPublisher` + `@EventListener`. At system sc
 
 <details><summary>
 
-## What are Adapter, Decorator, Proxy and Template Method?
+## [Medium] What are Adapter, Decorator, Proxy and Template Method?
 </summary>
 
 - **Adapter:** converts one interface into another (wrapping a third-party SMS SDK behind your `MessageSender`).
@@ -207,7 +207,7 @@ abstract class ReportJob {
 
 <details><summary>
 
-## Composition vs inheritance: which should you prefer?
+## [Medium] Composition vs inheritance: which should you prefer?
 </summary>
 
 Prefer **composition** ("has-a"): it's flexible at runtime, keeps classes loosely coupled and avoids fragile base classes. Use inheritance only for a genuine "is-a" relationship where the subclass honours the parent's contract (Liskov).

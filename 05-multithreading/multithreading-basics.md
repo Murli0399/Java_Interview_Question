@@ -1,7 +1,8 @@
 <details><summary>
 
-## What is the need for Threads in Java?
+## [Easy] What is the need for Threads in Java?
 </summary>
+
 In Java, threads are used to achieve concurrent execution of tasks within a program. A thread is a lightweight unit of execution that can run concurrently with other threads, allowing multiple tasks to be performed simultaneously.
 
 There are several reasons why threads are used in Java:
@@ -52,10 +53,12 @@ Here's a simple example to illustrate the use of threads in Java:
 
 In this example, two instances of the Task class are created, representing two different tasks. Each task is executed in a separate thread using the Thread class. The run() method of the Task class contains the code that will be executed in each thread. The Thread.sleep() method is used to simulate some work being done. While the tasks are being executed in separate threads, the main thread continues to perform other tasks concurrently.
 </details>
+
 <details><summary>
 
-## How do you create a thread?
+## [Easy] How do you create a thread?
 </summary>
+
 In Java, you can create a thread by following one of the two approaches: extending the Thread class or implementing the Runnable interface. Here's how you can create a thread using both approaches:
 
 1. Extending the Thread class:
@@ -101,25 +104,26 @@ Both approaches allow you to define the behavior of the thread in the run() meth
 
 By creating threads, you can achieve concurrent execution of tasks, enabling responsiveness, parallelism, and asynchronous operations in your Java programs.
 </details>
+
 <details><summary>
 
-## What are the different states of a Thread?
+## [Easy] What are the different states of a Thread?
 </summary>
-In Java, a thread can be in one of several states throughout its lifecycle. The different states of a thread are as follows:
 
-1. New: When a thread is created but not yet started, it is in the "New" state. In this state, the thread has been instantiated, but the start() method has not been called yet.
+`Thread.getState()` returns one of **six** states defined in `Thread.State`:
 
-2. Runnable: When the start() method is called on a thread, it transitions to the "Runnable" state. In this state, the thread is eligible to be scheduled for execution by the thread scheduler. However, it does not necessarily mean that the thread is currently running. It is simply ready to run and waiting for its turn on the CPU.
+| State | Meaning |
+|---|---|
+| `NEW` | Created, `start()` not called yet |
+| `RUNNABLE` | Running **or** ready to run (waiting for CPU). Java has no separate "Running" state |
+| `BLOCKED` | Waiting to acquire a monitor lock (entering a `synchronized` block/method) |
+| `WAITING` | Waiting indefinitely for another thread: `wait()`, `join()`, `LockSupport.park()` |
+| `TIMED_WAITING` | Waiting with a timeout: `sleep(ms)`, `wait(ms)`, `join(ms)`, `parkNanos` |
+| `TERMINATED` | `run()` finished normally or with an uncaught exception |
 
-3. Running: When the thread scheduler selects a thread from the "Runnable" state and starts executing its run() method, the thread enters the "Running" state. In this state, the thread is actively executing its code.
+Transitions: `NEW → RUNNABLE` (start), `RUNNABLE ↔ BLOCKED/WAITING/TIMED_WAITING`, `RUNNABLE → TERMINATED`. A terminated thread can't be restarted; calling `start()` twice throws `IllegalThreadStateException`.
 
-4. Blocked/Waiting: A thread can transition to the "Blocked" or "Waiting" state under certain conditions. For example, if a thread is waiting for a lock to be released by another thread, it enters the "Blocked" state. If a thread is waiting for a certain condition to be met, such as the availability of a resource, it enters the "Waiting" state. In both cases, the thread is not actively executing its code and is waiting for some event to occur.
-
-5. Timed Waiting: Similar to the "Waiting" state, a thread can enter the "Timed Waiting" state when it is waiting for a certain condition, but with a specified timeout. The thread will remain in this state until the condition is met or the timeout expires.
-
-6. Terminated: A thread enters the "Terminated" state when its run() method completes or when an unhandled exception occurs within the thread. In this state, the thread has finished its execution and cannot be restarted.
-
-It's important to note that the exact state transitions and behavior of threads can be influenced by factors such as thread scheduling, synchronization, and blocking operations. The Java Thread API provides methods and mechanisms to control and manage thread states effectively.
+Note: a thread blocked on I/O (e.g. a socket read) still shows `RUNNABLE`.
 
 **Example:**
 
@@ -141,10 +145,12 @@ System.out.println(t.getState());  // TERMINATED
 ```
 
 </details>
+
 <details><summary>
 
-## What is priority of a thread? How do you change the priority of a thread?
+## [Easy] What is priority of a thread? How do you change the priority of a thread?
 </summary>
+
 In Java, the priority of a thread is an integer value that determines the relative importance or scheduling preference of the thread. Thread priorities range from 1 (lowest) to 10 (highest), where the default priority is 5. The thread scheduler uses the thread's priority to decide which thread should be executed when multiple threads are in the "Runnable" state.
 
 You can change the priority of a thread using the setPriority() method provided by the Thread class. Here's an example that demonstrates how to change the priority of a thread:
@@ -178,10 +184,12 @@ When the threads are started using the start() method, the thread scheduler will
 
 It's generally recommended to use thread priorities judiciously and rely on other synchronization mechanisms, such as locks or semaphores, to ensure correct and reliable thread coordination. Thread priorities are typically used as hints to the scheduler, but the final decision is ultimately determined by the underlying platform and JVM implementation.
 </details>
+
 <details><summary>
 
-## What is ExecutorService?
+## [Easy] What is ExecutorService?
 </summary>
+
 ExecutorService is an interface in Java that provides a way to manage and control the execution of tasks in a multithreaded environment. It is part of the Java Concurrency framework and is used to create and manage a pool of threads, allowing you to submit tasks for execution and retrieve the results when they are completed.
 
 The ExecutorService interface extends the Executor interface and adds additional methods to manage the execution of tasks. It provides a high-level API for working with threads, abstracting away the complexities of thread creation, management, and synchronization.
@@ -217,108 +225,12 @@ Finally, we call the shutdown() method on the ExecutorService to initiate a grac
 
 By using ExecutorService, you can efficiently manage the execution of tasks in a concurrent environment, allowing for better utilization of system resources and improved performance.
 </details>
+
 <details><summary>
 
-## Explain different ways of creating Executor Services?
+## [Easy] What is Callable? How do you execute a Callable from ExecutionService?
 </summary>
-There are several ways to create an ExecutorService in Java, depending on your specific requirements. Here are some commonly used methods:
 
-- **Executors.newFixedThreadPool(int nThreads):** This method creates an ExecutorService with a fixed-size thread pool, where nThreads specifies the number of threads in the pool. All submitted tasks will be executed concurrently by the available threads.
-
-```java
-        ExecutorService executorService = Executors.newFixedThreadPool(5);
-```
-
-- **Executors.newCachedThreadPool():** This method creates an ExecutorService with a dynamically adjusting thread pool. Threads will be created as needed and reused if available. If a thread is idle for a certain period, it will be terminated and removed from the pool.
-
-```java
-        ExecutorService executorService = Executors.newCachedThreadPool();
-```
-
-- **Executors.newSingleThreadExecutor():** This method creates an ExecutorService with a single thread. It ensures that all submitted tasks are executed sequentially, one after the other, in the order they were submitted.
-
-```java
-        ExecutorService executorService = Executors.newSingleThreadExecutor();
-```
-
-- **Executors.newScheduledThreadPool(int corePoolSize):** This method creates an ExecutorService that can schedule tasks to run after a specified delay or at fixed intervals. The corePoolSize parameter determines the number of threads in the pool.
-
-```java
-        ExecutorService executorService = Executors.newScheduledThreadPool(3);
-```
-
-- **ThreadPoolExecutor class:** Apart from the factory methods provided by the Executors class, you can also create an ExecutorService using the ThreadPoolExecutor class, which offers more customization options. You can specify the core pool size, maximum pool size, keep-alive time, work queue type, and other parameters.
-
-```java
-        ExecutorService executorService = new ThreadPoolExecutor(
-            3, // core pool size
-            5, // maximum pool size
-            60, TimeUnit.SECONDS, // keep-alive time for idle threads
-            new ArrayBlockingQueue<>(10) // work queue type and size
-        );
-```
-
-Using the ThreadPoolExecutor class gives you fine-grained control over the thread pool configuration, allowing you to tailor it to your specific needs.
-
-These are the commonly used ways to create an ExecutorService in Java. The choice of which method to use depends on factors such as the desired thread pool behavior, concurrency requirements, and scheduling needs of your application.
-</details>
-<details><summary>
-
-## How do you check whether an ExecutionService task executed successfully?
-</summary>
-To check whether an ExecutorService task executed successfully, you can use the Future interface that is returned when submitting a task for execution. The Future interface provides methods to check the status and retrieve the result of a task.
-
-Here's an example that demonstrates how to use Future to check the execution status of a task:
-
-```java
-        import java.util.concurrent.ExecutorService;
-        import java.util.concurrent.Executors;
-        import java.util.concurrent.Future;
-
-        public class ExecutorServiceExample {
-            public static void main(String[] args) {
-                ExecutorService executorService = Executors.newFixedThreadPool(5);
-
-                // Submit a task for execution
-                Future<String> future = executorService.submit(() -> {
-                    // Simulating a task that takes some time to complete
-                    Thread.sleep(2000);
-                    return "Task completed successfully";
-                });
-
-                // Check if the task has completed
-                if (future.isDone()) {
-                    try {
-                        // Retrieve the result of the task
-                        String result = future.get();
-                        System.out.println("Task result: " + result);
-                    } catch (Exception e) {
-                        System.err.println("An error occurred while retrieving the task result: " + e.getMessage());
-                    }
-                } else {
-                    System.out.println("Task is still running");
-                }
-
-                // Shutdown the ExecutorService
-                executorService.shutdown();
-            }
-        }
-```
-
-In this example, we submit a task to the ExecutorService using the submit() method, which returns a Future object representing the task's execution. We can then use the isDone() method of the Future to check if the task has completed.
-
-If isDone() returns true, we can retrieve the result of the task using the get() method. It blocks until the task completes and returns the result. If an exception occurred during the task execution, it will be thrown when calling get(), so it's important to handle potential exceptions.
-
-If isDone() returns false, it means the task is still running, and we can take appropriate action based on this information.
-
-Note that calling get() without checking isDone() will block the execution until the task completes, which may not be desirable in all situations. By checking the execution status with isDone(), you can decide whether to wait for the result or continue with other operations.
-
-Remember to properly handle exceptions and make sure to shut down the ExecutorService when you're done using it to release system resources.
-</details>
-<details><summary>
-
-## What is Callable? How do you execute a Callable from ExecutionService?
-</summary>
 Callable is a functional interface in Java that represents a task that can be executed by a thread and returns a result. It is similar to the Runnable interface, but Callable tasks can return a result and throw checked exceptions.
 
 The Callable interface has a single method call() that you need to implement. This method contains the task's logic and returns a result of a specified type.
@@ -369,10 +281,12 @@ While the Callable task is executing, you can perform other tasks or operations.
 
 By using Callable and Future together with an ExecutorService, you can execute tasks that return results and retrieve those results at a later point in time, providing more flexibility and control over concurrent operations.
 </details>
+
 <details><summary>
 
-## What is Synchronization of threads ?
+## [Easy] What is Synchronization of threads ?
 </summary>
+
 Synchronization of threads refers to the coordination and control of multiple threads to ensure that they access shared resources in a mutually exclusive manner. It is used to prevent race conditions and maintain data consistency when multiple threads are concurrently accessing and modifying shared data.
 
 In Java, synchronization can be achieved using the synchronized keyword and intrinsic locks. When a block of code or a method is marked as synchronized, only one thread can execute that block or method at a time, while other threads must wait until the lock is released.
@@ -401,9 +315,10 @@ Similarly, if a thread calls the getCount() method, it will also acquire the int
 
 By synchronizing critical sections of code or methods, you can enforce mutual exclusion and ensure thread-safe access to shared resources, maintaining data integrity and preventing race conditions in multi-threaded environments.
 </details>
+
 <details><summary>
 
-## Can you give an example of a Synchronization block ?
+## [Easy] Can you give an example of a Synchronization block ?
 </summary>
 
 ```java
@@ -435,38 +350,12 @@ Similarly, within the getCount() method, the critical section that retrieves the
 
 By using synchronization blocks, you can achieve fine-grained control over synchronization and ensure that only the necessary sections of code are synchronized, rather than the entire methods. This can improve performance by allowing concurrent access to non-shared parts of the code while still ensuring thread-safety for shared resources.
 </details>
+
 <details><summary>
 
-## Can a static method be synchronized ?
+## [Easy] What is the use of join methods in threads ?
 </summary>
-Yes, a static method can be synchronized in Java. When a static method is marked as synchronized, it means that only one thread can execute that method at a time for the entire class, regardless of the number of instances of the class.
 
-Here's an example that demonstrates synchronization on a static method:
-
-```java
-        public class Counter {
-            private static int count;
-
-            public static synchronized void increment() {
-                count++;
-            }
-
-            public static synchronized int getCount() {
-                return count;
-            }
-        }
-```
-
-In this example, the increment() and getCount() methods are static and marked as synchronized using the synchronized keyword. This ensures that only one thread can execute these methods at any given time for the entire Counter class.
-
-When a thread wants to execute a synchronized static method, it acquires the class-level lock associated with the Counter class, preventing other threads from executing any synchronized static method of that class until the lock is released.
-
-Synchronizing static methods can be useful when you want to ensure thread-safety for shared static variables or when you want to synchronize access to class-level resources. It provides a way to coordinate the execution of multiple threads across all instances of the class.
-</details>
-<details><summary>
-
-## What is the use of join methods in threads ?
-</summary>
 The join() method in Java is used to pause the execution of a thread until the thread it is called on completes its execution. It allows one thread to wait for the completion of another thread before proceeding further.
 
 Here's a simple example that demonstrates the use of the join() method:
@@ -514,10 +403,12 @@ After starting both threads, we call the join() method on thread1, which causes 
 
 By using join(), we ensure that the main thread waits for the completion of both thread1 and thread2 before continuing further. This allows for synchronization and coordination among threads, ensuring that certain tasks are completed before proceeding with subsequent operations.
 </details>
+
 <details><summary>
 
-## What is the use of yield method?
+## [Easy] What is the use of yield method?
 </summary>
+
 The yield() method in Java is used to voluntarily give up the current thread's turn of execution to allow other threads of the same priority to run. It is a hint to the scheduler that the current thread is willing to yield its use of the CPU.
 
 When a thread calls yield(), it may be moved to the runnable state, allowing other threads to be scheduled for execution. However, there is no guarantee that the yield request will be honored by the scheduler.
@@ -553,10 +444,12 @@ In this example, we have two threads: thread1 and thread2. Each thread prints a 
 
 When you run this example, you will notice that both threads take turns executing, but the exact interleaving of their output may vary between different runs. The yield() method allows the scheduler to switch between threads more frequently, enhancing the fairness of execution.
 </details>
+
 <details><summary>
 
-## What is Deadlock ?
+## [Easy] What is Deadlock ?
 </summary>
+
 Deadlock is a situation in concurrent programming where two or more threads are blocked indefinitely, waiting for each other to release resources that they hold. In other words, it's a state in which the execution of threads becomes permanently halted because each thread is waiting for a resource that can only be released by another thread, resulting in a deadlock.
 
 A deadlock occurs when the following four conditions are met:
@@ -620,4 +513,104 @@ If thread1 acquires resource1 and thread2 acquires resource2 simultaneously, bot
 Preventing deadlocks involves careful design and the use of strategies like resource ordering, avoiding circular wait, and implementing timeouts or deadlock detection mechanisms.
 
 Handling deadlocks requires identifying and resolving the circular wait condition by breaking the circular chain, forcibly releasing resources, or using techniques like resource allocation graphs or deadlock detection algorithms to detect and recover from deadlocks.
+</details>
+
+<details><summary>
+
+## [Medium] Explain different ways of creating Executor Services?
+</summary>
+
+Factory methods in `Executors`:
+
+| Factory | What you get | Watch out |
+|---|---|---|
+| `newFixedThreadPool(n)` | n threads, **unbounded** queue | Queue can grow until OOM under overload |
+| `newCachedThreadPool()` | Creates threads on demand, reuses idle ones (60 s keep-alive) | **Unbounded thread count** under load |
+| `newSingleThreadExecutor()` | One thread, tasks run sequentially in order | Unbounded queue |
+| `newScheduledThreadPool(n)` | Returns a **`ScheduledExecutorService`** for delayed/periodic tasks | |
+| `newWorkStealingPool()` | `ForkJoinPool` sized to CPU cores | For CPU-bound, splittable work |
+| `newVirtualThreadPerTaskExecutor()` (Java 21) | A new virtual thread per task | For blocking IO; don't pool virtual threads |
+
+```java
+ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(2);
+scheduler.scheduleAtFixedRate(() -> System.out.println("heartbeat"), 0, 10, TimeUnit.SECONDS);
+```
+
+For production services, create a **`ThreadPoolExecutor` directly** so you control the queue size and what happens when it's full:
+
+```java
+ExecutorService pool = new ThreadPoolExecutor(
+	4, 8,                                      // core and max threads
+	60, TimeUnit.SECONDS,                      // keep-alive for extra threads
+	new ArrayBlockingQueue<>(100),             // bounded queue
+	new ThreadPoolExecutor.CallerRunsPolicy()  // back-pressure when full
+);
+```
+
+Always `shutdown()` executors you create (or use try-with-resources on Java 19+, since `ExecutorService` is `AutoCloseable`).
+
+</details>
+
+<details><summary>
+
+## [Medium] How do you check whether an ExecutionService task executed successfully?
+</summary>
+
+`submit()` returns a `Future`. Call `get()` (ideally with a timeout): it returns the result if the task succeeded, or throws:
+- `ExecutionException` – the task threw; the real cause is `e.getCause()`
+- `TimeoutException` – not finished within the timeout
+- `CancellationException` – the task was cancelled
+- `InterruptedException` – the waiting thread was interrupted
+
+```java
+ExecutorService executor = Executors.newFixedThreadPool(5);
+Future<String> future = executor.submit(() -> {
+	Thread.sleep(2000);
+	return "Task completed successfully";
+});
+
+try {
+	String result = future.get(5, TimeUnit.SECONDS);   // waits up to 5 seconds
+	System.out.println(result);
+} catch (ExecutionException e) {
+	System.err.println("Task failed: " + e.getCause());
+} catch (TimeoutException e) {
+	future.cancel(true);                               // interrupt it
+	System.err.println("Task timed out");
+} catch (InterruptedException e) {
+	Thread.currentThread().interrupt();
+} finally {
+	executor.shutdown();
+}
+```
+
+`isDone()` only tells you the task finished (successfully, with an error, or cancelled); checking it right after `submit()` will almost always be `false`. Java 19 added `future.state()` (`SUCCESS`, `FAILED`, `CANCELLED`, `RUNNING`) plus `resultNow()` and `exceptionNow()`. For non-blocking callbacks, use `CompletableFuture`.
+
+</details>
+
+<details><summary>
+
+## [Medium] Can a static method be synchronized ?
+</summary>
+
+Yes. A `static synchronized` method locks on the **`Class` object** (`Counter.class`), not on an instance. So:
+- Only one thread at a time can run *any* static synchronized method of that class.
+- It does **not** block threads calling *instance* `synchronized` methods, because those lock on `this`, a different monitor.
+
+```java
+public class Counter {
+	private static int count;
+
+	public static synchronized void increment() {   // same as synchronized (Counter.class) { ... }
+		count++;
+	}
+
+	public static synchronized int getCount() {
+		return count;
+	}
+}
+```
+
+Use it to protect **static shared state**. If static and instance methods touch the same data, they must use the same lock, otherwise you still have a race.
+
 </details>
