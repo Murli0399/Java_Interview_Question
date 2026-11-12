@@ -188,7 +188,7 @@ cache.put(3, "c");     // evicts 2
 System.out.println(cache.keySet()); // [1, 3]
 ```
 
-Interviewers often ask for the manual version too (HashMap + doubly linked list); see `10-dsa-coding/lld-problems.md`.
+Interviewers often ask for the manual version too (HashMap + doubly linked list); see `10-dsa-coding/07-lld-problems.md`.
 </details>
 
 <details><summary>

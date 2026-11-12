@@ -8,7 +8,7 @@ Companion repo for Spring and Spring Boot: [SpringBoot_Interview_Questions](http
 
 ## Difficulty levels
 
-Every question is tagged by difficulty, and within each file questions run from **Easy → Medium → Hard** (numbered DSA problems keep their order):
+Folders and the files inside them are numbered from basic to advanced, so read them in order. Every question is tagged by difficulty, and within each file questions run from **Easy → Medium → Hard** (numbered DSA problems keep their order):
 
 | Level | Meaning |
 |---|---|
@@ -27,7 +27,7 @@ Every question is tagged by difficulty, and within each file questions run from 
 
 | Stage | Focus |
 |---|---|
-| 1. Foundations | All **[Easy]** questions in `01` to `04`, plus `10-dsa-coding/06-classic-java-programs` |
+| 1. Foundations | All **[Easy]** questions in `01` to `04`, plus `10-dsa-coding/01-classic-java-programs` |
 | 2. Working knowledge | **[Medium]** questions in collections, multithreading, Java 8 streams, exceptions; DSA problems 1–20 |
 | 3. Experienced rounds | **[Hard]** questions: HashMap/ConcurrentHashMap internals, JMM and volatile, JVM troubleshooting, generics; DSA 21–33 and LLD |
 
@@ -35,7 +35,17 @@ Every question is tagged by difficulty, and within each file questions run from 
 
 ### Java Basics
 
-<details><summary><b><a href="01-java-basics/core-java-essentials.md">Core Java essentials</a></b> (11: 6 Easy · 5 Medium)</summary>
+<details><summary><b><a href="01-java-basics/01-java-platform.md">Java platform</a></b> (5: 4 Easy · 1 Medium)</summary>
+
+- [Easy] Why is Java so Popular?
+- [Easy] What is Platform Independence?
+- [Easy] What is ByteCode?
+- [Easy] Compare JDK vs JVM VS JRE.
+- [Medium] What is the role of class loader in java ?
+
+</details>
+
+<details><summary><b><a href="01-java-basics/02-core-java-essentials.md">Core Java essentials</a></b> (11: 6 Easy · 5 Medium)</summary>
 
 - [Easy] What is the main method signature and why is it public static void?
 - [Easy] What does the static keyword mean for variables, methods, blocks and classes?
@@ -51,17 +61,7 @@ Every question is tagged by difficulty, and within each file questions run from 
 
 </details>
 
-<details><summary><b><a href="01-java-basics/java-platform.md">Java platform</a></b> (5: 4 Easy · 1 Medium)</summary>
-
-- [Easy] Why is Java so Popular?
-- [Easy] What is Platform Independence?
-- [Easy] What is ByteCode?
-- [Easy] Compare JDK vs JVM VS JRE.
-- [Medium] What is the role of class loader in java ?
-
-</details>
-
-<details><summary><b><a href="01-java-basics/strings.md">Strings</a></b> (7: 4 Easy · 3 Medium)</summary>
+<details><summary><b><a href="01-java-basics/03-strings.md">Strings</a></b> (7: 4 Easy · 3 Medium)</summary>
 
 - [Easy] Are all String’s immutable?
 - [Easy] What are differences between String and StringBuffer?
@@ -73,7 +73,7 @@ Every question is tagged by difficulty, and within each file questions run from 
 
 </details>
 
-<details><summary><b><a href="01-java-basics/wrapper-classes-and-casting.md">Wrapper classes and casting</a></b> (8: 6 Easy · 2 Medium)</summary>
+<details><summary><b><a href="01-java-basics/04-wrapper-classes-and-casting.md">Wrapper classes and casting</a></b> (8: 6 Easy · 2 Medium)</summary>
 
 - [Easy] What are wrapper classes?
 - [Easy] Why do we need Wrapper Classes in Java?
@@ -89,41 +89,7 @@ Every question is tagged by difficulty, and within each file questions run from 
 
 ### OOP, SOLID and Design Patterns
 
-<details><summary><b><a href="02-oops/access-and-non-access-modifiers.md">Access and non-access modifiers</a></b> (15: 11 Easy · 3 Medium · 1 Hard)</summary>
-
-- [Easy] What is default class modifier?
-- [Easy] What is private access modifier?
-- [Easy] What is default or package access modifier?
-- [Easy] What is public access modifier?
-- [Easy] What access types of variables can be accessed from a Class in Same Package?
-- [Easy] What access types of variables can be accessed from a Class in Different Package?
-- [Easy] What is the use of a final modifier on a class ?
-- [Easy] What is the use of a final modifier on a method ?
-- [Easy] What is a Final Variable ?
-- [Easy] What is a Final Argument ?
-- [Easy] What is a Static Variable ?
-- [Medium] What is protected access modifier?
-- [Medium] What access types of variables can be accessed from a Sub Class in Same Package?
-- [Medium] What access types of variables can be accessed from a Sub Class in Different Package?
-- [Hard] What happens when a variable is marked as volatile?
-
-</details>
-
-<details><summary><b><a href="02-oops/advanced-oops.md">Advanced OOP</a></b> (9: 5 Easy · 4 Medium)</summary>
-
-- [Easy] What is Polymorphism?
-- [Easy] What is the use of instanceof Operator in Java?
-- [Easy] What is Coupling?
-- [Easy] What is Cohesion?
-- [Easy] What is Encapsulation?
-- [Medium] What is an Inner Class?
-- [Medium] What is a Static Inner Class?
-- [Medium] Can you create an inner class inside a method?
-- [Medium] What is an Anonymous Class?
-
-</details>
-
-<details><summary><b><a href="02-oops/oops-basics.md">OOP basics</a></b> (32: 26 Easy · 6 Medium)</summary>
+<details><summary><b><a href="02-oops/01-oops-basics.md">OOP basics</a></b> (32: 26 Easy · 6 Medium)</summary>
 
 - [Easy] What is a Class?
 - [Easy] What is an Object?
@@ -160,7 +126,41 @@ Every question is tagged by difficulty, and within each file questions run from 
 
 </details>
 
-<details><summary><b><a href="02-oops/solid-and-design-patterns.md">SOLID and design patterns</a></b> (8: 2 Easy · 6 Medium)</summary>
+<details><summary><b><a href="02-oops/02-access-and-non-access-modifiers.md">Access and non-access modifiers</a></b> (15: 11 Easy · 3 Medium · 1 Hard)</summary>
+
+- [Easy] What is default class modifier?
+- [Easy] What is private access modifier?
+- [Easy] What is default or package access modifier?
+- [Easy] What is public access modifier?
+- [Easy] What access types of variables can be accessed from a Class in Same Package?
+- [Easy] What access types of variables can be accessed from a Class in Different Package?
+- [Easy] What is the use of a final modifier on a class ?
+- [Easy] What is the use of a final modifier on a method ?
+- [Easy] What is a Final Variable ?
+- [Easy] What is a Final Argument ?
+- [Easy] What is a Static Variable ?
+- [Medium] What is protected access modifier?
+- [Medium] What access types of variables can be accessed from a Sub Class in Same Package?
+- [Medium] What access types of variables can be accessed from a Sub Class in Different Package?
+- [Hard] What happens when a variable is marked as volatile?
+
+</details>
+
+<details><summary><b><a href="02-oops/03-advanced-oops.md">Advanced OOP</a></b> (9: 5 Easy · 4 Medium)</summary>
+
+- [Easy] What is Polymorphism?
+- [Easy] What is the use of instanceof Operator in Java?
+- [Easy] What is Coupling?
+- [Easy] What is Cohesion?
+- [Easy] What is Encapsulation?
+- [Medium] What is an Inner Class?
+- [Medium] What is a Static Inner Class?
+- [Medium] Can you create an inner class inside a method?
+- [Medium] What is an Anonymous Class?
+
+</details>
+
+<details><summary><b><a href="02-oops/04-solid-and-design-patterns.md">SOLID and design patterns</a></b> (8: 2 Easy · 6 Medium)</summary>
 
 - [Easy] What is the Factory pattern? Give a real example.
 - [Easy] What is the Builder pattern?
@@ -176,7 +176,7 @@ Every question is tagged by difficulty, and within each file questions run from 
 
 ### Exception Handling
 
-<details><summary><b><a href="03-exception-handling/exception-handling.md">Exception handling</a></b> (18: 13 Easy · 5 Medium)</summary>
+<details><summary><b><a href="03-exception-handling/01-exception-handling.md">Exception handling</a></b> (18: 13 Easy · 5 Medium)</summary>
 
 - [Easy] Why is Exception Handling important?
 - [Easy] What is the need for finally block?
@@ -199,7 +199,7 @@ Every question is tagged by difficulty, and within each file questions run from 
 
 </details>
 
-<details><summary><b><a href="03-exception-handling/exceptions-advanced.md">Exceptions (advanced)</a></b> (8: 1 Easy · 5 Medium · 2 Hard)</summary>
+<details><summary><b><a href="03-exception-handling/02-exceptions-advanced.md">Exceptions (advanced)</a></b> (8: 1 Easy · 5 Medium · 2 Hard)</summary>
 
 - [Easy] What is the difference between throw and throws?
 - [Medium] What happens if both try and finally contain a return statement?
@@ -215,7 +215,7 @@ Every question is tagged by difficulty, and within each file questions run from 
 
 ### Collections
 
-<details><summary><b><a href="04-collections/collections-basics.md">Collections basics</a></b> (27: 22 Easy · 5 Medium)</summary>
+<details><summary><b><a href="04-collections/01-collections-basics.md">Collections basics</a></b> (27: 22 Easy · 5 Medium)</summary>
 
 - [Easy] Why do we need Collections in Java?
 - [Easy] What are the important interfaces in the Collection Hierarchy?
@@ -247,7 +247,7 @@ Every question is tagged by difficulty, and within each file questions run from 
 
 </details>
 
-<details><summary><b><a href="04-collections/collections-comparison-and-complexity.md">Choosing collections and complexity</a></b> (6: 1 Easy · 4 Medium · 1 Hard)</summary>
+<details><summary><b><a href="04-collections/02-collections-comparison-and-complexity.md">Choosing collections and complexity</a></b> (6: 1 Easy · 4 Medium · 1 Hard)</summary>
 
 - [Easy] What is the difference between Iterator and ListIterator?
 - [Medium] What is the time complexity of common collection operations?
@@ -258,7 +258,7 @@ Every question is tagged by difficulty, and within each file questions run from 
 
 </details>
 
-<details><summary><b><a href="04-collections/collections-internals-and-concurrent.md">Collections internals and concurrent collections</a></b> (20: 5 Easy · 13 Medium · 2 Hard)</summary>
+<details><summary><b><a href="04-collections/03-collections-internals-and-concurrent.md">Collections internals and concurrent collections</a></b> (20: 5 Easy · 13 Medium · 2 Hard)</summary>
 
 - [Easy] What is the difference between HashMap, LinkedHashMap and TreeMap?
 - [Easy] What are the important interfaces related to the Queue interface?
@@ -286,26 +286,7 @@ Every question is tagged by difficulty, and within each file questions run from 
 
 ### Multithreading and Concurrency
 
-<details><summary><b><a href="05-multithreading/concurrency-advanced.md">Advanced concurrency</a></b> (14: 2 Easy · 9 Medium · 3 Hard)</summary>
-
-- [Easy] Describe a few other important methods in threads.
-- [Easy] What is the difference between wait() and sleep()?
-- [Medium] What are the important methods for inter-thread communication?
-- [Medium] Can you write a producer-consumer program with wait and notify?
-- [Medium] Write a program where two threads print odd and even numbers alternately.
-- [Medium] What does volatile guarantee, and what doesn't it?
-- [Medium] How do you prevent deadlocks?
-- [Medium] What is CompletableFuture? Give an example.
-- [Medium] What are CountDownLatch, CyclicBarrier and Semaphore?
-- [Medium] What is ReadWriteLock?
-- [Medium] What are virtual threads (Java 21)?
-- [Hard] What is the Java Memory Model's happens-before relationship?
-- [Hard] What is a ThreadPoolExecutor and how do you size it?
-- [Hard] What is ThreadLocal and when can it cause a memory leak?
-
-</details>
-
-<details><summary><b><a href="05-multithreading/multithreading-basics.md">Multithreading basics</a></b> (14: 11 Easy · 3 Medium)</summary>
+<details><summary><b><a href="05-multithreading/01-multithreading-basics.md">Multithreading basics</a></b> (14: 11 Easy · 3 Medium)</summary>
 
 - [Easy] What is the need for Threads in Java?
 - [Easy] How do you create a thread?
@@ -324,7 +305,7 @@ Every question is tagged by difficulty, and within each file questions run from 
 
 </details>
 
-<details><summary><b><a href="05-multithreading/threading-pitfalls-and-executors.md">Threading pitfalls and executors</a></b> (8: 2 Easy · 5 Medium · 1 Hard)</summary>
+<details><summary><b><a href="05-multithreading/02-threading-pitfalls-and-executors.md">Threading pitfalls and executors</a></b> (8: 2 Easy · 5 Medium · 1 Hard)</summary>
 
 - [Easy] What is a daemon thread?
 - [Easy] What is the difference between Runnable and Callable?
@@ -337,10 +318,29 @@ Every question is tagged by difficulty, and within each file questions run from 
 
 </details>
 
+<details><summary><b><a href="05-multithreading/03-concurrency-advanced.md">Advanced concurrency</a></b> (14: 2 Easy · 9 Medium · 3 Hard)</summary>
+
+- [Easy] Describe a few other important methods in threads.
+- [Easy] What is the difference between wait() and sleep()?
+- [Medium] What are the important methods for inter-thread communication?
+- [Medium] Can you write a producer-consumer program with wait and notify?
+- [Medium] Write a program where two threads print odd and even numbers alternately.
+- [Medium] What does volatile guarantee, and what doesn't it?
+- [Medium] How do you prevent deadlocks?
+- [Medium] What is CompletableFuture? Give an example.
+- [Medium] What are CountDownLatch, CyclicBarrier and Semaphore?
+- [Medium] What is ReadWriteLock?
+- [Medium] What are virtual threads (Java 21)?
+- [Hard] What is the Java Memory Model's happens-before relationship?
+- [Hard] What is a ThreadPoolExecutor and how do you size it?
+- [Hard] What is ThreadLocal and when can it cause a memory leak?
+
+</details>
+
 
 ### JVM, Memory and GC
 
-<details><summary><b><a href="06-jvm-memory-gc/gc-and-serialization.md">GC and serialization</a></b> (12: 6 Easy · 5 Medium · 1 Hard)</summary>
+<details><summary><b><a href="06-jvm-memory-gc/01-gc-and-serialization.md">GC and serialization</a></b> (12: 6 Easy · 5 Medium · 1 Hard)</summary>
 
 - [Easy] What is a Garbage Collection?
 - [Easy] Can you explain the Garbage Collection with an example?
@@ -357,7 +357,7 @@ Every question is tagged by difficulty, and within each file questions run from 
 
 </details>
 
-<details><summary><b><a href="06-jvm-memory-gc/jvm-memory-and-performance.md">JVM memory and performance</a></b> (9: 5 Medium · 4 Hard)</summary>
+<details><summary><b><a href="06-jvm-memory-gc/02-jvm-memory-and-performance.md">JVM memory and performance</a></b> (9: 5 Medium · 4 Hard)</summary>
 
 - [Medium] What are the memory areas of the JVM?
 - [Medium] How does generational garbage collection work?
@@ -374,7 +374,7 @@ Every question is tagged by difficulty, and within each file questions run from 
 
 ### Java 8, Streams and Functional Programming
 
-<details><summary><b><a href="07-java8-functional/functional-programming.md">Functional programming</a></b> (16: 14 Easy · 2 Medium)</summary>
+<details><summary><b><a href="07-java8-functional/01-functional-programming.md">Functional programming</a></b> (16: 14 Easy · 2 Medium)</summary>
 
 - [Easy] What is functional programming?
 - [Easy] Can you give an example of functional programming?
@@ -395,7 +395,7 @@ Every question is tagged by difficulty, and within each file questions run from 
 
 </details>
 
-<details><summary><b><a href="07-java8-functional/java8-advanced.md">Java 8 (advanced)</a></b> (8: 3 Easy · 5 Medium)</summary>
+<details><summary><b><a href="07-java8-functional/02-java8-advanced.md">Java 8 (advanced)</a></b> (8: 3 Easy · 5 Medium)</summary>
 
 - [Easy] Explain the Java 8 Date and Time API.
 - [Easy] What is the difference between a Collection and a Stream?
@@ -408,7 +408,7 @@ Every question is tagged by difficulty, and within each file questions run from 
 
 </details>
 
-<details><summary><b><a href="07-java8-functional/streams-coding-questions.md">Streams coding questions</a></b> (16: 8 Easy · 7 Medium · 1 Hard)</summary>
+<details><summary><b><a href="07-java8-functional/03-streams-coding-questions.md">Streams coding questions</a></b> (16: 8 Easy · 7 Medium · 1 Hard)</summary>
 
 - [Easy] Find the second highest salary.
 - [Easy] Partition numbers into even and odd.
@@ -432,7 +432,7 @@ Every question is tagged by difficulty, and within each file questions run from 
 
 ### Generics
 
-<details><summary><b><a href="08-generics/generics.md">Generics</a></b> (10: 4 Easy · 3 Medium · 3 Hard)</summary>
+<details><summary><b><a href="08-generics/01-generics.md">Generics</a></b> (10: 4 Easy · 3 Medium · 3 Hard)</summary>
 
 - [Easy] What are Generics?
 - [Easy] Why do we need Generics? Can you give an example of how Generics make a program more flexible?
@@ -450,7 +450,7 @@ Every question is tagged by difficulty, and within each file questions run from 
 
 ### Miscellaneous and Java Versions
 
-<details><summary><b><a href="09-misc/arrays-enums-misc.md">Arrays, enums and misc</a></b> (9: 7 Easy · 2 Medium)</summary>
+<details><summary><b><a href="09-misc/01-arrays-enums-misc.md">Arrays, enums and misc</a></b> (9: 7 Easy · 2 Medium)</summary>
 
 - [Easy] What are the default values in an array?
 - [Easy] How do you print the content of an array?
@@ -464,7 +464,19 @@ Every question is tagged by difficulty, and within each file questions run from 
 
 </details>
 
-<details><summary><b><a href="09-misc/extra-knowledge.md">Extra knowledge (web, DB, OS)</a></b> (26: 14 Easy · 11 Medium · 1 Hard)</summary>
+<details><summary><b><a href="09-misc/02-java-version-features.md">Java version features (5 → 21)</a></b> (7: 4 Easy · 3 Medium)</summary>
+
+- [Easy] What are the new features in Java 5?
+- [Easy] What are the new features in Java 6 and 7?
+- [Easy] What are the new features in Java 8?
+- [Easy] What is a record and when would you use it?
+- [Medium] What changed in Java 9, 10 and 11?
+- [Medium] What are the key features from Java 12 to 17?
+- [Medium] What are the key features of Java 21?
+
+</details>
+
+<details><summary><b><a href="09-misc/03-extra-knowledge.md">Extra knowledge (web, DB, OS)</a></b> (26: 14 Easy · 11 Medium · 1 Hard)</summary>
 
 - [Easy] Difference between API and REST API?
 - [Easy] What is domain vs. endpoint in API?
@@ -495,71 +507,10 @@ Every question is tagged by difficulty, and within each file questions run from 
 
 </details>
 
-<details><summary><b><a href="09-misc/java-version-features.md">Java version features (5 → 21)</a></b> (7: 4 Easy · 3 Medium)</summary>
-
-- [Easy] What are the new features in Java 5?
-- [Easy] What are the new features in Java 6 and 7?
-- [Easy] What are the new features in Java 8?
-- [Easy] What is a record and when would you use it?
-- [Medium] What changed in Java 9, 10 and 11?
-- [Medium] What are the key features from Java 12 to 17?
-- [Medium] What are the key features of Java 21?
-
-</details>
-
 
 ### DSA, Coding Programs and LLD
 
-<details><summary><b><a href="10-dsa-coding/01-strings.md">Strings</a></b> (6: 2 Easy · 4 Medium)</summary>
-
-- [Medium] 1. Check whether a pattern exists in a text (substring search)
-- [Easy] 2. Valid palindrome (ignore case and non-alphanumerics)
-- [Medium] 3. Longest palindromic substring
-- [Medium] 4. Longest substring without repeating characters
-- [Medium] 5. Group anagrams
-- [Easy] 6. String compression
-
-</details>
-
-<details><summary><b><a href="10-dsa-coding/02-arrays-and-hashing.md">Arrays and hashing</a></b> (6: 2 Easy · 4 Medium)</summary>
-
-- [Easy] 7. Two sum
-- [Easy] 8. Best time to buy and sell stock (I and II)
-- [Medium] 9. Maximum subarray sum (Kadane's algorithm)
-- [Medium] 10. Merge overlapping intervals
-- [Medium] 11. Product of array except self (no division)
-- [Medium] 12. Subarray sum equals K
-
-</details>
-
-<details><summary><b><a href="10-dsa-coding/03-linked-list-matrix-stack.md">Linked list, matrix, stack</a></b> (5: 3 Easy · 2 Medium)</summary>
-
-- [Easy] 13. Reverse a linked list
-- [Medium] 14. Detect a cycle and return where it starts
-- [Easy] 15. Merge two sorted lists
-- [Medium] 16. Word search in a matrix
-- [Easy] 17. Valid parentheses
-
-</details>
-
-<details><summary><b><a href="10-dsa-coding/04-trees-and-binary-search.md">Trees and binary search</a></b> (4: 1 Easy · 3 Medium)</summary>
-
-- [Medium] 18. Level order traversal (BFS)
-- [Medium] 19. Lowest common ancestor of a binary tree
-- [Medium] 20. Search in a rotated sorted array
-- [Easy] Before you say "done" in an interview
-
-</details>
-
-<details><summary><b><a href="10-dsa-coding/05-lld-problems.md">Low-level design (LLD)</a></b> (3: 2 Medium · 1 Hard)</summary>
-
-- [Medium] Design an LRU cache with O(1) get and put
-- [Medium] Design a parking lot
-- [Hard] Design a rate limiter (token bucket)
-
-</details>
-
-<details><summary><b><a href="10-dsa-coding/06-classic-java-programs.md">Classic Java programs</a></b> (9: 9 Easy)</summary>
+<details><summary><b><a href="10-dsa-coding/01-classic-java-programs.md">Classic Java programs</a></b> (9: 9 Easy)</summary>
 
 - [Easy] Reverse a string without using reverse()
 - [Easy] Check whether a number is prime
@@ -573,7 +524,48 @@ Every question is tagged by difficulty, and within each file questions run from 
 
 </details>
 
-<details><summary><b><a href="10-dsa-coding/07-medium-hard-problems.md">Medium and hard problems</a></b> (13: 9 Medium · 4 Hard)</summary>
+<details><summary><b><a href="10-dsa-coding/02-strings.md">Strings</a></b> (6: 2 Easy · 4 Medium)</summary>
+
+- [Medium] 1. Check whether a pattern exists in a text (substring search)
+- [Easy] 2. Valid palindrome (ignore case and non-alphanumerics)
+- [Medium] 3. Longest palindromic substring
+- [Medium] 4. Longest substring without repeating characters
+- [Medium] 5. Group anagrams
+- [Easy] 6. String compression
+
+</details>
+
+<details><summary><b><a href="10-dsa-coding/03-arrays-and-hashing.md">Arrays and hashing</a></b> (6: 2 Easy · 4 Medium)</summary>
+
+- [Easy] 7. Two sum
+- [Easy] 8. Best time to buy and sell stock (I and II)
+- [Medium] 9. Maximum subarray sum (Kadane's algorithm)
+- [Medium] 10. Merge overlapping intervals
+- [Medium] 11. Product of array except self (no division)
+- [Medium] 12. Subarray sum equals K
+
+</details>
+
+<details><summary><b><a href="10-dsa-coding/04-linked-list-matrix-stack.md">Linked list, matrix, stack</a></b> (5: 3 Easy · 2 Medium)</summary>
+
+- [Easy] 13. Reverse a linked list
+- [Medium] 14. Detect a cycle and return where it starts
+- [Easy] 15. Merge two sorted lists
+- [Medium] 16. Word search in a matrix
+- [Easy] 17. Valid parentheses
+
+</details>
+
+<details><summary><b><a href="10-dsa-coding/05-trees-and-binary-search.md">Trees and binary search</a></b> (4: 1 Easy · 3 Medium)</summary>
+
+- [Medium] 18. Level order traversal (BFS)
+- [Medium] 19. Lowest common ancestor of a binary tree
+- [Medium] 20. Search in a rotated sorted array
+- [Easy] Before you say "done" in an interview
+
+</details>
+
+<details><summary><b><a href="10-dsa-coding/06-medium-hard-problems.md">Medium and hard problems</a></b> (13: 9 Medium · 4 Hard)</summary>
 
 - [Medium] 21. Top K frequent elements
 - [Medium] 22. Kth largest element in an array
@@ -588,6 +580,14 @@ Every question is tagged by difficulty, and within each file questions run from 
 - [Hard] 31. Merge k sorted lists
 - [Hard] 32. Sliding window maximum
 - [Hard] 33. Minimum window substring
+
+</details>
+
+<details><summary><b><a href="10-dsa-coding/07-lld-problems.md">Low-level design (LLD)</a></b> (3: 2 Medium · 1 Hard)</summary>
+
+- [Medium] Design an LRU cache with O(1) get and put
+- [Medium] Design a parking lot
+- [Hard] Design a rate limiter (token bucket)
 
 </details>
 

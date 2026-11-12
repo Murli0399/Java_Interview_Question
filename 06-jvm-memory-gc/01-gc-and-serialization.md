@@ -14,7 +14,7 @@ void process() {
     User temp = new User("Asha");   // object created on the heap
     temp = null;                    // no references left -> eligible for GC
 }
-// More detail: jvm-memory-and-performance.md
+// More detail: 02-jvm-memory-and-performance.md
 ```
 
 </details>

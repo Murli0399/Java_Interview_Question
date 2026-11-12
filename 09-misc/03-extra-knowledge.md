@@ -90,7 +90,7 @@ public List<Report> reports() { ... }
 - An **interface** defines a contract. It can have abstract, `default`, `static` (Java 8) and `private` (Java 9) methods, but only `public static final` constants and no constructors. A class can implement many interfaces, and an interface can extend many interfaces.
 - Abstract classes can have initialization blocks; interfaces can't.
 
-Use an abstract class to share code and state among closely related classes; use an interface for a capability that unrelated classes can provide. (See the full comparison table in `02-oops/oops-basics.md`.)
+Use an abstract class to share code and state among closely related classes; use an interface for a capability that unrelated classes can provide. (See the full comparison table in `02-oops/01-oops-basics.md`.)
 
 </details>
 
