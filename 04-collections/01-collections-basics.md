@@ -732,7 +732,7 @@ users.put(null, "unknown");          // one null key allowed
 System.out.println(users.get(2L));   // Ravi, O(1) average
 users.computeIfAbsent(3L, id -> "User-" + id);
 users.forEach((id, name) -> System.out.println(id + "=" + name));
-// See collections-internals-and-concurrent.md for how buckets, hashing and resizing work.
+// See 03-collections-internals-and-concurrent.md for how buckets, hashing and resizing work.
 ```
 
 </details>
